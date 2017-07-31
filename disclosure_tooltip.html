@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Toggle button</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        padding: 3em 10em;
+        background-color: #f5f5f5;
+      }
+      a {
+        color: #059;
+      }
+          a:visited {
+            color: #808;
+          }
+          a:focus, a:hover {
+            color: #080;
+          }
+      .sr-only {
+        position: absolute;
+        left: -999em;
+        top: auto;
+        height: 0;
+      }
+      /* for rtl pages, add
+        [dir=rtl] .sr-only {left: auto; right: -999em;}
+      after the main sr-only rule */
+
+      .accessible_tooltip_widget {
+        position: relative;
+        display: inline-block;
+      }
+      button {
+        width: 14px;/* obviously demo-purposes only as this isn't a font */
+        height: 14px;/* obviously demo-purposes only as this isn't a font */
+        margin: 10px;
+        /* these 2 properties plust transparent background removes most buttony features. However may still move 1px when being clicked if browser does that with buttons */
+        padding: 0;
+        border: 0;
+        background: transparent url('clock_icon.png') 0 0 no-repeat; /* obviously demo-purposes only as this isn't a font */
+        cursor: pointer;
+      }
+      .mouseDetected button:focus {
+        outline: 0;
+      }
+      .assessment_points {
+        position: absolute;
+        bottom: 30px;
+        left: -100px;
+        width: 200px;
+        padding: 20px;
+        color: #222;
+        background-color: #fff;
+        border-radius: 3px;
+        box-shadow: 0 0 2px 2px rgba(0,0,0,0.4), 6px 6px 18px rgba(0,0,0,0.6);
+      }
+          /* arrow thing */
+          .assessment_points:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 100%;
+            left: 45%;
+            width: 0; 
+            height: 0; 
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #fff;
+          }
+      .hidden {
+        display: none;
+      }
+      button:hover+.assessment_points {
+        display: block;
+      }
+
+      pre {
+        margin: 1em 0;
+        background-color: #f5f5f5;
+        border: 1px solid #aaa;
+      }
+      code {
+        white-space: pre;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Demo</h1>
+    <p>Generic sentence with a <a href="#">focusable</a> before the demo element.</p>
+    <div class="accessible_tooltip_widget">
+      <button aria-expanded="false" aria-controls="content"><span class="sr-only">Late assessment available</span></button>
+      <p id="content" class="hidden assessment_points">Total points if late submissions are accepted: 8/10</p>
+    </div>
+    <p>Generic sentence with another <a href="#">focusable</a> after the demo element.</p>
+    <p>What this meets: it works with keyboard, should work with touch (however mobile devices are weird about whether they try for a pseudo "hover" state or not) though the target area is too small for small and touch screens (minimum 18-24mm in size and minimum half that for the distance between clickable elements).</p>
+    <p>This will be difficult to impossible to use for speech recognition users unless you tell them the clock is a button and what its name is. This example is not using font-awesome, but the correct way to code that accessibly is something like:</p>
+      <pre><code>
+    &lt;button&gt;
+      &lt;i class="fa-foobar" aria-hidden="true"&gt;&lt;/i&gt;
+      &lt;span class="sr-only"&gt;Late assessment available&lt;/figcaption&gt;
+    &lt;/button&gt;
+      </code></pre>
+    <p>(the button coded above is not coded for disclosure-widget-ness with the necessary aria-expanded attribute, it's just an example of making the icon part accessible. For icons who are purely decorative, all you need is the i element and aria-hidden on it)</p>
+    <script>
+      /* this part is for hiding focus rings from mousers */
+      document.addEventListener('mousedown',function() {
+        document.body.classList.add('mouseDetected');
+      },false);
+      
+      document.addEventListener('keydown',function() {
+        document.body.classList.remove('mouseDetected');
+      },false);
+
+      /* disclosure widget, non-generic */
+      var button=document.querySelector('button'),
+          content=document.getElementById('content');
+
+      button.onclick=function(e) {
+        if (this.getAttribute('aria-expanded')=="true") {
+          content.classList.add('hidden');
+          this.setAttribute('aria-expanded', false);
+        }
+        else {
+          content.classList.remove('hidden');
+          this.setAttribute('aria-expanded', true);
+        }
+      };
+    </script>
+  </body>
+</html>

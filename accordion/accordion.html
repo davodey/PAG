@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Accordion example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!--[if lte IE 8]><script>document.createElement(main);</script><![endif]-->
+    <link rel="stylesheet" href="../elements.css">
+    <style>
+      body {
+        padding: 2em;
+      }
+      main {
+        width: 80%;
+        max-width: 50em;
+        margin: 0 auto;
+      }
+      .mouseDetected button:focus {
+        outline: 0;
+      }
+      button:hover {
+        cursor: pointer;
+      }
+      .o-contextual-help {
+        width: 332px;
+        padding: 32px;
+        background-color: #f5f5f5;
+        box-shadow: -1px 0px 8px rgba(0, 0, 0, 0.3);
+      }
+      .o-contextual-help__accordion h2,
+      .o-contextual-help__accordion h3 {
+        font-weight: bold;
+        line-height: 1.3em;
+        margin: 24px 0;
+      }
+      .o-contextual-help__accordion h2:first-child {
+        margin-top: 0;
+      }
+      .o-contextual-help .o-disclosure {
+        padding: 0;
+        background-color: transparent;
+        border: 0;
+      }
+      .o-contextual-help .o-panel--closed {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- SVG included in-page mostly for IE11 and Android-webkit benefit -->
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="pe-icons-sprite">
+      <symbol id="pivot-close-18" viewBox="0 0 18 18">
+        <path d="M6,11.5038 L6,5.4958 C6,5.1118 6.419,4.8738 6.749,5.0708 L11.759,8.0748 C12.08,8.2678 12.08,8.7328 11.759,8.9248 L6.749,11.9288 C6.419,12.1268 6,11.8888 6,11.5038"/>
+      </symbol>
+      <symbol id="pivot-open-18" viewBox="0 0 18 18">
+        <path d="M5.4962,6 L11.5042,6 C11.8882,6 12.1262,6.419 11.9292,6.749 L8.9252,11.759 C8.7322,12.08 8.2672,12.08 8.0752,11.759 L5.0712,6.749 C4.8732,6.419 5.1112,6 5.4962,6"/>
+      </symbol>
+    </svg>
+    <main>
+      <h1>Accordion example</h1>
+      <div class="o-contextual-help">
+        <h2>Test Accordion</h2>
+        <div class="o-contextual-help__accordion">
+          <!-- spaces around <use> tag for benefit of Safari; focusable attribute for IE -->
+          <h3><button class="o-disclosure" aria-controls="item-1" aria-expanded="true"><svg aria-hidden="true" focusable="false" class="pe-icon--pivot-open-18"> <use xlink:href="#pivot-open-18"></use> </svg> Item pre-opened</button></h3>
+          <div id="item-1" class="o-panel--open">
+            <p>References HTML from <a href="https://github.com/Pearson-Higher-Ed/contextual-help#accordionsdisclosure-widgets">the contextual-help README</a> on GitHub. Note that the "focusable" attribute should bring warnings in HTML validators; this is because the "focusable" attribute is part of the SVG Tiny 1.2 spec, which IE adopted but was never fully approved (so is not part of any current spec). Without <em>focusable="false"</em> on SVGs, IE will add an unwanted tab stop on each icon.</p>
+          </div>
+          <h3><button class="o-disclosure" aria-controls="item-2" aria-expanded="false"><svg aria-hidden="true" focusable="false" class="pe-icon--pivot-close-18"> <use xlink:href="#pivot-close-18"></use> </svg> Item 2 default closed</button></h3>
+          <div id="item-2" class="o-panel--closed">
+            <p>This accordion is based on the one in the <a href="https://github.com/Pearson-Higher-Ed/contextual-help">contextual-help</a> component, which is written in ES6 and is behind the newest design standards. There are plans to Reactify it in Q3 2017.</p>
+          </div>
+          <h3><button class="o-disclosure" aria-controls="item-3" aria-expanded="false"><svg aria-hidden="true" focusable="false" class="pe-icon--pivot-close-18"> <use xlink:href="#pivot-close-18"></use> </svg> Item 3 default closed</button></h3>
+          <div id="item-3" class="o-panel--closed">
+            <p>Why not details/summary? Mostly because it needs polyfills equalling the same as what I have here anyway. In addition, developers seem to know that you cannot put interactives (like links) inside buttons yet seem to think they can do this in summaries (which breaks assistive tech because summary is mapped to a button role in conforming UAs). Additionally it can get weird in situations where devs do things like put labels in the summaries and their associated inputs in the details area. Labels expect to move focus to their inputs when clicked, which may override the buttony-ness of the summary. Developers know better than to put label elements inside buttons too.</p>
+            <p>However, the spec is being tightened up and details/summary might make sense in the future. For now, so long as we need to polyfill anyway, let's use working markup and semantics of "disclosure widgets" which are a button/content pair.</p>
+          </div>
+          <h3><button class="o-disclosure" aria-controls="item-4" aria-expanded="false"><svg aria-hidden="true" focusable="false" class="pe-icon--pivot-close-18"> <use xlink:href="#pivot-close-18"></use> </svg> Item 4 default closed</button></h3>
+          <div id="item-4" class="o-panel--closed">
+            <p>Watch out for how to change class names in SVGs! They are in the NS namespace, which is not the same as where HTML is.</p>
+          </div>
+        </div><!--accordion-->
+      </div>
+    </main>
+    <script>
+      var accordion = document.querySelector('.o-contextual-help__accordion'),
+          buttons = accordion.querySelectorAll('.o-disclosure');
+
+      for (var i=0,l=buttons.length; i<l; i++) {
+        var button = buttons[i];
+        button.onclick = function(e) {
+          var panel = document.getElementById(this.getAttribute('aria-controls')),
+              svg = this.getElementsByTagNameNS('http://www.w3.org/2000/svg','svg')[0],
+              use = svg.getElementsByTagName('use')[0];
+          if (this.getAttribute('aria-expanded')=="true") {
+            panel.className = 'o-panel--closed';
+            svg.setAttribute('class','pe-icon--pivot-close-18');
+            use.href.baseVal = "#pivot-close-18";
+            this.setAttribute('aria-expanded', false);
+          }
+          else {
+            panel.className = 'o-panel--open';
+            svg.setAttribute('class','pe-icon--pivot-open-18');
+            use.href.baseVal = '#pivot-open-18';
+            this.setAttribute('aria-expanded', true);
+          }
+        };
+      }
+// remove focus ring on mouse clicks
+      document.addEventListener('mousedown',function() {
+        document.body.classList.add('mouseDetected');
+      },false);
+      
+      document.addEventListener('keydown',function() {
+        document.body.classList.remove('mouseDetected');
+      },false);
+    </script>
+  </body>
+</html>
+
