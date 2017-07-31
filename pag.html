@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Pearson Accessibility Guidelines</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!--[if lte IE 8]><script> var list='header,main,figure,figcaption,mark,time,aside,footer'.split(','), el; while(el=list.pop()){document.createElement(el);}</script><![endif]-->
+    <link rel="stylesheet" href="elements.css">
+    <style>
+      .skippy {
+        position: absolute;
+        left: -999em;
+        top: auto;
+        height: 0;
+      }
+        .skippy:focus {
+          position: static;
+        }
+      main {
+        width: 80%;
+        max-width: 50em;
+        margin: 0 auto;
+      }
+      .summary {
+        font-weight: bold;
+      }
+      .pe-table--borders {
+        width: 50%;
+        border: 1px solid #d9d9d9;
+      }
+      .pe-table--borders th,
+      .pe-table--borders td {
+        border: 1px solid #d9d9d9;
+      }
+      @media (max-width: 30em) {
+        .pe-table--borders {
+          width: 100%;
+        }
+      }
+      dt, dd {
+        display: inline-block;
+        vertical-align: top;
+        min-height: 4em;
+        margin: 0 0 .5em;
+        padding: .2em;
+      }
+      dt {
+        width: 36%;
+        padding-right: .6em;
+        color: #444;
+        font-weight: bold;
+      } 
+      dd {
+        width: 60%;
+      }
+      dt:nth-of-type(2n),
+      dd:nth-of-type(2n) {
+        background-color: #f5f5f5;
+      }
+      .guideline_content.hidden {
+        display: none;
+      }
+    </style>
+    <!-- print stylesheet pls -->
+  </head>
+  <body>
+    <main>
+      <h1>The Guidelines</h1>
+      <p>Stuff highlighted with the <code>&lt;mark&gt;</code> tag are things that may need to be updated or deleted.</p>
+      <h2 id="toc">TOC</h2>
+      <ul class="pe-list pe-list--unstyled">
+        <li><a href="#g1">1: Choosing Accessible Technologies</a></li>
+        <li><a href="#g2">2: Allow users to adjust time limits (Time Limits)</a></li>
+        <li><a href="#g3">3: Allow instructors, administrators, or students to adjust time limits (Timed Tests)</a></li>
+        <li><a href="#g4">4: Check the order that content is read in screen readers & correct any issues (Sensible Reading Order)</a></li>
+        <li><a href="#g5">5: Make sure screen reader users can find dynamic additions to the screen (Findable Added Content)</a></li>
+        <li><a href="#g6">6: </a></li>
+        <li><a href="#g7">7: </a></li>
+        <li><a href="#g8">8: </a></li>
+        <li><a href="#g9">9: </a></li>
+        <li><a href="#g10">10: </a></li>
+        <li><a href="#g11">11: </a></li>
+        <li><a href="#g12">12: </a></li>
+        <li><a href="#g13">13: </a></li>
+        <li><a href="#g14">14: </a></li>
+        <li><a href="#g15">15: </a></li>
+        <li><a href="#g16">16: </a></li>
+        <li><a href="#g17">17: </a></li>
+        <li><a href="#g18">18: </a></li>
+        <li><a href="#g19">19: </a></li>
+        <li><a href="#g20">20: </a></li>
+        <li><a href="#g21">21: </a></li>
+        <li><a href="#g22">22: </a></li>
+        <li><a href="#g23">23: </a></li>
+        <li><a href="#g24">24: </a></li>
+        <li><a href="#g25">25: </a></li>
+        <li><a href="#g26">26: </a></li>
+        <li><a href="#g27">27: </a></li>
+        <li><a href="#g28">28: </a></li>
+        <li><a href="#g29">29: </a></li>
+        <li><a href="#g30">30: </a></li>
+        <li><a href="#g31">31: </a></li>
+        <li><a href="#g32">32: </a></li>
+        <li><a href="#g33">33: </a></li>
+        <li><a href="#34">34: </a></li>
+        <li><a href="#g35">35: </a></li>
+        <li><a href="#g36">36: </a></li>
+        <li><a href="#g37">37: </a></li>
+        <li><a href="#g38">38: </a></li>
+        <li><a href="#g39">39: </a></li>
+        <li><a href="#g40">40: </a></li>
+        <li><a href="#g41">41: </a></li>
+        <li><a href="#g42">42: </a></li>
+      </ul>
+      <h2 id="g1">Guideline 1. Choose technologies (e.g. HTML vs. Flash) with accessibility in mind (Choosing Technologies)</h2>
+      <div class="guideline_content">
+        <p class="summary">When choosing a document type or a user interface technology (e.g. HTML, Flash, Flex, PDF, mobile application), choose the most accessible technology that can accomplish project requirements.</p>
+ 
+        <h3>Rationale</h3>
+        <p>Some media types have a much higher potential for accessibility than others.</p>
+        <p>Even when two media types can each produce accessible results, choosing the most accessible technology will facilitate the process of making your product accessible.</p>
+
+        <h3>HTML's Potential</h3>
+        <p>HTML and XHTML have the highest potential for accessibility of any document type available today.</p>
+        <p>HTML and XHTML provide access on multiple platforms and multiple browsers and work well with a wide variety of assistive technologies. (In this context, assistive technology is software and hardware that is used by people with disabilities to facilitate access to media.)</p>
+        <p>HTML accessibility has been studied and refined for over 14 years and users of assistive technologies are typically comfortable working with HTML and XHTML.</p>
+        <p>When coded with accessibility in mind, this media type gives users with disabilities:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>A choice of device, operating system and browser</li>
+          <li>Access to all information presented</li>
+          <li>The ability to use all controls</li>
+          <li>The ability to skim the page for information without reading through the entire page</li>
+          <li>Access to detailed text alternatives for complex images and also the ability to choose when and if to read those detailed text alternatives</li>
+        </ul>
+        <p>Added Benefits: HTML and XHTML are highly accessible because they are highly transformable and in widespread use. These qualities also make your content easy to reuse, to update and to transform for use with new technologies.
+ 
+        <h3>JavaScripts's Potential</h3>
+        <p>Including JavaScript in your HTML and XHTML media does not decrease the potential for accessibility. However, significant use of JavaScript introduces additional concerns that need to be addressed, primarily:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Notifying users who do not see the screen or who do not see the entire screen of changes to the screen</li>
+          <li>Making sure scripts work well when people use only a keyboard (no mouse) to navigate</li>
+          <li>Designing custom user interfaces components so that they work for users who experience the page after it has been transformed for their needs (e.g. transformed into an auditory form for people with visual impairment)</li>
+          <li>Rejecting inaccessible JavaScript libraries</li>
+          <li>Ensuring that changes to the screen are properly recognized by assistive technology.</li>
+        </ul>
+        <p>While JavaScript's association with (X)HTML gives it a high potential for accessibility, as with any programming language, user interface functionality written in JavaScript requires testing. This should include testing with:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Screen Readers (See <a href="#g4">PG 4</a>)</li>
+          <li>Keyboard-only Access (See <a href="#g6">PG 6</a>)</li>
+        </ul>
+        <p>This testing is easy to perform and provides experience with the types of user interfaces that we can expect for all users in emerging and future technologies.</p>
+        <p>Note: Unless otherwise indicated, when JavaScript is mentioned in this document, it means JavaScript that runs within HTML or XHTML pages on the client-side.</p>
+
+        <h3>PDF's Potential</h3>
+        <p>Some PDF files are simply images of a document, without any real text, like a photo of a page in a book. While these files often allow users to zoom in on the document for easier reading, the documents are largely inaccessible to people with visual impairment.</p>
+        <p>However, since PDF Version 1.4, it has been possible create documents that are compatible with assistive technologies, like screen readers, by placing a structure of tags, very similar to HTML tags, behind a PDF document:<br>
+          <img src="images/pdf_tags.png" width="359" height="293" alt="The tags panel presents a hierarchy of tags that describe the structure of a PDF document, including Sect, Title, Heading 1, P, and Figure."></p>
+
+        <p>As in HTML, it is possible even to make very detailed accommodations for accessibility, such as semantic mark up for complex data tables, including special attributes for telling screen readers exactly which data cells should be associated which header cells. When you use these tags and follow accessibility guidelines, PDF can be highly accessible with screen readers and can be keyboard accessible.</p>
+        <p>Abobe Reader offers an array of features for text resize, magnification, and adjusting text colors. These work well for simple clean documents, but not very well for complex documents with multiple columns and boxes of text. While in HTML, users can apply custom style sheets to separately customize the appearance of different types of items (headings, lists etc) this is not possible in PDF with Adobe Reader as of <mark>Version 10.1</mark>.</p>
+        <p>There are automated tools that help transform inaccessible PDF documents (even those that are just images of documents) into tagged PDF files. To fully take advantage of PDF's accessibility features, human review is required and most often PDF documents need post processing in Adobe Acrobat (version 6 or later). For complex documents with, for example, data tables, lists and links, this post-processing can be time-consuming.</p>
+        <p>If the document originates in another program, such as Microsoft Word, following best practices in that program (like using heading styles and lists properly) can:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Result in passably accessible documents in some simple cases
+          <li>Reduce the amount of post-processing need in Acrobat
+        </ul>
+
+        <h4>Screen Reader Compatibility</h4>
+        <p>Screen reader compatibility is available on Mac (VoiceOver) and Windows (JAWS, NVDA, <mark>WindowEyes</mark>). <mark>Access to the tagging structure is not available when reading PDF on iOS. On Android, you need to download special players to even access the speech using TalkBack. But, iOS and Android accessibility is improving rapidly, so it this may improve soon.</mark></p>
+
+        <h4>Documentation for PDF accessibility</h4>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>The Pearson Guidelines include PDF techniques.
+          <li><a href="http://www.adobe.com/accessibility/products/acrobat/training.html">Adobe offers Guidance Specific to recent versions of Acrobat (8-11)</a></li>
+          <li><a href="https://www.w3.org/TR/WCAG20-TECHS/pdf.html">The W3C has published techniques for meeting WCAG 2.0 while creating PDF</a></li>
+        </ul>
+ 
+        <h3><mark>Flash and Flex's Potential</mark></h3>
+        <p>Flash and Flex can be accessible, but it will not happen by accident, by checking "make movie accessible" in the Flash Authoring tool, or by including alternative text in an HTML embed tag. Like HTML, Flash / Flex accessibility requires specific detailed consideration during development.</p>
+        <p>Flash and Flex accessibility techniques are considerably less widely known among developers compared with HTML accessibility techniques. As such, accessible Flash is not likely to come from a vendor who does not have specific experience developing accessible Rich Internet Applications.</p>
+        <p>If you do want to work with a vendor who does not have accessibility experience, provide the following:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Detailed Requirements for Flash Accessibility</li>
+          <li>Accessibility Acceptance Testing (Make it clear upfront that you will not accept builds that don't include accessibility features for the functionality that is present. All too often developers attempt to tack-on accessibility at the end of the project, which typically results in a poor level of accessibility or causes accessibility to be perpetually pushed to a later release. Flash accessibility is not a separate feature to be developed independently of other functionality. While it can often be added after the fact, that actually involves revisiting and adapting objects and functionality and takes longer than including accessibility upfront. Flash developers who know how to accomplish Flash Accessibility include accessibility during development. Leaving it for later increases cost, increases schedule time and is a good sign that the vendor does not quite know how to accomplish accessibility in Flash.)</li>
+        </ul>
+        <p>The easier option is to use a vendor who has experience with Accessible Rich Internet Applications. The effort it takes to find and choose a vendor who has accessibility experience, is likely to pay off in other ways, as writing accessible Flash and Flex requires a professional understanding of Flash or Flex and often involves understanding, using, and even rewriting libraries.</p>
+        <p>It has been possible to create accessible Flash applications since Flash MX and the Flash Player 6; however, as implementing accessibility features targeted for the Flash Player 8+ has drastically reduced development time, these guidelines will provide techniques targeting Flash Player 8+.</p>
+        <p>Some effort has been made to support accessible Flash in Firefox and some online sources indicate that Flash is accessible in Firefox. However, as of March 2009, the support is not stable. So, currently, Flash accessibility for screen reader users requires Internet Explorer on Windows. Since this is the platform support by the screen readers that are used by the vast majority of screen reader users, JAWS and Window-Eyes, this is not as problematic as it may seem at first.</p>
+        <p>As with any programming language, user interface functionality written in ActionScript requires testing. This should include testing with:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Screen Readers (See PG 4)</li>
+          <li>Keyboard-only Access (See PG 6)</li>
+        </ul>
+        <p>This testing is easy to perform and provides experience with the types of user interfaces that we can expect for all users in emerging and future technologies.</p>
+
+        <h3>Android Applications's Potential</h3>
+        <p>Android applications developed using Android 4.1 and later can be made accessible with the Android development framework. For more information on developing accessible Android applications see <a href="https://developer.android.com/guide/topics/ui/accessibility/index.html">Android Accessibility API Guide</a>.</p>
+        <p>With each new release of Android, new features to help users with disabilities are added. These features and settings can be found under the settings in the Accessibility option. Since the operating system can be changed by the device manufacture, some features may or may not be available on all devices. In Android Lollipop, the following features are available:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Talkback and Explore by Touch</li>
+          <li>Switch Access</li>
+          <li>Just Speak</li>
+          <li>Captions</li>
+          <li>Magnification Gestures</li>
+          <li>Large Text</li>
+          <li>High Contract Text</li>
+          <li>Accessibility Shortcut</li>
+          <li>Touch &amp; Hold Delay</li>
+          <li>Color Inversion</li>
+          <li>Color Correction</li>
+        </ul>
+        <p>While Android application programming interface supports accessibility, as with any programming language, user interface written for Android requires testing. This should include testing with:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Talkback and Explore by Touch</li>
+          <li>Screen magnification and text resize settings</li>
+          <li>Bluetooth keyboard, touch, and gestures</li>
+        </ul>
+        
+        <h3>iOS Applications's Potential</h3>
+        <p>All iOS applications developed using iOS 3.0 and later can be made accessible with the UI Accessibility programming interface. For more information on developing accessible iOS applications see Accessibility Programming Guide for iOS.</p>
+        <p>With each new release of iOS, new features to help users with disabilities are added. These features and settings can be found under the General settings under Accessibility option. In iOS8, the following features are available:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>VoiceOver screen reader</li>
+          <li>Zoom</li>
+          <li>Invert Colors</li>
+          <li>Greyscale</li>
+          <li>Speech</li>
+          <li>Larger Text</li>
+          <li>Bold Text</li>
+          <li>Button Shapes</li>
+          <li>Increase Contrast</li>
+          <li>Reduce Motion</li>
+          <li>On/Off Labels</li>
+          <li>LED flash for alerts</li>
+          <li>Subtitles &amp; captions</li>
+          <li>Video descriptions</li>
+          <li>Guided Access</li>
+          <li>Switch Control</li>
+          <li>AssistiveTouch</li>
+          <li>Reachability</li>
+          <li>Accessibility Shortcut</li>
+        </ul>
+        <p>While iOS application programming interface supports accessibility, as with any programming language, user interface written for iOS requires testing. This should include testing with:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>VoiceOver Screen Reader</li>
+          <li>Screen magnification and text size settings</li>
+          <li>Bluetooth keyboard, touch, and gestures</li>
+        </ul>
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+
+      <h2 id="g2">Guideline 2. Allow users to adjust time limits (Time Limits)</h2>
+      <div class="guideline_content">
+        <p class="summary">Allow users to adjust short-term (20 hours or less) time limits to at least ten times the default.</p>
+        <p>Note: If this would invalidate a timed activity, see <a href="#g3">Pearson Guideline 3</a>.</p>
+
+        <h3>Rationale</h3>
+        <p>Some users will need more time to complete activities than the average user. They may have a learning disability that causes reading or processing of information to take longer. Or, they may have a physical disability that slows access to the product.</p>
+        <p>A time limit that causes a user to lose work or to return to the login page may create a frustrating cycle that prevents the user from completing the activity.</p>
+        <p>"Twenty hours or less" and "ten times the default" were chosen based on the WCAG 2.0 guidelines, which were developed based on clinical research.</p>
+
+        <h3>Techniques</h3>
+        <p>Options Quoted from WCAG 2.0 (SC 2.2.1)</p>
+        <blockquote><ul>
+          <li>Turn off: The user is allowed to turn off the time limit before encountering it; or</li>
+          <li>Adjust: The user is allowed to adjust the time limit before encountering it over a wide range that is at least ten times the length of the default setting; or</li>
+          <li>Extend: The user is warned before time expires and given at least 20 seconds to extend the time limit with a simple action (for example, 'press the space bar'), and the user is allowed to extend the time limit at least ten times;</li>
+        </ul></blockquote>
+ 
+        <h3>K-3 Techniques</h3>
+        <p>Students in the earliest grades may not be able to judge how much time they will need. A solution to this is to measure the student's ability to respond to a prompt or to activate a button through an introductory activity. Then, automatically adjust the timing for the main activity based on that data. This requires user-testing. Controls to further adjust timing should still be made available.</p>
+
+        <h3>Testing</h3>
+        <p>This covers Pearson Guidelines 2 &amp; 3.</p>
+        <table>
+          <thead class="pe-sr-only">
+            <tr>
+              <th scope="col">Testing technique</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Review</th>
+              <td>Identify any time limits. If there are time limits, see if there is some way for the user to adjust or extend that time limit to at least 20 times the default. If the user cannot adjust the time limit, see if it is possible for instructors to adjust that time limit individually per student.</td>
+            </tr>
+            <tr>
+              <th scope="row">Analysis</th>
+              <td>If a user who requires more time than the rest of the users cannot get additional time, then this is an error.</td>
+            </tr>
+          </tbody>
+        </table>
+ 
+        <h3>Related Guidelines</h3>
+        <p><mark>508 Web § 1194.22 (p)</mark></p>
+        <p><mark>When a timed response is required, the user shall be alerted and given sufficient time to indicate more time is required.</mark></p>
+        <h4>WCAG 2.0 Level A – SC 2.2.1 Timing Adjustable:</h4>
+        <p class="summary">For each time limit that is set by the content, at least one of the following is true: (Level A)</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Turn off: The user is allowed to turn off the time limit before encountering it; or</li>
+          <li>Adjust: The user is allowed to adjust the time limit before encountering it over a wide range that is at least ten times the length of the default setting; or</li>
+          <li>Extend: The user is warned before time expires and given at least 20 seconds to extend the time limit with a simple action (for example, "press the space bar"), and the user is allowed to extend the time limit at least ten times; or</li>
+          <li>Real-time Exception: The time limit is a required part of a real-time event (for example, an auction), and no alternative to the time limit is possible; or</li>
+          <li>Essential Exception: The time limit is essential and extending it would invalidate the activity; or</li>
+          <li>20 Hour Exception: The time limit is longer than 20 hours.</li>
+        </ul>
+
+        <h3><mark>508 Refresh 3-R: Timing</mark></h3>
+        <p><mark>For each time limit that is set by the product, at least one of the following must happen:
+Turn off: the user is allowed to turn off the time limit before encountering it; or
+Adjust: the user is allowed to adjust the time limit before encountering it over a wide range that is at least ten times the length of the default setting; or
+Extend: the user is warned before time expires and given at least 20 seconds to extend the time limit with a simple action (for example, "hit any key"), and the user is allowed to extend the time limit at least ten times.
+There are three exceptions:
+Real-time Exception: the time limit is a required part of a real-time event (for example, an auction), and no alternative to the time limit is possible; or
+Essential Exception: the time limit is part of an activity where timing is essential and time limits cannot be extended further without invalidating the activity.
+20 Hour Exception: the time limit is longer than 20 hours.</mark></p>
+
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g3">Guideline 3. Allow instructors, administrators, or students to adjust time limits (Timed Tests)</h2>
+      <div class="guideline_content">
+        <p class="summary">If Pearson Guideline 2 would invalidate a timed activity:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li><span class="summary">Allow instructors or administrators to adjust time limits for particular students</span></li>
+          <li>OR <span class="summary">Allow students to adjust the time or just complete the activity after the time limit is reached. And, record the time spent with the results.</span></li>
+        </ul>
+ 
+        <h3>Rationale</h3>
+        <p>Some students with disabilities need additional time to complete activities. The school's specialists determine the amount of additional time students should receive on timed activities. This provides just enough additional time to account for performing the mechanics of the activity (e.g. reading, writing, operating a computer) with a disability. So, schools often assign accommodations such as "time and a half" or "double time".</p>
+        <p>By following this guideline, we meet the schools' need for products that allow extended time.</p>
+
+        <h3>Testing</h3>
+        <p>This covers Pearson Guidelines 2 &amp; 3.</p>
+        <table class="pe-table">
+          <thead class="pe-sr-only">
+            <tr>
+              <th scope="col">Testing technique</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Review</th>
+              <td>Identify any time limits. If there are time limits, see if there is some way for the user to adjust or extend that time limit to at least 20 times the default. If the user cannot adjust the time limit, see if it is possible for instructors to adjust that time limit individually per student.</td>
+            </tr>
+            <tr>
+              <th scope="row">Analysis</th>
+              <td>If a user who requires more time than the rest of the users cannot get additional time, then this is an error.</td>
+            </tr>
+          </tbody>
+        </table>
+ 
+        <h3>Related Guidelines</h3>
+        <p>This guideline is specific to educational publishing. It does not have direct equivalents in general accessibility guidelines.</p>
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+
+      <h2 id="g4">Guideline 4. Check the order that content is read in screen readers & correct any issues (Sensible Reading Order)</h2>
+      <div class="guideline_content">
+        <p class="summary">Ensure that current screen reading software (screen readers) can read the media in a sensible order.</p>
+        <p>Note: In many cases, the reading order will be fine naturally. The techniques offered here explain how the reading order is established and how to make corrections if needed.</p>
+
+        <h3>Rationale</h3>
+        <p>Screen readers, browsers, and media players work together to try to provide a sensible reading order. However, sometimes the organization of the content results in a reading order that does not make sense. For example, commonly, features that are listed side-by-side might be read intermixed with each other, as in the table below:</p>
+        <table class="pe-table--borders">
+          <caption class="pe-sr-only">an unstructured table (antipattern) showing 2 rows, 4 cells of content and listing their reading order</caption>
+          <tr>
+            <td>
+              <p>(read first)</p>
+              <p>Yesterday's Schedule</p>
+            </td>
+            <td>
+              <p>(read second)</p>
+              <p>Today's Schedule</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>(read third)</p>
+              <ul class="pe-list--unstyled">
+                <li>9 AM Breakfast – Lobby</li>
+                <li>12:00 Lunch – Picnic Area</li>
+                <li>5:00 Dinner – Cafeteria</li>
+              </ul>
+            </td>
+            <td>
+              <p>(read fourth)</p>
+              <ul class="pe-list--unstyled">
+                <li>8 AM Breakfast – Cafeteria</li>
+                <li>12:30 Lunch – Ball Room 1</li>
+                <li>6:30 Dinner – Ball Room 2</li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+        <p>This type of issue can be resolved without changing the visual layout. For example, in HTML, we restructure the underlying source code. In Flash, we indicate a reading order by numbering elements behind the scenes.</p>
+
+        <h3>HTML &amp; JavaScript</h3>
+
+        <h4>Layout Tables (legacy)</h4>
+        <p>The reading order for a layout table begins with the first cell in the first row. In left-to-right languages, like English, this is the left-most cell in the top row. The cell adjacent to that cell is next, and so on. Then the second row is read in the same way. The image below shows the reading order for a layout table in a left-to-right language:<br>
+        <img width="276" height="181" alt="A table is read from left to right. First row: first and second cells. Second row: third, fourth and fifth cells. Third row: sixth cell." src="images/Table_order.png"></p>
+        <p>This is actually the source code order. If your content does not make logical sense following that order:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li><p>Update to a CSS layout where the source code order is logical</p>
+ OR</li>
+          <li>Reorganize the table layout so that the contents appear in a logical order in the source code. And, add <code>role="presentation"</code> to the opening <code>&lt;table&gt;</code> tag for layout tables to prevent screen readers from announcing the table structure.</li>
+        </ul>
+
+        <h4>CSS Layouts</h4>
+        <p>The reading order follows the source code order in html and xhtml, regardless of how the items are arranged on the page using CSS. So, be sure to place elements and content in a logical reading order in the source code. This will also make your page readable when CSS positioning is over-ridden, turned off, or not available.</p>
+          <p>A common challenge occurs when Web developers wish to have a horizontal list of letters or numbers situated at the right side of the screen. Often they place these links in the source code backwards (for example, z through a), and then they use CSS <code>float:right</code> to float each item to the right. Since z is first, it floats all they way to the right and the rest of the letters follow, line up and look correct visually. <mark><a href="http://wps.pearsoned.com/wps/media/objects/7400/7577911/PG4CSS2.html">Open example of incorrect use of float: right in a new window</a>.</mark> However, the links are backwards for screen reader users and users who have turned off CSS. To resolve this, put the links in a-z order in a <code>div</code> element. Then, size the <code>div</code> so that it is only just large enough for the links. Finally, apply CSS <code>float:right</code> to the <code>div</code>. <mark><a href="http://wps.pearsoned.com/wps/media/objects/7400/7577911/PG4CSS2FIX.html">Open example of corrected use of float:right in a new window</a>.</mark></p>
+
+        <h4>When JavaScript and/or CSS is used to Place Elements on the Page</h4>
+        <p>As mentioned above, the reading order in HTML follows the source code order. So, if you use JavaScript to write source code, as you might do using <code>document.write</code> or by setting innerHTML, just add it in a location where it makes sense. Similarly, if elements are typed into the html source and then hidden or shown using JavaScript, as you might do using display:none and display:block, just place them in the source code according to the order in which the page should be read.</p>
+        <p>However, if you use Document Object Model coding to add elements to the page, the reading order might not follow the source code order. When objects are created and stored in variables, the order in which the code is written is not relevant. Instead, the structure of the Document Object Model itself will determine the reading order. Within each object in the Document Object Model, starting with the document object, child nodes are read in order from the first node to the last node (<code>x.childNodes[0], x.childNodes[1] ... x.lastChild</code>). As each child object is encountered, its children are read in a similar fashion, so that the tree is read as shown in the following example, where a <code>div</code> object contains the following child objects:</p>
+        <ul class="pe-list pe-styled-lists--ordered">
+          <li> some text ("a text node" in DOM terminology)</li>
+          <li> a link</li>
+          <li> an ordered list with three child list items</li>
+          <li> an image with an alt attribute</li>
+        </ul>
+        <p><img width="400" height="230" alt="The items are read in the following order: the text node, the link, the ordered list items (first through third) and finally the image." src="images/DOM_order.png"><br>
+        So, when dynamically adding nodes to the document object model (e.g. appendChild, insertBefore, replaceChild) place them in a logical location in the document tree. For example, if a newly added paragraph should be read just before an ordered list with id L, you might add it as follows:</p>
+        <pre><code>
+/* Create paragraph */ 
+var newP = document.createElement("p");
+/* Backslash below escapes line break */
+var PText = document.createTextNode("This \
+            list will help with the questions \
+            you missed!");
+newP.appendChild(PText);
+/* Get existing ordered list  */
+var existingL = document.getElementById("L");
+/* Get parent of existing ordered list  */
+var parentObj = existingL.parentNode 
+/*Place new paragraph inside the parent of the ordered list, just before the ordered list  */
+parentObj.insertBefore(newP, existingL);</code></pre>
+        <p>And, in this example, a new paragraph is created and is placed just after an ordered list with id <code>L</code>:</p>
+        <pre><code>
+/* Create paragraph */
+var newP = document.createElement("p");
+var PText = document.createTextNode("Good job with the list; now take a break!");
+newP.appendChild(PText);
+/* Get existing ordered list  */
+var existingL = document.getElementById("L");
+/* Get parent of existing ordered list  */
+var parentObj = existingL.parentNode
+/* Get the next sibling of the existing ordered list */
+var nextS = existingL.nextSibling
+/* don't worry if there's a chance nextS will be null - see below */
+/* Place new paragraph inside the parent of the ordered list,  just after the ordered list  */
+parentObj.insertBefore(newP, nextS);
+/* if nextS is null, insertBefore will place newP at the end of parentObj, which would be just after the existing ordered list, in that case. */</code></pre>
+ 
+        <h3><mark>Flash &amp; Flex</mark></h3>
+        <p><mark>Reading order in Flash and Flex is set according to an algorithm that chooses the next item to read based on which item is top-most and/or left-most. As such, if you have a purely vertical layout, the movie will be read from top to bottom. This is often a sensible reading order. Similarly, if you have a purely horizontal layout, the movie will be read from left to right, which again, is often a sensible reading order. However, when there are both vertical and horizontal elements, the reading order often becomes nonsensical and confusing.
+
+If you test your movie or application in JAWS and the reading order makes sense, there is nothing else that you need to do to meet PG 4. 
+
+If you test your movie or application in JAWS and the reading order does not make sense, you will need to set the tabIndex for each item in your movie that should be read with a screen reader. TabIndex in Flash/Flex works differently from the tabindex property in HTML. In Flash/Flex, when correcting the reading order, you must set the tabIndex for every element that a screen reader should read, including buttons, links, form fields, other active element, and any text elements.
+
+You can set tabIndex in the accessibility panel in the Flash authoring tool.
+You can also set tabIndex using action script: myObject.tabIndex = 10;
+You can set tabIndex in MXML (Mark-up used in Flex Builder, Flex Server, or Flash Builder Applications): <code>&lt;mx:Text x="35" y="27" tabIndex="10" text="Welcome Students!" /&gt;</code>
+You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it allows you to insert items in the middle of the reading order without renumbering every item. For example, if you realize you need a new item between the items with tabIndex 20 and 30, you can use a tabIndex of 25.</mark></p>
+        <h4><mark>Additional Details</mark></h4>
+        <p><mark>In order to set the reading order using tabIndex, you will need to avoid using static text. In addition, there are special considerations regarding instance names, off-screen elements, and embedded movies. See <a href="http://www.adobe.com/accessibility/products/flash/reading.html">Adobe's Flash Reading Order Guide (new window)</a> for additional details.</mark></p>
+
+        <h4><mark>Common Misconception</mark></h4>
+        <p><mark>Many developers worry that setting tabIndex this way will force keyboard access users to tab to each bit text while trying to reach a button, link or form control. This is true in HTML, but this is not the case in Flash and Flex. TabIndex does not change whether or not an element is treated as an active element for keyboard access.</mark></p>
+
+        <h3>Android Applications</h3>
+        <p>The reading over is based on an algorithm which finds the nearest neighbor in a given direction. The reading order cannot be changed but focus order can be modified, see <a href="#pg6">PG 6</a> for more details.</p>
+
+        <h3>iOS Applications</h3>
+        <p>The reading order in iOS applications is defined by the order in which the elements are added to the screen. In the individual, table or custom container views, the order is set by the order in which they are defined in the <a href="https://developer.apple.com/documentation/uikit/accessibility/uiaccessibilitycontainer">UIAccessibilityContainer</a> protocol array.  To change the reading order use <code>accessibilityElementAtIndex</code>, <code>accessibilityElementCount</code> and <code>indexOfAccessibilityElement</code>.</p>
+
+        <h3>PDF in Acrobat</h3>
+        <img style="float:right" alt="" src="images/tags-tree.jpg">
+        <p>The reading order in a PDF document is determined by the order of the tags in the tags tree.</p>
+        <p>If the reading order of the PDF document is not sensible, simply drag the tags for the elements into the desired order in Acrobat's tags panel. This will not affect the visual layout.</p>
+        <p>The location of the tags panel will vary depending on your version of Acrobat. In Acrobat 9 Pro, for example, you can find the panel at View &gt; Navigation Panels &gt; Tags.</p>
+        
+        <h3 style="clear:both;">Word</h3>
+        <p>The reading order in a Word document is often fine and cannot be modified as it can in HTML or a PowerPoint presentation. In Word, content is read top-down, left-right. Tables are also read in this order which works well for typical data tables but can cause similar issues as HTML tables when used for layout.</p>
+        <p>To avoid empty paragraphs, use paragraph spacing and column breaks for fine control of text placement. This will reduce how often screen readers such as JAWS says blank when navigating with reading keys.</p>
+
+        <h3>Text Boxes and Floating Images</h3>
+        <p>Avoid using text boxes and floating images. Screen readers often do not read the content of text boxes and do not announce their presence. When using images, use "inline" text wrapping to ensure that they are read with the text in the correct order. Images that float in front of the text have the same issues as text boxes.</p>
+
+        <h3>PowerPoint</h3>
+        <p>The reading order in PowerPoint is determined by the order shown in the selection pane, <strong>and that order is from the bottom to the top of the list of elements</strong>. Use the buttons in the selection pane to arrange the items properly. Consider making this adjustment for each master slide layout of the template to reduce future work.</p>
+        <p>When adding any new elements to a slide, check the reading order to ensure that it presents the content in a way that makes sense. In PowerPoint 2007 and 2010, use the selection pane. The reading order is the order in which the shapes are listed starting with the bottom-most item to top.<br>
+        <img width="450" height="282" alt="Go to Home menu and choose select in the editing menu.  In the drop down menu, choose Selection Pane.  Use the re-order buttons to move content in the list." src="images/PowerPoint-ReadingOrder.jpg"></p>
+        <p>In PowerPoint 2003, the reading order is determined using the outline panel and the drawing order. The outline panel provides an outline of the text content that appears on the slides. For content that does not appear in the outline panel, tab through the elements of the slide to verify the order. To change the order, right click and element and choose Order. This command is also available on the Drawing toolbar. As with all versions of PowerPoint, save time by ensuring that the order of the master slide layouts is correct before adding slides.</p>
+ 
+        <h3>Testing HTML</h3>
+        <table class="pe-table">
+          <thead class="pe-sr-only">
+            <tr>
+              <th scope="col">Testing technique</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Tools</th>
+              <td><p>One usually doesn’t need a specialized tool to detect reading order problems. Listening with a screen reader (like <a href="http://www.freedomscientific.com/Products/Blindness/JAWS">JAWS</a> or <a href="https://www.apple.com/accessibility/mac/vision/">VoiceOver</a>), or slowly highlighting the page from the top to the bottom will show reading order problems when they exist.</p>
+                <p>But there are tools that you may prefer for analyzing HTML pages. You can use Linearize Page in the Miscellaneous menu of the <a href="https://addons.mozilla.org/en-US/firefox/addon/web-developer/">Firefox Web Developer toolbar</a> or Text-only with the <a href="http://wave.webaim.org/extension/">Wave browser plugin</a>.</p>
+                <p>The reading order for a screen reader is the same as the order of the corresponding text in the source code. So in cases where you are puzzled by reading order for some specific section, you can always check the source code for the text in question, using the "view source" function of your browser or your favorite toolbar.</p>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Output</th>
+              <td>Each of the suggested techniques displays the order in which the content will be read by a screen reader.
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Analysis</th>
+              <td>Errors in this area are relatively rare. The situation to watch for is the use of layout tables in such a way that the reading order of the table is not the intended order of the page. An example would be a section for sign-in next to one for register, but coded as a table whose first column is the sign-in section and whose second column is the register section. In that case, the reading order would alternate between the sign-in and the register sections. Also, lists of numbered or lettered links aligned to the right are often in a backwards reading order.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>Screen Reader Commands</h4>
+        <table class="pe-table">
+          <thead>
+            <tr>
+              <th scope="col"><abbr title="Assistive Technology">AT</abbr></th>
+              <th scope="col">Read all from top of page</th>
+              <th scope="col">Read from current position to end of page</th>
+              <th scope="col">Stop Reading</th>
+              <th scope="col">Read Next Item / Read Previous Item</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">JAWS</th>
+              <td>Control Home then Insert Down Arrow</td>
+              <td> Insert Down Arrow</td>
+              <td>Control</td>
+              <td>Up or Down Arrow</td>
+            </tr>
+            <tr>
+              <th scope="row">VoiceOver on iOS (iPad, iPhone, iPod Touch)</th>
+              <td>Two finger swipe up</td>
+              <td>Two finger swipe down</td>
+              <td>Two finger single tap (repeat to resume)</td>
+              <td>Single finger swipe left or right</td>
+            </tr>
+            <tr>
+              <th scope="row"><mark>Window-Eyes</mark></th>
+              <td>Control Shift W</td>
+              <td>Control Shift R</td>
+              <td>Control</td>
+              <td>Up or Down Arrow</td>
+            </tr>
+            <tr>
+              <th scope="row">NVDA</th>
+              <td>Page Up then NVDA Key Down Arrow</td>
+              <td>NVDA Key Down Arrow</td>
+              <td>Control</td>
+              <td>Up or Down Arrow</td>
+            </tr>
+          </tbody>
+        </table>
+ 
+        <h3>Testing Mobile Applications</h3>
+        <table class="pe-table">
+          <thead class="pe-sr-only">
+            <tr>
+              <th scope="col">Testing technique</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Tools</th>
+              <td>Listen to the screen using a screen reader.</td>
+            </tr>
+            <tr>
+              <th scope="row">Output</th>
+              <td>Content is read in a logical order by the screen reader.</td>
+            </tr>
+            <tr>
+              <th scope="row">Analysis</th>
+              <td>As you listen to the page, are the page components read in an order that makes sense. The reading order does not necessarily need to match the visual order but the content needs to be in a logical order that preserves the meaning and is not confusing to users who may not see the page.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>Screen Reader Commands</h4>
+        <table class="pe-table">
+          <thead>
+            <tr>
+              <th scope="col"><abbr title="Assistive Technology">AT</abbr></th>
+              <th scope="col">Read all from top of page</th>
+              <th scope="col">Read from current position to end of page</th>
+              <th scope="col">Stop Reading</th>
+              <th scope="col">Read Next Item / Read Previous Item</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">VoiceOver on iOS (iPad, iPhone, iPod Touch)</th>
+              <td>Two finger swipe up</td>
+              <td>Two finger swipe down</td>
+              <td>Two finger single tap (repeat to resume)</td>
+              <td>Single finger swipe left or right</td>
+            </tr>
+            <tr>
+              <th scope="row"><mark>Talkback on Android</mark></th>
+              <td>Up then down or Open Global Context Menu (Down then right) then select Read from Top <mark>* may have changed *</mark></td>
+              <td></td>
+              <td>Global Context Menu: Down then right then select Pause Feedback</td>
+              <td>Single finger swipe left or right</td>
+            </tr>
+          </tbody>
+        </table>
+ 
+        <h3>Testing PDF in Acrobat</h3>
+        <table class="pe-table">
+          <thead class="pe-sr-only">
+            <tr>
+              <th scope="col">Testing technique</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Tools</th>
+              <td><p>The tags order is used by screen readers to define reading order. Go to the Tags menu and in the navigation panel options menu select Highlight Content. Scroll through the tags and visually check the order.</p>
+                <p>Acrobat Read Out Loud and reflow follow the reading order defined in the Order pane. Open TouchUp Reading Order (TURO) and select Show page content order. Then inspect the numbered order in the content. In Acrobat 9, TURO is under Advanced &gt; Accessibility. In Acrobat 10, TURO is a tool on the toolbar labeled “Adjust Reading Order” and it is also under Tools &gt; Accessibility.</p>
+                <p>You can also use Read Out Loud, located on the View menu, and a screen reader to verify the order.</p>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Output</th>
+              <td>Evaluate the order shown in the tags tree and order pane, and use a screen reader and Read Out Loud to verify that the content is read in a logical order.</td>
+            </tr>
+            <tr>
+              <th scope="row">Analysis</th> 
+              <td>Document any instances where content is displayed or read in an order that does not make sense, or is not adjacent to related content. For example, figures and figure captions should be seen in reflow and read in close proximity to text that refers to them.</td>
+            </tr>
+          </tbody>
+        </table>
+ 
+        <h3>Related Guidelines</h3>
+
+        <h4><mark>508 Web § 1194.22 (d)</mark></h4>
+        <p><mark>Documents shall be organized so they are readable without requiring an associated style sheet.</mark></p>
+
+        <h4>WCAG 2.0 Level A - SC 1.3.2</h4>
+        <p>When the sequence in which content is presented affects its meaning, a correct reading sequence can be programmatically determined</p>
+
+        <h3><mark>508 Refresh 3-M: Reading Sequence</mark></h3>
+        <p><mark>When the sequence in which information is presented affects its meaning, a reading sequence that conveys the intended meaning must be PROGRAMMATICALLY DETERMINABLE. The navigation sequence must be consistent with the reading sequence.</mark></p>
+
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+
+      <h2 id="g5">Guideline 5. Make sure screen reader users can find dynamic additions to the screen (Findable Added Content)</h2>
+      <div class="guideline_content">
+        <p class="summary">Ensure that screen reader users can find new dynamically-added content (e.g. expanding menus, alerts, error messages, hints that appear on rollover).</p>
+
+        <h3>Rationale</h3>
+        <p>When the content of page changes once the page has loaded, some accessibility concerns arise that are not addressed by accessibility guidelines for static content:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>How will a screen reader user who may already have read much of the page know that the new content is now available?</li>
+          <li>How will a screen reader user know where to find the new content?</li>
+          <li>Will common screen reader applications recognize changes to the page?</li>
+        </ul>
+        <p>Since dynamic content changes and additions are most often designed and tested by users who can see a large portions of the screen at once, these features most often work well for such users. These features can also work well for screen reader users, but they must be designed and tested with this type of access in mind.</p>
+
+        <h3>HTML &amp; JavaScript</h3>
+        <h4>Error Messages that Appear without a Page Refresh | Custom Alert Windows that don't Contain Buttons or other User Interaction</h4>
+        <p>The goal is to alert screen reader users to the new information. In addition, especially if the feedback appears while the user is typing into a field, the goal will be to provide the error message without moving the screen reader user's focus (i.e. without taking the text-insertion point out of the form field).</p>
+        <p>The WAI-ARIA "alert" role makes this possible. Simply make <code>role="alert"</code> an attribute of <strong>both</strong>:
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>The outer-most container that is added to the page AND</li>
+          <li>The parent element of that element. Create a container just for the purpose of receiving the alert. (Needed for Safari with VoiceOver as well as, the lower priority configuration, Window-Eyes with IE)</li>
+        </ul>
+        <p><mark>To support TalkBack with Chrome on Android devices add <code>aria-live="assertive"</code> to the container element that will receive the alert. Although not a top priority configuration, this is also needed to support NVDA with IE.</mark></p>
+        <mark>** HI PRIO ** external link</mark>
+        <p><mark><a href="http://www.manateeroad.com/alert.html">A test page for this technique</a></mark></p>
+        <p>This will cause screen readers to speak the error or alert when it appears visually. But, it won't make any change to the screen reader user's location on the page. So, for example, if a user is typing a password when the message is read, the user can continue to type that password, uninterrupted.</p>
+        <p>In screen magnifiers, sometimes the magnification level is so high that only a small section of the screen is shown at once. Magnifiers can be set to move focus to alerts and this will cause the error message or the upper left corner of the error message (in left-to-right languages) to be shown on the screen. Because of this, the upper left corner (or upper right in right-to-left languages) of the alert object should show the beginning of the error message.</p>
+        <p>Note: <code>role="alert"</code> has no effect if it is just on the page when the page loads. The role only comes into play when the area is updated without a page refresh. As such, when an identical page, except for an added alert message, is loaded, different techniques are needed. See the section just below on this topic.</p>
+
+        <h4>Error Messages that Appear with Page Refresh</h4>
+        <p>In this scenario, screen reader users will hear that a new page has loaded. Because of this, the error message is not actually dynamically-added content! However, particularly if the page is the very same page shown again, it is good usability for screen readers users to make it easy to locate the error message. Some combination of the following techniques should be used:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Most often, screen readers read the title of the page when the page loads. So, it is helpful to including all or part of the error message in the page title.</li>
+          <li>The most common way that screen reader users explore a new page is that they read the headings on the page. Making all or part of the error message a heading is very helpful.</li>
+          <li>Screen reader users often tab from form element to form element, hearing the form label for each form element. In cases where detailed form error messages are provided for each form field, including those errors as part of the form label can be a helpful technique. See Pearson Guideline 14 for techniques on how to code form labels so that they will be read when screen reader users tab to form elements.</li>
+        </ul>
+        <p>If you allow the page to load without the error message, and then add the error message using JavaScript after the page has fully loaded, you can use the <code>role="alert"</code> technique described in the section just above.</p>
+
+        <h4>Standard JavaScript Alert, Confirm, and Prompt Messages</h4>
+        <p>Common screen readers and screen magnifiers should be able to handle these without any special coding.</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Confirm: <code>var r=confirm("Continue?");</code></li>
+          <li>Alert: <code>alert('Please login first');</code> OR</li>
+          <li>Prompt: <code>var name=prompt("Please enter your name","");</code></li>
+        </ul>
+        <p>For information on using these and for examples, see: <a href="https://www.w3schools.com/js/js_popup.asp">w3schools.com's JavaScript Popup Windows (opens in new window)</a>.</p>
+
+        <h4>Custom Dialogs that need to be Dismissed by the User | Custom Modal Windows</h4>
+        <p>When the dialog appears, use JavaScript to move focus to the interactive element in the dialog that is most likely to be used first. When the dialog is closed, be sure to return focus to a logical location, such as the control that caused the dialog to appear.</p>
+        <p>If the dialog serves an "alert" function, add the following two attributes to the outermost element that is added to the page when the message appears:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li><code>role="alertdialog"</code> AND</li>
+          <li><code>aria-describedby="id"</code> where <code>id</code> is the id of the message you want read automatically when the alert dialog first appears.</li>
+        </ul>
+        <p>If the dialog isn't really an "alert" and is more of just a separate window, add the following two attributes to the outermost element that is added to the page when the message appears:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li><code>role="dialog"</code> AND</li>
+          <li><code>aria-label="my message"</code> where <code>my message</code> is the message you want read automatically when the dialog first appears OR <code>aria-labelledby="id"</code> where <code>id</code> is the id of the message you want read automatically when the alert dialog first appears. (Yes, aria-labelledby should have the repeated letter l.)</li> 
+        </ul>
+        <p>These attributes tell screen readers and screen magnifiers to announce these additions to the screen as alert dialogs or as dialogs. Some screen readers will also switch into "forms mode" for navigation of the dialog. In this mode, the dialog is announced and then screen reader users move between active elements, often skipping inactive content. So, be sure that all content in the dialog is included through <code>aria-describedby</code>, <code>aria-label</code>, or <code>aria-labelledby</code> and/or through form labels. Form labels are discussed in detail in <a href="#pg14">Pearson Guideline 14</a>.</p>
+        <p>For older configurations that don't support <code>role="alertdialog"</code> or <code>role="dialog"</code>, try to give an overview of the purpose of the dialog with the control that gains focus. For example, you might use "stay on this page" as your button text, instead of something less descriptive, such as "stay".</p>
+
+        <h4>Buttons that Reveal Content (e.g. expanding menus, expanding help topics)</h4>
+        <p>One of the simplest techniques is to place the new content in the reading order just after the control that initiated the change.</p>
+        <p>It is important that users will know whether the section is expanded or collapsed. See <a href="#pg20">Pearson Guideline 20</a> for information on this.</p>
+
+        <h4>When Important Information Appears on Mouse Over</h4>
+        <p>Often information is coded to appear <code>onmouseover</code> and <code>onfocus</code>. For example, when a mouse is pointed at a book cover image, a <code>div</code> element might appear as a box that provides more information about the book.</p>
+        <p>This information is at risk of being inaccessible to screen reader users. It only appears in the reading order for a short time, often while the screen reader is reading other content. You will have to decide if the information should always be read by the screen reader. If the information is essential or particularly brief, it is likely it should always be read, so you might:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Include the information as alt-text for a related image, OR</li>
+          <li><p>Keep the information visible to screen readers even when it is hidden for visual users by placing the information off-screen:</p>
+          <pre><code>.screen_readers_only {
+  position:absolute;
+  left:-999px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden; }</code></pre></li>
+        </ul>
+        <p>If the information is rather long and not necessary for a basic understanding of the page, it might be best if it is not part of the general reading order. To allow the content to be read on-demand only:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li><p>Include the information in the <code>longdesc</code> attribute of a related image:</p>
+          <pre><code>&lt;img src="weather_today.gif"
+  alt="Sunny 73 degrees"
+  longdesc="weather_detail.html&gt;"</code></pre> OR</li>
+          <li><p>Place the information on a second page and provide a link placed off screen so that the link is only available to screen reader users:</p>
+          <pre><code>a.screen_readers_only {
+  position:absolute;
+  left:-999px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden; }</code></pre></li>
+        </ul>
+
+        <h4>Areas that Update Periodically (e.g. News Feed, Social Features)</h4>
+        <p>First, place the new content in a predictable consistent location within the page structure. The containing structure for this content should have a heading that tells the user what the section is for. Consider including the following information:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>That the area is dynamic</li>
+          <li>Which conditions that will cause an update</li>
+          <li>Which content is currently present (or newest)</li>
+        </ul>
+        <p>For example:</p>
+        <pre><code>&lt;h2&gt;Hourly News as of 1 PM Today&lt;/h2&gt;</code></pre>
+        <p>In this case, a screen reader user will know that the section may be updated and can use heading reading techniques to scan the headings on the page and discover whether an update has been made.</p>
+        <p>If all or part of the heading is not needed for sighted users, you can hide the heading as follows:</p>
+          <pre><code>h2.hidden {
+  position:absolute;
+  left:-999px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden; }</code></pre>
+        <p>Second, particularly for social features, there should be a way for students or instructors to be notified that new information is available. The following techniques are some options. You may wish to allow your users to select an option in user preferences.</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Make any text that announces the new content into an alert by placing role="alert" on the outermost HTML element that is added to the page when the icon or the alert appears. For example: <code>&lt;div role="alert"&gt;You have a new message&lt;/div&gt;</code></li>
+          <li>Play a beep or a tone when a new message appears. (Thanks to Michael Brooks of Penn State University for suggesting this technique and for pointing out that this has worked well for some students.)</li>
+        </ul>
+
+        <h4>Progress Bars and Loading Messages</h4>
+        <p>If you know the percent progress, <mark><a href="http://www.manateeroad.com/progressbar.html">use a progress bar as is shown here</a>.</mark> Of course, the visual can be whatever you like. While the WAI-ARIA specification implies that a variety of types of values may one day work, this only works in current screen readers/browser with percent values.</p>
+        <p>If you don’t know the percent progress, and the load times are very short, one possibility is to use an alert that says "Page is loading" and then move focus to the new content when it is ready.</p>
+        <p>If you don’t know the percent progress and if the load times are longer, chose what you think is a max load time for the activity, then create a time-base version of this where the progress bar reaches 100% at that max time. This way, most of the time, the progress will be better than what the bar reports, which is fine. Have the progress bar code loop (start over at 0%, once it reaches 100%), just in case there is a very long load time.</p>
+        <p><a href="https://www.w3.org/TR/wai-aria/complete#progressbar">Read more about progress bars in the WAI-ARIA spec</a></p>
+
+        <h3>Android Applications</h3>
+        <p><mark>The goal is to help Talkback (the Android screen reader) users know about the important information. When the application interface elements change dynamically, the <code>contentDescription</code> and <code>hint</code> property should be updated to reflect the current state of the interface element. If the dynamically-added content should be read by the screen reader, move focus to that component on the page so it will be read by Talkback.</mark> (still valid?)</p>
+
+        <h3>iOS Applications</h3>
+        <p><mark>When the application interface elements change dynamically, the <code>accessibilityLabel</code> and <code>accessibilityHint</code> should be updated to reflect the current state of the interface element.</mark> (still valid?)</p>
+        <p>If the layout of the application screens change or if there is an event that happens on the screen, use the <a href="https://developer.apple.com/documentation/uikit/accessibility/uiaccessibility">UIAccessibilityNotifications in the UIAccessibility protocol</a> to send status notifications to VoiceOver to help users navigate the new layout.</p>
+        <p>For more information, see the section in the iOS Accessibility Programming Guide called <a href="https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/iPhoneAccessibility/Making_Application_Accessible/Making_Application_Accessible.html">Make Dynamic Elements Accessible</a>.</p>
+
+        <h3>PowerPoint</h3>
+        <p>PowerPoint presentations can have dynamic content in the form of slide animations. Be sure to test animations with a screen reader because a content is not always read consistently. It is best to use animations triggered by mouse clicks so that it can be controlled by the user during a slideshow. Animations triggered by mouse clicks can be controlled using both a mouse and keyboard.</p>
+ 
+        <h3>Testing HTML</h3>
+        <table class="pe-table">
+          <thead class="pe-sr-only">
+            <tr>
+              <th scope="col">Testing technique</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Tools</th>
+              <td>First just use a browser to observe whether content is added to the page dynamically or whether user actions will trigger content to be added. For example, try opening and closing menus and try entering invalid information into form fields to see if there are error messages. If you find such added content, test the interactions with at least <a href="http://www.freedomscientific.com/Products/Blindness/JAWS">JAWS</a>, and ideally with other screen readers as well.</td>
+            </tr>
+            <tr>
+              <th scope="row">Output</th>
+              <td><p>If things are going well when items are added to the page, JAWS may announce the change or the new content may appear just below the button that triggered it, so that the user experience is something like this:</p>
+                <ul class="pe-list pe-styled-lists--unordered">
+                  <li>User presses expand button</li>
+                  <li>Button changes to a collapse button</li>
+                  <li>User presses the down arrow to read the new content</li>
+                </ul>
+                <p>Or JAWS may announce a new page if the content is not truly dynamic and appears with a page refresh. Alternatively, if things are not going well, the new information may appear visually, but its arrival may be silent in JAWS and/or it may be in an unpredictable location in the reading order.</p></td>
+            </tr>
+            <tr>
+              <th scope="row">Analysis</th>
+              <td>Will a screen reader user know when items were added or removed? Will they be able to locate the new content with no more than a reasonable amount of effort? If the answer is "no" for either question, this is an error.</td>
+            </tr>
+          </tbody>
+        </table>
+ 
+        <h3>Testing Mobile Applications</h3>
+        <table class="pe-table">
+          <thead class="pe-sr-only">
+            <tr>
+              <th scope="col">Testing technique</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Tools</th>
+              <td>Interactive with the screen and note any areas where content is added to the page dynamically or whether user actions will trigger content to be added. For example, try opening and closing menus and try entering invalid information into form fields to see if there are error messages. If you find such added content, test the interactions with the mobile screen reader http://www.freedomscientific.com/products/fs/jaws-product-page.asp (VoiceOver on iOS and TalkBack on Android).</td>
+            </tr>
+            <tr>
+              <th scope="row">Output</th>
+              <td><p>The screen reader should either:</p>
+                <ul class="pe-list pe-styled-lists--unordered">
+                  <li>Announce the change when it appears on the screen</li>
+                  <li>Change occurs below the current focus point so users will get to it when they continue reading the page</li>
+                </ul>
+                <p>In both scenarios, the screen reader should be in a predictable location in the reading order.</p></td>
+            </tr>
+            <tr>
+              <th scope="row">Analysis</th>
+              <td>Will a screen reader user know when items were added or removed? Will they be able to locate the new content with no more than a reasonable amount of effort? If the answer is "no" for either question, this is an error.</td>
+            </tr>
+          </tbody>
+        </table>
+ 
+        <h3>Related Guidelines</h3>
+        <h4>WCAG 2.0 4.1.2 Name, Role, Value</h4>
+        <p>For all user interface components (including but not limited to: form elements, links ,and components generated by scripts), the name and role can be programmatically determined; states, properties, and values that can be set by the user can be programmatically set; and notification of changes to these items is available to user agents, including assistive technologies. (Level A)</p>
+        <p>Note: This success criterion is primarily for Web authors who develop or script their own user interface components. For example, standard HTML controls already meet this success criterion when used according to specification.</p>
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g6"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g7"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g8"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g9"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g10"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g11"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g12"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g13"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g14"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g15"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g16"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g17"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g18"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g19"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g20"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g21"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g22"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g23"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g24"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g25"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g26"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g27"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g28"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g29"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g30"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g31"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g32"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g33"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g34"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g35"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g36"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g37"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g38"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g39"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g40"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g41"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+      <h2 id="g42"></h2>
+      <div class="guideline_content">
+        <a class="skippy" href="#toc">Back to TOC</a>
+      </div>
+    </main>
+    <script>
+      +function(){
+        // get all h2's with an id attribute
+        // forEach h2
+           // get h2 id
+           // get div that comes after
+           // remove h2 textContent, save as a var
+          // create a button, type="button", aria-expanded="false"
+          // add textContent to button
+          // add className 'pe-link--btn'
+         // addChild button to h2
+          // add hidden class to div
+          // add aria-labelledby="h2 id"
+        // button.onclick = toggleyfunc(e, div);
+      }
+
+      function toggley(e, div) {
+        if (this.getAttribute('aria-expanded')=="true") {
+          div.classList.add('hidden');
+          this.setAttribute('aria-expanded', false);
+        }
+        else {
+          div.classList.remove('hidden');
+          this.setAttribute('aria-expanded', true);
+        }
+      } 
+      /* this part is for hiding focus rings from mousers */
+      document.addEventListener('mousedown',function() {
+        document.body.classList.add('mouseDetected');
+      },false);
+      
+      document.addEventListener('keydown',function() {
+        document.body.classList.remove('mouseDetected');
+      },false);
+    </script>
+  </body>
+</html>
