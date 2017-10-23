@@ -75,7 +75,7 @@
         <li><a href="#g4">4: Check the order that content is read in screen readers &amp; correct any issues (Sensible Reading Order)</a></li>
         <li><a href="#g5">5: Make sure screen reader users can find dynamic additions to the screen (Findable Added Content)</a></li>
         <li><a href="#g6">6: </a></li>
-        <li><a href="#g7">7: </a></li>
+        <li><a href="#g7">7: Ensure keyboard access visibility (Keyboard Access Visibility)</a></li>
         <li><a href="#g8">8: </a></li>
         <li><a href="#g9">9: </a></li>
         <li><a href="#g10">10: </a></li>
@@ -906,11 +906,11 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
                   <p>Since a:focus doesn’t work in IE (as of IE 7) you may want to add  a:active in addition to a:focus:</p>
                   <pre><code>/* keyboard */ a:focus {background-color: #FFFFCC;} a:active {background-color: #FFFFCC;}</code></pre>
                 <li>Use the JavaScript event handler onFocus as you would use the event handler onMouseOver. Also use onBlur as you would use onMouseOut. </li>
-                  <pre><code><a href="filename.html"        onmouseover="JavaScriptCodeOn();"       onfocus="JavaScriptCodeOn();"        onmouseout="JavaScriptCodeOff();"      onblur="JavaScriptCodeOff();" ></a></code></pre>
+                  <pre><code>&lt;a href="filename.html"        onmouseover="JavaScriptCodeOn();"       onfocus="JavaScriptCodeOn();"        onmouseout="JavaScriptCodeOff();"      onblur="JavaScriptCodeOff();" &gt;</a></code></pre>
                   <p>OR</p>
-                  <pre><code><a href="filename.html"             onmouseover="JavaScriptCodeOn();"       onfocus="this.onmouseover"        onmouseout="JavaScriptCodeOff();"       onblur="this.onmouseout" ></a></code></pre>
+                  <pre><code>&lt;a href="filename.html"             onmouseover="JavaScriptCodeOn();"       onfocus="this.onmouseover"        onmouseout="JavaScriptCodeOff();"       onblur="this.onmouseout" &gt;</a></code></pre>
               </ul>
-          <li>The "outline" for onfocus is in fact the default focus indicator. So, do not remove the "outline" for the onfocus state using CSS styling.</li> 
+          <li>The "outline" for <code>onfocus</code> is in fact the default focus indicator. So, do not remove the "outline" for the onfocus state using CSS styling.</li> 
         </ol>
         <h3>Android Applications</h3>
           <p>When a user uses either swipe gestures or a Bluetooth keyboard, a visible indicator on the screen should show the current element that has focus. This is done by default for standard elements. Custom elements should set the style when <code> state_focused="true".</code></p>
@@ -921,7 +921,7 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
             </ul>
         <h3>iOS Applications</h3>
           <p>iOS provides a visible focus indicator for elements that receive keyboard input.</p>
-          <p>When a user uses swipe gestures with VoiceOver, the element on the page that has VoiceOver focus will have a black rectangle outline. This focus indicator is determined from the property which is a subclass of <code>UIView</code>. Objects should not override the visual focus indicator or set the <code>accessibilityFrame</code> property to<code> nil.</code></p>
+          <p>When a user uses swipe gestures with VoiceOver, the element on the page that has VoiceOver focus will have a black rectangle outline. This focus indicator is determined from the property which is a subclass of <code>UIView</code>. Objects should not override the visual focus indicator or set the <code>accessibilityFrame</code> property to <code>nil.</code></p>
         <h3>PDF in Acrobat</h3>
           <p>In the link properties, specify the link appearance.</p>
           <img width="339" height="267" src="images/link_appearance.jpg">
@@ -969,7 +969,7 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
               <tr>
                 <th scope="row">Tools</th>
                 <td><p>Test for this while you are testing for keyboard access (PG 6).</p>
-                  <p>For links, use the Select Object tool to highlight each link. In Acrobat 9, this is under Tools > Advanced Editing > Select Object; in Acrobat 10 it is under Tools > Content. Right-click to select properties and verify that the link properties conform to the guideline above, with Link Action set to “Go to a page view” or “Open a web page” as appropriate.</p>
+                  <p>For links, use the Select Object tool to highlight each link. In Acrobat 9, this is under Tools > Advanced Editing > Select Object; in Acrobat 10 it is under Tools > Content. Right-click to select properties and verify that the link properties conform to the guideline above, with Link Action set to "Go to a page view" or "Open a web page" as appropriate.</p>
                 </td>
               </tr>
               <tr>
