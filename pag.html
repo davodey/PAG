@@ -74,7 +74,7 @@
         <li><a href="#g3">3: Allow instructors, administrators, or students to adjust time limits (Timed Tests)</a></li>
         <li><a href="#g4">4: Check the order that content is read in screen readers &amp; correct any issues (Sensible Reading Order)</a></li>
         <li><a href="#g5">5: Make sure screen reader users can find dynamic additions to the screen (Findable Added Content)</a></li>
-        <li><a href="#g6">6: </a></li>
+        <li><a href="#g6">6: Check keyboard access (access without a pointing device) and correct any issues (Keyboard Access)</a></li>
         <li><a href="#g7">7: </a></li>
         <li><a href="#g8">8: </a></li>
         <li><a href="#g9">9: </a></li>
@@ -862,8 +862,497 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <p>Note: This success criterion is primarily for Web authors who develop or script their own user interface components. For example, standard HTML controls already meet this success criterion when used according to specification.</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
-      <h2 id="g6"></h2>
+      <h2 id="g6">Guideline 6. Check keyboard access (access without a pointing device) and correct any issues (Keyboard Access)</h2>
       <div class="guideline_content">
+        <p class="summary">Ensure that keyboard keys (instead of a mouse and instead of touch screen gestures that require eye-hand coordination) can be used to:</p>
+        <ul>
+          <li><strong>Reach and operate all controls</strong></li>
+          <li>AND <strong>Navigate through active elements, following the reading order</strong></li>
+        </ul>
+        <p>Notes:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>This guideline does <strong>not</strong> mean that an on-screen keyboard must always be visible on mobile devices. Test on mobile devices using a physical keyboard and using the gestures that are part of the screen reader functionality.</li>
+          <li>Keyboard access is primarily the responsibility of the user agent (e.g. Web browser, PDF reader, Flash player). To address this guideline, we ensure that our content supports the user agent's solution.</li>
+        </ul>
+        <h3>Rationale</h3>
+        <p>By ensuring that our content supports keyboard access, we provide access to a number of user groups who do not use a mouse.</p>
+        <p>Additional Benefit: Many mobile device users also rely on keyboard access.</p>
+
+        <h3>General Techniques</h3>
+        <h4>The Basics</h4>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Make sure that keyboard-only users can get to each active element (e.g. link, form field, control). This is usually accomplished using tab keys and arrow keys.</li>
+          <li>Just getting to links and controls is not enough, make sure keyboard-only users can also activate each active element (e.g. link, form field, control). This is usually accomplished using enter key or space bar.</li>
+          <li>Finally, make sure that keyboard-only users can escape each element to return to other items on the page.</li>
+        </ul>
+
+        <h4>Be Mindful that Learning New Key Presses can be Burdensome</h4>
+        <p>Wherever possible, use the keyboard access methods and keys that are the default in the particular technology you are using, rather than inventing new access methods that users will need to learn.</p>
+
+        <h4>Hidden Content</h4>
+        <p>Make sure that hidden active elements (e.g. links, form fields, controls) are not part of the tab order. It can be be very frustrating and disorienting to have to press tab again and again to step through hidden content. Users may assume that there's no keyboard access at all.</p>
+
+        <h4>Do Not Require Physically Skilled Key Pressing</h4>
+        <p>Do not require users to hold down keys for a certain amount of time or to accomplish any other specific timing of key presses.</p>
+
+        <h4>MouseOver Effects</h4>
+        <p>Provide equivalents for keyboard access users when MouseOver effects:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>provide information or reveal new user interface elements</li>
+          <li>provide a different (e.g. clearer, simplified, larger) view of information</li>
+          <li>provide functionality</li>
+        </ul>
+
+        <h4>Category Drag &amp; Drop</h4>
+        <p>When users need to put items into categories, one approach is to have a menu of categories pop up when the user tabs to one of the items and hits enter.</p>
+        <p>The Up and Down Arrow Keys allow the user to select between categories in the menu. Hitting Space Bar selects the category and so drops the item into that category. Tab and Shift Tab can move the user to the next item or previous item.</p>
+        <p><mark>(the modern keystrokes are: spacebar to select an item; enter and/or ctrl+m to drop an item. Tab or arrows to move around between focusable draggables or destinations).</mark><br>
+        <img width="230" height="155" src="images/fruNveg.jpg" alt="Example: Users drag words like 'olives' and 'tomatoes' into two categories: 'Fruits' and 'Vegetables."></p>
+
+        <h4>Matching Drag &amp; Drop</h4>
+        <p>When users need to match elements of one list with elements of another list, users will need a way to select an item, jump easily to the other list, and then select the matching item. Users should be able to begin from either list. Simple keystrokes can be used to allow this. Tab and Shift Tab can be used to jump back and forth between the lists. Up and Down Arrow Keys can be used to move within the list. Enter can be used to select items to drag (or begin matching line). And Space can be used to select locations to drop (or complete matching line). This way, if a user choses an item, but then decides not to match that item yet, they can select another item using Enter.<br>
+        <img width="254" height="127" src="images/nvda.jpg" alt="Example: Users draw lines between words by dragging words from one list to words in another list."></p>
+
+        <h4>Fill-in-the-Blanks Drag &amp; Drop</h4>
+        <p>When an exercise allows a user to choose from a list of words and drag those words into blanks in a paragraph, a key part of working through the answers is being able to glance back at the list of words while reading the paragraph. To provide a parallel experience for screen reader users, one strategy is to provide a special view where the blanks are replaced with pull down menus. This will also be useful for people who do not use a mouse because of mobility or dexterity issues.<br>
+        <img width="260" height="160" src="images/dragNdrop.jpg" alt="Example: Users drag words from a list into a paragraph with blanks."></p>
+
+        <h4>Details</h4>
+        <p>Add a link, such as "Use Activity without a Mouse" to the user interface. Make sure link is just after the drag-and-drop instructions in the reading order, so that screen reader users can find it quickly.<br>
+        <img width="670" height="407" src="images/drag_fill_before.jpg" alt=""></p>
+
+        <p>When the "Use Activity without a Mouse" link is clicked, replace the blanks with pull down menus and replace the link with a link such as "Use Drag and Drop".<br>
+        <img width="681" height="407" src="images/drag_fill_after.jpg" alt=""></p>
+
+        <h3>HTML</h3>
+        <h4>In-Page Links</h4>
+        <p>When coding in-page anchor links, code the target of the in-page link using an <code>a</code> element with <code>tabindex="-1"</code>. This ensures that you will avoid two bugs in Internet Explorer (versions 5-8) that break keyboard access. Without tabindex="-1" many inpage links will appear to work visually when first activated, but when the user tries to move forward using the tab key, the user is brought back to the skip link instead of moving forward on the page.</p>
+
+        <h4>Image Maps</h4>
+        <p>When creating image maps, use <code>usemap</code>, <code>&lt;map&gt;</code> and <code>&lt;area&gt;</code>. Do not use <code>ismap</code> or the x and y coordinates provided by <code>input type="image"</code> to create image maps. Browsers allow keyboard access users to tab to area elements, but do not support selecting a location using the keyboard in image maps created using <code>ismap</code> or <code>input type="image"</code>.</p>
+        <p>Note: Image maps that use <code>area</code> elements are often called client-side image maps, while the others are often called server-side image maps. Despite the terminology, only maps created using <code>area</code> elements offer keyboard access, regardless of whether you add server-side or client-side scripting to <code>ismap</code> or <code>input type="image"</code>.</p>
+
+        <h4>Considerations if you are changing the tab order</h4>
+        <p>Allow the tab order to follow the reading order. (This occurs automatically, unless you change the tab order.) Tab orders that have been set based on <code>tabindex</code> are difficult to maintain. They can cause a mismatch between the tab order and the reading order. This can be disorienting for screen reader users. Unless screen reader usability testing with skilled screen reader users is planned, do not reset the tab order using <code>tabindex</code>.</p> 
+
+        <h4>Keyboard Shortcuts</h4>
+        <p>Common browsers allow <code>accesskey</code> attributes to override keyboard access to browser menus. <code>Accesskey</code> attributes can also override the keystroke commands that allow keyboard access with a screen reader. Do not use <code>accesskey</code> unless:</p>
+
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>You use only numeric <code>accesskey</code> values (0-9) OR</li>
+          <li>The access keys are not active by default. Instead, the user can switch them on after reviewing the list of keys in user preferences.</li>
+        </ul>
+        <h4>New Browser Windows</h4>
+        <p>If you are opening a new browser window, it is <strong>not</strong> necessary to provide keyboard shortcuts to close or minimize the window. Instead, you <strong>should</strong> rely on the operating system's keyboard commands for adjusting windows.</p>
+        <p>Here are the commands used for Windows and Mac:</p>
+        <table class="pe-table">
+          <thead>
+            <tr>
+              <th scope="col">Operating System</th>
+              <th scope="col">Minimize</th>
+              <th scope="col">Close</th>
+              <th scope="col">Menu of Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Windows</th>
+              <td>Alt Space, then n</td>
+              <td>Alt F4</td>
+              <td>Alt Space</td>
+            </tr>
+            <tr>
+              <th scope="row">Mac</th>
+              <td>Command m</td>
+              <td>Command w</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+    
+        <h3>JavaScript</h3>
+        <p>Be Careful using <code>blur()</code> ("Stop the Ants")</p>
+        <p>Do not trigger <code>blur()</code> for an element in response to an <code>onFocus</code> event for that element. This prevents keyboard access for the element. This mistake is often made when developers wish to remove the outline that appears around a link when the link is clicked. Instead, use the following CSS code to remove that outline in modern browsers (e.g. Firefox 3+, Internet Explorer 8+).</p>
+        <pre><code>a:active {     outline-width: 0; }</code></pre>
+        <p>The CSS above uses <code>a:active</code>. Do NOT use <code>a:focus</code> or even just <code>a</code> in the code above, as this would hide the focus indicator (See <a href="#pg7">PG 7</a>.</p>
+
+        <h4>Select Menus and OnChange</h4>
+        <p>Avoid using select menus with <code>onchange</code> handlers where the handler changes focus or causes an irreversible event like sending a message or submitting a form. In such cases just rely on a "Go" button instead of an onchange handler.</p>
+        <h5>Here are the problems with select menus and <code>onchange</code> handlers:</h5>
+        <p>In Internet Explorer, if you use arrow keys to move up or down in a select menu with an <code>onchange</code> handler, the <code>onchange</code> event triggers with each move. If that handler changes focus you will be moved away from the select menu with one up or down arrow; if it results in some irreversible action, then, just by an innocuous move in a menu, you have caused that action. On the other hand, if you first use alt+down-arrow to open the select menu and then use arrow keys in the open list, no <code>onchange</code> event fires until you press enter or tab out of the menu. This situation is aggravated by the fact that the most popular screen reader says, "Combo box, to change the selection use the arrow keys." This particular problem is specific to Internet Explorer.</p>
+        <p>For other browsers (Chrome, Firefox, and Safari) and for Internet Explorer when alt+down-arrow is used to open the menu, the <code>onchange</code> event does not trigger until you press enter or tab out of the control. So for all of the browsers, when you tab out of the open select menu, the corresponding on-change action, possibly irreversible, is taken and you might have thought that you were just leaving the control. Again, use the "Go" button in such cases.</p>
+
+        <h4>Custom Controls</h4>
+        <p>Make sure that custom controls are keyboard accessible using one of these techniques:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li><p>(BEST) Start with HTML/XHTML elements that are interactive by default (e.g. a, <code>button</code>, <code>input</code>*). For example, you may wish to have a box that acts as a control that changes the page. Instead of making a <code>div</code> element interactive, you might use a <code>button</code> element. This way, you take advantage of well-tested standard keyboard access that comes with elements that are interactive by default. You can use CSS to adjust the <code>button</code> element to appear as you wish:</p> 
+            <pre><code>button.myactivebox {
+width: 3em;
+height: 3em;
+float: left;
+/* remove browser-provided 3d edge effect */
+border: 0;
+/* remove color assigned by browser */
+background: transparent;
+/* add basic link-style cursor for mouse users*/
+cursor: pointer;
+}</code></pre>
+            <p>*The following elements require additional consideration and so may not be the best choice as a base for your custom control: <code>input type="submit"</code> or <code>input type="image"</code>. For these elements, the onClick event can be triggered if a user presses enter anywhere within the form, or anywhere within the page if there are no <code>&lt;form&gt;</code> tags. (This won't happen, though, if the focus is on a natively active element, like a link, when the user presses Enter, which is why these elements are appropriate for use with typical forms.) Also, in some browsers, these elements automatically cause a page refresh. See <a href="#pg10">PG 10</a> for tips on avoiding changing the user's place on a page unexpectedly.</p></li>
+          <li>Or, you might use scripting to make an element that is not normally interactive into an interactive element. This requires considerable careful consideration for keyboard access. First, give the element a <code>tabindex="0"</code> attribute. This way, the element will be included in the natural tab order. And, be sure to follow the coding tips below. Unlike natively active elements, these items won't be keyboard accessible if you only use onClick and they may cause problems if there are submit buttons nearby:
+            <ol class="pe-list.pe-styled-lists--ordered">
+              <li> While browsers allow the keyboard to trigger <code>onclick</code> events for active elements, they typically do not allow the keyboard to trigger <code>onclick</code> events for elements that are not normally active. So, add an <code>onkeypress</code> event if needed. Be sure to code the <code>onkeypress</code> event so that it only triggers an action if the <strong>appropriate</strong> key is pressed (usually the enter key). See "When using <code>Onkeypress</code>, <code>Onkeydown</code>, or <code>Onkeyup</code>" below for more detail on the key-related events.</li>
+              <li>Screen readers will not automatically know the purpose of the element. So, include text that is available to screen readers that indicates the purpose of the element and how to interact with it. (<a href="#pg20">PG 20</a> explains further.) This is a case where testing the user experience with a screen reader is essential.</li>
+              <li>Be sure this type of artificially active element never appears within a form that has a submit button (e.g. <code>input type="image"</code>, <code>input type="submit"</code>). When a user presses enter within a form, elements designed to submit the form will be triggered, including any <code>onClick</code> handlers on those elements. If there are no form tags, this will happen if enter is pressed anywhere on the page. The one exception is if a natively actively element (e.g. link, button) has focus at the time. This allows keyboard access users to use links and buttons within a form, but this exception does not apply if an active element was created using an element that is not normally active (e.g. <code>div</code>, <code>span</code>) . So, a keyboard access user will not be able to "click" on such custom elements, without triggering the form submit.</li>
+              <li>In Firefox, <code>&lt;a&gt;</code> elements (without <code>href</code> attributes) that have been made active through scripting do not automatically gain focus indicators. See <a href="#pg7">PG 7</a> for more on focus indicators and how to add them when needed.</li>
+            </ol>
+          </li>
+        </ul>
+
+        <h4>Selecting Particular Points</h4>
+        <p>The HTML techniques for this PG explain that image maps can be keyboard accessible if you use <code>area</code> elements instead of using the x and y coordinates provided by <code>input type="image"</code> or <code>ismap</code>. For more complex JavaScript (or server-side) functionality where you would need 30, 40 or more <code>area</code> elements, though, <code>area</code> elements may not be appropriate as keyboard access users would have to tab through all of those <code>area</code> elements.</p>
+        <p>In such cases, if you use the x and y coordinates provided by <code>input type="image"</code> or <code>ismap</code>, provide equivalent functionality for keyboard access users through buttons and controls. For example, if users need to plot points on a graph, you might provide text entry fields where the x and y coordinates of each point can be entered.</p>
+        <p>Another option is using layers of elements if you detect that the user is using keyboard access. For example, at first the graph might be made up of four <code>input type="image"</code> elements. If any are clicked using the mouse, the x and y coordinates might be used. But if one is selected using the keyboard, it might be replaced by a set of 4 smaller area elements, and so on, until the keyboard user is able to select the particular point needed.</p>
+
+        <h4>Clearing Default Text in a Form Field</h4>
+        <p><mark>Do not clear user-entered text in form fields when focus is placed on the field. Screen reader users, in particular, may move backwards through the fields to check their entries just before submitting the form. If you write a script designed to clear the placeholder text, be sure to check the value of the text, and only clear the text if it really is just the placeholder text.</mark></p>
+        <p>Another option is to use the HTML 5 <code>placeholder</code> attribute. If you support browsers where this is not implemented, you might use JavaScript for those browsers only. This article shows how to use JavaScript for browsers that don't support <code>placeholder</code> while still using clean HTML 5 tagging: <a href="http://webdesignerwall.com/tutorials/cross-browser-html5-placeholder-text" target="_blank">Open Web Designer Wall Article in a New Window</a>.</p>
+
+        <h4>When using <code>Onkeypress</code>, <code>Onkeydown</code>, or <code>Onkeyup</code></h4>
+        <p><code>Onkeypress</code>, <code>onkeydown</code> or <code>onkeyup</code> are triggered in some browsers by any key press at all, including key presses commonly used for keyboard access and screen reader navigation. For example, in some browsers, if a link opens a new window on key press, keyboard access users won't be able to tab past the link because focus will always move to the new window. When using natively active elements, <code>onclick</code> is sufficient for both mouse access and keyboard access as the Enter key fires the <code>onclick</code> event for keyboard access users. So, it is usually best to avoid using <code>onkeypress</code>, <code>onkeydown</code> or <code>onkeyup</code>. If you do use these, be sure:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>The functionality is purely decorative (inconsequential) and doesn't change focus.</li>
+          <li>Or, you use JavaScript to ensure that actions only occur when particular keys are pressed and either:
+            <ul>
+              <li>You are only taking over the keys commonly used for ordinary components (arrow keys and enter) only when focus in on a custom control and the user can tab off of the custom control. (Note: to do this across browsers you need to use <code>onkeydown</code> instead of <code>onkeypress</code>.)</li>
+              <li>You are taking over keys no matter where the user is on the page, but the functionality is not active by default. Instead, it is made active through user preferences. The users should be able to read which keys would be over-ridden. This way, they can avoid activating the functionality if the keys would interfere with their access method.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3>Android Applications</h3>
+        <p>Android applications can be used with touch using <a href="https://support.google.com/accessibility/android/answer/6006598?rd=1">navigation gestures</a> and with a Bluetooth keyboard. It is recommended that interactive elements have a touch target of 48dp which is a physical size of about 9mm (for more information see <a href="https://material.io/guidelines/layout/metrics-keylines.html">Metrics and Grids</a>).</p>
+        <p>The application works with touch and a Bluetooth keyboard when its <code>android:focusableattribute</code> to set to true. Android provides ways to control which controls are focusable using <a href="https://developer.android.com/reference/android/view/View.html#setFocusable(boolean)">setFocusable()</a> and <a href="https://developer.android.com/reference/android/view/View.html#isFocusable()">isFocusable()</a> and allows focus to be set to control using <a href="https://developer.android.com/reference/android/view/View.html#requestFocus()">requestFocus()</a>.</p>
+        <p>The order in which controls receive focus is determined by the focus order which is based on an algorithm that finds the nearest neighbor in a given direction. This can be changed using <a href="https://developer.android.com/reference/android/view/View.html#attr_android:nextFocusDown">android:nextFocusDown</a>, <a href="https://developer.android.com/reference/android/view/View.html#attr_android:nextFocusLeft">android:nextFocusLeft</a>, <a href="https://developer.android.com/reference/android/view/View.html#attr_android:nextFocusRight">android:nextFocusRight</a>,and <a href="https://developer.android.com/reference/android/view/View.html#attr_android:nextFocusUp">android:nextFocusUp</a>. At runtime, the focus order can be changed using methods such as <a href="https://developer.android.com/reference/android/view/View.html#setNextFocusDownId(int)">setNextFocusDownId()</a> and <a href="https://developer.android.com/reference/android/view/View.html#setNextFocusRightId(int)">setNextFocusRightId()</a>.</p>
+        <p>Touch events should only be triggered when touch is removed from the control and the ACTION:DOWN trigger should be avoided.</p>
+        <p>For more information:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li><a href="https://developer.android.com/guide/topics/ui/accessibility/apps.html#focus-nav" target="_blank">Open Google's Enabling Focus Navigation in a new window</a>.</li>
+          <li><mark>same link as above&#8212; neither go to specific areas and those areas seem teh g0nez</mark>Open Google's  Building Accessible Custom Views &gt; Handling directional controller clicks in a new window.</li>
+        </ul>
+
+        <h3>iOS Applications</h3>
+        <p>iOS applications allow users to use touch to navigate the screens and provides limited access through a Bluetooth keyboard unless VoiceOver is used in conjunction with the Bluetooth keyboard. For touch and gesture navigation, provide a minimum 44 X 44 point hit target area and avoid crowding the items too closely together. This will allow users to easily access a specific UI element.</p>
+        <p>Standard interface elements are automatically touch accessible with and without the VoiceOver screen reader. Touch events should only be triggered when touch is removed from the control and the <code>touchesBegan:withEvent</code> should be avoided. Custom container and individual views must be made accessible in order for users to be able to interact with the interface elements.</p>
+
+        <h4>How to make custom views accessible</h4>
+        <p>There are two ways to make a custom individual view accessible:</p>
+        <ol class="pe-list.pe-styled-lists--ordered">
+          <li>Set the custom view's accessibility status in the code that instantiates it</li>
+          <li>Implement the <code>isAccessibleElement</code> method of the <code>UIAccessibility</code> protocol in the custom subclass</li>
+        </ol>
+        <p>For custom container views, each interface element needs to be made accessible individually.  The container view should not be made accessible since users interact with the interface elements and not with the container itself.  To make container view interface elements accessible, implement the <a href="https://developer.apple.com/documentation/uikit/accessibility/uiaccessibilitycontainer">UIAccessibilityContainer</a> protocol.</p>
+
+        <h3>PDF in Acrobat</h3>
+        <p>Keyboard access in PDF is generally fine in Acrobat. Ensure that the tab order for active elements including links and form fields is correct.</p>
+        <h4>Tab Order</h4>
+        <p>The tab order in a PDF is determined by the page properties and the order of the tags in the tags tree. <br>
+          <img width="285" height="257" src="images/page-properties.jpg" alt=""></p>
+        <p>The location of the pages panel will vary depending on your version of Acrobat. In Acrobat 9 Pro, for example, you can find the panel at View &gt; Navigation Panels &gt; Pages. Select all the pages in the document. Select Page Properties in the navigation panel options menu and choose a tab order option. For tagged documents, always use "Use Document Structure" option.</p>
+
+        <h3>PowerPoint</h3>
+        <p>Keyboard access is controlled by PowerPoint. No special consideration is required within the content to make it accessible by keyboard. Verify that the reading order is correct so that users can navigate the content in the correct order.</p>
+        <p>In PowerPoint, navigate with these keyboard shortcuts:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Start slideshow - F5</li>
+          <li>Next animation / slide - enter, page down, right or down arrow, spacebar</li>
+          <li>Previous animation / slide - page up, up or left arrow</li>
+          <li>Previous slide - P</li>
+          <li>Go to slide in slideshow - type page number + enter</li>
+        </ul>
+        <p>When testing with JAWS, use these keyboard shortcuts to speak content:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Next word - Insert + right arrow</li>
+          <li>Next line - down arrow</li>
+          <li>Next sentence - alt + down arrow</li>
+          <li>Whole page - insert + down arrow</li>
+          <li>Next list item - i</li>
+          <li>Speak slower / faster - alt + ctrl + page down or page up</li>
+        </ul>
+ 
+        <h3>Flash &amp; Flex</h3>
+        <p>In Flex, sometimes you'll find that the tab order does not match the reading order. To correct this, arrange the items in the source code so that they appear in the source code in the same order as your reading order.</p>
+ 
+        <h3>Testing</h3>
+        <table class="pe-table">
+          <thead class="pe-sr-only">
+            <tr>
+              <th scope="col">Testing technique</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Tools</th>
+              <td><p>The main tool is the keyboard. Use the keyboard to be sure you can get everywhere and do everything on the page using the keyboard. There are additional tools that may help, <a href="https://developer.paciellogroup.com/resources/wat/">Web Accessibility Toolbar</a> – Structure – Tab Order indicates the tab order of each active object. Web Accessibility Toolbar – Structure – TabIndex will indicate if any objects have been assigned <code>tabindex</code> values thus changing the tab order.</p>
+                <p>As you are checking keyboard access be sure to check for focus visibility at the same time (<a href="#pg7">Pearson Guideline 7</a>).</p></td>
+            </tr>
+            <tr>
+              <th scope="row">Output</th>
+              <td>This is a time-consuming test, but it is not unusual for an object to appear to be a link or button and just be a div with an on-click handler. It is essential to be sure that all functionality is available (and visible) from the keyboard.</td>
+            </tr>
+            <tr>
+              <th scope="row">Analysis</th>
+              <td>Make note of functionality that is not available from the keyboard and of instances where keyboard focus is not visible (<a href="#pg7">Pearson Guideline 7</a>).</td>
+            </tr>
+          </tbody>
+        </table>
+ 
+        <h3>Testing Mobile Applications</h3>
+        <table class="pe-table">
+          <thead class="pe-sr-only">
+            <tr>
+              <th scope="col">Testing technique</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Tools</th>
+              <td><p>User will interact using gestures, touch, and through an external Bluetooth keyboard. Ensure that users can reach all elements on the screen with Bluetooth keyboard and gestures.</p>
+                <p>The keyboard works differently on Android and iOS:</p>
+                <ul class="pe-list pe-styled-lists--unordered">
+                  <li>Android: When using an external keyboard, the tab key can be used to move between the interactive areas on the screen. The enter key will active a control.</li>
+                  <li>iOS: When using an external keyboard, the tab key can be used to move between the fields on the page and the enter key will submit a form. Full keyboard access is available only when VoiceOver is turned on. When VoiceOver is on, the arrow keys are primarily used to move around the application.</li>
+                </ul>
+                <p>As you are checking keyboard access be sure to check for focus visibility at the same time (<a href="#pg7">Pearson Guideline 7</a>).</p></td>
+            </tr>
+            <tr>
+              <th scope="row">Output</th>
+              <td><p>Ensure that all page elements can be used with gestures and a Bluetooth keyboard.</p>
+                <p><strong>Note:</strong> on iOS test with VoiceOver turned on.</p></td>
+            </tr>
+            <tr>
+              <th scope="row">Analysis</th>
+              <td>Make note of functionality that is not available from using gestures and Bluetooth keyboard. Note instances where keyboard focus is not visible (<a href="#pg7">Pearson Guideline 7</a>).</td>
+            </tr>
+          </tbody>
+        </table>
+ 
+        <h4>Gesture Commands</h4>
+        <table class="pe-table">
+          <thead>
+            <tr>
+              <th scope="col">Action</th>
+              <th scope="col">iOS Gesture</th>
+              <th scope="col">Android Gesture</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Select and speak an item as it is touched</td>
+              <td>Drag over the screen</td>
+              <td>Drag over the screen</td>
+            </tr>
+            <tr>
+              <td>Speak the selected item</td>
+              <td>Tap</td>
+              <td>Tap</td>
+            </tr>
+            <tr>
+              <td>Stop speaking</td>
+              <td>Two-finger tap</td>
+              <td>Global Context Menu: Down then right then select Pause Feedback</td>
+            </tr>
+            <tr>
+              <td>Activate the selected item</td>
+              <td>Double tap</td>
+              <td>Double tap</td>
+            </tr>
+            <tr>
+              <td>Read all accessible items from the top of the screen</td>
+              <td>Two-finger flick up</td>
+              <td>Up then down or Open Global Context Menu (Down then right) then select Read from Top</td>
+            </tr>
+            <tr>
+              <td>Read all accessible items from the current position</td>
+              <td>Two-finger flick down</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Move the cursor to the next or previous item and hear a spoken description</td>
+              <td>Flick right or left with one finger</td>
+              <td>Flick right or left with one finger</td>
+            </tr>
+            <tr>
+              <td>Navigation options</td>
+              <td>Rotor: Rotate two fingers as if turning a dial</td>
+              <td>Global Context Menu: Down then right</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>Bluetooth Keyboard Navigation with VoiceOver</h4>
+        <table class="pe-table">
+          <thead>
+            <tr>
+              <th scope="col">Key Command</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Control – Option – H</td>
+              <td>Home button</td>
+            </tr>
+            <tr>
+              <td>Control – Option – Shift – S</td>
+              <td>Turn screen curtain on/off
+            </tr>
+            <tr>
+              <td>ESC</td>
+              <td>Back button</td>
+            </tr>
+            <tr>
+              <td>Tab</td>
+              <td>Move between form fields</td>
+            </tr>
+            <tr>
+              <td>Enter</td>
+              <td>Activate form</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>iOS Bluetooth Keyboard Quick Nav Mode</h4>
+        <p>To turn on quick nav mode, press both the right and left arrow together.</p>
+
+        <table class="pe-table">
+          <thead>
+            <tr>
+              <th scope="col">Key Command</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Right Arrow</td>
+              <td>Select the next item</td>
+            </tr>
+            <tr>
+              <td>Left Arrow</td>
+              <td>Select previous arrow</td>
+            </tr>
+            <tr>
+              <td>Up Arrow – Down Arrow</td>
+              <td>Tap the highlighted item</td>
+            </tr>
+            <tr>
+              <td>Control – Up Arrow</td>
+              <td>Select the first item</td>
+            </tr>
+            <tr>
+              <td>Control – Down Arrow</td>
+              <td>Select the last item</td>
+            </tr>
+            <tr>
+              <td>Option – Arrow Key</td>
+              <td>Scroll in the direction pressed</td>
+            </tr>
+            <tr>
+              <td>Up Arrow – Left Arrow</td>
+              <td>Move the rotor to the left</td>
+            </tr>
+            <tr>
+              <td>Up Arrow – Right Arrow</td>
+              <td>Move the rotor to the right</td>
+            </tr>
+            <tr>
+              <td>Shift – Arrow Key</td>
+              <td>Move the cursor in the direction pressed</td>
+            </tr>
+            <tr>
+              <td>H</td>
+              <td>Move to next heading</td>
+            </tr>
+            <tr>
+              <td>L</td>
+              <td>Move to next link</td>
+            </tr>
+            <tr>
+              <td>R</td>
+              <td>Move to next text field</td>
+            </tr>
+            <tr>
+              <td>B</td>
+              <td>Move to next button</td>
+            </tr>
+            <tr>
+              <td>C</td>
+              <td>Move to next form control</td>
+            </tr>
+            <tr>
+              <td>I</td>
+              <td>Move to next image</td>
+            </tr>
+            <tr>
+              <td>S</td>
+              <td>Move to next static text</td>
+            </tr>
+            <tr>
+              <td>X</td>
+              <td>Move to the next list</td>
+            </tr>
+            <tr>
+              <td>M</td>
+              <td>Move to the next element of the same type</td>
+            </tr>
+            <tr>
+              <td>1 - 6</td>
+              <td>Move to the next heading level that corresponds to the number pressed</td>
+            </tr>
+          </tbody>
+        </table>
+ 
+        <h3>Testing PDF in Acrobat</h3>
+        <table class="pe-table">
+          <thead class="pe-sr-only">
+            <tr>
+              <th scope="col">Testing technique</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Tools</th>
+              <td>There are two main tools to use when testing keyboard access: the keyboard and the Pages pane. Select all pages in the Pages pane and verify that the tab order on page properties is set to "Use Document Structure." Next, tab through the document to ensure that it tabs to links and form fields, and does so in the proper order. In forms, tab should move between questions and for groups of radio buttons, the cursor keys should move between the question’s choices.</td>
+            </tr>
+            <tr>
+              <th scope="row">Output</th>
+              <td>The cursor should be placed properly in the form fields and the focus indicator should appear over the links as you tab to them.</td>
+            </tr>
+            <tr>
+              <th scope="row">Analysis</th>
+              <td>Make note of instances in which form fields and links are not accessible by tabbing, or when the tabbing order is incorrect.</td>
+            </tr>
+          </tbody>
+        </table>
+ 
+        <h3>Related Guidelines</h3>
+        <h4>508 Software § 1194.21 (a)</h4>
+        <p>When software is designed to run on a system that has a keyboard, product functions shall be executable from a keyboard where the function itself or the result of performing a function can be discerned textually.</p>
+        <h4>508 Web § 1194.22 (e)</h4>
+        <p>Redundant text links shall be provided for each active region of a server-side image map.</p>
+        <h4>508 Web § 1194.22 (f)</h4>
+        <p>Client-side image maps shall be provided instead of server-side image maps except where the regions cannot be defined with an available geometric shape.</p>
+        <h4>WCAG 2.0 A - SC 2.1.1 Keyboard:</h4>
+        <p>2.1.1 Keyboard: All functionality of the content is operable through a keyboard interface without requiring specific timings for individual keystrokes, except where the underlying function requires input that depends on the path of the user's movement and not just the endpoints. (Level A)</p>
+        <p>Note 1: This exception relates to the underlying function, not the input technique. For example, if using handwriting to enter text, the input technique (handwriting) requires path-dependent input but the underlying function (text input) does not.</p>
+        <p>Note 2: This does not forbid and should not discourage providing mouse input or other input methods in addition to keyboard operation.</p>
+        <h4>WCAG 2.0 A – SC 2.1.2 No Keyboard Trap:</h4>
+        <p>If keyboard focus can be moved to a component of the page using a keyboard interface, then focus can be moved away from that component using only a keyboard interface, and, if it requires more than unmodified arrow or tab keys or other standard exit methods, the user is advised of the method for moving focus away. (Level A)</p>
+        <p>Note: Since any content that does not meet this success criterion can interfere with a user's ability to use the whole page, all content on the Web page (whether it is used to meet other success criteria or not) must meet this success criterion. See Conformance Requirement 5: Non-Interference.</p>
+        <h4>WCAG 2.0 A – SC 2.4.3 Focus Order:</h4>
+        <p>If a Web page can be navigated sequentially and the navigation sequences affect meaning or operation, focusable components receive focus in an order that preserves meaning and operability. (Level A)</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
       <h2 id="g7"></h2>
@@ -1024,7 +1513,7 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
          // addChild button to h2
           // add hidden class to div
           // add aria-labelledby="h2 id"
-        // button.onclick = toggley(e, div);
+        // button.onclick = toggley(div);
       }
 
       function toggley(div) {
