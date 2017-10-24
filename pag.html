@@ -67,6 +67,10 @@
         padding: 10px;
       }
 
+      .tablehead{
+        background-color: #F5F5F5;
+      }
+
     </style>
     <!-- print stylesheet pls -->
   </head>
@@ -1326,7 +1330,7 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
                 <tr>
                   <th scope="row">Analysis</th> 
                   <td>Looking at the page as a whole: Is there heading text at the beginning of each major section of the page. Do sections of similar format and importance have the same heading levels? Is text that looks like a heading text marked up as an HTML heading?
-                      <P>Also consider whether the heading structure is well-organized: There should be just one h1. Also, are there unreasonable gaps in heading numbering, like <code>h2</code> to <code>h5</code>?</P>
+                      <br/>Also consider whether the heading structure is well-organized: There should be just one h1. Also, are there unreasonable gaps in heading numbering, like <code>h2</code> to <code>h5</code>?</p>
                   </td>
                 </tr>
               </tbody>
@@ -1358,83 +1362,211 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
               </table>
 
           <h4>Screen Reader Commands</h4>
-          AT	Headings Forward & Back	Specific Heading Level	Landmarks Forward & Back
-          JAWS	h and Shift + h	number (1-6) and Shift + number	semicolon and Shift + semicolon
-          VoiceOver on iOS (iPad, iPhone, iPod Touch)	Turn rotor with two fingers to Headings. Swipe up or down with one finger. 	Not available in gestures - need keyboard.	Turn rotor with two fingers to Landmarks. Swipe up or down with one finger. 
-          Window Eyes	h and Shift + h	number (1-6) followed by h and number followed by Shift + h	semicolon and Shift + semicolon
-          NVDA	h and Shift + h	number (1-6) and Shift + number	d and Shift + d
+              <table>
+                <thead class="tablehead">
+                    <tr>
+                      <th scope="col">AT</th>
+                      <th scope="col">Headings Forward &amp; Back</th>
+                      <th scope="col">Specific Heading Level</th>
+                      <th scope="col">Landmarks Forward &amp; Back</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>JAWS</th>
+                    <td>h and Shift + h</td>
+                    <td>number (1-6) and Shift + number</td>
+                    <td>semicolon and Shift + semicolon</td>
+                  </tr>
+                  <tr>
+                      <th>VoiceOver on iOS (iPad, iPhone, iPod Touch)</th>
+                      <td>Turn rotor with two fingers to Headings. Swipe up or down with one finger.</td>
+                      <td>Not available in gestures - need keyboard.</td>
+                      <td>Turn rotor with two fingers to Landmarks. Swipe up or down with one finger. </td>
+                  </tr>
+                  <tr>
+                      <th>Window Eyes</th>
+                      <td>h and Shift + h</td>
+                      <td>number (1-6) followed by h and number followed by Shift + h</td>
+                      <td>semicolon and Shift + semicolon</td>
+                  </tr>
+                  <tr>
+                      <th>NVDA</th>
+                      <td>h and Shift + h</td>
+                      <td>umber (1-6) and Shift + number</td>
+                      <td>d and Shift + d</td>
+                  </tr>
+                </tbody>    
+              </table> 		
            
-          Testing Mobile Applications
-          On mobile, the platform capabilities different. For Android applications, only the screen title can be set. In iOS if the navigation bar is used, the application title and back button must be set. Headings must be defined.
-          Android
-          Tools	Visually look at the screen or use TalkBack for the screen title.
-          Output	This title is visible and is announced by TalkBack.
-          Analysis	
-          The title provides context and helps orient the user to the screen. The title should be concise, descriptive and unique.
-          
-          iOS
-          Tools	
-          Visually inspect the page to identify what the page title and the name of the back button.
-          Use VoiceOver to check the information read the screen title, the back button, and the headings. Read the screen using left to right or right to left swipe gestures. Turn the rotor settings to headings (Turn dial on the screen with two fingers and change the option to Headings). Swipe up or down with one finger to move from one heading to the next.
-          
-          Output	
-          The screen title is visible and is announced by VoiceOver.
-          The back button is visible and is read by VoiceOver.
-          
-          All visible headings on the screen should get focus when moving between headings using swipe up / down gesture when the rotor is set to headings.
-          
-          Analysis	
-          The title provides context and helps orient the user to the screen. The title should be concise, descriptive and unique.
-          The back button is announced as a back button and has a unique name that indicates the page that the user will go back to.
-          
-          Looking at the page as a whole: Is there heading text at the beginning of each major section of the page. Is text that looks like a heading text marked up as a heading?
-          
-           
-          Testing Word
-          The table below provide some options for testing your Word documents:
-          Word	Check that each heading is using a heading style.
-          Word with JAWS	Press Insert + Z to turn quick keys on. Press h or shift + h to move between headings.
-          Word with Window Eyes	Press Insert + Z to enter Word Navigation Mode. Press h or shift + h to move between headings. Press numbers (1-9) to navigate by heading level.
-          How to Check Heading Styles in Word 2007 and 2010
-          Reveal styles	Shift-F1 (the Distinguish style source option can be useful)
-          Styles panel	Show the styles window by clicking the bottom-right arrow in Home > Styles
-          Style inspector	Click the button at the bottom of the styles window
-          Style area	View in draft or outline mode. The style name is shown to the left of the content. To turn on, select Word Options > Advanced > Display > style area pane width
-           
-          Testing PDF in Acrobat
-          Tools	
-          In a PDF document, there are two key ways to provide in-page navigation: headings and bookmarks.
-          
-          Check that each heading has been defined as a heading.
-          PDF - Check that each heading is represented by the appropriate heading tag (h, h1-h6) in the Tags pane.
-          PDF with JAWS - Press Insert + Z to turn quick keys on. Press h or shift + h to move between headings.
-          PDF with Window Eyes - Press Insert + Z to enter Word Navigation Mode. Press h or shift + h to move between headings. Press numbers (1-9) to navigate by heading level.
-          Check the Bookmarks pane to verify that complete and properly worded bookmarks are used.
-          Output	
-          Observe the results of this testing in the Bookmarks and Tags pane in Acrobat.
-          
-          Analysis	
-          Make note of content headings that are not in heading tags or which are tagged using an inappropriate heading level. Note missing or inappropriately worded bookmarks.
-          
-           
-          Related Guidelines
-          508 Web § 1194.22 (o)
-          A method shall be provided that permits users to skip repetitive navigation links. 
-          3-O: Information and Relationships
-          Information and relationships conveyed through a presentation of electronic documents must be either PROGRAMMATICALLY DETERMINABLE or available in TEXT, and notification of changes to these must be available to user agents, including assistive technologies. For example:
-          Row and column headers are identified for data tables.
-          Note: In order to achieve this provision, table objects in data operated on by the software would need to be associated with sufficient information to identify any row and column headers for the table, that the software can obtain as readily as it can obtain the table itself.
-          In data tables that have two or more logical levels of row or column headers, data cells are associated with header cells.
-          Note: In order to achieve this provision, cells in table objects with multiple logical levels of headers in data operated on by the software would need to be associated with sufficient information to identify any row and column headers for the table cell, that the software can obtain as readily as it can obtain the table cell itself.
-          Section headings are identified.
-          Form element LABELS are associated with form fields.
-          ...
-          Provisions from the current Section 508 which have been consolidated, or dropped are:
-          
-          ... (o) Skip repetitive links
-          When 3-O: Information and Relationships is met, user agents can provide better means for efficient keyboard navigation. In WCAG 2.0, meeting the provision that is comparable to 3-O is sufficient to meet the WCAG 2.0 provision on bypassing repetitive blocks of content.
-          WCAG 2.0 A – SC 2.4.1 Bypass Blocks
-          A mechanism is available to bypass blocks of content that are repeated on multiple Web pages. (Level A)
+          <h3>Testing Mobile Applications</h3>
+          <p>On mobile, the platform capabilities different. For Android applications, only the screen title can be set. In iOS if the navigation bar is used, the application title and back button must be set. Headings must be defined.</p>
+          <table class="pe-table">
+            <caption>Android</caption>
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>Visually look at the screen or use TalkBack for the screen title.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Output</th>
+                  <td>This title is visible and is announced by TalkBack.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Analysis</th> 
+                  <td> The title provides context and helps orient the user to the screen. The title should be concise, descriptive and unique.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table class="pe-table">
+              <caption>iOS</caption>
+                <thead class="pe-sr-only">
+                  <tr>
+                    <th scope="col">Testing technique</th>
+                    <th scope="col">Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Tools</th>
+                    <td>Visually inspect the page to identify what the page title and the name of the back button.<br/>
+                        Use VoiceOver to check the information read the screen title, the back button, and the headings. Read the screen using left to right or right to left swipe gestures. Turn the rotor settings to headings (Turn dial on the screen with two fingers and change the option to Headings). Swipe up or down with one finger to move from one heading to the next.
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Output</th>
+                    <td>The screen title is visible and is announced by VoiceOver.<br/>
+                        The back button is visible and is read by VoiceOver.<br/>
+                        <br/>
+                        All visible headings on the screen should get focus when moving between headings using swipe up / down gesture when the rotor is set to headings.</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Analysis</th> 
+                    <td>The title provides context and helps orient the user to the screen. The title should be concise, descriptive and unique.<br/>
+                        The back button is announced as a back button and has a unique name that indicates the page that the user will go back to.<br/>
+                        <br/>
+                        Looking at the page as a whole: Is there heading text at the beginning of each major section of the page. Is text that looks like a heading text marked up as a heading?</td>
+                  </tr>
+                </tbody>
+              </table>
+
+          <h3>Testing Word</h3>
+          <p>The table below provide some options for testing your Word documents:</p>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Word</th>
+                  <td>Check that each heading is using a heading style.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Word with JAWS</th>
+                  <td>Press Insert + Z to turn quick keys on. Press h or shift + h to move between headings.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Word with Window Eyes</th> 
+                  <td>Press Insert + Z to enter Word Navigation Mode. Press h or shift + h to move between headings. Press numbers (1-9) to navigate by heading level.</td>
+                </tr>
+              </tbody>
+            </table>	
+          <h4>How to Check Heading Styles in Word 2007 and 2010</h4>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Reveal styles</th>
+                  <td>Shift-F1 (the Distinguish style source option can be useful)
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Styles panel</th>
+                  <td>Show the styles window by clicking the bottom-right arrow in Home > Styles</td>
+                </tr>
+                <tr>
+                  <th scope="row">Style inspector</th> 
+                  <td>Click the button at the bottom of the styles window</td>
+                </tr>
+                <tr>
+                    <th scope="row">Style area</th> 
+                    <td>View in draft or outline mode. The style name is shown to the left of the content. To turn on, select Word Options > Advanced > Display > style area pane width</td>
+                  </tr>
+              </tbody>
+            </table>	
+
+          <h3>Testing PDF in Acrobat</h3>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>In a PDF document, there are two key ways to provide in-page navigation: headings and bookmarks.
+                    <ol>
+                      <li>Check that each heading has been defined as a heading.
+                        <ul>
+                          <li>PDF - Check that each heading is represented by the appropriate heading tag (h, h1-h6) in the Tags pane.</li>
+                          <li>PDF with JAWS - Press Insert + Z to turn quick keys on. Press h or shift + h to move between headings.</li>
+                          <li>PDF with Window Eyes - Press Insert + Z to enter Word Navigation Mode. Press h or shift + h to move between headings. Press numbers (1-9) to navigate by heading level.</li>
+                        </ul>
+                      </li>
+                      <li>Check the Bookmarks pane to verify that complete and properly worded bookmarks are used.</li>
+                    </ol>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Output</th>
+                  <td>Observe the results of this testing in the Bookmarks and Tags pane in Acrobat.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Analysis</th> 
+                  <td>Make note of content headings that are not in heading tags or which are tagged using an inappropriate heading level. Note missing or inappropriately worded bookmarks.</td>
+                </tr>
+              </tbody>
+            </table>	
+          <h3>Related Guidelines</h3>
+          <h4>508 Web § 1194.22 (o)</h4>
+          <p>A method shall be provided that permits users to skip repetitive navigation links. </p>
+          <h4>3-O: Information and Relationships</h4>
+          <p>Information and relationships conveyed through a presentation of electronic documents must be either PROGRAMMATICALLY DETERMINABLE or available in TEXT, and notification of changes to these must be available to user agents, including assistive technologies. For example:</p>
+          <ol>
+            <li>Row and column headers are identified for data tables.<br/>
+              Note: In order to achieve this provision, table objects in data operated on by the software would need to be associated with sufficient information to identify any row and column headers for the table, that the software can obtain as readily as it can obtain the table itself.
+            </li>
+            <li>In data tables that have two or more logical levels of row or column headers, data cells are associated with header cells.<br/>
+              Note: In order to achieve this provision, cells in table objects with multiple logical levels of headers in data operated on by the software would need to be associated with sufficient information to identify any row and column headers for the table cell, that the software can obtain as readily as it can obtain the table cell itself.
+            </li>
+            <li>Section headings are identified.</li>
+            <li>Form element LABELS are associated with form fields.</li>
+          </ol>
+          <p>...</p>
+          <p>Provisions from the current Section 508 which have been consolidated, or dropped are:</p>  
+          <p>... (o) Skip repetitive links</p>
+          <p>When 3-O: Information and Relationships is met, user agents can provide better means for efficient keyboard navigation. In WCAG 2.0, meeting the provision that is comparable to 3-O is sufficient to meet the WCAG 2.0 provision on bypassing repetitive blocks of content.</p>
+          <h4>WCAG 2.0 A – SC 2.4.1 Bypass Blocks</h4>
+          <p>A mechanism is available to bypass blocks of content that are repeated on multiple Web pages. (Level A)</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
       <h2 id="g10"></h2>
