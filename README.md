@@ -10,6 +10,15 @@ They've been copied to NEO, where they're easier to update, but versioning isn't
 
 Example NEO guideline #6 (even though the URL says 4!): <a href="https://neo.pearson.com/docs/DOC-627964-guideline-4-check-the-order-that-content-is-read-in-screen-readers-correct-any-issues-sensible-reading-order">Guideline 6. Check keyboard access (access without a pointing device) and correct any issues (Keyboard Access)</a>
 
+### Things of note
+
+#### 508 Refresh Draft
+
+We've decided that we're keeping none of the Section 508 Refresh **draft** notices (they tend to start with a number-letter combo like 3-R or 3-S) since those were iterant pubs while the refresh was still being... refreshed. Ben Schroeter has been taking those out of the live Guidelines that are sitting on the media server, so we have no need to copy them from NEO to Github.
+
+#### New windows/tabs
+
+For now, if the original code had link text with "opens in a new window", we'll add in `target="_blank"` just so behaviour matches the text. When updating we may remove this entirely.
 
 ## Goal
 The ideal setup is a single place to go to for accessibility guidelines, with both the ability to view all the content at once (so browser-based search works), as well as showing only relevant content using filters ("For Designers" for example). 
