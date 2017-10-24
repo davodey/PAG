@@ -939,7 +939,8 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <p>Common browsers allow <code>accesskey</code> attributes to override keyboard access to browser menus. <code>Accesskey</code> attributes can also override the keystroke commands that allow keyboard access with a screen reader. Do not use <code>accesskey</code> unless:</p>
 
         <ul class="pe-list pe-styled-lists--unordered">
-          <li>You use only numeric <code>accesskey</code> values (0-9) OR</li>
+          <li>You use only numeric <code>accesskey</code> values (0-9)</li>
+          <p>OR</p>
           <li>The access keys are not active by default. Instead, the user can switch them on after reviewing the list of keys in user preferences.</li>
         </ul>
         <h4>New Browser Windows</h4>
@@ -974,7 +975,7 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <p>Be Careful using <code>blur()</code> ("Stop the Ants")</p>
         <p>Do not trigger <code>blur()</code> for an element in response to an <code>onFocus</code> event for that element. This prevents keyboard access for the element. This mistake is often made when developers wish to remove the outline that appears around a link when the link is clicked. Instead, use the following CSS code to remove that outline in modern browsers (e.g. Firefox 3+, Internet Explorer 8+).</p>
         <pre><code>a:active {     outline-width: 0; }</code></pre>
-        <p>The CSS above uses <code>a:active</code>. Do NOT use <code>a:focus</code> or even just <code>a</code> in the code above, as this would hide the focus indicator (See <a href="#pg7">PG 7</a>.</p>
+        <p>The CSS above uses <code>a:active</code>. Do NOT use <code>a:focus</code> or even just <code>a</code> in the code above, as this would hide the focus indicator (See <a href="#pg7">PG 7</a>).</p>
 
         <h4>Select Menus and OnChange</h4>
         <p>Avoid using select menus with <code>onchange</code> handlers where the handler changes focus or causes an irreversible event like sending a message or submitting a form. In such cases just rely on a "Go" button instead of an onchange handler.</p>
@@ -1121,8 +1122,8 @@ cursor: pointer;
               <td><p>User will interact using gestures, touch, and through an external Bluetooth keyboard. Ensure that users can reach all elements on the screen with Bluetooth keyboard and gestures.</p>
                 <p>The keyboard works differently on Android and iOS:</p>
                 <ul class="pe-list pe-styled-lists--unordered">
-                  <li>Android: When using an external keyboard, the tab key can be used to move between the interactive areas on the screen. The enter key will active a control.</li>
-                  <li>iOS: When using an external keyboard, the tab key can be used to move between the fields on the page and the enter key will submit a form. Full keyboard access is available only when VoiceOver is turned on. When VoiceOver is on, the arrow keys are primarily used to move around the application.</li>
+                  <li><strong>Android:</strong> When using an external keyboard, the tab key can be used to move between the interactive areas on the screen. The enter key will active a control.</li>
+                  <li><strong>iOS:</strong> When using an external keyboard, the tab key can be used to move between the fields on the page and the enter key will submit a form. Full keyboard access is available only when VoiceOver is turned on. When VoiceOver is on, the arrow keys are primarily used to move around the application.</li>
                 </ul>
                 <p>As you are checking keyboard access be sure to check for focus visibility at the same time (<a href="#pg7">Pearson Guideline 7</a>).</p></td>
             </tr>
