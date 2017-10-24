@@ -470,7 +470,7 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <p><mark>Many developers worry that setting tabIndex this way will force keyboard access users to tab to each bit text while trying to reach a button, link or form control. This is true in HTML, but this is not the case in Flash and Flex. TabIndex does not change whether or not an element is treated as an active element for keyboard access.</mark></p>
 
         <h3>Android Applications</h3>
-        <p>The reading over is based on an algorithm which finds the nearest neighbor in a given direction. The reading order cannot be changed but focus order can be modified, see <a href="#pg6">PG 6</a> for more details.</p>
+        <p>The reading over is based on an algorithm which finds the nearest neighbor in a given direction. The reading order cannot be changed but focus order can be modified, see <a href="#g6">PG 6</a> for more details.</p>
 
         <h3>iOS Applications</h3>
         <p>The reading order in iOS applications is defined by the order in which the elements are added to the screen. In the individual, table or custom container views, the order is set by the order in which they are defined in the <a href="https://developer.apple.com/documentation/uikit/accessibility/uiaccessibilitycontainer">UIAccessibilityContainer</a> protocol array.  To change the reading order use <code>accessibilityElementAtIndex</code>, <code>accessibilityElementCount</code> and <code>indexOfAccessibilityElement</code>.</p>
@@ -719,12 +719,12 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
           <li><code>role="dialog"</code> AND</li>
           <li><code>aria-label="my message"</code> where <code>my message</code> is the message you want read automatically when the dialog first appears OR <code>aria-labelledby="id"</code> where <code>id</code> is the id of the message you want read automatically when the alert dialog first appears. (Yes, aria-labelledby should have the repeated letter l.)</li> 
         </ul>
-        <p>These attributes tell screen readers and screen magnifiers to announce these additions to the screen as alert dialogs or as dialogs. Some screen readers will also switch into "forms mode" for navigation of the dialog. In this mode, the dialog is announced and then screen reader users move between active elements, often skipping inactive content. So, be sure that all content in the dialog is included through <code>aria-describedby</code>, <code>aria-label</code>, or <code>aria-labelledby</code> and/or through form labels. Form labels are discussed in detail in <a href="#pg14">Pearson Guideline 14</a>.</p>
+        <p>These attributes tell screen readers and screen magnifiers to announce these additions to the screen as alert dialogs or as dialogs. Some screen readers will also switch into "forms mode" for navigation of the dialog. In this mode, the dialog is announced and then screen reader users move between active elements, often skipping inactive content. So, be sure that all content in the dialog is included through <code>aria-describedby</code>, <code>aria-label</code>, or <code>aria-labelledby</code> and/or through form labels. Form labels are discussed in detail in <a href="#g14">Pearson Guideline 14</a>.</p>
         <p>For older configurations that don't support <code>role="alertdialog"</code> or <code>role="dialog"</code>, try to give an overview of the purpose of the dialog with the control that gains focus. For example, you might use "stay on this page" as your button text, instead of something less descriptive, such as "stay".</p>
 
         <h4>Buttons that Reveal Content (e.g. expanding menus, expanding help topics)</h4>
         <p>One of the simplest techniques is to place the new content in the reading order just after the control that initiated the change.</p>
-        <p>It is important that users will know whether the section is expanded or collapsed. See <a href="#pg20">Pearson Guideline 20</a> for information on this.</p>
+        <p>It is important that users will know whether the section is expanded or collapsed. See <a href="#g20">Pearson Guideline 20</a> for information on this.</p>
 
         <h4>When Important Information Appears on Mouse Over</h4>
         <p>Often information is coded to appear <code>onmouseover</code> and <code>onfocus</code>. For example, when a mouse is pointed at a book cover image, a <code>div</code> element might appear as a box that provides more information about the book.</p>
@@ -976,7 +976,7 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <p>Be Careful using <code>blur()</code> ("Stop the Ants")</p>
         <p>Do not trigger <code>blur()</code> for an element in response to an <code>onFocus</code> event for that element. This prevents keyboard access for the element. This mistake is often made when developers wish to remove the outline that appears around a link when the link is clicked. Instead, use the following CSS code to remove that outline in modern browsers (e.g. Firefox 3+, Internet Explorer 8+).</p>
         <pre><code>a:active {     outline-width: 0; }</code></pre>
-        <p>The CSS above uses <code>a:active</code>. Do NOT use <code>a:focus</code> or even just <code>a</code> in the code above, as this would hide the focus indicator (See <a href="#pg7">PG 7</a>).</p>
+        <p>The CSS above uses <code>a:active</code>. Do NOT use <code>a:focus</code> or even just <code>a</code> in the code above, as this would hide the focus indicator (See <a href="#g7">PG 7</a>).</p>
 
         <h4>Select Menus and OnChange</h4>
         <p>Avoid using select menus with <code>onchange</code> handlers where the handler changes focus or causes an irreversible event like sending a message or submitting a form. In such cases just rely on a "Go" button instead of an onchange handler.</p>
@@ -999,13 +999,13 @@ background: transparent;
 /* add basic link-style cursor for mouse users*/
 cursor: pointer;
 }</code></pre>
-            <p>*The following elements require additional consideration and so may not be the best choice as a base for your custom control: <code>input type="submit"</code> or <code>input type="image"</code>. For these elements, the onClick event can be triggered if a user presses enter anywhere within the form, or anywhere within the page if there are no <code>&lt;form&gt;</code> tags. (This won't happen, though, if the focus is on a natively active element, like a link, when the user presses Enter, which is why these elements are appropriate for use with typical forms.) Also, in some browsers, these elements automatically cause a page refresh. See <a href="#pg10">PG 10</a> for tips on avoiding changing the user's place on a page unexpectedly.</p></li>
+            <p>*The following elements require additional consideration and so may not be the best choice as a base for your custom control: <code>input type="submit"</code> or <code>input type="image"</code>. For these elements, the onClick event can be triggered if a user presses enter anywhere within the form, or anywhere within the page if there are no <code>&lt;form&gt;</code> tags. (This won't happen, though, if the focus is on a natively active element, like a link, when the user presses Enter, which is why these elements are appropriate for use with typical forms.) Also, in some browsers, these elements automatically cause a page refresh. See <a href="#g10">PG 10</a> for tips on avoiding changing the user's place on a page unexpectedly.</p></li>
           <li>Or, you might use scripting to make an element that is not normally interactive into an interactive element. This requires considerable careful consideration for keyboard access. First, give the element a <code>tabindex="0"</code> attribute. This way, the element will be included in the natural tab order. And, be sure to follow the coding tips below. Unlike natively active elements, these items won't be keyboard accessible if you only use onClick and they may cause problems if there are submit buttons nearby:
             <ol class="pe-list.pe-styled-lists--ordered">
               <li> While browsers allow the keyboard to trigger <code>onclick</code> events for active elements, they typically do not allow the keyboard to trigger <code>onclick</code> events for elements that are not normally active. So, add an <code>onkeypress</code> event if needed. Be sure to code the <code>onkeypress</code> event so that it only triggers an action if the <strong>appropriate</strong> key is pressed (usually the enter key). See "When using <code>Onkeypress</code>, <code>Onkeydown</code>, or <code>Onkeyup</code>" below for more detail on the key-related events.</li>
-              <li>Screen readers will not automatically know the purpose of the element. So, include text that is available to screen readers that indicates the purpose of the element and how to interact with it. (<a href="#pg20">PG 20</a> explains further.) This is a case where testing the user experience with a screen reader is essential.</li>
+              <li>Screen readers will not automatically know the purpose of the element. So, include text that is available to screen readers that indicates the purpose of the element and how to interact with it. (<a href="#g20">PG 20</a> explains further.) This is a case where testing the user experience with a screen reader is essential.</li>
               <li>Be sure this type of artificially active element never appears within a form that has a submit button (e.g. <code>input type="image"</code>, <code>input type="submit"</code>). When a user presses enter within a form, elements designed to submit the form will be triggered, including any <code>onClick</code> handlers on those elements. If there are no form tags, this will happen if enter is pressed anywhere on the page. The one exception is if a natively actively element (e.g. link, button) has focus at the time. This allows keyboard access users to use links and buttons within a form, but this exception does not apply if an active element was created using an element that is not normally active (e.g. <code>div</code>, <code>span</code>) . So, a keyboard access user will not be able to "click" on such custom elements, without triggering the form submit.</li>
-              <li>In Firefox, <code>&lt;a&gt;</code> elements (without <code>href</code> attributes) that have been made active through scripting do not automatically gain focus indicators. See <a href="#pg7">PG 7</a> for more on focus indicators and how to add them when needed.</li>
+              <li>In Firefox, <code>&lt;a&gt;</code> elements (without <code>href</code> attributes) that have been made active through scripting do not automatically gain focus indicators. See <a href="#g7">PG 7</a> for more on focus indicators and how to add them when needed.</li>
             </ol>
           </li>
         </ul>
@@ -1096,7 +1096,7 @@ cursor: pointer;
             <tr>
               <th scope="row">Tools</th>
               <td><p>The main tool is the keyboard. Use the keyboard to be sure you can get everywhere and do everything on the page using the keyboard. There are additional tools that may help, <a href="https://developer.paciellogroup.com/resources/wat/">Web Accessibility Toolbar</a> – Structure – Tab Order indicates the tab order of each active object. Web Accessibility Toolbar – Structure – TabIndex will indicate if any objects have been assigned <code>tabindex</code> values thus changing the tab order.</p>
-                <p>As you are checking keyboard access be sure to check for focus visibility at the same time (<a href="#pg7">Pearson Guideline 7</a>).</p></td>
+                <p>As you are checking keyboard access be sure to check for focus visibility at the same time (<a href="#g7">Pearson Guideline 7</a>).</p></td>
             </tr>
             <tr>
               <th scope="row">Output</th>
@@ -1104,7 +1104,7 @@ cursor: pointer;
             </tr>
             <tr>
               <th scope="row">Analysis</th>
-              <td>Make note of functionality that is not available from the keyboard and of instances where keyboard focus is not visible (<a href="#pg7">Pearson Guideline 7</a>).</td>
+              <td>Make note of functionality that is not available from the keyboard and of instances where keyboard focus is not visible (<a href="#g7">Pearson Guideline 7</a>).</td>
             </tr>
           </tbody>
         </table>
@@ -1126,7 +1126,7 @@ cursor: pointer;
                   <li><strong>Android:</strong> When using an external keyboard, the tab key can be used to move between the interactive areas on the screen. The enter key will active a control.</li>
                   <li><strong>iOS:</strong> When using an external keyboard, the tab key can be used to move between the fields on the page and the enter key will submit a form. Full keyboard access is available only when VoiceOver is turned on. When VoiceOver is on, the arrow keys are primarily used to move around the application.</li>
                 </ul>
-                <p>As you are checking keyboard access be sure to check for focus visibility at the same time (<a href="#pg7">Pearson Guideline 7</a>).</p></td>
+                <p>As you are checking keyboard access be sure to check for focus visibility at the same time (<a href="#g7">Pearson Guideline 7</a>).</p></td>
             </tr>
             <tr>
               <th scope="row">Output</th>
@@ -1135,7 +1135,7 @@ cursor: pointer;
             </tr>
             <tr>
               <th scope="row">Analysis</th>
-              <td>Make note of functionality that is not available from using gestures and Bluetooth keyboard. Note instances where keyboard focus is not visible (<a href="#pg7">Pearson Guideline 7</a>).</td>
+              <td>Make note of functionality that is not available from using gestures and Bluetooth keyboard. Note instances where keyboard focus is not visible (<a href="#g7">Pearson Guideline 7</a>).</td>
             </tr>
           </tbody>
         </table>
