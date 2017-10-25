@@ -1743,12 +1743,293 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
           <li>In data tables that have two or more logical levels of row or column headers, data cells are associated with header cells. Note: In order to achieve this provision, cells in table objects with multiple logical levels of headers in data operated on by the software would need to be associated with sufficient information to identify any row and column headers for the table cell, that the software can obtain as readily as it can obtain the table cell itself.</li>
           <li>Section headings are identified.</li>
           <li>Form element LABELS are associated with form fields.</li>
+        </ol>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
+
       <h2 id="g14">Guideline 14. Associate every form element with a label (Form Field Labels)</h2>
       <div class="guideline_content">
+          <p class="summary">Tie each user input control (e.g. text field, radio button, pull-down menu) to text that describes the purpose of the control, using conventions for the media type.</p>
+          
+          <h3>Rationale</h3>
+          <p>When a form field lacks an explicit label, screen readers will try to figure out which onscreen text labels the field. Sometimes they can’t find any appropriate text, in which case the screen reader speaks no label at all. And, sometimes, the screen reader guesses the wrong label.</p>
+          
+          <p>The techniques for this guideline explain how to use markup and other technology features to explicitly associate text labels with corresponding form elements in a way that screen readers will recognize. Explicit labels ensure that screen reader users will understand which form elements are associated with which labels. This way, they can be confident that they are entering information using the correct form fields.</p>
+          <img alt="A mouse cursor points at the label of a radio button and the button is highlighted in response." width="190" height="100" src="images/laws.png" align="right">
+          
+          <p>Also, in HTML and Flex, many browsers use explicit labels to give users easier mouse access to radio buttons and check boxes. Clicking anywhere on the label can select and de-select the form elements. This is particularly helpful for people with minor mobility or dexterity issues.</p>
+          
+           
+          
+          <h3>HTML &amp; JavaScript</h3>
+          
+          <h4>Quick Look!</h4>
+          <p>Usually use: <code>&lt;label for="my_id"&gt;My Label&lt;/label&gt; &lt;input type="text" id="my_id"&gt;</code></p>
+          
+          <p>If there is no onscreen text use: <code>title="My Label"</code></p>
+          
+          <p>If the onscreen text is in two places, use: <code>aria-labelledby=”my_id1 myid_2”</code></p>
+          
+          <h4>Forms Fields with Text Labels</h4>
+          <p>When form elements (e.g. checkboxes, radio buttons, select menus, text fields, and text areas) have onscreen text that tells the user the purpose of the form element, give the form field an id attribute. Then wrap the prompting information with the <code>&lt;label&gt;</code> tag. The value of the for attribute of the <code>&lt;label&gt;</code> tag should match the value of the <code>id</code> attribute of the form control.</p>
+          <img alt="A physics question of about 35 words serves as the label for a text field." width="431" height="79" src="images/physics.png">
+          
+          <pre><code>&lt;label for="q4"&gt;A ball is moving in a vertical circle with a  radius of 0.76 meters. Its speed is 5.3 m/s at the top. To the  nearest tenth of a m/s2, what is its acceleration at the top? &lt;/label&gt;  &lt;input type="text" id="q4"&gt;</code></pre>
+          <h4>Form Fields Labeled by an Image </h4> 
+          <p>If an image is used as the onscreen label, the image tag (with alt-text) should be associated with the form element using the <code>&lt;label&gt;</code> tag:</p>
+          <img alt="An image of text is used to label a text field as site search." width="214" height="23" src="images/search.png">
+          
+          <pre><code>&lt;label for="search"&gt;    &lt;img scr="search.gif" alt="Site Search:"&gt;  &lt;/label&gt;   &lt;input type="text" id="search"&gt; </code></pre>
+          
+          <h4>Form Fields without Onscreen Labels</h4>
+          <p>When form elements (e.g. text fields, select menus, and text areas) do not have onscreen text that tells the user the purpose of the form element, or if that prompting information is coming from more than one place, a title attribute that provides this information should be added to the form element.</p>
+          <img alt="A text field followed by a 'Find it!' button has no onscreen label." width="196" height="24" src="images/go.png">
+          
+          <pre><code>&lt;input type="text" title="Search Terms" /&gt;</code></pre>
+
+          <img alt="Phone number entry is broken into three separate text fields, with just one onscreen label, 'Phone Number' " width="250" height="30" src="images/phone.png">
+          
+          <pre><code>Phone Number:  &lt;input type="text" name="areacode" size="3"         title="Phone Number Area Code"&gt;                              &lt;input type="text" name="three" size="3"         title="Phone Number Three Digits"&gt;                               &lt;input type="text" name="four" size="4"         title="Phone Number Last Four Digits"&gt;</code></pre>
+          <h4>Form Fields with Two or more Onscreen Labels</h4>
+          <p>Sometimes form elements (e.g. text fields, select menus, and text areas) are labeled by two or more bits of text that are separated by other HTML elements. While two or more <code>label for="my_id"</code> elements, each referencing the same id, are supposed to work for this, this is not reliable. The new WAI-ARIA attribute <code>aria-labelledby</code>, however, allows you to use a list of space-separated ids as the value. This is the best supported technique to use today, as of December 2013.</p>
+          
+          <pre><code>&lt;label id="c1"&gt;   Credit Card:&lt;/label&gt;    &lt;input type="text" aria-labelledby="c1 c2" /&gt;    &lt;label id="c2"&gt;   (Visa, Discover, or Master Card)&lt;/label&gt;   </code></pre>
+          <p>Screen readers will read the labels in the order that their ids are listed in the <code>aria-labelledby</code> attribute.</p>
+          
+          <h4>Labels for Groups of Form Fields</h4>
+          <p>If your radio buttons or checkboxes need a group label to be understood, use fieldset and legend tags to associate the group label with the form fields:</p>
+          <img alt="Radio buttons labeled 'Yes' and 'No' under the text 'Is this a gift?' " width="117" height="90" src="images/isthisagift.png">
+          
+          <pre><code>&lt;fieldset&gt; &lt;legend&gt;Is this a gift?&lt;/legend&gt; &lt;input type=”radio” id=”y” /&gt; &lt;label for=”y”&gt;Yes&lt;/label&gt; &lt;input type=”radio” id=”n” /&gt; &lt;label for=”n”&gt;No&lt;/label&gt; &lt;/fieldset&gt;</code></pre>
+          <p>Screen readers will present the legend when the user tabs to the group of form fields. </p>
+          
+          <h4>Long Labels for Groups of Form Fields as Occur in Quizzes</h4>
+          <p>Some screen readers will read the legend with each form control. If the group label is too long (over 25 words) to be heard with each form field, mark the group label as a heading. </p>
+          
+          <p>In quizzes, pay attention to consistency. If some questions in a quiz are so long that they need to use headings instead of legends, then all of the questions should use headings instead of legends.</p>
+          <img alt="The question text for two physics multiple choice questions are marked as headings and each radio button has label markup. One of the questions is longer than 25 words." width="487" height="504" src="images/practice_questions.png">
+          
+          <h4>JavaScript for Creating Form Fields with Labels</h4>
+          <p>Include labels or titles, as appropriate, when using the DOM to create new form fields. For example:</p>
+          
+          <pre><code>/* create a radio button with id */ var myNewRadio = document.createElement("input"); myNewRadio.type = "radio"; myNewRadio.id = "blue";  /* create a label element with for attribute */ var myNewLabel = document.createElement("label"); myNewLabel.htmlFor = "blue";  /* create a text node */ var myLabelText = document.createTextNode(" Blue Car");    /* place text node into the label element */ myNewLabel.appendChild(myLabelText);  /* place radio element on the page */ document.body.appendChild(myNewRadio);  /* place label element on the page */ document.body.appendChild(myNewLabel);</code></pre>
+          <h4>Screen Reader Behaviour Tips</h4>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>When using the <code>label</code> element, always use the <code>for</code> attribute as described above. Simply enclosing the form field and the text label in the <code>label</code> element does not work in popular screen readers today.
+            <pre><code>&lt;!-- Do Not Use This Code --&gt; &lt;label&gt;     Please enter your name     &lt;input type="text" id="name"&gt; &lt;/label&gt;</code></pre>
+            </li>
+            <li>We recommend avoiding using both a <code>label</code> element and a <code>title</code> attribute for the same form element, as that can complicate interaction with the form for screen reader users.</li>
+          </ul>
+
+          <h4>HTML Validation Tips</h4>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>The value of HTML id attributes must be unique through out each document.</li>
+            <li>The value of HTML id attributes should not begin with a number.</li>        
+          </ul>
+          <h3>Android Applications</h3>
+          <p>All form controls must have a label defined. The method used to define the label for the form field depends on the type of form control.</p>
+          <ul class="pe-list pe-styled-lists--unordered"> 
+            <li>For text fields, use <code>EditText</code> with <code>android:hint</code> attribute. Note: when the field is filled, TalkBack reads the entered content to the user instead of the hint text.</li>
+            <li>For <code>ImageButton</code>, <code>ImageView</code>, <code>CheckBox</code> and other user interface controls, use the <code>android:contentDescription</code> attribute.</li>
+          </ul>
+          <p>For form fields that are part of group of controls, the label set on the form control will need provide the group label. Android does not currently provide support grouping controls except for radio buttons. If you use radio buttons, use the <code>RadioGroup</code> structure.</p>
+
+          <h3>iOS Applications</h3>
+          
+          <p>All form controls should have explicit labels. The type of form control is defined using the <code>accessibilityTraits</code> (for more information see <a href="#g11">Pearson Accessibility Guideline 11</a>). The label is defined using the <code>accessibilityLabel</code> property to name the form control. If there are instructions, examples or other related information for the form field, this can be associated to the form field using the <code>accessibilityHint</code> property.</p>
+          <p>The onscreen label can be hidden to VoiceOver users so that are not read two times.</p>
+          <p>Code Example:</p>
+          <p><code>[UNLabel setText:NSLocalizedString(@"Username", nil)];</code></p>
+          <p><code>[UNLabel setIsAccessibilityElement:NO]; // Hide the label element since it is announced as part of the field</code></p>
+          <p><code>[UNField setAccessibilityLabel:UNLabel.accessibilityLabel];</code></p>
+
+          <h3>PDF in Acrobat</h3>
+          
+          <p>Form fields within the PDF document allow people with visual impairments easier access to enter data. If there are form fields within the PDF document, Acrobat will display a prompt to highlight them.</p>
+          
+          <p>If there are no form fields in the document, there is nothing further that needs to be done. </p>
+          
+          <h4>Interactive Form Fields</h4>
+          <p>Creating accessible form fields to a PDF is a multi-step process.</p>
+          
+          <p>The process is slightly different in each version of Acrobat. In Acrobat 9 Pro, do the following:</p>
+          <ol class="pe-list pe-styled-lists--ordered"> 
+            <li>If there are no form fields in the document, use Advanced &gt; Accessibility &gt; Run Form Field Recognition to automatically detect form fields and to make them fillable. Using the form editor, add and edit fields as necessary.</li>
+            <li>For each form field in the document, edit the properties using the context menu for the form field and select Properties. Each form field needs an accessible name using the tooltip property.
+                <img alt="" width="361" height="298" src="images/PDF-form-field-properties.jpg">
+            </li>
+            <li>Add the form fields to the tags tree at Advanced &gt; Accessibility &gt; Add Form Fields to Tags</li>
+            <li>Run the Full Accessibility Check at Advanced &gt; Accessibility &gt; Full Check… This will uncover any form fields that were not automatically added to the tags tree.</li>
+            <li>For the form fields that were not added, use the TouchUp Reading Order tool to tag the fields as a form field.</li>
+            <li>Check the order of the tags. The text prompt should be either before or after the form field based on the visual position on the page.</li>
+          </ol>
+          <h4>Required Indicator</h4>
+          <p>The required indicator is set using the form field properties. Access the context menu for the form field and select the Properties dialog. Check the Required checkbox. This will require a user to fill in the selected form field and will present an error message to the user if they do not fill it the field.</p>
+          
+          <h4>Submit Buttons</h4>
+          <p>Creating a submit button is similar to adding new form fields.</p>
+          
+          <p>To create a button in Acrobat 9 Pro, select Forms &gt; Form Tools &gt; Button from the toolbar and place the button on the page. Next, set the button properties by selecting Properties… from the context menu. Provide the name and a tooltip for the button. In the options tab, select a layout and add the text Submit in the label field to identify the button as a submit button. As the final step, go to the Actions tab and set the Select Trigger to Mouse Up which is keyboard accessible. To define the action to take, select the Add… button and select the appropriate action.</p>
+
+          <h3>Flash</h3>
+          <h4>CheckBoxes and RadioButtons</h4>
+          <p>The simplest way to label Flash CheckBoxes and RadioButtons is to use the native Flash components and use the label parameter to add the onscreen labels. The label parameter can be set through the Component Inspector or through ActionScript. See <a href="https://www.w3.org/TR/2010/NOTE-WCAG20-TECHS-20101014/FLASH29" target="_blank">WCAG 2.0 Technique Flash 29 (opens in new window)</a> for code samples.</p>
+          
+          <p>To make fully accessible checkBoxes and radioButtons, see also <a href="#g20">Pearson Guideline 20</a>, which discusses ensuring that screen reader users will know that these are radioButtons and checkBoxes and what their state is (e.g. checked or unchecked).</p>
+
+          <h3>Flex</h3>
+ 
+          <h4>TextInputs, TextAreas and Combo Boxes</h4>
+          <img alt="" width="284" height="122" src="images/flex_TextArea_TextInput.png" align="right">
+          <p>Place your TextInput or TextArea component into a <code>FormItem</code>, which can be assigned a label in Design Mode, in the Properties panel, or in the MXML as shown below. This will be set up for you automatically if you drag a "Form" component onto the stage in design mode and then drag a TextInput or TextArea into that "Form" component.</p>
+          
+          <pre><code>&lt;mx:FormItem label="Your Name:" fontWeight="bold"&gt;     &lt;mx:TextInput/&gt;  &lt;/mx:FormItem&gt;  &lt;mx:FormItem label="Your Comments:" fontWeight="bold"&gt;     &lt;mx:TextArea height="84"/&gt; </mx:FormItem></code></pre>
+          <p>Note that this does not work ideally for Combo Boxes in FlashPlayer currently. When you tab to the ComboBox, you do not hear the label. This is a bug. However, if you use reading commands, the text is read just before the form control. The same issue occurs if you set the Accessible Name directly in Action Script, or if you use a <code>toolTip</code>. However, in these cases the onscreen text and the accessible name are each read, which creates unnecessary noise. So, we see the method recommended above as the best option.</p>
+          
+          <h4>CheckBoxes and RadioButtons</h4>
+          <img alt="The Flex Properties window for a CheckBox has a label field under the 'Common' heading." width="292" height="215" src="images/flex_properties_label.png" align="right">
+          <p>The simplest way to label Flex CheckBoxes and RadioButtons is to use the native Flex components and use the label property to add the onscreen labels. Labels can be set in design mode or in the properties panel. Or they can be added as attributes in the Flex MXML source code:</p>
+          
+          <pre><code>&lt;mx:CheckBox label="Red" id="myRedCheckBox" /&gt;</code></pre>
+          <p>Like any MXML attribute, labels can also be updated or created dynamically, using ActionScript:</p>
+          
+          <pre><code>myRedCheckBox.label="Yellow";</code></pre>
+
+          <h4>Labels for Groups of RadioButtons or CheckBoxes</h4>
+          <img alt="Radio buttons labeled 'Yes' and 'No' under the text 'Is this a gift?'" width="158" height="61" src="images/fieldsetFlex.png" align="left">
+          <p>If your RadioButtons or CheckBoxes need a group label to be understood, use FormItem to group the buttons and provide a group label. This will be set up for you automatically if you drag a form component onto the stage in design mode, and then drag RadioButtons or CheckBoxes into that form component. It can also be set up in MXML as shown below:</p>
+          
+          <pre><code>&lt;mx:Form x="50" y="296" width="484" height="202"&gt;       &lt;mx:FormItem label="Is this a gift?" fontWeight="bold"&gt;          &lt;mx:RadioButton label="Yes"/&gt;          &lt;mx:RadioButton label="No"/&gt;       &lt;/mx:FormItem&gt;    &lt;/mx:Form&gt;</code></pre>
+          <h4>Long Labels for Groups of RadioButtons or CheckBoxes as Occur in Quizzes</h4>
+          <p>Some screen readers will read the <code>FormItem</code> label with each form control. If the group label is too long (over 25 words) to be heard with each form field, make the group label tabEnabled, when there is a screen reader present. </p>
+          
+          <h3>CODE HERE.</h3>
+          
+          <p>In quizzes, pay attention to consistency. If some questions in a quiz are so long that they need to use tabEnabled questions instead of <code>FormItem</code>s, then all of the questions should.</p>
+          
+          <h4>Form Fields without On-screen Labels</h4>
+          <img alt="A pulldown menu has no on-screen text, but is followed by a 'Go' button.' A toolTip over the pulldown menu reads 'Go to Chapter.'" width="234" height="153" src="images/flex_form_wo_onscreen_label.png" align="right">
+          <p>When form elements do not have on-screen text that tells the user the purpose of the form element, or if that prompting information is coming from more than one place, use a <code>toolTip</code> attribute to label the form element. This not only provides a tooltip, but also sets an accessible name for the form control. This name is then used as the label for the form field in screen readers. (You can also set the accessible name directly, see 'Alternative Solution' below.)</p>
+          
+          <p>Tooltips can be provided through Action Script, or can simply be written into the MXML:</p>
+          
+          <pre><code>&lt;mx:ComboBox x="240" y="107" toolTip="Go to Chapter"        dataProvider="{myPages}" width="160"&gt;</mx:ComboBox></code></pre>
+          <h4>Alternative Solution for any Type of Form Field: set an Accessible Name</h4>
+          <p>If the solutions above are not well-suited for your particular case, setting the accessible name through Action Script is another option:</p>
+          
+          <pre><code>&lt;mx:TextInput x="10" y="499"    creationComplete="event.target.accessibilityProperties =  new AccessibilityProperties();    event.target.accessibilityProperties.name = 'Your Name'" /&gt;</code></pre>  
+          <p>If an accessible name has not be set and a toolTip has been set, the toolTip will be used as the accessible name.</p>
+
+          <h3>Testing HTML</h3>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>Use the <a href="http://www.jimthatcher.com/favelets/">Form Labels Favelet</a> to view the markup of all form controls on the page. Other tools like the Web Accessibility Toolbar and Chris Pederick’s Web Developer toolbar also provide ways to view the form markup.<br>
+                  </td>
+                </tr>
+                <tr>
+                    <th scope="row">Output</th>
+                    <td>The JavaScript alert will indicate the number of definite errors and the number of form controls that need visual review. When you dismiss the alert, form fields that definitely do not have labels are marked with 'Error.' In addition, <code>label</code>, <code>title</code>, <code>fieldset</code> and <code>legend</code> markup (markup used to label form fields) will be revealed on the page. 
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Analysis</th>
+                    <td>If the on-screen prompting text is contiguous (so that entire label can be inside one HTML tag) and if it adequately indicates the purpose of the control, then the <code>label</code> element should be used to wrap that text. That <code>label</code> tag should have a <code>for</code> attribute which is identical to the <code>id</code> of the control. (Note: <code>id</code>s must be unique.) <br>
+                        <br>
+                        If that on-screen text is not adequate or if it is dispersed (coming from more than one place), then the <code>title</code> attribute should be used on the <code>input</code> element and should indicate the purpose of the control. <br>
+                        <br>
+                        There may be a situation where dispersed labeling information will not cause the form to need a <code>title</code>. This occurs when the form controls are wrapped inside a <code>fieldset</code> that has a <code>legend</code>. This is typically a question followed by a set of radio buttons or checkboxes. If the <code>fieldset</code> wraps the combination, the <code>legend</code> is the “question” and each control (radio button or checkbox) has an adequate <code>label</code>, then that set of controls is properly labeled. <br>
+                        <br>
+                        Note that labeling information is dispersed in both of these cases so the <code>title</code> attribute could be used instead.
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+
+          <h3>Testing Mobile Applications</h3>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>Use the screen reader on the device (VoiceOver on iOS and TalkBack on Android) while interacting with the form using swipe gestures or keyboard.<br>
+                  </td>
+                </tr>
+                <tr>
+                    <th scope="row">Output</th>
+                    <td>When focus is placed on the form control, the screen reader reads the text label of the field along with the type of control. 
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Analysis</th>
+                    <td>The easiest way to check this is to use a Bluetooth keyboard and tab between the form controls on the page. Listen for the label and ensure that the text label includes the label, required indicator (if present on the screen) and any instructions that are associated with the control. <br>
+                        <br>
+                        If there is placeholder text in the field, that text will also be read. The placeholder text is not sufficient to label the field as this text disappears when a value is entered. To check whether you are hearing the placeholder text or the label, enter data into the field and move out of and back into the form field. If label was not defined, then you will only hear the data that was just entered into the field and the label will no longer be read.
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+
+          <h3>Testing PDF in Acrobat</h3>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>Check the field labels by hovering over them. You can also check them, and change them, by editing the control. In Acrobat 9, select Forms &gt; Add or Edit Fields, then right click on a control in the fields pane and select properties. The process is similar in Acrobat 10, but select Tools &gt; Forms &gt; Edit to start. It is always a good idea to check the reading in JAWS, as well. Verify in JAWS that the form fields are announced with the correct labels and in the correct order.<br>
+                  </td>
+                </tr>
+                <tr>
+                    <th scope="row">Output</th>
+                    <td>Verify that the correct label is used and, when radio buttons are used, that they are grouped properly so that each button has the correct label. The order should match the visual order on the page, and you can easily check this in the forms edit mode. Controls are shown by page and you can expand each radio button group to see the individual items, and drag them to change the order. Also check navigation in JAWS. You should be able to tab between groups of radio buttons and use the arrow keys to move between the radio buttons within a group. 
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Analysis</th>
+                    <td>Make note of any fields that are missing label text or have incorrect text.
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+
+          <h3>Related Guidelines</h3>
+          <h4>508 Web § 1194.22 (n)</h4>
+          <p>When electronic forms are designed to be completed on-line, the form shall allow people using assistive technology to access the information, field elements, and functionality required for completion and submission of the form, including all directions and cues.</p>
+          <h4>WCAG 2.0 Level A - 1.1.1 Non-text Content</h4>
+          <p>All non-text content that is presented to the user has a text alternative that serves the equivalent purpose, except for the situations listed below. </p>
+          <ul class="pe-list pe-styled-lists--unordered"> 
+            <li>Controls, Input: If non-text content is a control or accepts user input, then it has a name that describes its purpose. (Refer to Guideline 4.1 for additional requirements for controls and content that accepts user input.)</li>
+            <li>Time-Based Media: If non-text content is time-based media, then text alternatives at least provide descriptive identification of the non-text content. (Refer to Guideline 1.2 for additional requirements for media.)</li>
+            <li>Test: If non-text content is a test or exercise that would be invalid if presented in text, then text alternatives at least provide descriptive identification of the non-text content.</li>
+            <li>Sensory: If non-text content is primarily intended to create a specific sensory experience, then text alternatives at least provide descriptive identification of the non-text content.</li>
+            <li>CAPTCHA: If the purpose non-text content is to confirm that content is being accessed by a person rather than a computer, then text alternatives that identify and describe the purpose of the non-text content are provided, and alternative forms of CAPTCHA using output modes for different types of sensory perception are provided to accommodate different disabilities.</li>
+            <li>Decoration, Formatting, Invisible: If non-text content is pure decoration, is used only for visual formatting, or is not presented to users, then it is implemented in a way that it can be ignored by assistive technology.</li>
+          </ul>
+          <h4>WCAG 2.0 Level A – SC 1.3.1 Info and Relationships:</h4>
+          <p>Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text. (Level A)</p>
+          <h4>WCAG 2.0 Level A – SC 3.3.2 Labels or Instructions:</h4>
+          <p>Labels or instructions are provided when content requires user input. (Level A)</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
       <h2 id="g15"></h2>
       <div class="guideline_content">
         <a class="skippy" href="#toc">Back to TOC</a>
