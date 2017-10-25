@@ -1649,8 +1649,100 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
                 <p>Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text. (Level A)</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+      
       <h2 id="g13">Guideline 13. Use same info without style sheets (Same Info without Style Sheets)</h2>
       <div class="guideline_content">
+        <p class="summary">Do not use presentation layers (e.g. css, styles) to provide information unless the information is also presented through content or through semantic markup. (And do not use presentation layers to hide content that would be disruptive or misleading if shown.)</p>
+        
+        <h3>Rationale</h3>
+          <p>Screen readers usually do not read information from the presentation layer. So, screen reader users would generally miss any information provided in the presentation layer alone.</p>
+        
+          <p>Also, when technologies provide separate layers for content and presentation, users are generally allowed to remove or replace the presentation layer. Users with low vision or learning disabilities may replace the visual presentation in favor of a custom visual presentation style that works better for them. As such, any information that is conveyed only through the presentation layer will be lost for these users as well.</p>
+        
+          <p>In many cases it is okay to hide information using presentation layers. For example, the HTML techiques in these guidelines occasionally recommend placing information offscreen using CSS to provide extra information for screen reader users. Also, it is acceptable to hide elements in an expanding/collapsing menu using CSS, if the menu appears fully expanded when CSS is off or replaced.</p>
+        
+          <p>However, if you were to hide and show an error message, such as "The server is offline!" using a CSS setting, users who turn off or replace CSS would always see that message. Thus, the information on the page relies on CSS and is inaccurate if the CSS is not present. This type of situation can be as bad or worse than having information missing when the CSS is not present.</p>
+        
+        <h3>Technology Specifics</h3>
+          <h4>HTML | XHTML | CSS</h4>
+          Do not use CSS to introduce information that is not available through another method. Examples of this problem include:
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>Information conveyed through CSS background images (There is no way to include alt-text for these images in the CSS. Also, the images will be lost if the style sheet is replaced.)</li>
+            <li>Information conveyed through text added through CSS, such as pseudo-elements <code>:before</code> and <code>:after</code>. (Browsers do not pass this information to screen readers and information will be lost if the style sheet is replaced.)
+              <pre><code>/* Do NOT use     unless "100% Correct"     is also conveyed elsewhere */  h1.congratulations:before {      content: "100% Correct: "; }</code></pre>
+            </li>
+            <li>Information conveyed by using CSS to establish categories:
+            <pre><code>/* Do NOT use     unless the time period    associated with each piece of content     is also conveyed through text */  div.paleozoic {border-style: dashed} div.mesozoic {border-style: solid} div.cenozoic {border-style: dotted}</code></pre>
+            (Again, screen readers will not convey this information &amp; it will also be lost if the style sheet is replaced.)
+            </li>
+          </ul>
+        
+        <h4>JavaScript</h4>
+        <p>If your Web application hides and shows content, that functionality may be required for access to the information on the page, so, either:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>(Preferred) Use server-side technology so that you don't have to add the content to the page until it is needed.<br>
+            OR
+          </li>
+          <li>(Preferred) Keep CSS and JavaScript behavior separate. Hide or show content by removing or adding DOM nodes instead of adjusting CSS styles. This way, people who use custom style sheets can still benefit from the JavaScript behavior.
+            <pre><code>function hide() {    window.myparent = document.getElementById("a1");    window.myobj = document.getElementById("b2");    window.myparent.removeChild(window.myobj); }  function show() {    window.myparent.appendChild(window.myobj); }</code></pre>
+            <pre><code>&lt;a href="javascript:hide();"&gt;    Hide sentence below &lt;/a&gt; |  &lt;a href="javascript:show();"&gt;    Show sentence below &lt;/a&gt;                       &lt;div id="a1"&gt;    &lt;p id="b2"&gt;       Sentence to hide or show goes here.    &lt;/p&gt; &lt;/div&gt;</code></pre>
+            JavaScript Only Hide/Show Sample Page: <mark><a href="http://wps.pearsoned.com/wps/media/objects/7400/7578040/DOM_Hide_Show_Nodes.html">This Window</a> | <a href="http://wps.pearsoned.com/wps/media/objects/7400/7578040/DOM_Hide_Show_Nodes.html">New Window</a></mark><br>
+            For an additional example, see <a href="#g33">PG 33</a>.
+          </li>
+          <li>Make sure all content is displayed and makes sense when CSS is not available. For example, a menu that can expand and collapse, might appear fully expanded when the Web page's CSS are not used.</li>
+        </ul>
+
+        <h3>PowerPoint</h3>
+        
+        <p>Avoid placing content in the slide master. The information contained in the slide master is not read by screen readers.</p>
+        
+        <p>Images that are decorative can be placed in the slide master. If they are part of the content and not merely decorative, add the images on the slide.</p>
+
+        <h3>Testing HTML</h3>
+        <table class="pe-table">
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Tools</th>
+                <td>Turn off style sheets (CSS). Most browsers provide a way to turn off style sheets. In the <a href="https://developer.paciellogroup.com/resources/wat/">Web Accessibility Toolbar</a> you can do this by selecting CSS > Disable CSS. In FireFox go to View &gt; Page Style &gt; No style.<br>
+                  <br>
+                  Try a custom style sheet. (Download the custom style sheet that Wayne Dick, accessibility specialist and professor from California State University Long Beach, created to help Web developers test access for visual readers with low vision: <a href="http://wps.pearsoned.com/wps/media/objects/13268/13586872/screen_density_100_no_auto_height.css">screen_density_100_no_auto_height.css</a>. For information on how to activate custom style sheets, see: <mark><a href="http://web.csulb.edu/~wed/public/0003_AccessTool/OpUsrStyShe.html">How to Activate User Style Sheets</a></mark>)
+                </td>
+              </tr>
+              <tr>
+                  <th scope="row">Output</th>
+                  <td>Once you have disabled CSS or have applied a custom style sheet, you may see: content appear, content disappear, or content get cut off.
+                  </td>
+              </tr>
+              <tr>
+                  <th scope="row">Analysis</th>
+                  <td>If anything disappears, consider whether those elements are decorative or important. If they are important, that’s an error.<br>
+                      <br>
+                      If anything appears, consider whether the new items are simply additional content (like expanded menu items) or whether the new items are disruptive (like instructor content in the student view, or a server-down message when the server is not down.) Only disruptive additional content should be considered an error.<br>
+                      <br>
+                      If anything is cut off, see if there's a way to reach that content. If not, this is an error.
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+         
+        <h3>Related Guidelines</h3>
+        <h4>508 Web § 1194.22 (d)</h4>
+        <p>Documents shall be organized so they are readable without requiring an associated style sheet.</p>
+        <h4>WCAG 2.0 – Level A - 1.3.1 Info and Relationships:</h4>
+        <p>Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text. (Level A)</p>
+        <h4>508 Refresh 3-O: Information and Relationships</h4>
+        <p>Information and relationships conveyed through a presentation of electronic documents must be either PROGRAMMATICALLY DETERMINABLE or available in TEXT, and notification of changes to these must be available to user agents, including assistive technologies. For example:</p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Row and column headers are identified for data tables. Note: In order to achieve this provision, table objects in data operated on by the software would need to be associated with sufficient information to identify any row and column headers for the table, that the software can obtain as readily as it can obtain the table itself.</li>
+          <li>In data tables that have two or more logical levels of row or column headers, data cells are associated with header cells. Note: In order to achieve this provision, cells in table objects with multiple logical levels of headers in data operated on by the software would need to be associated with sufficient information to identify any row and column headers for the table cell, that the software can obtain as readily as it can obtain the table cell itself.</li>
+          <li>Section headings are identified.</li>
+          <li>Form element LABELS are associated with form fields.</li>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
       <h2 id="g14"></h2>
