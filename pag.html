@@ -1579,6 +1579,74 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
       </div>
       <h2 id="g12">Guideline 12. Don't provide info only through text formatting</h2>
       <div class="guideline_content">
+          <p class="summary">When text formatting (e.g. italic, underline, bold, font size) is used to provide information that goes beyond emphasis, also provide the information through an additional method.</p>
+              
+              <h3>Rationale</h3>
+              <p>Media content will be transformed into:</p>
+              <ul class="pe-list pe-styled-lists--unordered">
+                <li>Spoken words</li>
+                <li>Braille</li>
+                <li>Large text</li>
+                <li>Custom color schemes</li>
+                <li>Custom layouts</li>
+              </ul>
+              <p>Text formatting can be lost in the transformation.</p>
+              
+              <p>Even when the information about text formatting is not entirely lost, it can become less noticeable or time-consuming to access. For example, when screen readers recognize a particular type of text-formatting, they handle it in one of two ways:</p>
+              <ol class="pe-list pe-styled-lists--ordered">
+                <li>Provide the information only if the screen reader user requests information on the formatting of the particular word</li>
+                <li>Read it differently (e.g. louder, slower, different pitch) than surrounding text</li>
+              </ol>
+                <p>The former (1) makes finding particular words that have special formatting very time-consuming.</p>
+              
+              <p>The latter (2) is rare in screen readers today, even for semantic formatting such as HTML's <code>&lt;strong&gt;</code> and <code>&lt;em&gt;</code> tags. </p>
+              
+              <p>Features that convey which text is emphasized are the responsibility of the assistive technology (e.g. screen reader, custom style sheet). Content developers cannot effectively add text that indicates which text is emphasized. This would make the experience worse for all users, including screen reader users. When formatting provides emphasis, content developers should simply use formatting that allows assistive technologies to provide the information as appropriate for their users (see <a href="#g11">PG 11</a>).</p>
+              
+              <p>However, if we extend the purpose of text formatting, using it to provide more information than simple emphasis, it is our responsibility to also provide the information through another method. For example, a paragraph of text might be followed by the instructions, "Explain the significance of the three bold words in the paragraph." In this case, we need to list the three words and, if the paragraph is very long, provide links back to the words in paragraph. This way, students who are using screen readers or custom formatting will be able to find the three words.</p>
+
+              <h3>Techniques</h3>
+              
+              <h4>Discussing/Identifying Particular Words and Phrases</h4>
+              <p>If text formatting is used to identify particular words or phrases (beyond just emphasizing the words or phrases) provide another way to find the words or phrases, such as:</p>
+              <ul class="pe-list pe-styled-lists--unordered">
+                <li>Quoting the text or the word. For example, "Select the best definition for the word 'like' as it is used in the paragraph."</li>
+                <li>Providing a link to the text or the word.</li>
+              </ul>
+              <h4>Providing Data</h4>
+              <p>If text formatting is used to provide data, also provide the data in another way, such as:</p>
+              <ul class="pe-list pe-styled-lists--unordered">
+                <li>Including the information as text. For example, if required lessons are in bold and optional lessons are in regular text, you could mark each required lesson with the word "required", or you could make each optional lesson with the word "optional". Another option is to mark one type of lesson with an * and then define the meaning of the * somewhere obvious on the page.</li>
+                <li>Using reading order to make it easy to see relationships. For example, if the size of the name of a town is used to show the relative size of the area's population, include the population as text and also make sure the reading order (See <a href="#g4">Guideline 4</a>) is lowest to highest or highest to lowest. This way, just as a sighted user might skim the names and read largest to smallest based on text size, a blind screen reader user can do the same rather than having to read each town name and remember the numbers.</li>
+              </ul>
+              <h4>Marking up Text</h4>
+              <p>If text formatting is used to illustrate the state of particular text, also provide this information in another way, such as:</p>
+              <ul class="pe-list pe-styled-lists--unordered">
+                <li>Use hidden text for screen reader users, so that some short phrase appears before and after the text. For example, if text has been highlighted by the instructor, hidden text can be added: "begin instructor highlight" and "end instructor highlight". See code clips for how to do this with CSS.</li>
+                <li>Provide an additional view of the information. For example, if various differences in text are used to show three different revisions of a paragraph, many users will benefit from the ability to also read each version side-by-side in a table, divided into rows so as to highlight the changes.</li>
+              </ul>
+              <h3>Testing</h3>
+              <table class="pe-table">
+                  <thead class="pe-sr-only">
+                    <tr>
+                      <th scope="col">Testing technique</th>
+                      <th scope="col">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Review</th>
+                      <td>Skim the page looking for any cases where text formatting is relied on for more than emphasis. An example of this issue would be if a quiz question asked: "What is the significance of the italic text in the following paragraph?" If there is not a second way to locate the text in this type of situation, that is an error.
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>		
+               
+              <h3>Related Guidelines</h3>
+              <h4>508 Web § 1194.22 (d) </h4>
+                <p>Documents shall be organized so they are readable without requiring an associated style sheet. </p>
+              <h4>WCAG 2.0 – Level A - 1.3.1 Info and Relationships: </h4>
+                <p>Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text. (Level A)</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
       <h2 id="g13"></h2>
