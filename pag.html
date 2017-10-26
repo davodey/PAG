@@ -71,6 +71,10 @@
         background-color: #F5F5F5;
       }
 
+      .with-color{
+        color: blue;
+      }
+
     </style>
     <!-- print stylesheet pls -->
   </head>
@@ -94,7 +98,7 @@
         <li><a href="#g12">12: Don't provide info only through text formatting</a></li>
         <li><a href="#g13">13: Use same info without style sheets (Same Info without Style Sheets)</a></li>
         <li><a href="#g14">14: Associate every form element with a label (Form Field Labels)</a></li>
-        <li><a href="#g15">15: </a></li>
+        <li><a href="#g15">15: Write link text that tells users where the link goes (Meaningful Link Text)</a></li>
         <li><a href="#g16">16: </a></li>
         <li><a href="#g17">17: </a></li>
         <li><a href="#g18">18: </a></li>
@@ -2030,8 +2034,275 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
 
-      <h2 id="g15"></h2>
+      <h2 id="g15">Guideline 15. Write link text that tells users where the link goes (Meaningful Link Text)</h2>
       <div class="guideline_content">
+        <p class="summary">
+        Write links so that a user who is aware of the topic of the page will understand the purpose of the link when reading <span class="with-color">one</span> of the following:
+        <ul class="pe-list pe-styled-lists--unordered"> 
+          <li><span class="with-color">Link Text Alone:</span> Link text out of context (preferred if possible without awkwardness or redundant text)</li>
+          <li><span class="with-color">Nearest Heading, Nearest Parent List Item, or Table Headers:</span> Link text and the nearest heading above the link, OR link text and the nearest parent list item in a nested list, OR link text in a data table cell and the cell's table headers (These options are only available where semantic markup is possible as in HTML.)</li>
+          <li><span class="with-color">Sentence:</span> Link text and the sentence that contains the link. </li>
+          <li><span class="with-color">Link Pattern:</span> Link text within the context of other links preceding the link on the same page.</li>
+        </ul>
+        </p>
+         
+        <h3>Rationale</h3>
+        <p>All users need to understand where links go without following each link. Screen reader users and users who use high magnification levels can't take in an overview of the whole page at once the way that a typical user might. This guideline is designed to limit the amount of the page that needs to be explored each time a user attempts to identify a link of interest. This is essential for efficient use of Web content.</p>
+        <p>When Link Text Alone is used, users will quickly know the purpose of the link regardless of how they arrived at the link. However, in some cases, providing the full purpose of the link within the link text itself can result in a wordy experience for all users. </p>
+        <p>Users typically arrive at a link:</p>
+        <ul class="pe-list pe-styled-lists--unordered"> 
+          <li>When reading the text leading up to the link<br>
+              OR</li>
+          <li>When reading through a list of all the links on the page</li>
+        </ul>
+        <p>As such, Nearest Heading, Sentence, and Link Pattern often provide the context needed without requiring any additional exploration of the page.</p>
+        
+        <p>Also, if the information is not known when the user first arrives at the link, Nearest Heading, Sentence/Line and Link Pattern can each be easily discovered using keyboard navigation as shown in the following charts:</p>
+        <h4>Screen reader commands</h4>
+        <table class="pe-table">
+            <thead class="table-head">
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">Say Sentence</th>
+                  <th scope="col">Go to Heading Above</th>
+                  <th scope="col">Go through Links Above</th>
+                  <th scope="col">Return to Link from Above</th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>JAWS 7.0</th>
+                <td>Alt – Number Pad 5</td>
+                <td>Shift - H</td>
+                <td>Shift – Tab</td>
+                <td>Tab</td>
+              </tr>
+              <tr>
+                  <th>JAWS 7.0 Laptop</th>
+                  <td>Caps Lock – H</td>
+                  <td>Shift - H</td>
+                  <td>Shift – Tab</td>
+                  <td>Tab</td>
+              </tr>
+            </tbody>    
+          </table> 	
+        	
+        <h4>Browser commands (which can be used with zoom features)</h4>
+        <table class="pe-table">
+            <thead class="table-head">
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">Say Sentence</th>
+                  <th scope="col">Go to Heading Above</th>
+                  <th scope="col">Go through Links Above</th>
+                  <th scope="col">Return to Link from Above</th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Firefox 3.0 with Headings Navigation Extension</th>
+                <td>Read text surrounding link</td>
+                <td>Shift - H</td>
+                <td>Shift – Tab</td>
+                <td>Tab</td>
+              </tr>
+            </tbody>    
+          </table> 	
+        <p>Also, users with cognitive issues should not have to decode too much of the page to understand a link.</p>
+
+        <h3>General Techniques</h3>
+        
+        <p>When images or portions of images are used as links, two versions of the link text need evaluation: </p>
+        <ul class="pe-list pe-styled-lists--unordered"> 
+          <li>the alt-text, which will be the face of the link for screen readers users<br>
+              AND</li>
+          <li>the link as an image, which will be the face of the link for many users, including most screen magnification users</li>
+        </ul>
+
+        <h3>HTML &amp; JavaScript</h3>
+        
+        <h4>HTML | XHTML | CSS</h4>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li><strong>Link Text Alone:</strong> Write link text so that it describes the purpose of the link:
+              <pre><code>&lt;a href="http://www.google.com"&gt;Google&lt;/a&gt;</code></pre>
+              OR</li>
+          <li><strong>Sentence:</strong> If the link is inside a sentence of text, screen reader users can hear the link text, and then request to hear the current sentence to get further information about the link.<br>
+              OR</li>
+          <li><strong>Nearest Heading, Nearest Parent List Item, or Table Headers:</strong> HTML headings are an easy way to provide context for links. Keyboard access users can navigate to the heading just above the link for context.
+              <pre><code>&lt;h1&gt;Products&lt;/h1&gt;        &lt;h2&gt;JAWS 10.0&lt;/h2&gt;       &lt;ul&gt;        &lt;li&gt;&lt;a href="jaws_trial.html"&gt;             Download Trial&lt;/a&gt;&lt;/li&gt;        &lt;li&gt;&lt;a href="jaws_purchase"&gt;             Purchase&lt;/a&gt;&lt;/li&gt;        &lt;li>&lt;a href="about_jaws.html"&gt;             Read More&lt;/a&gt;&lt;/li&gt;       &lt;/ul&gt;     &lt;h2&gt;Zoom Text 10.0&lt;/h2&gt;       &lt;ul&gt;          &lt;li&gt;&lt;a href="zoom_trial.html"&gt;              Download Trial&lt;/a&gt;&lt;/li&gt;          &lt;li>&lt;a href="zoom_purchase"&gt;              Purchase&lt;/a&gt;/li&gt;          &lt;li&lt;a href="about_zoom.html"&gt;              Read More&lt;/a&gt;&lt;/li&gt;       &lt;/ul&gt;</code></pre>
+              Similarly, table headers and parent list items can provide context for links in html.<br>
+              OR</li>
+          <li><strong>Link Patterns:</strong> Screen reader users and screen magnification users often navigate a page by skipping from link to link. When one link provides context for the links that follow, these users will not need additional information to understand the links. In the example below, the links "JAWS" and "ZoomText" provide context for the links that follow them.
+              <pre><code>&lt;a href="jaws_home.html"&gt;JAWS&lt;/a&gt; &lt;ul&gt;    &lt;li&gt;         &lt;a href="jaws_trial.html"             title="JAWS Trial"&gt;Trial&lt;/a&gt;      &lt;/li&gt;     &lt;li&gt;         &lt;a href="jaws_purchase"             title="Purchase JAWS">Purchase&lt;/a&gt;     &lt;/li&gt; &lt;/ul&gt; &lt;br /&gt; &lt;a href="zoom_home.html"&gt;ZoomText&lt;/a&gt; &lt;ul&gt;     &lt;li&gt;         &lt;a href="zoom_trial.html"            title="ZoomText Trial"&gt;Trial&lt;/a&gt;      &lt;/li&gt;     &lt;li&gt;         &lt;a href="zoom_purchase"            title="Purchase ZoomText"&gt;Purchase&lt;/a&gt;     &lt;/li&gt; &lt;/ul&gt; </code></pre>
+              To achieve standards compliance, supplement link patterns with <code>title</code> attributes that fully describe the purpose of the link. <code>title</code> attributes aren't well supported in assistive technologies today. But, combining link patterns and title attributes covers both practical accessibility and standards compliance.<br>
+        
+              Link Patterns with Titles Sample Page: <mark><a href="http://wps.pearsoned.com/wps/media/objects/7400/7578040/Link_Patterns.html">This Window</a> | <a href="http://wps.pearsoned.com/wps/media/objects/7400/7578040/Link_Patterns.html" target="_blank">New Window</a></mark></li>
+        </ol>
+
+        <h4>JavaScript</h4>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>If dynamic user options result in differing results for links, use JavaScript to update the link text as needed: 
+              <pre><code>function updateLinkText(){   document.getElementById('n').childNodes[0].nodeValue='\   Skip to the advanced questions!'; }</code></pre>
+              . . .
+              <pre><code>&lt;a href="variable_URL.html" id="n"&gt;     Read about the European Renaissance! &lt;/a&gt; </code></pre>
+          </li>
+          <li>If an image is used as a link, and the meaning of the link changes (e.g. plus symbol changes to minus symbol, play button changes to a pause button) update the alt-text for the image: 
+              <pre><code>document.getElementById('c').alt='Collapse menu';</code></pre>
+              . . .
+              <pre><code>&lt;img src="plus.gif" alt="Expand menu" id="c" /&gt;</code></pre>
+          </li>
+        </ol>
+        
+        <h3>Android Applications</h3>
+        
+        <p>The approaches for descriptive link text for Android mobile applications is similar to HTML webpages.   One of the following can be used: </p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li><strong>Link Text Alone:</strong>  write link text so it is unique and describes the purpose of the link</li>
+          <li><strong>Sentence: </strong> If the link is inside the sentence of text, the screen reader can read the sentence to the context of the link.</li>
+          <li><strong>Nearest Heading or Table Headers :</strong> Screen readers can jump to the heading or table headers to get the context for the link. </li>
+          <li><strong>Link Patterns:</strong>  Screen reader and screen magnifier users often navigate a page by skipping from link to link.  The previous link can provide context for the links that follow.  To achieve standards compliance, use the android:contentDescription to provide descriptive link text.  The contentDescription should include the full link text.</li>
+        </ol>
+        
+        <h3>iOS Applications</h3>
+        
+        <p>The approaches for descriptive link text for iOS mobile applications is similar to HTML webpages.   One of the following can be used: </p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li><strong>Link Text Alone:</strong>  write link text so it is unique and describes the purpose of the link</li>
+          <li><strong>Sentence: </strong> If the link is inside the sentence of text, the screen reader can read the sentence to the context of the link.</li>
+          <li><strong>Nearest Heading or Table Headers :</strong> Screen readers can jump to the heading or table headers to get the context for the link.  </li>
+          <li><strong>Link Patterns:</strong>  Screen reader and screen magnifier users often navigate a page by skipping from link to link.  The previous link can provide context for the links that follow.  To achieve standards compliance, define descriptive link text by setting the label and hint to provide contextual information.  The label and the hint together should be the full link text.</li>
+        </ol> 
+        
+        <h3>PDF in Acrobat</h3>
+        
+        <p>The link tag is used to define hyperlinks that are either internal or external to the PDF document. The link tag can be a child of other tags such as the paragraph tag.</p>
+        <p>To create a link in Acrobat 9 Pro, select the text that will be used for the link text. Access the context menu and select Create Link. Select the link appearance and choose the link action. To create an internal link, select “go to a page view”. An external link can be either a file or a web page.</p>
+        <img alt="" width="339" height="267" src="images/create-link-internal.jpg">
+        <p>The next screen will specify the location of the link. For internal links, select the target view using the scrollbars, mouse and zoom. Press Set Link to create the link destination.</p>
+        <img alt="" width="248" height="167" src="images/create-go-view.jpg">
+        
+        <h4>Screen Reader Behavior Tips</h4>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>The tooltip created using the link dialog in Adobe Acrobat is not accessible to screen readers. The link text or the link context needs to make the purpose clear.</li>
+          <li>To change the text spoken by screen readers for links, set the Alternative Text for the link. Go to the properties of the Link tag and on the Tag tab set the Alternative Text.</li>
+        </ul>
+        
+        <h3>Word</h3>
+        <p>As with HTML links, ensure that the text will be understood by the user in the context of the surrounding text and content structure, and that it makes sense out of context. Screen reader users can browse a list of links, so "General PDF Accessibility Guidelines" is better than "click here." Verify that the links are active.</p>
+        <p>To set the text of the link, change the Text to display text in the Hyperlink properties dialog box.</p>
+        <img alt="The first form field in the Insert Hyperlink dialog box allows users to change the text to display for the link." width="424" height="203" src="images/Insert hyperlink.jpg">
+        <p>Avoid using the URL as the display text. Listening to long URLs can be tedious for a screen reader user and could cause them to abandon the content. Concise, meaningful descriptions as link text are helpful.</p>
+         
+        <h3>PowerPoint</h3>
+        
+        <p>As with HTML links, ensure that the text will be understood by the user in the context of the surrounding text and content structure, and that it makes sense out of context. Screen reader users can browse a list of links, so "PowerPoint Accessibility Guidelines" is better than "click here." Verify that the destination of each link is valid.</p>
+        
+        <p>It is easier for screen reader users when links contain concise, meaningful display text rather than URLs. Listening to long URLs can be tedious for them and could cause them to abandon the content. PowerPoint will autocorrect text that clearly looks like a URL to be a link (e.g. http://... And www.) Allow it to do this or use ctrl-K or Insert &gt; hyperlink to add links. This is better than forcing links to be in plain text. Link text should be differentiated from other content with an underline and/or a high-contrast text color.</p>
+        <img alt="In the Insert Hyperlink dialog box, enter the meaningful display text in the text to display textbox." width="450" height="215" src="images/PowerPoint-links.jpg">
+
+        <h3>Testing HTML</h3>
+        <table class="pe-table">
+          <thead class="pe-sr-only">
+            <tr>
+              <th scope="col">Testing technique</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Tools</th>
+              <td>Though you may want to look at a list of links (Web Accessibility Toolbar &gt; Doc Info. &gt; List Links), the simplest tool is observation.<br>
+              </td>
+            </tr>
+            <tr>
+                <th scope="row">Review</th>
+                <td>Especially check for those typical (meaningless) link phrases like "Click here" or "More".
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Analysis</th>
+                <td>The link text should indicate what the link does. Context (such as current sentence or current heading) may supply missing information in cases where including the information in the link text would be particularly awkward or repetitive. 
+                </td>
+              </tr>
+          </tbody>
+        </table>
+         
+        <h3>Testing Mobile Applications</h3>
+        <table class="pe-table">
+          <thead class="pe-sr-only">
+            <tr>
+              <th scope="col">Testing technique</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Tools</th>
+              <td>Look for all links and buttons on the page. Use the built-in screen reader on the device (VoiceOver on iOS and TalkBack on Android) to listen to the link text.<br>
+              </td>
+            </tr>
+            <tr>
+                <th scope="row">Review</th>
+                <td>Note any links that do not have descriptive link text. Especially check for those typical (meaningless) link phrases like "Click here" or "More".<br>
+                  <br>
+                  Read the links and buttons on the page with the screen reader. Note what link text is read when the button or link gets focus.
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Analysis</th>
+                <td>The link text should indicate what the link or button does. Context (such as current sentence or current heading) may supply missing information in cases where including the information in the link text would be particularly awkward or repetitive. <br>
+                    <br>
+                    A common error is not having the visible text associated with the link or button. When the link or button gets focus, the link text and the role (e.g. button, link) should be read together. 
+                </td>
+              </tr>
+          </tbody>
+        </table>
+
+        <h3>Testing PDF in Acrobat</h3>
+        <table class="pe-table">
+          <thead class="pe-sr-only">
+            <tr>
+              <th scope="col">Testing technique</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Tools</th>
+              <td>Use the content pane and the tags panel to verify proper link text and tagging.<br>
+              </td>
+            </tr>
+            <tr>
+                <th scope="row">Output</th>
+                <td>In the document pane, verify that each link is visible.<br>
+                  <br>
+                  Using the Select Object tool, right-click each link to check its properties. In Acrobat 9, this is under Tools &gt; Advanced Editing &gt; Select Object; in Acrobat 10 it is under Tools &gt; Content. Verify that the link properties are set to visible, inset, thin underline, and that the action is set appropriately (page view, file, or web page), and for web pages, that the URL is fully qualified, using http://. <br>
+                  <br>
+                  In the tags pane, verify that the link is represented within the tag for the surrounding text and as a link tag containing an object reference (OBJR) and a text container for the link display text. For example, a paragraph of text is represented by a <code>&lt;p&gt;</code> tag. There will often be at least three container elements within that tag: 
+                    <ol class="pe-list pe-styled-lists--ordered">
+                      <li>text preceding the link,</li>
+                      <li>link element with text container for display text, and</li>
+                      <li>text after the link.</li>
+                    </ol>
+                    It is generally recommended that the display text for links is meaningful within the context and is not simply the URL. For example, use “office locations” rather than a lengthy URL.
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Analysis</th>
+                <td>Make note of any links that are not visible, are not tagged properly, or which have display text that is not optimal for the context of the content.
+                </td>
+              </tr>
+          </tbody>
+        </table>
+
+        <h3>Related Guidelines</h3>
+        <h4>WCAG 2.0 A – SC 2.4.4 Link Purpose (In Context)</h4>
+        <p>The purpose of each link can be determined from the link text alone, or from the link text together with its programmatically determined link context, except where the purpose of the link would be ambiguous to users in general. (Level A)</p>
+        <h4>WCAG 2.0 AAA – SC 2.4.9 Link Purpose (Link Only)</h4>
+        <p>A mechanism is available to allow the purpose of each link to be identified from link text alone, except where the purpose of the link would be ambiguous to users in general. (Level AAA)</p>
+        <h4>508 Refresh 3-N: Link Purpose</h4>
+        <p>On Web pages, it must be possible to determine the purpose of each link from the link TEXT or the link TEXT together with its PROGRAMMATICALLY DETERMINABLE link context. </p>
+        <p>Note: In order to meet this provision, links encoded in data operated on by the software would need to be associated with link text that the software can obtain as readily as it can obtain the link itself.</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
       <h2 id="g16"></h2>
