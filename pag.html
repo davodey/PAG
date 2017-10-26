@@ -2305,9 +2305,355 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <p>Note: In order to meet this provision, links encoded in data operated on by the software would need to be associated with link text that the software can obtain as readily as it can obtain the link itself.</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
-      
+
       <h2 id="g16">Guideline 16. Specify the human language (e.g. Arabic, Chinese, English) of text (Human Language)</h2>
       <div class="guideline_content">
+          <p class="summary">Indicate human language (e.g. Arabic, Chinese, English) following conventions for the media type.</p>
+          
+          <h3>Rationale</h3>
+          <p>This helps screen readers to use the correct reading and pronunciation conventions for the language.</p>
+
+          <h3>General Techniques</h3>
+          <ol class="pe-list pe-styled-lists--ordered">
+            <li>The first step to meeting this guideline in any media type is to look up an appropriate language code for the main language used. Some common language codes are provided below:
+                <table class="pe-table">
+                    <thead class="table-head">
+                        <tr>
+                          <th scope="col">Language</th>
+                          <th scope="col">Language Code(Required)</th>
+                          <th scope="col">Language Code with Sub-code(Use if you wish to specify a regional dialect)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th>Chinese(Simplified)</th>
+                        <td>zh-CHS</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>Chinese(Traditional)</th>
+                        <td></td>
+                        <td>zh-TW</td>
+                      </tr>
+                      <tr>
+                        <th>Czech</th>
+                        <td>cs</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>Danish</th>
+                        <td>da</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>English</th>
+                        <td>en</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>English (US)</th>
+                        <td></td>
+                        <td>en-US</td>
+                      </tr>
+                      <tr>
+                        <th>English (Canada)</th>
+                        <td></td>
+                        <td>en-CA</td>
+                      </tr>
+                      <tr>
+                        <th>English (UK)</th>
+                        <td></td>
+                        <td>en-UK</td>
+                      </tr>
+                      <tr>
+                        <th>Finnish</th>
+                        <td>fi</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>French</th>
+                        <td>fr</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>French(Quebec)</th>
+                        <td></td>
+                        <td>fr-CA-QC</td>
+                      </tr>
+                      <tr>
+                        <th>German</th>
+                        <td>de</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>Hindi</th>
+                        <td>hi</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>Hungarian</th>
+                        <td>hu</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>Italian</th>
+                        <td>it</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>Japanese</th>
+                        <td>ja</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>Korean</th>
+                        <td>ko</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>Norwegian</th>
+                        <td>no</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>Polish</th>
+                        <td>pl</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>Portuguese</th>
+                        <td>pt</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>Russian</th>
+                        <td>ru</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>Spanish</th>
+                        <td>es</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>Spanish(Latin America)</th>
+                        <td></td>
+                        <td>es-419</td>
+                      </tr>
+                      <tr>
+                        <th>Spanish(South America)</th>
+                        <td></td>
+                        <td>es-005</td>
+                      </tr>
+                      <tr>
+                        <th>Swedish</th>
+                        <td>sw</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>Turkish</th>
+                        <td>tr</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>No Linguistic Content</th>
+                        <td>zxx</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th>Computer code / Mark-up</th>
+                        <td colspan="2">Use whatever language the comments are in. If there are no comments use whatever human language the code is based on. For example, HTML is based on English. </td>
+                      </tr>
+                    </tbody>    
+                  </table>
+                  For additional codes and for details on how language codes are constructed see: (See Technology Specifics for information on how to apply the tags.)
+                  <ul class="pe-list pe-styled-lists--unordered">
+                    <li>W3C Internationalization Activity's article on Language Tags: <mark><a href="https://www.w3.org/International/articles/language-tags/">This Window</a> | <a href="https://www.w3.org/International/articles/language-tags/">New Window</a></mark></li>
+                    <li>The Internet Society, Network Working Group, Best Current Practice 47: <mark><a href="http://www.ietf.org/rfc/bcp/bcp47.txt">This Window</a> | <a href="http://www.ietf.org/rfc/bcp/bcp47.txt">New Window</a></mark></li>
+                  </ul>
+              </li>
+              <li>If the media contains changes in language or in regional dialect, look up appropriate language codes for those languages as well. (See Technology Specifics for information on how to apply the tags.)</li>
+              <li>Do not assign specific language codes for proper names even if the language of origin differs from surrounding text.</li>
+              <li>Do not assign specific language codes for words from other languages that have become a part of the language of the surrounding text. For example, when appearing within English sentences the following words should NOT be marked as Japanese: dojo, ninja, haiku, kimono, and sashimi.</li>
+            </ol>
+
+          <h3>Technology Specifics</h3>
+          <h4>HTML | XHTML | CSS</h4>
+          <ol class="pe-list pe-styled-lists--ordered">
+            <li>In the opening HTML tag add a language attribute as follows :
+              <ul class="pe-list pe-styled-lists--unordered">
+                <li>In HTML use the <code>lang</code> attribute.
+                  <pre><code>&lt;html lang="en"&gt;</html></code></pre>
+                </li>
+                <li>In XHTML 1.0 use both the <code>lang</code> and <code>xml:lang</code> attributes. XHTML 1.0 can be served as either text/html or xml. If XHTML is served as text/html, it requires both attributes. Since content maybe be reused on varying servers, it is safest to use both attributes.
+                  <pre><code>&lt;html xmlns="http://www.w3.org/1999/xhtml"        lang="en"       xml:lang="en"&gt;</html></code></pre>
+                </li>
+                <li>In XHTML 1.1 use <code>xml:lang</code>, as it is not valid to serve XHTML 1.1 as text/xml.
+                  <pre><code>&lt;html  xmlns="http://www.w3.org/1999/xhtml"  ... xml:lang="en"&gt;</code></pre>
+                </li>
+              </ul>
+            </li>
+            <li>Add language attributes for any content whose language is different from the default language of the page. The attribute can be added to any tag:
+              <pre><code>&lt;!-- xhtml 1.0 --&gt; &lt;p lang="de" xml:lang="de"&gt;      Wenn Sie in der Textantwort einen Absatz      erzeugen möchten, geben Sie am Anfang      des Absatzes und am Ende des Absatzes ein. &lt;/p&gt;</code></pre>
+              If needed, add a span tag to enclose just the text that is in the additional language:
+              <pre><code>&lt;!-- html --&gt; &lt;p&gt;     He said, &lt;span lang="fr"&gt;"Bonjour!"&lt;/span&gt;, which      was a surprise since they didn't know he could talk. &lt;/p&gt;</code></pre>
+            </li>
+          </ol>
+ 
+          <h4>JavaScript</h4>
+          <p>If content is changed or added, or, in particular, translated, update the language attributes as well:</p>
+          <pre><code>/* html French */ document.getElementsByTagName('html')[0].lang = 'fr';  /* xhtml 1.1 English */ document.getElementsByTagName('html')[0].\     setAttribute('xml:lang','en');</code></pre>
+           
+          
+          <h3>Android Applications</h3>
+          
+          <p>Android applications can set the default language using the <a href="https://developer.android.com/reference/java/util/Locale.html">Locale</a> class. The languages supported are English, French, Chinese, German, Italian, Japanese and Korean.</p>
+
+          <h3>iOS Applications</h3>
+          
+          <p>The language for interface elements is set using the <code>accessibilityLanguage</code> property. For every language supported, a localized label or text can be provided. Voiceover by default speaks the language that the user specifies in the International property settings.</p>
+          <p>VoiceOver supports the following languages: Arabic, Chinese (Cantonese), Chinese (China), Chinese (Taiwan), Czech, Danish, Dutch, English (Australia), English (Britain), English (Irish), English (South African), English (United States), Finnish, Flemish (Belgian Dutch), French (Canadian), French (France), German, Greek, Hindi, Hungarian, Indonesian, Italian, Japanese, Korean, Norwegian, Polish, Portuguese (Brazil), Portuguese (Portugal), Romanian, Russian, Slovak, Spanish (Mexico), Spanish (Spain), Swedish, Thai, Turkish.</p>
+ 
+          <h3>PDF in Acrobat</h3>
+          
+          <p>Within the PDF document, both the document language and any changes of language within the document can be specified. </p>
+          <h4>Setting the Document Language</h4>
+          <p>To indicate the primary document language, go to the document properties at File &gt; Properties. On the Advanced tab there is an option to select the language. Choose the appropriate language in the drop-down list. If the language is not in the drop down list, type the <a href="https://www.w3.org/International/articles/language-tags/">language code</a> into the field that has the drop down.</p>
+          <img src="images/doc-lang.jpg" width="322" height="349" alt="">
+          
+          <h4>Changes of Language within a Document</h4>
+          <p>If the document contains text in a language other than the primary document language, that text needs to be defined as the appropriate language. The easiest way to do this is to find the tag that contains the text. Right-click the tag and select Properties in the context menu. In the tags tab, the properties dialog has an option to select the language from a drop-down list. If the language is not in the drop down list, type the <a href="https://www.w3.org/International/articles/language-tags/">language code</a> into the field that has the drop down.</p>
+          <img src="images/tag-lang.jpg" width="258" height="241" alt="">
+          <p>If there is a word or phrase within a sentence that needs to be defined as a different language, first split the original content using the TouchUp Reading Order (TURO) tool. This will create three tags. Check to make sure the tags are in the correct order and set the language of the text. All three tags should be at the same level beneath the parent tag.</p>
+           
+          <h3>Word</h3>
+          <p>In Word, set both the primary document language and any changes in language within the document.</p>
+          
+          <h4>Document Language</h4>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>Word 2010 reports the document language to assistive technology. Set this in File &gt; Info &gt; Properties (a dropdown) &gt; Show Document Panel.</li>
+            <li>In Word 2007, set the language in Office Button &gt; Prepare &gt; Properties &gt; Custom, but this is not reported to assistive technology.</li>
+          </ul>
+
+          <h4>Changes in Language</h4>
+          <p>To set the language of text within a document, use the "Set Language" option on the Review tab, in the proofing group.</p>
+          
+          <p>If the language is not listed, install the language pack for that particular language. For more information, see the Microsoft help: <mark><a href="https://support.office.com/en-us/article/HA010243416?CTT=5&origin=HA010248871&CorrelationId=c59c7fbc-738d-4a8d-9a00-292eb999e9f9">Determine if you need a language pack</a></mark>.</p>
+ 
+          <h3>PowerPoint</h3>
+          
+          <p>A screen reader will read content in the default language of the system unless a document identifies another language. If it tries to identify and read English words in German content, the result can be less than useful for the user.</p>
+          
+          <p>PowerPoint 2010 reports the document language to assistive technology. Set this in File &gt; Info &gt; Properties (a dropdown) &gt; Show Document Panel.</p>
+          
+          <p>In PowerPoint 2007, you can, and should set the language in Office Button &gt; Prepare &gt; Properties &gt; Custom, but this is not reported to assistive technology.</p>
+          
+          <h3>Testing HTML</h3>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Observation Techniques &amp; Tools</th>
+                  <td>First, we need to see how many language tags are required and what their values need to be. Note the primary language of the entire page. Next, skim the page looking for any changes in language. <br>
+                    <br>
+                    Second, we need to see where the language has been set. In the <a href="https://developer.paciellogroup.com/resources/wat/">Web Accessibility Toolbar (WAT)</a> use Doc Info &gt; Show Lang Attributes. If not using <a href="https://developer.paciellogroup.com/resources/wat/">WAT</a>, view the page source and search for "lang".
+                  </td>
+                </tr>
+                <tr>
+                    <th scope="row">Output</th>
+                    <td>The <a href="https://developer.paciellogroup.com/resources/wat/">WAT</a> function displays all of the <code>lang</code> attributes, including one (if present) in the <code>html</code> tag. Viewing the source and searching for "lang" provides the same information, though it takes a little more time.<br>
+                      <br>
+                      In the WAT toolbar, <code>lang</code> attributes in the <code>html</code> tag look something like this: 
+                      <img src="images/WAT_lang.jpg" width="395" height="98" alt="[html:en] appears at the beginning, upper left, of the Web page"><br>
+                      In View Source, <code>lang</code> attributes in the <code>html</code> tag look something like this:
+                      <img src="images/VIEW_SOURCE_lang.jpg" width="397" height="151" alt="In the Web page source code, there's a doctype, followed by the HTML tag which has attributes of lang='en' and xml:lang='en', followed by the opening head tag">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Analysis</th>
+                    <td>Make sure that the language of the page has been specified.<br>
+                      <br>
+                      If there are language changes on the page, the sections that have a different language from the overall page language will need <code>lang</code> attributes too. These attributes should be on a tag surrounding that text, such as a paragraph or span tag. <br>
+                      <br>
+                      The required version of the <code>lang</code> attribute varies with the doctype:
+                      <ul class="pe-list pe-styled-lists--unordered">
+                        <li>For html pages use <code>lang="en"</code>. </li>
+                        <li>For xhtml 1.0 pages, use both <code>lang="en" and xml:lang="en"</code>.</li>
+                        <li>For xhtml 1.1 pages, use <code>xml:lang="en"</code>.</li>
+                      </ul>
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+           
+          <h3>Testing Mobile Applications</h3>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>Use the screen reader (VoiceOver on iOS and TalkBack on Android) to evaluate language.
+                  </td>
+                </tr>
+                <tr>
+                    <th scope="row">Review</th>
+                    <td>Note any text on the page that is in different language than the primary language set on the device. Read the page with the screen reader.
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Analysis</th>
+                    <td>Check that the text is read in the correct dialect for the language. Note: you may need to download the language packs first if they are not already installed.
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+           
+          <h3>Testing PDF in Acrobat</h3>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>Use the Acrobat File &gt; Properties dialog, Advanced tab, to verify that the language has been set.  When a different language is used for specific text, verify that the text is contained in a separate tag, whose properties indicate the proper language. 
+                  </td>
+                </tr>
+                <tr>
+                    <th scope="row">Output</th>
+                    <td>Inspect the setting to ensure that it is correct. The Accessibility Full Check will also report if there is no language specified for the document.
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Analysis</th>
+                    <td>Make note of any text that is not associated with the proper language, and indicate if the document does not specify the language.
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+
+          <h3>Related Guidelines</h3>
+          <h4>WCAG 2.0 Level A - SC 3.1.1 Language of Page: </h4>
+          <p>The default human language of each Web page can be programmatically determined. (Level A)</p>
+          <h4>WCAG 2.0 Level AA - SC 3.1.2 Language of Parts: </h4>
+          <p>The human language of each passage or phrase in the content can be programmatically determined except for proper names, technical terms, words of indeterminate language, and words or phrases that have become part of the vernacular of the immediately surrounding text. (Level AA)</p>
+          <h4>508 Refresh 3-G: Human Language</h4>
+          <p>When supported in the technologies of electronic documents, the default human language of electronic document must be PROGRAMMATICALLY DETERMINABLE.</p>
+          <h4>508 Refresh 3-H: Language of Parts</h4>
+          <p>When supported in the technology of electronic documents, the human language of each passage or phrase in electronic documents must be PROGRAMMATICALLY DETERMINABLE.</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
       <h2 id="g17"></h2>
