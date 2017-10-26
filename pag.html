@@ -103,7 +103,7 @@
         <li><a href="#g17">17: Write page and frame titles that give the purpose of the page or the frame (Page &amp; Frame Titles)</a></li>
         <li><a href="#g18">18: Consider all users while writing instructions for user interfaces (User Interface Instructions)</a></li>
         <li><a href="#g19">19: Use properly nested markup tags and correct spelling (Valid Markup &amp; Spelling)</a></li>
-        <li><a href="#g20">20: </a></li>
+        <li><a href="#g20">20: Make sure screen readers can speak info about controls (e.g. "checkbox, selected") (UI Control Role, Name, State &amp; Options)</a></li>
         <li><a href="#g21">21: </a></li>
         <li><a href="#g22">22: </a></li>
         <li><a href="#g23">23: </a></li>
@@ -2958,10 +2958,239 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
 
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
-      <h2 id="g20"></h2>
+
+
+
+      <h2 id="g20">Guideline 20. Make sure screen readers can speak info about controls (e.g. "checkbox, selected") (UI Control Role, Name, State &amp; Options)</h2>
       <div class="guideline_content">
+        <p class="summary">Use standard user input controls (e.g. HTML form controls, Flash accessible components) for their intended purpose or, if no appropriate standard controls exist, create or repurpose controls so that screen readers present the role, name, current state (including changes in state) and available options.</p>
+        
+        <h3>Rationale</h3>
+        <p>When you choose to include a standard user interface element in a piece of media, it comes with much more than is seen by the typical user. For example, in HTML if you place a set of radio buttons on the screen, screen reader users will hear what the control is, how many options there are, what the options are*, which option is currently selected and which option has focus. In addition, screen reader users can work through the screen reader to select an option.</p>
+        
+        <p>When we create custom UI components, we need to ensure that the same information is available and that the same interactions can take place.</p>
+        
+        <p>*Requires proper labeling, see <a href="#g14">PG 14</a></p>
+        
+        <h3>General Techniques</h3>
+        
+        <h4>Use standard controls, when they meet the need</h4>
+        <p>When possible, use a pre-existing standard UI control. These will work well in more assistive technologies than you'll be able to test in, and users will be used to using them.</p>
+        
+        <h4>When creating a custom UI control or evaluating/fixing a custom UI control from a Library:</h4>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Give each control a name or label much like the labels used for standard form controls, as described in <a href="#g14">PG 14</a>. Test with a screen reader to be sure the name or label is available to the screen reader.</li>
+          <li>Indicate the role of each control. In other words, indicate what type of UI control it is (e.g. pulldown menu, link, radio button). This provides insight into how the control will be used and, in the best cases, allows screen readers to walk users through the process of using the control. Test with a screen reader to be sure this information is available to the screen reader.</li>
+          <li>Indicate the state of each control. In other words, indicate which option is currently selected. Test with a screen reader to be sure that screen reader users will know the state of the control.</li>
+          <li>Make sure the list of options is available to screen reader as well. Test with a screen reader to be sure the options are available and can be selected through a screen reader.</li>
+        </ul>
+
+        <h3>HTML &amp; JavaScript</h3>
+        
+        <h4>When standard HTML elements are used creatively</h4>
+        <p>Often CSS and images are used with form elements, image maps and links to create controls that appear to be custom widgets, but that are actually standard HTML elements. For example, a piano interface can be created using a simple image map:</p>
+        
+        <pre><code>&lt;map name="piano"&gt;     &lt;area shape="rect" coords="20,20,40,40"           onclick="play('c');" alt="C"&gt;     &lt;area shape="rect" coords="50,20,70,40"           onclick="play('d');" alt="D"&gt;     &lt;area shape="rect" coords="80,20,100,40"           onclick="play('e');" alt="E"&gt;     &lt;area shape="rect" coords="110,20,130,40"           onclick="play('f');" alt="F"&gt;     &lt;area shape="rect" coords="140,20,160,40"           onclick="play('g');" alt="G"&gt;  &lt;/map&gt;  &lt;img src="piano.gif" width="180" Height="60"      alt="Select a note to play the note"       usemap="#piano" /&gt;</code></pre>
+        <p>Whenever using HTML/XHTML elements in unique ways, follow basic accessibility standards, like adding alt-text and form labels. Also, be sure to test the experience with a screen reader. In the example above, testing with a screen reader and user testing with screen reader users reveals that many users would like to turn off the alt-text for each key, once they've read through the keys a couple times. To do this, you can position a link for this off screen so that it will be available only to screen reader users:</p>
+        
+        <pre><code>.screen_readers_only {         position:absolute;      left:-999px;      top:auto;      width:1px;      height:1px;      overflow:hidden; }</code></pre>
+        <p>Connect the link to a JavaScript that uses the DOM to set the alt-text for each <code>area</code> element to null.</p>
+        
+        <h4>Links that make changes to the page | Toggle buttons</h4>
+        <p>Sometimes seemingly simple links can be custom controls requiring role and state information.</p>
+        
+        <p>Normally, a link brings you to a new location. When this is the case, the role information that automatically comes with a link is appropriate and no state information is needed.</p>
+        
+        <h4>Role</h4>
+        <p>However, if a link is used with JavaScript to make changes to the page, it may need both role and state information. There are several ways to provide role information for this type of link or button:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>The link text might make this clear on it's own. For example a screen reader will read an a <code>href</code> element with link text of "Show Details about Registration", as "Show Details about Registration Link". That makes the situation pretty clear.</li>
+          <li>A <code>&lt;button&gt;</code> or an <code>&lt;input type="image"&gt;</code> element can be used instead of a link element. This will cause screen readers to announce a role of "button" rather than a role of "link". This more accurately describes the control and helps to let screen reader users know what to expect. This is a particularly good idea if this item looks like a button visually. This will help facilitate conversations about the user interface between blind and sighted users. You can control the appearance of the HTML <code>button</code> element using CSS:
+            <pre><code>button.clearformatting {      /* remove browser-provided 3d edge effect */     border: 0;      /* remove extra spacing, and animated effect */     padding: 0;      /* remove color assigned by browser */     background: transparent;      /* add any formatting you like */     background: url('button_texture.gif') repeat  }</code></pre>
+          </li>
+          <li>Another option if you'd like your element announced as a button, but you are using a link, is to use the WAI-ARIA <code>role</code> attribute to change an <code>&lt;a href&gt;</code> element's role to button: <code>role="button"</code>.</li>
+        </ul>
+
+        <h4>State</h4>
+        <p>Links and buttons that change the page often require state information. In general, ask yourself, "Will users know which choice is currently active, without exploring the page, and without trying options multiple times to compare the differences?" If the answer is "no", you need to add state information.</p>
+        
+        <p>There are several ways to provide role information for this type of link or button:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>CLEAN UP The example above suggests adding a link that toggles alt-text on and off for some piano keys. In this case, the script that toggles the alt-text on and off should change the link text to reflect the current state (i.e. “turn off alt-text”, “turn on alt-text”).</li>
+          <li>ARIA</li>
+          <li>Finally, you might choose to use a completely different type of control! Consider again, the controls to turn off alt-text for piano keys in the example described above. Two radio buttons might be used, instead, as these standard HTML form elements automatically provide information about their state to screen readers. For example, a screen reader would present this set of radio buttons as "radio button, one of two, alt-text on, checked".</li>
+          <li>If you need to create a complex custom UI element, check JavaScript libraries to see if someone has already developed and tested an accessible UI control that meets the need. Libraries to check include:Be sure that the documentation indicates that the specific item is accessible &amp; still be sure to test with a screen reader. 
+              <ul class="pe-list pe-styled-lists--unordered">
+                <li><a href="http://wiki.fluidproject.org/display/fluid/Components">http://wiki.fluidproject.org/display/fluid/Components</a></li>
+                <li><a href="http://www.dojotoolkit.org/developer/a11yStatement">http://www.dojotoolkit.org/developer/a11yStatement</a></li>
+                <li><a href="http://developer.yahoo.com/yui">http://developer.yahoo.com/yui</a></li>
+                <li><a href="www.mozilla.org/access/dhtml">www.mozilla.org/access/dhtml</a></li>
+                <li><a href="http://jquery.com/">http://jquery.com/</a></li>
+              </ul>
+          </li>
+          <li>Do not use inaccessible components of JavaScript libraries without adapting them for accessibility. Keep in mind, if the component is not accessible, using a library can make it more difficult to add accessibility. This is because the JavaScript code used in libraries is often more complex than JavaScript written especially for the task at hand.</li>
+        </ul>
+        
+        <h3>ARIA / HTML 5 Widgets</h3>
+        <p>This section will be updated with additional widgets as testing confirms that the HTML 5 and the Web Accessibility Initiative, Accessible Rich Internet Applications (WAI-ARIA) elements and attributes are well supported.</p>
+        
+        <h4>Slider / Range</h4>
+        <p>Sliders are user interface controls that allow users to select a value from a range of values. Sliders define minimum and maximum values.</p>
+        
+        <p>Eventually, the HTML 5 <code>&lt;input type="range"&gt;</code> element will be a way to create a slider. However, as November 2012, most browsers render these as simple text inputs. (That's for all users.) </p>
+        
+        <p>So, for now, sliders are usually created using JavaScript or using JavaScript libraries. To make these custom controls accessible, use WAI-ARIA (or a library that uses WAI-ARIA). (And don't forget to make the slider keyboard accessible. You should be able to tab to the slider, and use the arrow keys to change the value.)</p>
+        
+        <p>Here are the WAI-ARIA attributes to use:</p>
+        <table class="pe-table">
+                <tr>
+                  <td><code>role="slider"</code></td>
+                  <td>Says, "this is a slider"
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>value-now="5"</code></td>
+                  <td>Gives the current value. Use JavaScript to update this as the slider is moved.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>value-min="0"</code></td>
+                  <td>Says, "this is the lowest value allowed". This value shouldn't change as the slider is used.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>value-max="176"</code></td>
+                  <td>Says, "this is the highest value allowed". This value shouldn't change as the slider is used.</td>
+                </tr>
+                <tr>
+                  <td><code>value-text="5 balloons"</code></td>
+                  <td>Use this to tell screen readers how you'd like the value-now value to be expressed.</td>
+                </tr>
+                <tr>
+                  <td><code> aria-label="Mylar balloons for your party" or aria-labelledby="idOfOnScreenLabel"	</code></td>
+                  <td>Use this to tell screen readers users which slider this is.</td>
+                </tr>
+            </table>
+
+        <p>Here are JavaScript Library Sliders that already have these built in:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li><a href="http://www.bbc.co.uk/glow/docs/1.5/furtherinfo/widgets/slider/" target="_blank">Open info on Glow Slider in a new window</a></li>
+          <li><a href="http://hanshillen.github.io/jqtest/#goto_slider" target="_blank">Open info on jQuery UI Slider in a new window</a></li>
+        </ul>
+
+        <h3>Android Applications</h3>
+        <p>The role, name, state and options are provided for standard widgets and extensions of standard widgets. Use <code>contentDescription</code> to provide role and changes of state information for custom controls.</p>
+        
+        <p>See <a href="https://developer.android.com/guide/topics/ui/accessibility/apps.html#custom-views">Android's Custom View documentation</a> for information on supporting the directional controller and on how to implement the accessibility API methods.</p>
+        
+        <h3>iOS Applications</h3>
+        
+        <p>In iOS native UIKit views and controls will automatically have most of the necessary accessibility properties set. See <a href="https://developer.apple.com/documentation/uikit">UIKit User Interface Catalog</a> for specific information about the different views and controls and what is required to make them accessible.</p>
+        <p>Custom accessible interface elements, should define the attributes for label, traits, and value as needed for the type of interface element. If additional information is needed to communicate how to interact with a control, use the <code>accessibilityHint</code> property. </p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li><strong>Label</strong> – defines the name of the control</li>
+          <li><strong>Traits</strong> – describes element’s state, behavior or usage. A control can have more than one trait. View the full list of traits.</li>
+          <li><strong>Value</strong> – current value of an element</li>
+          <li><strong>Hint</strong> - additional information about a control</li>
+        </ul>
+
+        <h3>Flash</h3>
+        <h4>CheckBoxes and RadioButtons</h4>
+        <p>When using Flash CheckBox and RadioButton Components, you need to include <code>enableAccessibility</code> so that screen readers will know these are not just buttons, but are RadioButtons or CheckBoxes and so that screen readers will convey the state of the control (e.g. checked/unchecked). This code varies slightly depending on your authoring environment, so get the code from the code library of your particular authoring tool. Here are the steps in CS3:</p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Window</li>
+          <li>Actions</li>
+          <li>(if needed) Show Toolbox</li>
+          <li>fl.accessibility (or similar)</li>
+          <li>Open the folder for the component you used.</li>
+          <li>Drag "enableAccessibility" into the code window.</li>
+        </ol>
+        <p>To make fully accessible checkBoxes and radioButtons, see also Pearson Guideline 14, which discusses providing labels for form controls.</p>
+  
+        <h3>Testing HTML</h3>
+        <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>Review the page to see if there are any custom widgets, such as icons that open and close sections of the document or form controls that are not standard HTML controls. They might be created in Flash or through custom HTML and JavaScript. One clue is that, when you test for Pearson Guideline 14, these won't be hightlighted by the <a href="http://www.jimthatcher.com/favelets/">form labels favelet</a>. If there are custom widgets, test the interactions with at least <a href="http://www.freedomscientific.com/Products/Blindness/JAWS">JAWS</a>, and ideally with other screen readers as well.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Output</th>
+                  <td>If things are going well, JAWS will announce all information needed to use the custom widget:
+                      <ul class="pe-list pe-styled-lists--unordered">
+                        <li>Role of the Widget--What is this? examples: group of radio buttons, timer</li>
+                        <li>Name of the widget--What is this being used for on this site? examples: select car color, time quiz</li>
+                        <li>State of the widget--What option is selected or what is the widget like right now? examples: blue selected, timer running</li>
+                        <li>Available options--What are my choices? examples: blue|silver|black, stop|restart|pause|resume</li>
+                      </ul>
+                      Alternatively, if things are not going well, the widget will visually reveal its role, name, state and options, but some of this essential information will not be announced in JAWS.
+                  </td>
+                </tr>
+                <tr>
+                    <th scope="row">Analysis</th>
+                    <td>Will a screen reader user have the information needed to use the widget? If not, this is an error.
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+
+        <h3>Testing Mobile Applications</h3>
+        <table class="pe-table">
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Tools</th>
+                <td>Review the screen and identify the different types of user interface controls used.  Use the device screen reader (VoiceOver on iOS and TalkBack on Android) to read the controls.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Output</th>
+                <td>If things are going well, the screen reader will announce all information needed to use the custom widget:
+                    <ul class="pe-list pe-styled-lists--unordered">
+                      <li>Role of the Widget--What is this? examples: group of picker control, segmeneted control</li>
+                      <li>Name of the widget--What is this being used for on this site? examples: visible control text label</li>
+                      <li>State of the widget--What option is selected or what is the widget like right now? examples: blue selected, students selected 1 of 2</li>
+                      <li>Available options--What are my choices? examples: blue|silver|black, students|instructors</li>
+                    </ul>
+                    Alternatively, if things are not going well, the widget will visually reveal its role, name, state and options, but some of this essential information will not be announced in screen reader.
+                </td>
+              </tr>
+              <tr>
+                  <th scope="row">Analysis</th>
+                  <td>Will a screen reader user have the information needed to use the widget? If not, this is an error. Note: Android applications are limited in the roles, states and options that can be programmatically set. If these are not being read, this information should be added the control label.
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+
+        <h3>Related Guidelines</h3>
+        <h4>508 Web 1194.22 (l)</h4>
+        <p>When pages utilize scripting languages to display content or to create interface elements, the information provided by the script shall be identified with functional text that can be read by assistive technology.</p>
+        <h4>508 Software 1194.21 (d)</h4>
+        <p>Sufficient information about a user interface element including the identity, operation and state of the element shall be available to assistive technology. When an image represents a program element, the information conveyed by the image must also be available in text.</p>
+        <h4>WCAG 2.0 Level A – SC 4.1.2 Name, Role, Value:</h4>
+        <p>For all user interface components (including but not limited to: form elements, links and components generated by scripts), the name and role can be programmatically determined; states, properties, and values that can be set by the user can be programmatically set; and notification of changes to these items is available to user agents, including assistive technologies. (Level A) </p>
+        <p>Note: This success criterion is primarily for Web authors who develop or script their own user interface components. For example, standard HTML controls already meet this success criterion when used according to specification.</p>
+        <h4>508 Refresh 3-P: User Interface Components (no consensus)</h4>
+        <p>Work on this provision was not complete. Please see the drafts and other discussion material in Section 7</p>
+        <h4>508 Refresh 3-U: AT Interoperability (partial consensus)</h4>
+        <p>Work on this provision was not complete. Please see the drafts and other discussion material in Section 7.</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
+      
       <h2 id="g21"></h2>
       <div class="guideline_content">
         <a class="skippy" href="#toc">Back to TOC</a>
