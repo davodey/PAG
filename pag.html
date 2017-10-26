@@ -2815,6 +2815,54 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
 
       <h2 id="g18">Guideline 18. Consider all users while writing instructions for user interfaces (User Interface Instructions)</h2>
       <div class="guideline_content">
+        <p class="summary">When identifying features of user interfaces in instructions and help content, include semantic information and labels as opposed to <span class="with-color">exclusively</span> referring to visual formatting (e.g. "the option furthest to the right", "in the blue area") or to auditory information (e.g. "when you hear a beep").</p>
+        <h3>Rationale</h3>
+        <p>Students who use assistive technologies (e.g. screen readers, custom style sheets) do not expect help content to provide information on using the assistive technologies. However, it is essential that they receive the same guidance about the media as other students. The key to this is ensuring that all students can identify the media elements that are being described in instructions and help content.</p>
+        
+        <h3>General Techniques</h3>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>These PGs explain how to make essential information available to all users through semantic markup and text. This semantic information should be used to describe media elements as opposed to exclusively using descriptions of the visual or auditory aspects of the elements.<br>
+            <br>
+            For example, <a href="#g14">PG 14</a> ensures that labels are explicitly associated with form elements, so the following text would work well on a help page to identify a form element:<br>
+            <pre><code>&lt;!-- Reasonable text for a Help System --&gt; &lt;p&gt;Enter your name in the form field labeled     Student Name at the top right corner of the page. &lt;/p&gt; </code></pre>
+            However, the following text does not mention the label and so could be confusing to students using screen readers and to students using a custom style sheet that changes the location of the form element on the page:<br>
+            <pe><code>&lt;!-- Not Recommended --&gt; &lt;p&gt;Enter your name in the form field at     the top right corner of the page. &lt;/p&gt; </code></pe>
+          </li>
+          <li>This guideline does not mean to discourage mentioning color, sound, shape, size or location on the screen, as these descriptors can be very helpful for some students. In general, students who have transformed the media using assistive technology are aware that they've transformed it and will gladly ignore descriptors that don't work for them when descriptors that do work for them are also present.</li>
+          <li>"Top of the page" and "bottom of the page" mention visual location but pass this guideline without further clarification as long as the content referred to is at the top or bottom (respectively) of the reading order (See <a href="#g4">PG 4</a>).</li>
+          <li>"Click" is understood by mouse users and keyboard access users alike. It is fine to use "Click" in your instructions, and when compared with alternatives, "Click" usually results in clearer instructions for all users.</li>
+        </ol>
+
+        <h3>Testing</h3>
+        <table class="pe-table">
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Review</th>
+                <td>Skim the page. Are there instructions on the page? If so, read the instructions. Will someone who is using custom CSS or who is using a screen reader know which user interface elements are being discussed?
+                </td>
+              </tr>
+              <tr>
+                  <th scope="row">Analysis</th>
+                  <td>If screen reader and custom CSS users would not have enough information to find the user interface elements (i.e. "the red button,") that is an error.<br>
+                    <br>
+                    If screen reader and custom CSS users would have enough information to find the user interface elements, but there's some information that doesn't apply to them (i.e. "the red submit your exam button,") that's <span style="font-style:italic;">not</span> an error.
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+ 
+        <h3>Related Guidelines</h3>
+        <h4>WCAG 2.0 – Level A – SC 1.3.3 Sensory Characteristics: </h4>
+        <p>Instructions provided for understanding and operating content do not rely solely on sensory characteristics of components such as shape, size, visual location, orientation, or sound. (Level A)</p>
+        <h4>508 Refresh 3-C: Size, Shape, Location</h4>
+        <p>Instructions provided for understanding information and operating on-screen user interfaces must not rely solely on shape, size, visual location, or orientation of components.</p>
+        <p>Note: Object information provided per the "Information and Relationships", "User Interface Components", or "AT interoperability" provision that describes the necessary visual cues or relationships can be used to meet this provision.</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
       <h2 id="g19"></h2>
