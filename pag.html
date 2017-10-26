@@ -102,7 +102,7 @@
         <li><a href="#g16">16: Specify the human language (e.g. Arabic, Chinese, English) of text (Human Language)</a></li>
         <li><a href="#g17">17: Write page and frame titles that give the purpose of the page or the frame (Page &amp; Frame Titles)</a></li>
         <li><a href="#g18">18: Consider all users while writing instructions for user interfaces (User Interface Instructions)</a></li>
-        <li><a href="#g19">19: </a></li>
+        <li><a href="#g19">19: Use properly nested markup tags and correct spelling (Valid Markup &amp; Spelling)</a></li>
         <li><a href="#g20">20: </a></li>
         <li><a href="#g21">21: </a></li>
         <li><a href="#g22">22: </a></li>
@@ -2865,8 +2865,97 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <p>Note: Object information provided per the "Information and Relationships", "User Interface Components", or "AT interoperability" provision that describes the necessary visual cues or relationships can be used to meet this provision.</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
-      <h2 id="g19"></h2>
+
+      <h2 id="g19">Guideline 19. Use properly nested markup tags and correct spelling (Valid Markup &amp; Spelling)</h2>
       <div class="guideline_content">
+        <p class="summary">When using markup languages (e.g. HTML, XHTML, SMIL) follow the specifications for the language and test for errors using a validator. When using human languages (e.g. English, Hindi, Japanese) test for spelling errors using a spell checker. </p>
+        <p>Note: The intent of this guideline is to avoid typing errors, tagging errors and accidentally invalid markup. Occasionally, developers will have valid reasons for markup that will not validate in a tool. Such conscious decisions are acceptable and can simply be noted in your accessibility documentation.</p>
+        <h3>Rationale</h3>
+        <p>Testing in supported visual browsers can help find some errors in markup. However, browsers often display Web pages rather well even when the pages do not follow the specifications for the markup. </p>
+        
+        <p>The errors that some browsers are able to overlook can cause issues when other tools (particularly screen readers) attempt to work with the markup.</p>
+        
+        <p>For example, screen reader users use special keystrokes to navigate data tables cell by cell. They listen to the data and to the relevant headers along the way. Occasionally a data table with a missing closing <code>&lt;/th&gt;</code> tag will look fine on many browsers. However, when a screen reader interprets the table, the missing tag can cause the wrong header to be associated with a particular data cell.</p>
+        
+        <p>Additional Benefit: Valid markup is less likely to break in new browser versions. It is also easier and less expensive to maintain than non-standard markup which often depends on browser quirks mode, reflecting legacy browser-specific behaviors. </p>
+        
+        <p>Misspellings that can are overlooked visually can make a big difference when a screenreader tries to pronounce the words. During recent accessibility reviews, we found that misspellings were greatly reducing the quality of the experience for screenreader users, even when the issues were minor for visual users.</p>
+
+        <h3>General Techniques</h3>
+        
+        <p>If you find that specific elements of your markup do not validate, but you have valid reason for this markup, pay special attention to how those elements play in screen readers.</p>
+         
+        <h3>Testing HTML</h3>
+        <table class="pe-table">
+          <caption>Valid Markup</caption>
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Tools</th>
+                <td>In the HTML Check menu of the <a href="https://developer.paciellogroup.com/resources/wat/">Web Accessibility Toolbar</a> use the W3C HTML Validator function.<br>
+                  <br>
+                  Or, in the Tools menu of the <a href="http://chrispederick.com/work/web-developer/">Web Developer Toolbar</a> use Validate HTML.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Output</th>
+                <td>Each of these tools will indicate whether or not the page validates. If there are any problems on the page, a list of validation errors and warnings is shown.
+                </td>
+              </tr>
+              <tr>
+                  <th scope="row">Analysis</th>
+                  <td>Clearly, fully valid documents are ideal in general. To meet accessibility guidelines, we require only that tags are properly nested and that id values are unique . So, at least report any errors or warnings regarding mismatched, improperly nested tags or duplicated id values.
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+  
+        <h3>Technology Specifics</h3>
+        <h4>HTML | XHTML | CSS</h4>
+        <h5>Planning</h5>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Decide in advance what version and flavor of HTML/XHTML will be used: <a href="http://www.w3.org/MarkUp/#recommendations">http://www.w3.org/MarkUp/#recommendations</a></li>
+          <li>Let all developers know which version/flavor to work toward.</li>
+        </ol>
+        <h5>Development</h5>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Follow the specifications for the chosen version.</li>
+          <li>Indicate the appropriate character encoding: <a href="http://www.w3.org/International/O-charset">http://www.w3.org/International/O-charset</a></li>
+          <li>Include a valid document type definition: <a href="http://www.w3.org/QA/2002/04/valid-dtd-list.html#DTD">http://www.w3.org/QA/2002/04/valid-dtd-list.html#DTD</a></li>
+        </ol>
+        <h5>Validate during Development</h5>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Use a tool to validate your markup, such as: <a href="http://validator.w3.org/">http://validator.w3.org/</a></li>
+          <li>Test your validator to be sure that you understand whether markup that is hidden through CSS will be tested. The W3C validator is able to test markup hidden through <code>display:none</code> and throughor <code>visibility:hidden</code>.</li>
+        </ol>
+        
+        
+        <h4>JavaScript</h4>
+        <h5>Development</h5>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>When adding HTML/XHTML elements or text content, manipulate the document object module (DOM), rather than using <code>document.write</code> or <code>innerHTML</code>. <code>innerHTML</code> is non-standard. Both <code>document.write</code> and <code>innerHTML</code> do not always write proper nodes to the Document Object Model tree. This may become an issue for custom and future assistive technologies, so DOM manipulation is best for future-compatibility. (Legacy content that is expected to be retired in the next year or two, may use these without significantly degrading the experience for users with disabilities.)</li>
+          <li>When manipulating the DOM, ensure that the markup generated meets validation standards. For example, if using JavaScript to create new nodes with ids ensure that the ids are unique.</li>
+        </ol>
+        <h5>Validate during Development</h5>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Test your validator to be sure you understand which JavaScript-generated markup it tests. For example, the W3C validator (<a href="http://validator.w3.org/">http://validator.w3.org/</a>) checks markup that is written into the page using JavaScript while the page is loaded. But, it does not check any markup that is written based on choices the user makes onscreen. In order to test this markup:<br>
+            OR
+          </li>
+          <li>indicate user choice through a query string so that each choice has a URL which can be validated</li>
+          <li>include a testing mode in your script which allows you to temporarily hard-code user choices during validation</li>
+        </ol>
+ 
+        <h3>Related Guidelines</h3>
+        <h4>WCAG 2.0 Level A – SC 4.1.1 Parsing</h4>
+        <p>In content implemented using markup languages, elements have complete start and end tags, elements are nested according to their specifications, elements do not contain duplicate attributes, and any IDs are unique, except where the specifications allow these features. (Level A)</p>
+        <p>Note: Start and end tags that are missing a critical character in their formation, such as a closing angle bracket or a mismatched attribute value quotation mark are not complete. </p>
+
+
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
       <h2 id="g20"></h2>
