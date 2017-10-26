@@ -3193,9 +3193,157 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
 
       <h2 id="g21">Guideline 21. Use encoded text instead of images of text (Encoded Text)</h2>
       <div class="guideline_content">
-        <p class="summary"></p>
+        <p class="summary">Use encoded text instead of images of text except:</p>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>Where the particular presentation is essential (e.g. image of an ancient manuscript, hand writing sample, screen capture, logo)<br>
+            OR</li>
+            <li>Where the text in question is not the main body copy and images of text are the only way to achieve the design goals (e.g. special font, anti-aliasing)</li>
+          </ul>
+         
+        <h3>Rationale</h3>
+        <p>The most basic type of text that you experience in email and text documents is called encoded text. Since computers understand encoded text as characters, encoded text is more flexible than images of text, which computers typically understand as a collection of pixels. Many user agents allow users to increase the size of both encoded text and images of text. However, particularly for large blocks of text, encoded text reflows better allowing users to avoid horizontal scrolling. </p>
+        
+        <p>Perhaps more importantly, user agents often allow users to adjust the foreground/background colors and font of encoded text. This benefits students with vision issues such as sensitivity to glare. This also benefits students with learning disabilities such as dyslexia, for whom reading can be considerably easier when text is rendered in particular color schemes.</p>
+        
+        <p>Also some students with learning disabilities use screen readers that highlight the text as they read. These highlight effects do not work with images of text.</p>
+        
+        <p>Additional Benefits: Encoded text (in place of images of text) eases localization.</p>
+        
+        <h3>HTML</h3>
+        
+        <h4>CSS can be used to Format Encoded Text</h4>
+        <p>For example:</p>
+        
+        <pre><code>h1 {      font-family: "Trebuchet MS", sans-serif;      letter-spacing: .21em;      line-height: 1.5em;      margin-bottom: .2em; }</code></pre>
+        <h4>Buttons with Rounded Edges can use Encoded Text</h4>
+        <p>Often Web designers create images of text in order to create buttons with rounded edges. CSS background images can be used to create similar buttons and tabs using encoded text. If you'd like the width of the button or tab to adjust to the text length, one option is <a href="https://alistapart.com/article/slidingdoors">A List Apart's sliding doors technique</a>. Here is an example of a button formatted using this type of technique:</p>
+        <pre><code>button.round {   border:0;    padding:0 19px 0 0;      /*       Give button element a background       image wide enough to cover the widest       button you may need. The right      side of the image is rounded.           */    background:transparent url('rt.gif') no-repeat right; }  button.round span {   display:block;    white-space:nowrap;     /*       Give span element inside button       element a background image with       just the curve to round-off the left side.      This overlaps the button background       image, hiding the left side of that image    */    background:transparent url('lf.gif') no-repeat left;    /* specify height matching image height */    height: 24px;    /* Adjust text position using       line-height and padding            where: line-height + padding-top +       padding-bottom = height */    line-height: 20px;   padding: 2px 0 2px 25px; }</code></pre>
+        <pre><code>&lt;button type="button" class="round"&gt;     &lt;span&gt;Text between button tags&lt;/span&gt; &lt;/button&gt;</code></pre>
+        <h4>Images are Not Needed for Rollover Effects</h4>
+        <p>Often, rollover effects are created by replacing one image of text with another image of text. Instead, CSS pseudo classes <code>:hover</code>, <code>:focus</code> and <code>:active</code> can be use to create rollovers that work with encoded text. For example:</p>
+        <pre><code>/* mouse */ a:hover {background: url('texture_off.gif') repeat;}  /* keyboard */ a:focus {background: url('texture_on.gif') repeat;}  /* keyboard for IE */ a:active {background: url('texture_on.gif') repeat;}</code></pre>
+         
+        <h3>PDF in Acrobat</h3>
+        <p>In a PDF document, text is rendered for display using specific graphic designs that are captured in fonts called glyphs. The text content of pages is in glyphs not characters and the text is then interpreted using Unicode, a common character encoding technology. If a character used on the page does not have a Unicode equivalent, then the text cannot be read by screen readers. </p>
+        
+        <p>Common Issues:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Non–standard bullet characters</li>
+          <li>Symbols and other document markers</li>
+          <li>Some fonts</li>
+        </ul>
+
+        <h4>Techniques for Fixing Unicode Issues</h4>
+        <p>If there are Unicode issues within the PDF document, running the full accessibility check in Acrobat will generate an error. To fix these errors, choose a different font and generate the PDF again.</p>
+        
+        <p>For characters and symbols:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>If the symbol or character does not convey information, change it to an artifact.</li>
+          <li>If a character used conveys information, either change the font or add it as an image with alternative text. These changes will need to be made in the source document then converted to a PDF.</li>
+        </ul>
+        
+        <h3>Testing HTML</h3>
+        <table class="pe-table">
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Review / Tools</th>
+                <td><img src="images/explainHowto.jpg" width="145" height="35" alt=""><br>
+                  Highlight (select) all text on the page to find out if any of it is just an image of text. For real/live/encoded text, you’ll see that individual letters are highlight-able (selectable). If the text is just an image or background image, this won’t be possible.<br>
+                    <br>
+                    If you find any areas that are just images of text, turn off background images using <a href="https://developer.paciellogroup.com/resources/wat/">Web Accessibility Toolbar</a> &gt; Images &gt; Hide Background Images.<br>
+                    <br>
+                    You can also turn off background images using Windows High Contrast Mode. On Windows, you can turn on and off Windows high contrast mode by pressing <code>alt + left shift + print screen</code>. In same cases all of the changes will not resolve when you turn it off, though, until you restart.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Output</th>
+                <td>When you hide background images, the image of text may stay the same, disappear, or be replaced with real/live/encoded text.
+                </td>
+              </tr>
+              <tr>
+                  <th scope="row">Analysis</th>
+                  <td>If the image is replaced with real/live/encoded text when you turn background images off, this text will be used for users who customize their text colors in most standard browsers and in Windows high contrast mode. You see, removal of background images is common in tools designed to allow users to choose their own text foreground and background colors. So, anytime real text appears when background images are off, the use of an image of text is not an error. (See <a href="http://wps.pearsoned.com/accessibility/115/29601/7577871.cw/index.html">the home page of this Guidelines site</a> for an example.)<br>
+                    <br>
+                    If you find any instance of a paragraph or more of main body copy that is an image of text, where real text does not appear when you turn off background images, this is an error.
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+
+        <h3>Testing Mobile Applications</h3>
+        <table class="pe-table">
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Review / Tools</th>
+                <td><img src="images/explainHowto.jpg" width="145" height="35" alt=""><br>
+                  Highlight (select) all text on the screen to find out if any of it is just an image of text. For real/live/encoded text, you’ll see that individual letters are highlight-able (selectable). If the text is just an image or background image, this won’t be possible.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Output</th>
+                <td>Observe what is text and what is an image. 
+                </td>
+              </tr>
+              <tr>
+                  <th scope="row">Analysis</th>
+                  <td>Any instance of a paragraph or more of main body copy that is an image of text is an error.
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+
+        <h3>Testing PDF in Acrobat</h3>
+        <table class="pe-table">
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Tools</th>
+                <td>Highlight (select) all text on the page using the text selection tool to find out if any of it is just an image of text. For real/live/encoded text, you will be able to highlight individual letters (they are selectable). If the text is just an image or background image, this won’t be possible.<br>
+                  <br>
+                  You can also select text on the page using TouchUp Reading Order (TURO), and then choosing "Find tag from selection" on the Tags Pane menu.  The tag should have a text container element, not a figure or image.   In Acrobat 9, TURO is under Advanced &gt; Accessibility.  In Acrobat 10, TURO is a tool on the toolbar labeled "Adjust Reading Order" and it is also under Tools &gt; Accessibility.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Output</th>
+                <td>Look at the page content as you select text for gaps in the selection. Inspect the types of tags that are used for content in the Tags Pane.
+                </td>
+              </tr>
+              <tr>
+                  <th scope="row">Analysis</th>
+                  <td> Make note of any text that is represented by images.
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+         
+        <h3>Related Guidelines</h3>
+        <h4>WCAG 2.0 Level AA – SC 1.4.5 Images of Text</h4>
+        If the technologies being used can achieve the visual presentation, text is used to convey information rather than images of text except for the following: (Level AA) 
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Customizable: The image of text can be visually customized to the user's requirements;</li>
+          <li>Essential: A particular presentation of text is essential to the information being conveyed. Note: Logotypes (text that is part of a logo or brand name) are considered essential.</li>
+        </ul>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
+
       <h2 id="g22"></h2>
       <div class="guideline_content">
         <a class="skippy" href="#toc">Back to TOC</a>
