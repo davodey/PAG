@@ -100,7 +100,7 @@
         <li><a href="#g14">14: Associate every form element with a label (Form Field Labels)</a></li>
         <li><a href="#g15">15: Write link text that tells users where the link goes (Meaningful Link Text)</a></li>
         <li><a href="#g16">16: Specify the human language (e.g. Arabic, Chinese, English) of text (Human Language)</a></li>
-        <li><a href="#g17">17: </a></li>
+        <li><a href="#g17">17: Write page and frame titles that give the purpose of the page or the frame (Page &amp; Frame Titles)</a></li>
         <li><a href="#g18">18: </a></li>
         <li><a href="#g19">19: </a></li>
         <li><a href="#g20">20: </a></li>
@@ -2656,8 +2656,160 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
           <p>When supported in the technology of electronic documents, the human language of each passage or phrase in electronic documents must be PROGRAMMATICALLY DETERMINABLE.</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
-      <h2 id="g17"></h2>
+      
+      <h2 id="g17">Guideline 17. Write page and frame titles that give the purpose of the page or the frame (Page &amp; Frame Titles)</h2>
       <div class="guideline_content">
+          <p class="summary">For each frame and for each primary media file (e.g. HTML page, Flash movie, PDF document) provide a title that:</p>
+            <ul class="pe-list pe-styled-lists--unordered summary">
+              <li>Reflects the purpose or topic of the frame or file<br>
+                AND </li>
+              <li>Differentiates the frame or file from the others in your site</li>
+            </ul>
+           
+          <h3>Rationale</h3>
+          <p>Well-written titles allow screen reader users to move between windows, documents or frames with confidence.</p>
+          
+          <p>Additional Benefits: Search engines often use titles when displaying search results. Many users use titles to select between open windows in common operating systems.</p>
+
+          <h3>General Techniques</h3>
+          
+          <p>Write titles that convey the purpose of the item and that are as unique as possible within the context of your site. For example, as of January 2009, Google wisely provides the search term(s) as the first part of the title, followed the more general information, "Google Search".</p>
+          
+          <h3>HTML Techniques</h3>
+          <ol class="pe-list pe-styled-lists--ordered">
+            <li>Give each HTML page one <code>title</code> element that reflects the purpose or the topic of the page:
+             <pre><code>&lt;title&gt;All about Elephants&lt;/title&gt;</code></pre>
+            </li>
+            <li>Do not include any markup between the opening and closing <code>&lt;title&gt;</code> tags.</li>
+            <li>Give each <code>frame</code> or <code>iframe</code> a <code>title</code> attribute that reflects the purpose of the frame:
+             <pre><code>&lt;frame src="elephants.html"         name="content"         title="Main Content"&gt;</code></pre>
+              </li>
+          </ol>
+
+          <h3>Android Applications</h3>
+          <p>The screen title should be unique and provide information to orient the user to screen. In Android applications the title of the screen is provided setting the <code>android:Label</code> on the <code>Activity</code> class or using the <code>setTitle</code> method.</p>
+
+          <h3>iOS Applications</h3>
+          
+          <p>The screen title should be unique and provide information to orient the user to screen.</p> 
+          
+          <p>If the application uses the iOS navigation bar, this is accessible by default. The default accessibility trait for a navigation bar is User Interaction Enabled. The navigation bar title should be set to the screen title and should change to the new level’s title when the screen changes.</p>
+
+          <h3>PDF in Acrobat</h3>
+          
+          <p>In a PDF document, the title should represent the content of the PDF file. The document title is defined in the document properties.</p>
+          <p>In Acrobat, go to Document Properties, and enter a title. In Acrobat 9 on Windows, this is found under File &gt; Properties (Control D) &gt; Description Tab &gt; Title Field.</p>
+          <img src="images/doc-title.jpg" width="450" height="280" alt="">
+          <p>To have the document title display in the title bar of the user agent, set the show drop down to Document Title in the Initial View tab.</p>
+          <img src="images/doc-showtitle.jpg" width="279" height="273" alt="">
+
+          <h3>Word</h3>
+          <p>Set the document properties to identify the title and subject of the document using the Word document settings.</p>
+          <p>To set the document properties:</p>
+          <ol class="pe-list pe-styled-lists--ordered">
+            <li>Go to the Office button</li>
+            <li>Select Prepare - Properties</li>
+            <li>Set the document author, title, subject and keywords</li>
+          </ol>
+
+          <h3>PowerPoint</h3>
+          
+          <p>Set the PowerPoint document properties to identify the title and subject of the document.</p>
+          
+          <p>To set the document properties:</p>
+          <ol class="pe-list pe-styled-lists--ordered"></ul>
+            <li>Go to the Office button</li>
+            <li>Select Prepare - Properties</li>
+            <li>Set the document author, title, subject and keywords</li>
+          </ol> 
+          <h3>Testing HTML</h3>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>Use the <a href="http://www.jimthatcher.com/favelets/">FrameList favelet</a> or use <a href="https://developer.paciellogroup.com/resources/wat/">Web Accessibility Toolbar (WAT)</a> &gt; Frames &gt; Frame Name/Title to display the frames and iFrames (if any).<br>
+                    <br>
+                    Make note of the title of the page from the title bar of the browser.
+                  </td>
+                </tr>
+                <tr>
+                    <th scope="row">Output</th>
+                    <td>The <a href="http://www.jimthatcher.com/favelets/">FrameList favelet</a> and the <a href="https://developer.paciellogroup.com/resources/wat/">WAT</a> function each list all frames together with their name, title and src attributes. You can click on the src link to see the frame page. 
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Analysis</th>
+                    <td>The title of each frame should suggest the purpose of the frame; the page title should be specific to the page and not generic for a set of pages.
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+           
+          <h3>Testing Mobile Applications</h3>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>Observe the page or use the screen reader (VoiceOver on iOS and TalkBack on Android) to evaluate screen title.
+                  </td>
+                </tr>
+                <tr>
+                    <th scope="row">Review</th>
+                    <td>Look in the navigation bar or the top of the application for the name.
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Analysis</th>
+                    <td>Check that the page title is specific to the screen and not generic for a set of screens.
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+
+          <h3>Testing PDF in Acrobat</h3>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>Use the Acrobat File &gt; Properties dialog &gt; Description tab to verify that the proper title is entered, and that on the Initial View tab "Show" is set to "Document Title."
+                  </td>
+                </tr>
+                <tr>
+                    <th scope="row">Output</th>
+                    <td>The information will appear in the dialog, and the title should also appear in the Acrobat window title bar.
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Analysis</th>
+                    <td>Make note of any variance from this guideline.
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+           
+          <h3>Related Guidelines</h3>
+          <h4>508 Web § 1194.22 </h4>
+          <p>Frames shall be titled with text that facilitates frame identification and navigation.</p>
+          <h4>WCAG 2.0 Level A – SC 2.4.2 Page Titled</h4>
+          <p>Web pages have titles that describe topic or purpose. (Level A)</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
       <h2 id="g18"></h2>
