@@ -110,7 +110,7 @@
         <li><a href="#g24">24: Allow users to stop motion (Ability to Stop Motion)</a></li>
         <li><a href="#g25">25: Allow stationary view of moving content (Stationary View of Moving Content)</a></li>
         <li><a href="#g26">26: Make sure text has good foreground/background contrast (Contrast for Text Readability)</a></li>
-        <li><a href="#g27">27: </a></li>
+        <li><a href="#g27">27: Don't Rely on Color Coding</a></li>
         <li><a href="#g28">28: </a></li>
         <li><a href="#g29">29: </a></li>
         <li><a href="#g30">30: </a></li>
@@ -3966,8 +3966,74 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
 
-      <h2 id="g27"></h2>
+      <h2 id="g27">Guideline 27. Don't Rely on Color Coding</h2>
       <div class="guideline_content">
+          <p class="summary">When color is used to provide information, also provide the information through another <span class="with-color">visual</span> method.</p>
+           
+          <h3>Rationale</h3>
+          <p>People with color blindness can have difficulty distinguishing between colors, particularly red/green, red/black and green/blue. In addition people with visual impairment often experience difficulty with color perception. So, if color is used to provide information, the information should also be provided in another way for these visual users. </p>
+          
+          <p>Also, even a user who has no color vision issues might turn off style sheets, use their own style sheet, or select custom colors. If you've provided information by color coding text, for example, the information may be lost with these customizations. </p>
+          
+          <p>PGs 27 – 29 discuss ways to make visual content available to those who cannot see it. Many of these techniques involve providing content that is hidden to most users, and revealed only through assistive technologies, like screen readers. </p>
+          
+          <p>When providing alternate content for color though, the content must be available to users without assistive technology. For example, if a red check mark and a green check mark are used to indicate correct and incorrect answers, hidden alt-text for the check mark images is not sufficient for <a href="#g27">PG 27</a>. Using a red x and a green check mark would satisfy <a href="#g27">PG 27</a>, as the variation in shape is a supplemental visual indicator. (And, as described in <a href="#g29">PG 29</a>, with alt-text for the images, the information is also available to screen readers.)</p>
+  
+          <h3>Techniques</h3>
+          
+          <h4>Text Labels</h4>
+          <p>When you use color coding, the simplest solution is to provide text labels in addition to color. For example, in the screen capture below, the quiz results are expressed visually by rectangles, which are labeled with both color coding and text labels.</p>
+          <img src="images/newresults.gif" width="321" height="126" alt="Quiz results with a green bar representing percent correct and a red bar representing percent incorrect. The bars are labeled with the words 'correct' and 'incorrect'.">
+          
+          <p>The words correct and incorrect label each rectangle so that users who are color blind can still understand the graphics. The image below shows the same screen capture as it would be seen by a user with the most common form of color blindness, Deuteranopia:</p>
+          <img src="images/newresults_Deuteranope.jpg" width="321" height="126" alt="Percent correct and incorrect are both represented by dark brown bars. But, since they are labeled, it is clear which is which.">
+          
+          <h4>Lead Lines</h4>
+          <p>For maps and diagrams, lead lines to associate labels with sections of the image can be helpful.</p>
+          <img src="images/lead_lines.png" width="454" height="255" alt="In this building map, labels are placed outside the map, but near what they label. Short black lines lead from the label to the corresponding section of the map.">
+          
+          <h4>Patterns and Symbols</h4>
+          <p>Another method is to supplement color with other visual elements such as patterned fills, varying line styles or even symbols added to shaded areas. </p>
+          <img src="images/patterns.fw.png" width="368" height="355" alt="One area of a floor plan is red with white dots, another is blue with a large letter S in the center. A key maps the first to 'High Radiation - Wear Protective Gear' and the second to 'Sound Sensitive Equipment - Shut Down Click-to-Speak Devices'">
+          
+          <p>To keep use of patterns from creating overly busy graphs you can:</p>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>Label a section with one letter or just one shape instead of a pattern</li>
+            <li>Instead of using equally busy patterns for each section of a graph, start solid and add pattern elements, so that the patterns get busier or less busy with the trend, or along an axis. For example, if one section of a chart is filled with 20 tiny diamonds, the next may have only 10 tiny diamonds spaced further apart, the next may have only 5 tiny diamonds spread even further apart, and the last may have no pattern at all.</li>
+            <li>Highlight just one section of a graph with pattern</li>
+            <li>Change the size of pattern elements. For example, if one section of a chart is filled with 20 tiny diamonds, use 7 larger diamonds for the next section, and 3 even larger diamonds for the next.</li>
+          </ul>
+          
+          <h4>Tip: But Please Keep the Colors!</h4>
+          <p>Do not remove color to meet accessibility requirements, as color is helpful to many users, including those with cognitive impairments. In general, accessibility requirements are best met by enriching content with multiple means of rendering information, rather than by removing features.</p>
+          
+          <h3>Testing</h3>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Review</th>
+                  <td>Skim the page looking for any color coding.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Analysis</th>
+                  <td>For any cases of color coding, see if there is another <strong>visual</strong> way to get the same information. If not, this is an error. Remember that many users who can’t see certain color coding will not have a screen reader, so text alternative does not correct such issues. 
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          <h3>Related Guidelines</h3>
+          <h4>508 Web § 1194.22 (c)</h4>
+          <p>Web pages shall be designed so that all information conveyed with color is also available without color, for example from context or markup.</p>
+          <h4>WCAG 2.0 Level A - SC 1.4.1 Use of Color:</h4>
+          <p>Color is not used as the only visual means of conveying information, indicating an action, prompting a response, or distinguishing a visual element. (Level A)</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
       <h2 id="g28"></h2>
