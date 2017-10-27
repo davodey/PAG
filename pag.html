@@ -3528,8 +3528,84 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
 
       <h2 id="g23">Guideline 23. Design e-learning so that it does not cause blink, flash or flicker (No blinking/No flickering)</h2>
       <div class="guideline_content">
+          <p class="summary">Design e-learning so that it does not cause blink, flash or flicker.</p>
+          
+          <p>Notes: </p>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>This includes text and animations that do not move smoothly, creating a flickering effect.</li>
+            <li>If blinking, flashing or flickering is necessary for pedagogical purposes, and you are a Pearson employee, contact <a href="mailto:accessibility@pearson.com">accessibility@pearson.com</a>.</li>
+          </ul>
+
+          <h3>Rationale</h3>
+          <p>Certain types of blinking, flashing and flickering can cause seizures in people with a condition called photosensitive epilepsy. In addition, users who are susceptible to this condition may not be aware of it and so will pay little attention to warning messages that address people with epilepsy.</p>
+          
+          <p>The more of the user's field of vision that is taken up with flashing content, the more likely there will be issues. Although some studies have recently be undertaken to try to determine safe levels of flash based on the speed of the flashing, the size of the area affected, and the colors/brightness involved, details of flashing in Web media (speed, size &amp; color) can vary from system to system and user agent to user agent and so cannot be guaranteed. </p>
+          
+          <p>In addition, blinking, flashing and flickering content can be distracting to most users and especially users with learning disabilities and attention deficit disorders. If such content is presented along side text, for example, users may have difficulty to concentrating on reading the text.</p>
+          
+          <h3>HTML</h3>
+          <ol class="pe-list pe-styled-lists--ordered">
+            <li>Do not use the <code>&lt;blink&gt;</code> tag. (It is non-standard HTML.) </li>
+            <li>Do not use the <code>&lt;marquee&gt;</code> tag. (It is non-standard HTML and it causes flicker effects while a user focuses on the text trying to read it.)</li>
+            <li>Do not use animations that blink or flicker.</li>
+          </ol>
+
+          <h3>JavaScript and Applications</h3>
+          <h4>Intentional Flicker or Choppy Animations</h4>
+          <p>Don't create animation that blinks or flickers.</p>
+          
+          <h4>Accidental Flicker</h4> 
+          <p>If code that changes the display runs in a loop or may run for a series of user actions, consider whether it depends on accompanying conditions to avoid blinking. For example, code that switches images might depend on the presence of a particular backdrop to avoid blinking. If so, make sure the code will not run without the condition needed to avoid blinking.</p>
+          
+          <h4>Accidental Flicker onLoad</h4>
+          <p>If a page layout is made up of many elements layered on top of each other as shown below, it is important to ensure that slow loading won't cause blinking.</p>
+          <img src="images/layout.fw.png" width="179" height="122" alt="A page layout has a black border around a white frame that holds two dark grey regions, one of which contains two light grey regions.">
+      
+          <p>If you use code to place each box in the design, the user's screen may go through the following states:</p>
+          <img src="images/flash_layout.fw50.fw.png" width="341" height="222" alt="The browser is white, then filled with black, then a large white rectangle fills most of that, then 2 black rectangles fill most of the white rectangle,then two light grey rectangles fill most of one of the black rectangles. ">
+          
+          <p>Depending on the user's load speed, this can create blinking. To avoid or fix this, make all of the elements the same color while they are loading, and only assign their final colors after they are all in place.</p>
+          
+          <h4>Accidental Flicker Based on User Actions</h4>
+          <p>If code that creates one blink or change in color is triggered by user action, consider:</p>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>Is it possible for user action to create a backlog of these events that will be processed later, creating a flicker effect? If so, design the code so that it will not keep running through those actions to catch up.</li>
+            <li>To work efficiently, would the user have to trigger this repeatedly, creating a flashing effect? If so, avoid changes in blocks of color for that activity.</li>
+          </ul>
+
+          <h3>Testing</h3>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Review</th>
+                  <td>Review for anything that blinks or flickers. Look for items that blink or flicker accidentally in addition to items that blink or flicker for the purpose of that effect. For example, sometimes an animation created with too few frames will move in a choppy manner. Watch what happens while the UI is loading. Test on a slow connection in addition to a fast connection to understand what users may experience.
+                  </td>
+                </tr>
+                <tr>
+                    <th scope="row">Analysis</th>
+                    <td>If you find such motion, it is an error. If this motion is necessary for the pedagogical value of the materials, and you are a Pearson employee, contact <a href="mailto:accessibility@pearson.com">accessibility@pearson.com</a> and we'll work with you to design a solution with the least problematic type of blinking possible and with warnings so that users can avoid the content if needed.
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+
+          <h3>Related Guidelines</h3>
+          <h4>508 Web § 1194.22 (j)</h4>
+          <p>Pages shall be designed to avoid causing the screen to flicker with a frequency greater than 2 Hz and lower than 55 Hz. </p>
+          <h4>508 Software</h4>
+          <h4>WCAG 2.0 Level A - SC 2.3.1 Three Flashes or Below Threshold</h4>
+          <p>Web pages do not contain anything that flashes more than three times in any one second period, or the flash is below the general flash and red flash thresholds. (Level A)</p>
+          <h4>WCAG 2.0 Level AAA – SC 2.3.2 Three Flashes</h4>
+          <p>Web pages do not contain anything that flashes more than three times in any one second period. (Level AAA)</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
       <h2 id="g24"></h2>
       <div class="guideline_content">
         <a class="skippy" href="#toc">Back to TOC</a>
