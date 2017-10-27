@@ -3346,6 +3346,182 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
 
       <h2 id="g22">Guideline 22. Use text that users can resize (Text Resize)</h2>
       <div class="guideline_content">
+        <p class="summary">Ensure that text size (except for captions) can be increased to at least 200% using controls in either the user agent (e.g. Web browser, PDF reader, Flash player) or the media. No content or functionality should be lost.</p>
+        <p>Note: This is primarily the responsibility of the user agent. To address this guideline, we ensure that our content either does not interfere with the user agent's solution or provides a replacement for the user agent's solution.</p>
+
+        <h3>Rationale</h3>
+          <p>There are many ways that users can increase the size of text on the screen. People who need high levels of magnification use dedicated screen magnification software (e.g. ZoomText, MAGic). Operating systems generally provide magnification utilities with their accessibility options. Adjusting monitor resolution can also achieve increased text sizes. And Web browsers allow this through custom style sheets.</p>
+          
+          <p>However, many users with minor vision or reading comfort issues rely on the basic resize features built into the user agent to increase text size just a little. Some users also work with a combination of dedicated screen magnification software and browser features, to achieve an optimal text-size. As such, it is important that the media content does not disable or interfere with these features.</p>
+  
+        <h3>General Techniques</h3>
+          
+          <h4>All of the Text</h4>
+            <p>Be sure <strong>all</strong> of the text can be resized, including text in the navigation and on the buttons</p>
+          
+          <h4>Supporting the User Agent's (e.g. browser, player) solution</h4>
+            <p>Test the media with the resize and zoom features of supported user agents and fix any issues that are found.</p>
+          
+          <h4>Creating your own text resize feature</h4>
+            <p>Creating your own text resize feature is only needed if:</p>
+            <ul class="pe-list pe-styled-lists--unordered">
+              <li>None of your supported user agents on a particular platform have resize features</li>
+              <li>Or, if you choose not to support the resize features of your supported user agents</li>
+            </ul>
+          
+          <h4>Special Consideration for Reading Experiences</h4>
+          <p>When the primary purpose of the product is to deliver a reading experience, as is the case in an eBook reader, we recommend ensuring that text within the main reading panel reflows. Text reflow is probably of considerably less importance when there is just a bit of text on a screen with many controls. Scrolling horizontally to read one line of instructions or to reach a control is likely to be a reasonable user experience. However, when there are hours of reading and studying to be done with the main text of a product, horizontal scrolling within that main text area makes for a bad user experience.</p>
+
+          <h3>HTML &amp; JavaScript</h3>
+          
+          <h4>Supporting Internet Explorer 6 or Earlier</h4>
+            <p>If you need to support IE 6 or earlier, do not set font size using pixels. Instead use ems, exs, percentages or named sizes (e.g. <code>small</code>, <code>medium</code>).</p>
+          <h4>Solving Common Problems with Browser Zoom</h4>
+            <p>Usually browser zoom features will work without any adjustments; however, some minor issues may be discovered, for example: </p>
+            <ul class="pe-list pe-styled-lists--unordered">
+              <li>You may find that you need to set scrolling to auto for frames, so that scrollbars will appear when needed. </li>
+              <li>You may also find that you need to allow windows to be resized.</li>
+              <li>You may find that a column of text gets lost off the right side of the screen at 200% zoom, and users could miss the information entirely or may need to scroll horizontally. In this case, use <code>float:left</code> to position your elements and to allow the column that gets lost to move below the other content as text size increases or as the window width decreases.</li>
+              <li>If the space between elements or the page margin increase too much as text size increases, set the size of that spacing using fixed measures, rather than using ems or percent.</li>
+            </ul>
+
+          <p>If you find that elements overlap when the text is resized, the following adjustments often help: </p>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>positioning elements using percent or ems, so their distance from other objects increases as the text-size increases</li>
+            <li>specifying the <code>width</code> and/or <code>height</code> of boxes that hold text using percent or ems, so that the width and/or height expands as text-size increases</li>
+            <li>setting the CSS <code>overflow</code> property to <code>auto</code> for boxes that hold text, so that text remains in the box and scroll bars appear when needed.</li>
+            <li>using the CSS <code>float</code> property, to position elements on the page, so they can reflow as their size increases.</li>
+          </ul>
+
+          <h3>Responsive Design</h3>
+          <p>On mobile browsers, there are multiple ways to magnify the text on the screen:</p>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>Set default text size of text rendered in the browser - ensure that content and functionality is not unavailable or clipped.</li>
+            <li>Magnify browser's viewport (typically "pinch-zoom") - if the viewport settings are defined, ensure that viewport meta tag is set to user scrollable and maximum scale is at least 2.0 or is not restricted.</li>
+          </ul>
+
+          <h3>Android Applications</h3>
+          
+          <p>Android system settings allow users to enlarge text and increase system level zoom. To honor the system font size settings in the application, mark the text and their associated containers to be measured in <a href="https://developer.android.com/guide/practices/screens_support.html#screen-independence">scale pixels</a>.</p>
+          
+          <p>When users have large fonts enabled or the labels support internationalization, their type might be larger than the space allotted for the control label. Android Developers Guide provides some design strategies for handling this situation:  <a href="https://developer.android.com/design/style/devices-displays.html">Devices and Displays</a> and <a href="https://developer.android.com/guide/practices/screens_support.html">Supporting Multiple Screens</a>.</p>
+
+          <h3>iOS Applications</h3>
+          
+          <p>iOS settings allow user to set the font size and magnify the screen. Support Dynamic Type within the application. Dynamic Type will automatically adjust to letter spacing and line height for every font size, provide the ability to specify different text styles for semantically distinct blocks of text, and the text will responds appropriately to changes the user makes to text-size settings (including accessibility text sizes).</p>
+          <p>NOTE: If the application uses a custom font, the text can be scaled according to the system setting for text size programmatically. Ensure that the application responds appropriately when the user changes the setting.To learn how to use text styles and ensure that your app gets notified when the user changes the text size setting, see <a href="https://developer.apple.com/library/content/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/CustomTextProcessing/CustomTextProcessing.html#//apple_ref/doc/uid/TP40009542-CH4-SW65">Text Styles</a> in <a style="font-style:italic;" href="https://developer.apple.com/library/content/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009542">Text Programming Guide for iOS</a>.</p>
+           
+          
+          <h3>PDF in Acrobat</h3>
+          
+          <p>The text size in a PDF document can be increased using View &gt; Zoom. When the document size is increased, there are often horizontal and vertical scroll bars. Acrobat has a temporary view called Reflow that shows content of the PDF in single column taking the entire width of the document pane. To turn on Reflow, go to View &gt; Zoom &gt; Reflow.</p>
+          <p>If the document order in Reflow is not correct, correct it in the Order pane. If an image or other content needs to be viewed in between two paragraphs in Reflow yet one entry in the Order pane covers both paragraphs, you will need to review the order in the Content pane. After making changes, also verify that the content is in the correct order in the Tags pane.</p>
+           
+          <h3>Testing HTML</h3>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Review/Tools</th>
+                  <td>The tools to use will be the resize or zoom features in your browser or media player, and any resize or zoom features built into your media. Zoom to 200%. (In Firefox, 200% is reached by pressing control + six times, if you haven't customized your installation.)
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Output</th>
+                  <td>The page will be shown at 200%.
+                  </td>
+                </tr>
+                <tr>
+                    <th scope="row">Analysis</th>
+                    <td>Make sure everything is still usable.
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+                    
+          <h3>Testing Mobile Applications</h3>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>Set the font size to largest in the device settings. On iOS8 for example, this can be found in Accessibility Settings in the Larger Text option. On Android, turn on a system-wide large font size in Settings.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Output</th>
+                  <td>If the application supports text resizing (e.g. Dynamic Text on iOS, large text on Android), then the font size will increase or decrease within the application when the settings are changed. 
+                  </td>
+                </tr>
+                <tr>
+                    <th scope="row">Analysis</th>
+                    <td>Change the text size in the device settings and observe if the text size is automatically adjusting. If it does not, then this is an error.
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+
+          <h3>Testing PDF in Acrobat</h3>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>Use View &gt; Zoom to change the text size.  Also turn on the View &gt; Zoom &gt; Reflow option to check the text order.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Output</th>
+                  <td>The text should flow in the correct order in reflow view.
+                  </td>
+                </tr>
+                <tr>
+                    <th scope="row">Analysis</th>
+                    <td>Make note of any text that is not displayed in the correct order.
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+
+          <h3>Related Guidelines</h3>
+          <h4>WCAG 2.0 AA - SC 1.4.4 Resize Text</h4>
+          <p>Except for captions and images of text, text can be resized without assistive technology up to 200 percent without loss of content or functionality. (Level AA)</p>
+          <h4>508 Refresh (ANPRM) - 403.3 Resizable Text</h4>
+          <p>ICT shall support the ability to resize text content up to 200 percent without loss of content or functionality and without relying upon assistive technology.</p>
+          
+          <p>Exception: Images of text, including text used for captioning, are not required to support the ability to be resized.</p>
+          
+          <p>Advisory 403.3 Resizable Text. A best practice is to use text rather than images of text wherever text can be used to achieve the desired visual presentation.</p>
+          
+          <h4>508 Refresh (ANPRM) - 504.3 Resize and Reflow Text (Likely to Change)</h4>
+          <p>Text content shall support the native capability of the platform for text to resize and reflow text without loss of content or functionality.</p>
+          <p>Exception: Captions and images of text are not required to conform to 504.3.
+          
+          <p>504.3 Resize and Reflow Text. Most content formats and platforms natively provide a capability for users to adjust font size. Content can be developed which interferes with this native capability and thus creates a barrier to accessibility for users with low vision.</p>
+          
+          <p>Reflow of text is necessary because just making letters larger would result in text moving off the screen or text appearing on top of other text.</p>
+          
+          <p>A best practice is for captions and images of text to support the resizing and reflow of text.</p>
+          
+          <p>Another best practice is to use text, rather than images of text, wherever possible because text gives users more control over font size.</p>
+          
+          <p>Web documents that support resize and reflow of text are sometimes described as "fluid", "liquid", or "elastic".</p>
+
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
       <h2 id="g23"></h2>
