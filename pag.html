@@ -109,7 +109,7 @@
         <li><a href="#g23">23: Design e-learning so that it does not cause blink, flash or flicker (No blinking/No flickering)</a></li>
         <li><a href="#g24">24: Allow users to stop motion (Ability to Stop Motion)</a></li>
         <li><a href="#g25">25: Allow stationary view of moving content (Stationary View of Moving Content)</a></li>
-        <li><a href="#g26">26: </a></li>
+        <li><a href="#g26">26: Make sure text has good foreground/background contrast (Contrast for Text Readability)</a></li>
         <li><a href="#g27">27: </a></li>
         <li><a href="#g28">28: </a></li>
         <li><a href="#g29">29: </a></li>
@@ -3802,10 +3802,170 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
       </div>
 
 
-      <h2 id="g26"></h2>
+      <h2 id="g26">Guideline 26. Make sure text has good foreground/background contrast (Contrast for Text Readability)</h2>
       <div class="guideline_content">
+        <p class="summary">Using a contrast ratio tool, choose text color and text background color so that the contrast ratio between the colors is at least:</p>
+        <ul class="pe-list pe-styled-lists--unordered summary">
+          <li>4.5:1 for small text</li>
+          <li>3:1 for text that is at least 18 points or bold 14 points</li>
+          <li>7:1 when one of the colors is red (or nearly red) and other color is black (or nearly black)</li>
+        </ul>
+
+        <p>Notes:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>This guideline applies to both encoded text and images of text.</li>
+          <li>This guideline does NOT apply to:
+              <ul class="pe-list pe-styled-lists--unordered">
+                <li>Logos</li>
+                <li>Images that are for decoration only</li>
+                <li>Greyed-out or inactive User Interface controls</li>
+                <li>Images no one is meant to read (e.g. book-cover icon)</li>
+              </ul>
+          </li>
+        </ul>
+
+        <h3>Rationale</h3>
+        <p>The contrast ratios for small and large text are from <mark><a href="http://wps.pearsoned.com/accessibility/115/29601/7577871.cw/index.html#4">W3C's Web Content Accessibility Guidelines 2.0</a></mark>. They are based on research designed to create a measurable definition of sufficient contrast. The <mark><a href="http://wps.pearsoned.com/accessibility/115/29601/7577871.cw/index.html#4">508 Refresh</a></mark> will likely use the same measurements. </p>
+        
+        <p>There are a number of free tools that use the WCAG 2.0 algorithm to test contrast. For example, the <a href="https://developer.paciellogroup.com/resources/contrastanalyser/">Paciello Group's Contrast Analyser</a> is used in the examples presented in the General Techniques for this PG.</p>
+        
+        <p>Meeting these contrast ratios avoids cases where text is difficult to read due to insufficient contrast. This is important for users with common minor visual acuity issues.</p>
+        
+        <p>The contrast tests are also important for users with color blindness. The WCAG 2.0 algorithm calculates brightness without consideration of color. For example, red and green of exactly the same brightness, would have a 1:1 ratio, which is the same ratio a color would have with itself. So, for the most part, when you test for contrast, you are also testing to ensure that people with color blindness can read the text.</p>
+        
+        <p>Because of the biology of color blindness, however, red often appears darker to people with color blindness than it does to people without color blindness. This is the reason for the increased level of contrast when comparing red (or nearly red) and black (or nearly black).</p>
+        
+        <p>Added Benefits:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>The 3:1 ratio is the International Standards Organization (ISO) and American National Standard Institute (ANSI) requirement for minimum contrast for users with <strong>standard vision</strong> using a computer monitor. As such, following <a href="#g26">PG 26</a> ensures that we meet this basic need for all users.</li>
+          <li><a href="#g26">PG 26</a> requires an enhanced contrast ratio for small text and this helps users who may be viewing the content in less-than-ideal lighting conditions (e.g. mobile device screen in sunlight).</li>
+        </ul>
+
+        <h3>Techniques</h3>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Use a Contrast Analyzer that supports the WCAG 2.0 Contrast Ratio Algorithm while selecting foreground and background colors for text. A number of these tools are available. Contrast Analyser from the Paciello Group is available for free and is used for the examples in these guidelines: <a href="http://www.paciellogroup.com/resources/contrast-analyser.html">http://www.paciellogroup.com/resources/contrast-analyser.html</a> (Mac &amp; Windows)</li>
+          <li>Avoid placing text over complex backgrounds. One way to avoid this is to provide an outline or shading around the letters. This way, the outline or the shading becomes the background.</li>
+          <li>If you have text over an image, pattern or gradient, make sure the contrast is sufficient between the text and the area of the background that provides the least contrast with the text color. For example, the yellow text in the image below sits over a few shades of red. Since the least contrast exists between the yellow text and the lighter shade of red, you would use the lighter shade when testing the contrast:<br>
+              <img src="images/contrast_exterior.png" width="400" height="233" alt="In Contrast Analyser, a box surrounds a pixel just above the text, where the red gradient that comes in contact with the text is lightest.">
+          </li>
+          <li>When selecting the text color for anti-aliased text, choose a center-most pixel that reflects the perceived color of the text:<br>
+              <img src="images/contrast_interior.png" width="400" height="233" alt="In Contrast Analyser, a box surrounds a pixel in the middle of a letter, where anti-aliasing has not begun to blend the text color with the background color.">
+            </li>
+          <li>If the text does not have enough contrast with the background, the pull-down menu next to the color in Contrast Analyser will provide some suggested similar colors. For a finer level of control, go to Options &gt; Show color sliders, where you can adjust the colors bit by bit until you find a combination that meets that requirements.</li>
+          <li>Most often the technique just mentioned will yield a color combination very similar to your original design. Occasionally, though, as with white text on a yellow background, there is no color combination that has a similar appearance. In this case, you can provide shading just under the text to achieve the necessary contrast, while maintaining the intended color scheme:<br>
+              <strong>Before:</strong><br>
+              <img src="images/log_in_fff.gif" width="49" height="22" alt="White text on a yellow background."><br>
+              <strong>After:</strong><br>
+              <img src="images/log_in_fff_AFTER.gif" width="49" height="22" alt="White text with a deep yellow outline on a yellow background">
+          </li>
+        </ol>
+
+        <h3>Technology Specifics</h3>
+        <h4>HTML | XHTML | CSS | JavaScript</h4>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>A common browser feature allows users to set their preferred colors for any colors that were not set by the browser. If you set only the foreground color or only the background color, the color might be paired with a color that provides little or no contrast. So, set both foreground or background color, or set neither. (Don't forget links and visited links.)</li>
+          <li>When the default design does not have enough contrast and when modifying the default design is problematic, you can meet the requirement by creating an alternate style sheet. 
+              <ul class="pe-list pe-styled-lists--unordered">
+                <li><strong>7:1 Contrast:</strong> The new Section 508 guidelines may (once finalized) require 7:1 contrast where optional views are provided. So, provide at least one style sheet where the contrast is at least 7:1 for all text. </li>
+                <li><strong>Example code for adding alternate style sheets:</strong>
+                  <pre><code>&lt;!-- settings from this file are       common to all views:       link does not have a title       and rel is "stylesheet" --&gt;      &lt;link rel="stylesheet"            type="text/css"            href="persistent.css" /&gt;  &lt;!-- default view:      link has a title and       rel is "stylesheet" --&gt;      &lt;link rel="stylesheet"            type="text/css"            href="base.css"           title="Default Colors" /&gt;  &lt;!-- optional view:       link has a title and       rel is "alternate stylesheet"--&gt;      &lt;link rel="alternate stylesheet"            type="text/css"           href="high_contrast.css"            title="High Contrast" /&gt;     </code></pre>
+                  The values of the title attributes will appear in menus provided by standards-compliant browsers:*image*
+                </li>
+                <li><strong>UI Controls for Choosing the Alternate Style Sheet:</strong> Provide a UI control and script that allows the user to select a style sheet. The control itself must meet contrast requirements. The following article describes how this is done and provides a script that accomplishes this without interfering with browser-based style sheet menus: <a href="https://alistapart.com/article/alternate/">www.alistapart.com/stories/alternate/</a> <br>
+                  As described, use a cookie, so that the user's choice of style sheet persists from page to page. (Browser menus alone generally do not remember the user's choice from page to page.)
+                </li>
+              </ul> 
+          </li>
+          <li><strong>Images of text:</strong> A site may have images of text that are not placed through the style sheets. If such images don’t meet the contrast requirements, an alternate style sheet alone will not fully satisfy this PG. The images of text still would not have enough contrast. In this case, use JavaScript to replace the images with high contrast images or with text. A single control should then be provided to trigger the JavaScript that swaps the style sheet as well as the JavaScript that swaps the images.</li>
+        </ol>
+
+        <h3>Testing HTML</h3>
+        <table class="pe-table">
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Tools</th>
+                <td><img src="images/pixelchoice.jpg" width="131" height="107" alt="A pixel is chosen from the center of a letter, so that the anti aliasing doesn't interfere with the results." align="right">
+                  The <a href="https://developer.paciellogroup.com/resources/contrastanalyser/">Colour Contrast Analyser</a> is a stand-alone contrast testing application. You can also pull it up from the <a href="https://developer.paciellogroup.com/resources/wat/">Web Accessibility Toolbar</a>: Colour &gt; Contrast Analyser [application]. <br>
+                  <br>
+                  For both foreground (text) colors and background colors move the visual cursor (eye dropper icon) to choose a favorable pixel. <br>
+                  <br>
+                  To help judge whether text is 14 point bold / 18 point or larger, you can use the <a href="http://www.jimthatcher.com/favelets/">Large Text Favelet.</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Output</th>
+                <td>After selecting the foreground and background colors, the Colour Contrast Analyser will display the Luminosity Contrast Ratio for that combination. (Have "Algorithm, Luminosity" checked and have "Show Contrast for Colour Blindness" not checked.)<br>
+                  <br>
+                  The large text favelet places example 14 point bold and 18 point text on the screen to allow visual comparison. Horizontal lines show the official measure of 14 points and 18 points; though, as you'll see by the example text, fonts don't typically fill their full point height.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Analysis</th>
+                <td>Report all instances where contrast ratios miss the guidelines as errors - 4.5:1 for normal text and 3:1 for larger text (18 point or 14 point bold or bigger). When the ratios are close to the requirement, you can suggest combinations that meet the guidelines by changing colors with the colour select combo boxes in the Contrast Analyser application.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+         
+        <h3>Testing Mobile Applications</h3>
+        <table class="pe-table">
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Tools</th>
+                <td><img src="images/pixelchoice.jpg" width="131" height="107" alt="A pixel is chosen from the center of a letter, so that the anti aliasing doesn't interfere with the results." align="right">
+                  There are no tools that can be run on the mobile device.  Take a screenshot of the screen and view it on the desktop.<br>
+                  <br>
+                  The <a href="https://developer.paciellogroup.com/resources/contrastanalyser/">Colour Contrast Analyser</a> is a stand-alone contrast testing application. You can also pull it up from the <a href="https://developer.paciellogroup.com/resources/wat/">Web Accessibility Toolbar</a>: Colour &gt; Contrast Analyser [application]. <br>
+                  <br>
+                  For both foreground (text) colors and background colors move the visual cursor (eye dropper icon) to choose a favorable pixel. <br>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Output</th>
+                <td>After selecting the foreground and background colors, the Colour Contrast Analyser will display the Luminosity Contrast Ratio for that combination. (Have "Algorithm, Luminosity" checked and have "Show Contrast for Colour Blindness" not checked.)<br>
+                  <br>
+                  The large text favelet places example 14 point bold and 18 point text on the screen to allow visual comparison. Horizontal lines show the official measure of 14 points and 18 points; though, as you'll see by the example text, fonts don't typically fill their full point height.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Analysis</th>
+                <td>Report all instances where contrast ratios miss the guidelines as errors - 4.5:1 for normal text and 3:1 for larger text (18 point or 14 point bold or bigger). When the ratios are close to the requirement, you can suggest combinations that meet the guidelines by changing colors with the colour select combo boxes in the Contrast Analyser application.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+         
+        <h3>Related Guidelines</h3>
+        <h4>WCAG 2.0 AA - 1.4.3 Contrast (Minimum)</h4>
+        <p>The visual presentation of text and images of text has a contrast ratio of at least 4.5:1, except for the following: (Level AA)</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Large Text: Large-scale text and images of large-scale text have a contrast ratio of at least 3:1;</li>
+          <li>Incidental: Text or images of text that are part of an inactive user interface component, that are pure decoration, that are not visible to anyone, or that are part of a picture that contains significant other visual content, have no contrast requirement.</li>
+          <li>Logotypes: Text that is part of a logo or brand name has no minimum contrast requirement.</li>
+        </ul>
+        <h4>508 Refresh 3-B: Contrast</h4>
+        <p>Presentation of TEXT, and images of TEXT, in electronic documents must have a CONTRAST RATIO of at least 5:1, except for the following:</p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Large Print: LARGE SCALE TEXT and images of LARGE SCALE TEXT must have a CONTRAST RATIO of at least 3:1;</li>
+          <li>Incidental: TEXT or images of text that are part of an inactive user interface component, that are pure DECORATION, that are incidental TEXT in an image, or that are not visible to anyone, have no minimum contrast requirement</li>
+        </ol>
+        <h4>508 Refresh 3-E: Color Adjustment</h4>
+        <p>When a user function is provided to adjust color and contrast settings, at least one color selection capable of producing a minimum luminosity CONTRAST RATIO of 7:1 must be provided.</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
       <h2 id="g27"></h2>
       <div class="guideline_content">
         <a class="skippy" href="#toc">Back to TOC</a>
