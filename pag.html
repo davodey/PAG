@@ -112,7 +112,7 @@
         <li><a href="#g26">26: Make sure text has good foreground/background contrast (Contrast for Text Readability)</a></li>
         <li><a href="#g27">27: Don't Rely on Color Coding</a></li>
         <li><a href="#g28">28: Have sufficient color contrast in key images (Color Contrast in Key Images)</a></li>
-        <li><a href="#g29">29: </a></li>
+        <li><a href="#g29">29: Provide alternatives for images that provide information (Images that Provide Info)</a></li>
         <li><a href="#g30">30: </a></li>
         <li><a href="#g31">31: </a></li>
         <li><a href="#g32">32: </a></li>
@@ -4127,8 +4127,287 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
 
-      <h2 id="g29"></h2>
+      <h2 id="g29">Guideline 29. Provide alternatives for images that provide information (Images that Provide Info)</h2>
       <div class="guideline_content">
+        <p class="summary">If an image provides information, provide the same information in a text alternative.</p>
+        
+        <p>Notes: </p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>This includes videos and animations that are silent or are accompanied by sounds that do not provide information, such as background music.</li>
+          <li>For some images, supplemental tactile-ready image files can also be helpful.</li>
+        </ul>
+             
+        <h3>Rationale</h3>
+        <p>This allows screen reader users to access the information provided by the image. It also helps when users have images turned off or unavailable as in mobile browsing.</p>
+        
+        <h3>General Techniques</h3>
+        
+        <h4>What to Write</h4>
+        <p>When writing text alternatives first determine the purpose of the image:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>If the image is used to label a control, see <a href="#g30">PG 30</a>.</li>
+          <li>If the image is decorative or used for spacing, see <a href="#g38">PG 38</a>.</li>
+          <li>If the image is used to show what something looks like, such as a picture of a particular type of cloud, the alt-text should describe key aspects of the appearance of the cloud, as needed to provide the information that image is intended to provide.</li>
+          <li>For images that provide data or illustrate a point, the alt-text should not describe the image, but should provide the same data or illustrate the same point.</li>
+        </ul>
+        
+        <p>For example, assume the graph below is part of a report on the pros and cons of a park renovation project. In that case, the alt-text shown below would <strong>not</strong> be correct for the graph, as the information provided by the graph is missing:</p>
+        <img src="images/dogs_in_park.png" width="294" height="203" alt="image accurately described in both the incorrect and correct alt-text examples below">
+
+        <pre><code>Incorrect alt-text: Two slightly three dimensional silver rectangles with some numbered blue dotted lines show how many dogs were in the park on Saturday and Sunday.</code></pre>
+        <p>The alt-text shown below, though, is appropriate as the description provides the information conveyed through the graph:</p>
+        
+        <pre><code>Correct alt-text: A graph shows that nearly twice as many dogs were in the park on Saturday compared to Sunday, with 31 on Saturday and 17 on Sunday.</code></pre>
+        
+        <p>Text alternatives should include not just the data presented by an image, but also any comparisons or statistical trends that the visuals make immediately apparent. For example, the "Correct alt-text" example above provides the following three key pieces of information:</p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>The topic of the graph (the number of dogs in the park)</li>
+          <li>The relationships that are seen visually ("nearly twice as many")</li>
+          <li>The data provided by the graph ("31 on Saturday and 17 on Sunday")</li>
+        </ol>
+      
+        <p>Note: Context matters. For example, the "incorrect alt-text" above might be appropriate if the graph were included in a discussion on the appearance of graphs. For more on context, see <a href="http://simplyaccessible.com/article/images-in-context/" target="_blank">Simply Accessible's screencast on this topic</a>, which opens in a new window.</p>
+        
+        <h4>Tips for Writing Good Alternative Text for Complex Images</h4>
+        <h4>Staying on Task</h4>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Write text alternatives that serve the same purpose as the image, do not just label the image.</li>
+          <li>Do not use alt-text to provide new information that is not in the image.</li>
+          <li>Do not write text alternatives for images that are merely decorative. (See <a href="#g38">Pearson Guideline 38</a>)</li>
+          <li>Do not provide more than brief labels for images that only repeat information that is already present in the text.</li>
+        </ol>
+        
+        <h4>Effective Descriptions</h4>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Understand the context.</li>
+          <li>Keep it concise.</li>
+          <li>Start general and move to specifics.</li>
+          <li>Use polished and grammatically correct language.</li>
+          <li>If the image is of a particularly obvious or unique type, consider identifying the type of image (e.g. cartoon, photo).</li>
+          <li>Pay Attention to New Items vs. Items Already Mentioned (i.e. a triangle vs. the triangle).</li>
+          <li>Check your work, by imagining your text in use. Does it serve the same purpose as the image?</li>
+          <li>Especially when describing how something looks, consider asking others to read your description to see if they agree with any poetic interpretations.</li>
+          <li>Does the image suggest any of the structures available in structured text? Use headings, bulleted lists, numbered lists, definition lists, nested lists and tables to organize long or complex text alternatives. For flow charts and similar in HTML, use aria-flowto.</li>
+          <li>Avoid excess repeated noise in lists of items. For example, instead of starting each list item with "cats that," place that text in front of the list.</li>
+          <li>Double check that the data in the text alternative is the same as the data in the original image.</li>
+          <li>Always use the same terminology and reading level that is used in the main text.</li>
+        </ol>
+        <h4>Further Tips and Examples for STEM Graphics</h4>
+        <p>For further information and examples, see the brief and well-researched guidelines from WGBH's National Center for Accessible Media: <a href="http://ncam.wgbh.org/experience_learn/educational_media/stemdx/guidelines" target="_blank">http://ncam.wgbh.org/publications/stemdx/guidelines.html (new window)</a>. While designed for STEM Graphics, this is valuable reading for anyone who wishes to write descriptions for any complex graphics.</p>
+        
+        <h4>Tactile Graphics</h4>
+        For certain images, you may opt to include files that are prepared for tactile printing, so that tactile images can be used along side your image descriptions. The Braille Authority of North America (BANA) offers guidelines on preparing tactile images: <a href="http://www.brailleauthority.org/tg/index.html" target="_blank">BANA Guidelines and Standards for Tactile Graphics, 2010 (new window)</a>.
+    
+        <h3>Images in HTML, CSS, &amp; JavaScript</h3>
+        
+        <h4>HTML | XHTML</h4>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>If the image is used to display text, see PG 21 to determine if you should use encoded text instead. If you decide to keep the text as an image, the alt-text should be the text that appears on the image. The same image may also contain non-text graphics that provide information. In that case, the alt-text should include that information as well.</li>
+          <li><strong>Writing Short &amp; Long Text Alternatives:</strong><br>
+            HTML and XHTML allow two types of text alternatives, regular alt-text and long descriptions. The alt-text will be read automatically while the document is being read. In cases where long description text is needed, a link out to long description text will be provided. This allows screen reader users with visual impairment to decide when and if they wish to delve into the details of the image, much as a sighted user might glance at the image when they first reach it, but decide to analyze it in detail later. <br>
+            <br>
+            So, note how many words the text alternative for an image will require. When working with an image that contains text, do not count the words in the alt-text that exactly mirror the text in the image. (There's no need to for a separate long description if the image is really a paragraph of text meant to be read with the rest of the page, for example.)<br>
+            <br>
+            <mark>This free script is provided by <a href="http://javascriptkit.com/">JavaScript Kit</a></mark><br>
+            <br>
+            If the word count is more than about 30 words, prepare two text alternatives:
+            <ul class="pe-list pe-styled-lists--unordered">
+              <li>An overview of the information conveyed by the image - This should be plain text. (This will be referred to as alt-text throughout this document.)</li>
+              <li>A full portrayal of the information conveyed by the image - Use the same type of formatting for this text that you would use for any text in the media. (This will be referred to as long description text throughout this document.)</li>
+            </ul>
+          </li>
+          <li>When the text alternative can be about 30 words or fewer use only the <code>alt</code> attribute and simply do not include the <code>longdesc</code> attribute:
+            <pre><code>&lt;img src="filename.gif"       alt="About 30 words or fewer"&gt;</code></pre>
+          </li>
+          <li>If the text alternative must be longer than about 30 words, use the alt attribute to provide an overview of the information conveyed by the image. And, place a full text alternative in a separate HTML file, which should be written in accessible HTML. Associate the separate HTML file with the image using the longdesc attribute:
+            <pre><code>&lt;img src="filename.gif"       alt="About 30 words or fewer"       longdesc="filename-LD.html"&gt;</code></pre>
+            Note: There is a bug in JAWS which prevents the <code>longdesc</code> attribute from working when the URL begins with a forward slash  referring to the document root. This has been reported to Freedom Scientific. If you only have a URL that begins at the document root, you can use an off-screen link with link text "long description" instead of using the <code>longdesc</code> attribute.
+          </li>
+          <li>When an image is used as an image map, the alt attribute for the image will be supplemented by alt attributes for the image map's <code>area</code> elements. So, the alt-text for the image should provide any information that is not conveyed through the altattributes for the image map's <code>area</code> elements. If no additional information is conveyed, use <code>alt=""</code>.
+            <pre><code>&lt;img src="states.gif"       alt="Choose a state"       usemap="states"&gt;</code></pre>
+            <pre><code>&lt;img src="menu.gif" alt="" usemap="5_links"&gt;</code></pre>
+            (See <a href="#g30">PG 30</a> for information on adding alt-text for the <code>area</code> elements.)
+          </li>
+          <li>When you link directly to an image file instead of linking to an HTML page that contains an img element, you lose the opportunity to add text alternatives in the standard manner. So, either:
+              <ul class="pe-list pe-styled-lists--unordered">
+                  <li>Link to an HTML page that contains the image, instead of linking directly to the image file.<br>
+                  OR</li>
+                  <li>If the link to the image is actually a smaller version of that image, you can include the alt-text using the image tag of the smaller version. In this case, since screen readers will announce the presence of a link, be sure that the link text (and surrounding context) make it clear that the purpose of the link is merely to enlarge the image. (See <a href="#g16">PG 16</a> for more on link text context.)</li>
+              </ul>
+          </li>
+          <li>The <code>background</code> attribute that is sometimes used with the <code>&lt;body&gt;</code> tag to add an image to the page does not provide a way to add alternative text for the image. As such, if a background image is used to convey information, the information should also be provided as text. (This is also true of any legacy non-standard use of the <code>background</code> attribute with other HTML elements, such as the <code>table</code> element.)</li>
+        </ol>
+
+        <h4>CSS</h4>
+        <ol class="pe-list pe-styled-lists--ordered">
+            <li>It has become popular to replace encoded text with background images using CSS. These guidelines do not necessarily recommend or discourage this approach. If you do use such techniques, the text that is replaced is the alt-text and must:
+                <ul class="pe-list pe-styled-lists--unordered">
+                  <li>Be readable by screen readers</li>
+                  <li>Appear when CSS is off or unavailable</li>
+                  <li>Appear when images are off or unavailable<br>
+                    AND</li>
+                  <li>Not disrupt the layout when the text size is increased to 200% (see <a href="#g22">PG 22</a> for more on text size requirements)</li>
+                </ul>
+                The success or failure of the technique is in how you hide the text:
+                <ul class="pe-list pe-styled-lists--unordered">
+                  <li>Do not hide it using <code>display:none</code> or <code>visibility:hidden</code>. Screen readers won't read it. </li>
+                  <li>Do not hide the text by placing it off-screen. It won't appear when images are not available. </li>
+                  <li>Since we want the encoded text to appear whenever background images are not available, use background images to hide the text. This way, if the background images are removed for any reason, the text will appear right on cue. To do this, place a div behind the text. Size the div using ems to be sure it will increase as text size increases. Give the div a background image that is the same color as the text. But, also give the div a background color that would make the text visible. This hides the text ONLY when background images are present: 
+                    <pre><code>div.hide_replaced_text {    /* When background images are available,        the text is white on white.       When background images are not available       the text is white on black  */      color: #FFFFFF;     background: #000000 url(white.gif) repeat; }</code></pre>
+                  </li>
+                </ul>
+          </li>
+          <li>For additional information on images introduced through CSS files, see <a href="#g13">PG 13</a>.</li>
+        </ol>
+
+        JavaScript
+        See Pearson Guideline 30.
+         
+        Object, Embed, Noscript
+        Unlike the case with HTML 5 <canvas> elements, the fallback content that appears inside <object>, <embed> and <noscript> tags is only served when the browser does not have the ability to present the content.
+        
+        Because of this, the default media provided by <object> or <embed> tags is almost always what is served to screen readers, and the fall-back content from object/embed is not served.
+        
+        Similarly, the information is inside a <noscript> tag is only served when JavaScript is not available. Screen reader users are likely to have scripting on, and, in this case, the browser would not serve content inside <noscript> tags to screen readers.
+        
+        So, there are two choices:
+        
+        Make the default media accessible (See sections of the Pearson Guidelines that apply to the technology in question.)
+        Explicitly hide the default media from screen readers and provide an equivalent hidden offscreen (See Pearson Guidelines 32 and 33 for techniques to use to hide media from screen readers.)
+        The following CSS can be used to place hidden alternatives on the page. Anything hidden this way will be available to screen readers and will be available when CSS is turned off. In some cases, it will appear for users of custom style sheets.
+        
+        .screen_readers_only {    position:absolute;    left:-999px;    top:auto;    width:1px;    height:1px;    overflow:hidden; }
+         
+        Canvas in HTML 5
+        Unlike the case with <object>, <embed> and <noscript> tags, the fallback content that appears between open and close <canvas> tags is available to both screen reader users and keyboard access users.
+        
+        This makes it easy to add alternatives for images that are drawn to the page using <canvas>. There are no length restrictions for this fallback content and you have the full power of semantic markup to use to structure the alternative content.
+        
+        When <canvas> is interactive, you can even include interactive elements in the fallback content. The important challenge to remember in this case is that some people will be seeing the canvas while interacting with the fallback content. This includes keyboard access users with average vision and also those with low vision who might be using a combination of magnification and screen reader speech. JavaScript should be used to ensure that the experience for these users matches up. For example, when a button in the fallback content is in focus, you might show a focus indicator around the corresponding element on the canvas.
+        
+        Supporting Safari & VoiceOver
+        Safari does not yet support the fallback content. So, conditionally for Safari, place the fallback content in a <div> just after the closing tag, have this <div> styled offscreen:
+        
+        .screen_readers_only {         position:absolute;      left:-999px;      top:auto;      width:1px;      height:1px;      overflow:hidden; }     
+         
+        Android Applications
+        Images that provide information must have a text alternative. Use the android:contentDescription property to define the text alternative.
+        
+         
+        
+        iOS Applications
+        
+        Images that provide information must have a text alternative. When the text alternative can be about 30 words or fewer, use the accessibilityLabel attribute to define the text alternative. If more than 30 words is needed, use the accessibilityHint attribute along with the accessibilityLabel attribute to provide full text alternative.
+        
+         
+        
+        PDF in Acrobat
+        
+        Alternative text can be added to images and other elements in the document. Alternative text is text that will be read instead of the text in the tag. There are two ways to add alternative text to images:
+        Tags tree – select the <Figure> tag and go to Properties option in the context menu. Fill in the Alternative text field.
+        
+        TouchUp Reading Order (TURO) – In TURO select the option to show tables and figures. This will list the alternative text for the image. If the image does not have alternative text, it will put “no alternative text exists”. To add alternative text, right-click to get to the context menu. Select Edit Alternative Text. Add the alternative text in the dialog window.
+        
+        Tips for Alternative Text in Acrobat
+        The text can be long but consider that the screen reader will read this text to the user. Concise, clear text that describes the concept or action of the picture rather than the visual characteristics of the picture is useful to visually impaired users.
+        Alternative text can also be provided for any tag containing text.
+         
+        
+        Word
+        Images that are part of the content add value to all users and should have alternative text.
+        
+        The location to enter the alternative text will vary depending on your version of Word.
+        
+        Word 2003 - Go to Format Picture > Web. Enter the alternative text in the form field.
+        Word 2007 - Set the alternative text in the Size properties. Go to Size > Alt Text.
+        Word 2010 - Set the alternative text by selecting Format Shape > Alt Text. Enter the alternative text into the description box.
+        Word 2013 & Word 2016 - See Guidance from Microsoft. Use the description field and only add a title if you'd like the image to be labeled with short title instead of your description. In that case, the user will be given the option to access the longer description.
+        If multiple images are related to represent a single concept, consider grouping them first. The alternative text is should be set on the group object.
+        
+        Word Art
+        WordArt is stylized text. In Word 2003 and 2007, it is treated as a picture so you should add alternative text. Word 2010 treats it as text; no alternative text is required.
+        
+        SmartArt
+        SmartArt is the collection of diagrams and shapes that Word provides. For most of these, the arrows cannot take alternative text and would therefore be inaccessible. The content holders are text boxes, which screen readers do not read (see PG 4). Consider the following options:
+        
+        Describe the meaning of the diagram and the information it conveys in adjacent text of the main content. Do not describe the appearance of the diagram unless it is necessary to understand the meaning.
+        Add a caption to the diagram that succinctly to describe the point.
+        Group the images and add alternative text. Users can still navigate to components of the group.
+        Replace the SmartArt with a picture of it, using the Windows 7 Snipping tool or other screen capture programs.
+         
+        PowerPoint
+        
+        Images that are part of the content add value to all users and should have alternative text, captions, or both. If the image simply illustrates steps that have been clearly described in the text, it is redundant and should have no alternative text. If it does not any extra value and is merely decorative (e.g. banners, lines, pictures of people), it should not have alternative text (see PG 32: Decorative Images).
+        
+        The location to enter the alternative text will vary depending on your version of PowerPoint.
+        
+        PowerPoint 2003 - Go to Format Picture > Web. Enter the alternative text in the form field.
+        PowerPoint 2007 - Set the alternative text in the Size properties. Go to Size > Alt Text.
+        PowerPoint 2010 - Set the alternative text by selecting Format Shape > Alt Text. Enter the alternative text into the description box.
+        PowerPoint 2013 & PowerPoint 2016 - See Guidance from Microsoft. Use the description field and only add a title if you'd like the image to be labeled with short title instead of your description. In that case, the user will be given the option to access the longer description.
+        If multiple images are related to represent a single concept, consider grouping them and adding a single alternative text.
+        
+        WordArt
+        WordArt is stylized text. In PowerPoint 2003 and 2007, it is treated as a picture so you should add alternative text. PowerPoint 2010 treats it as text; no alternative text is required.
+        
+        SmartArt
+        SmartArt is the collection of diagrams and shapes that PowerPoint provides. PowerPoint does not read the alternate text for the text boxes and arrows in the diagram, but you can set alternate text for the entire diagram, which is read, by right-clicking on its frame and selecting alt text.
+        
+        In some cases, it may be easier to take a picture of the SmartArt diagram and add alternative text.
+        
+        Shapes
+        PowerPoint does not read the alternate text for shapes, but it will read text in the shape.
+        
+        Consider the following options for diagrams and collections of shapes that are not read properly:
+        
+        Describe the meaning of the diagram and the information it conveys in adjacent text of the main content. Do not describe the appearance of the diagram.
+        Add a caption to the diagram that succinctly describes the point.
+        Group the images and add alternative text.
+         
+        Testing HTML
+        Tools	Use the larger images favelet to highlight and display the alt-text for images which are not active and are 10px or larger in both dimensions. These are likely to be either decorative or information-bearing. You may want to disable CSS and then apply the favelet so that results are more easily viewed. Disabling CSS is possible from the View menu in most browsers.
+        Output	The alert will notify you of the number of images without alt attributes (errors!) and how many you need to analyze. It will also let you know if any images on the page (even small and active images) have long description attributes. When alt-text is present, it is displayed near the image for your analysis. When long descriptions are present, links to the long descriptions are provided near the image.
+        Analysis	For those images with alt-text, compare that alt-text with the adjacent image. Be sure the alt-text clearly conveys the information that is conveyed by the image. This includes the case where the image is decorative or its information is redundant with other text on the page; then the alt-text should be empty, alt=””.
+         
+        Testing Mobile Applications
+        Tools	Look at the screen and identify areas of the screen that use images. Use the screen reader on the device (VoiceOver on iOS and TalkBack on Android) to read the text alternative for the images.
+        Output	The screen reader will read the text alternative for the image if it is defined. If there is an image on the screen that is not read, then that image has been defined as a background image or has been removed as an accessible element. 
+        Analysis	For those images with text alternative, compare the information that is being conveyed by the image and the text alternative being read. Be sure the text alternative clearly conveys the information that is conveyed by the image. This includes the case where the image is decorative or its information is redundant with other text on the page; then image should be ignored by the screen reader.
+         
+        Testing PDF in Acrobat
+        Tools	
+        To quickly spot images without alternative text, use TouchUp Reading Order with “Show images and tables” checked.  To evaluate the appropriateness of the alternative text, right click on the image to edit the alternative text.  Note that you can resize this dialog box.
+        
+        Output	
+        Look for “Figure – No alternate text exists” to spot omissions.  Evaluate the wording against the Pearson guidelines for alternative text.
+        
+        Analysis	
+        For those images with alt-text, compare that alt-text with the adjacent image. Be sure the alt-text clearly conveys the information that is conveyed by the image. 
+        
+         
+        Related Guidelines
+        508 Web § 1194.22 (a)
+        A text alternative for every non-text element shall be provided (e.g., via "alt", "longdesc", or in element content).
+        WCAG 2.0 Level A - 1.1.1 Non-text Content
+        All non-text content that is presented to the user has a text alternative that serves the equivalent purpose, except for the situations listed below. 
+        Controls, Input: If non-text content is a control or accepts user input, then it has a name that describes its purpose. (Refer to Guideline 4.1 for additional requirements for controls and content that accepts user input.)
+        Time-Based Media: If non-text content is time-based media, then text alternatives at least provide descriptive identification of the non-text content. (Refer to Guideline 1.2 for additional requirements for media.)
+        Test: If non-text content is a test or exercise that would be invalid if presented in text, then text alternatives at least provide descriptive identification of the non-text content.
+        Sensory: If non-text content is primarily intended to create a specific sensory experience, then text alternatives at least provide descriptive identification of the non-text content.
+        CAPTCHA: If the purpose non-text content is to confirm that content is being accessed by a person rather than a computer, then text alternatives that identify and describe the purpose of the non-text content are provided, and alternative forms of CAPTCHA using output modes for different types of sensory perception are provided to accommodate different disabilities.
+        Decoration, Formatting, Invisible: If non-text content is pure decoration, is used only for visual formatting, or is not presented to users, then it is implemented in a way that it can be ignored by assistive technology.
+        WCAG 2.0 Level A - SC 1.2.1 Audio-only and Video-only (Prerecorded)
+        For prerecorded audio-only and prerecorded video-only media, the following are true, except when the audio or video is a media alternative for text and is clearly labeled as such: (Level A) 
+        Prerecorded Audio-only: An alternative for time-based media is provided that presents equivalent information for prerecorded audio-only content.
+        Prerecorded Video-only: Either an alternative for time-based media or an audio track is provided that presents equivalent information for prerecorded video-only content.
+        508 Refresh - 3-F – Non-text Objects
+        All NON-TEXT OBJECTS that are presented to the user must have a TEXT alternative that presents equivalent information, except for the situations listed below.
+        Controls-Input: If a NON-TEXT OBJECT is a control or accepts user input, then it must have a name that describes its purpose. (See also User Interface Components provisions.)
+        Media: If a NON-TEXT OBJECT is SYNCHRONIZED MEDIA, live audio-only or live video-only CONTENT, then text alternatives must at least provide a descriptive LABEL that identifies the NON-TEXT OBJECT. (For SYNCHRONIZED MEDIA, see also Audio and/or Video provisions.)
+        Test: If a NON-TEXT OBJECT is a test or exercise that must be presented in non-text format, then text alternatives must identify at least the NON-TEXT OBJECT with a descriptive text LABEL. (For SYNCHRONIZED MEDIA, see also Audio and/or Video provisions.)
+        Sensory: If a NON-TEXT OBJECT is primarily intended to create a specific sensory experience, then text alternatives must identify at least the NON-TEXT OBJECT with a descriptive text LABEL. (For SYNCHRONIZED MEDIA, see also Audio and/or Video provisions.)
+        CAPTCHA: If the purpose of a NON-TEXT OBJECT is to confirm that CONTENT is being accessed by a person rather than a computer then text alternatives that identify and describe the purpose of the NON-TEXT OBJECT must be provided and alternative forms in different modalities must be provided to accommodate different disabilities.
+        DECORATION, Formatting, Invisible Objects: If a NON-TEXT OBJECT is pure DECORATION, or used only for visual formatting, or if it is not presented to users, then it must be implemented such that it can be ignored by ASSISTIVE TECHNOLOGY.
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
       <h2 id="g30"></h2>
