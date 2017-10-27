@@ -107,7 +107,7 @@
         <li><a href="#g21">21: Use encoded text instead of images of text (Encoded Text)</a></li>
         <li><a href="#g22">22: Use text that users can resize (Text Resize)</a></li>
         <li><a href="#g23">23: Design e-learning so that it does not cause blink, flash or flicker (No blinking/No flickering)</a></li>
-        <li><a href="#g24">24: </a></li>
+        <li><a href="#g24">24: Allow users to stop motion (Ability to Stop Motion)</a></li>
         <li><a href="#g25">25: </a></li>
         <li><a href="#g26">26: </a></li>
         <li><a href="#g27">27: </a></li>
@@ -3606,8 +3606,132 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
 
-      <h2 id="g24"></h2>
+      <h2 id="g24">Guideline 24. Allow users to stop motion (Ability to Stop Motion)</h2>
       <div class="guideline_content">
+          <p class="summary">Allow users to stop any content that moves for more than five seconds or that updates automatically.</p>
+
+          <h3>Rationale</h3>
+          <p>Moving content can be distracting to most users and especially users with learning disabilities and attention deficit disorders. If the moving content is presented alongside text, for example, users may have difficulty concentrating on the text.</p>
+          
+          <p>Five seconds is based on WCAG 2.0 SC 2.2.2.</p>
+
+          <h3>General Techniques</h3>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>Often the best technique is to present a static page at first, allowing the user start the motion using a play button. In this case, provide a stop button near the play button or use a single play/pause toggle button.</li>
+            <li>Provide a button to stop or pause the moving content. And, ideally, also code the escape key to stop the movement so that users can quickly stop the motion from anywhere on the page. This escape key functionality is particularly helpful for keyboard access users and for those who use high levels of magnification, which might make it difficult to find the stop or pause button.</li>
+            <li>If the moving content is decorative, you might provide a button to hide the moving content. Again, consider allowing the escape key to stop/hide all motion on the page.</li>
+            <li>If the moving content is decorative and it is on its own page, the ability to close the window is a sufficient way to stop the motion.</li>
+            <li>OR verify that the user agent (e.g. browser, Flash player, PDF reader) provides an accessible way to stop the motion. (See Technology Specifics.)</li>
+          </ul>
+        
+          <h3>HTML &amp; JavaScript</h3>
+          
+          <h4>Animated Gif / Animated PNG</h4>
+          <p>If your supported browsers provide the ability to stop animations, this browser feature can usually be used to satisfy this requirement:</p>
+          <table class="pe-table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">Animated Gif</th>
+                  <th scope="col">Animated PNG</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">FireFox 3.5.7 (Windows XP or 7)</th>
+                  <td>Escape Key</td>
+                  <td>Escape Key</td>
+                </tr>
+                <tr>
+                  <th scope="row">IE 7 (Windows XP)</th>
+                  <td>Escape Key or Stop Button</td>
+                  <td>Not animated</td>
+                </tr>
+                <tr>
+                  <th scope="row">IE 8 (Windows 7)</th>
+                  <td>Escape Key or Stop Button</td>
+                  <td>Not animated</td>
+                </tr>
+                <tr>
+                  <th scope="row">Safari 4 (Windows XP or 7)</th>
+                  <td>No known solution</td>
+                  <td>Not animated</td>
+                </tr>
+                <tr>
+                  <th scope="row">Google Chrome 4 (Windows 7)</th>
+                  <td>No known solution</td>
+                  <td>Not animated</td>
+                </tr>
+              </tbody>
+            </table>
+
+          <p>However, if there are multiple animations on the page and at least one provides information, you will need to use a technique like the JavaScript techniques below to allow users to play the animations one-by-one, focusing on each animation individually.</p>
+          
+          <h4>Using JavaScript to Hide Decorative Animations</h4>
+          <p>The following example script can be used to hide any moving content that is provided through an HTML element:</p>
+          
+          <pre><code>//script function to hide motion  function hideMotion(currM) {         if (document.getElementById) {     currMStyle = document.getElementById(currM).style;     currMStyle.display = "none";                             }            }</code></pre>
+          <pre><code>&lt;!-- HTML to set up to use function to hide motion --&gt;  &lt;div id="animation"&gt;Any type of moving  content here.&lt;/div&gt;  &lt;a href="javascript:hideMotion('animation');"&gt;     Hide Animation &lt;/a&gt;</code></pre>
+          <p>You might also replace the animation with a static image, or position a static image behind the animation so that it appears when the animation is hidden.</p>
+          
+          <p>Many media players and plugins will allow you to create links that manipulate the embedded media through JavaScript.</p>
+
+          <h3>Flash &amp; Flex</h3>
+          <p>The Flash Player's default (keyboard inaccessible) context menu contains "next," "previous," "rewind," and "play" options. If "next" or "previous" is chosen, the Flash movie will go to the next or previous frame and stop there. Although it's not the intention of these features, they can be used by the end user to stop motion in Flash content. Since both Flex and later versions of Flash hide these context menu items, they must be enabled by the developer. The snippet below shows how to do this in ActionScript 3:</p>
+          
+          <pre><code>protected function application1_addedToStageHandler(event:Event):void {                 this.contextMenu.builtInItems.forwardAndBack = true;             }</code></pre>
+          <p>Since this solution is not keyboard accessible, an additional solution for stopping motion has to be manually implemented by the developer. The section below describes a possible approach to stopping the motion and shows how this single approach can be used in three different ways.</p>
+          
+          <h4>Stopping MovieClips</h4>
+          <p>Animations in Flash content are generally created through movie clip instances. The MovieClip class has a <code>stop()</code> method that can be called to pause the animation. If the movie clip contains nested animated movie clips then the <code>stop()</code> method will have to be called for those child clips as well. The snippet below shows a "stopOrPlayAll" method that achieves this by recursively stopping or restarting a MovieClip instance and all its child movie clips.</p>
+          
+          <pre><code>function stopOrPlayAll(content:DisplayObjectContainer,  startIt:Boolean = false):void {     if (content is MovieClip) {           (content as MovieClip)[startIt ? "play" : "stop"]();      }     if (content.numChildren)     {         var child:DisplayObjectContainer;         for (var i:int, n:int = content.numChildren; i &lt; n; ++i)         {             if (content.getChildAt(i) is DisplayObjectContainer)             {                child = content.getChildAt(i) as DisplayObjectContainer;                if (child.numChildren)                    stopOrPlayAll(child, startIt);                else if (child is MovieClip)              (child as MovieClip)[startIt ? "play" : "stop"]();             }         }     } }</code></pre>
+          <p>This method can then be used in different ways. For example, it can be called a few seconds after the Flash movie loads:</p>
+          
+          <pre><code>setTimeout(function() {    stopOrPlayAll(smiley, false);    pauseBtn.selected = false;    }, 5000);</code></pre>
+          <img src="images/toggle_animation.jpg" width="128" height="124" alt="">
+          
+          <p>Or it can be called when the user requests it. The snippet below shows how to a toggle button can be used to stop and restart an animation:</p>
+          
+          <pre><code>import fl.accessibility.ButtonAccImpl; import fl.controls.Button; import flash.events.MouseEvent; ButtonAccImpl.enableAccessibility(); var pBtn:Button; pBtn.addEventListener(MouseEvent.CLICK, function(event:MouseEvent):void{        stopOrPlayAll(smiley, Button(event.target).selected);    });</code></pre>
+          <p>Alternatively, a global keyboard shortcut can be used to pause or toggle the animation. See the Flash &amp; Flex techniques for Pearson Guideline 34 for more information about how to create global keyboard shortcuts that are also available when the Flash movie does not have keyboard focus.</p>
+          
+          <h4>Additional Details and Background Information (open in a new window/tab)</h4>
+          <p>For more information, see WCAG2 <mark><a href="http://wps.pearsoned.com/accessibility/220/56429/14445975.cw/%E2%80%9Dhttp://www.google.com/url?q=http%3A%2F%2Fwww.w3.org%2FTR%2FWCAG20-TECHS%2Fflash.html%23FLASH36&sa=D&sntz=1&usg=AFQjCNE3UORLvRpRkvOf4Kq6TBNUvP-G7Q%E2%80%9D">FLASH36: Using scripts to control blinking and stop it in five seconds or less</a></mark>.</p>
+
+          <h3>Testing</h3>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Review</th>
+                  <td>Just review the page for any motion that continues for more than five seconds. 
+                  </td>
+                </tr>
+                <tr>
+                    <th scope="row">Analysis</th>
+                    <td>If there is no way to pause or stop the motion and it continues for more than five seconds, this is an error.
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+           
+          <h3>Related Guidelines</h3>
+          <h4>WCAG 2.0 Level A - SC 2.2.2 Pause, Stop, Hide</h4>
+          <p>For moving, blinking, scrolling, or auto-updating information, all of the following are true: (Level A)</p>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>Moving, blinking, scrolling: For any moving, blinking or scrolling information that (1) starts automatically, (2) lasts more than five seconds, and (3) is presented in parallel with other content, there is a mechanism for the user to pause, stop, or hide it unless the movement, blinking, or scrolling is part of an activity where it is essential; and</li>
+            <li>Auto-updating: For any auto-updating information that (1) starts automatically and (2) is presented in parallel with other content, there is a mechanism for the user to pause, stop, or hide it or to control the frequency of the update unless the auto-updating is part of an activity where it is essential.</li>
+          </ul>
+          <h4>508 Refresh 3-I: Pausing</h4>
+          <p>A mechanism must be provided to pause moving, BLINKING, or scrolling information that lasts for more than three seconds unless it is part of an activity where the moving, BLINKING, or scrolling is essential.</p>
+          <p>A mechanism must be provided to pause auto-updating information or allow the user to control the frequency of the update unless it is part of an activity where auto-updating is essential.</p>
+          <p>A mechanism must be provided to either pause, stop, or hide moving or BLINKING CONTENT that is pure DECORATION.</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
       <h2 id="g25"></h2>
