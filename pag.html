@@ -108,7 +108,7 @@
         <li><a href="#g22">22: Use text that users can resize (Text Resize)</a></li>
         <li><a href="#g23">23: Design e-learning so that it does not cause blink, flash or flicker (No blinking/No flickering)</a></li>
         <li><a href="#g24">24: Allow users to stop motion (Ability to Stop Motion)</a></li>
-        <li><a href="#g25">25: </a></li>
+        <li><a href="#g25">25: Allow stationary view of moving content (Stationary View of Moving Content)</a></li>
         <li><a href="#g26">26: </a></li>
         <li><a href="#g27">27: </a></li>
         <li><a href="#g28">28: </a></li>
@@ -3734,11 +3734,74 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
           <p>A mechanism must be provided to either pause, stop, or hide moving or BLINKING CONTENT that is pure DECORATION.</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
-      
-      <h2 id="g25"></h2>
+
+      <h2 id="g25">Guideline 25. Allow stationary view of moving content (Stationary View of Moving Content)</h2>
       <div class="guideline_content">
+        <p class="summary">Allow the user to read text, equations &amp; diagrams while they are not moving, autoscrolling or being automatically changed/replaced.</p>
+        
+        <p>Note: In <a href="#g24">Pearson Guideline 24</a> we remove the distraction of motion: an animation could disappear, a video could pause to blue screen or a news ticker could pause with only a few words in view. In <a href="#g25">Pearson Guideline 25</a> we make sure those who consume the content more slowly will be able to step through any important content.</p>
+         
+        <h3>Rationale</h3>
+        <p>People with disabilities such as dyslexia or low vision can have trouble reading moving text. Making sure that people can read the text while it is still allows them to read at their own pace and without the added complexity of movement.</p>
+        
+        <p>Also, expecially in Flash and Flex, text that appears only for a short time can be troublesome for screen reader users, as the text may be replaced before it has been fully spoken.</p>
+        
+        <h3>General Techniques</h3>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Have text, equations &amp; diagrams settle and become still after no more than five seconds of motion. (Five seconds was chosen based on WCAG 2.0 SC 2.2.2.)<br>
+          OR</li>
+          <li>Allow the user access to a static view of text, equations &amp; diagrams.<br>
+            OR</li>
+          <li>Allow the user to pause and rewind video or animations containing text, equations &amp; diagrams, so that they can read the content without motion.</li>
+        </ol>
+
+        <h3>Technology Specifics</h3>
+        <h4>Legacy HTML</h4>
+        <p>Do not use the <code>&lt;marquee&gt;</code> tag. (It is non-standard HTML and it causes flicker effects while a user focuses on the text to read it.)</p>
+         
+        <h3>PowerPoint</h3>
+        
+        <p>Automatically timed animations and automatic slide advance can present problems for users who need more time to read the screen and for those using assistive devices. Animation sequences usually introduce new content to the page. If the content changes before the user is ready, they will miss it. Also, screen readers can have trouble reading the correct page element at the correct time.</p>
+        
+        <p>Avoid automatically timed animations and automatic slide advance where content needs to be read. Change the animations to be activated on mouse click. Animations triggered by mouse clicks can be controlled by the user during a slideshow with both a mouse and keyboard.</p>
+        
+        <h3>Testing</h3>
+        <table class="pe-table">
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Review</th>
+                <td>Imagine using the page if you could not read the content quickly. And, imagine using the page if you could only see a portion of the screen or video at a time so that you have to move a magnification tool around to take in the entire screen. 
+                </td>
+              </tr>
+              <tr>
+                  <th scope="row">Analysis</th>
+                  <td>If there is no way to read text, equations or diagrams while they are not moving, it is an error.
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+
+        <h3>Related Guidelines</h3>
+        <h4>WCAG 2.0 Level A – 2.2.2 Pause, Stop, Hide</h4>
+        <p>For moving, blinking, scrolling, or auto-updating information, all of the following are true:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Moving, blinking, scrolling: For any moving, blinking or scrolling information that (1) starts automatically, (2) lasts more than five seconds, and (3) is presented in parallel with other content, there is a mechanism for the user to pause, stop, or hide it unless the movement, blinking, or scrolling is part of an activity where it is essential; and</li>
+          <li>Auto-updating: For any auto-updating information that (1) starts automatically and (2) is presented in parallel with other content, there is a mechanism for the user to pause, stop, or hide it or to control the frequency of the update unless the auto-updating is part of an activity where it is essential.</li>
+        </ul>
+        <h4>508 Refresh 3-I: Pausing</h4>
+        <p>A mechanism must be provided to pause moving, BLINKING, or scrolling information that lasts for more than three seconds unless it is part of an activity where the moving, BLINKING, or scrolling is essential.</p>
+        <p>A mechanism must be provided to pause auto-updating information or allow the user to control the frequency of the update unless it is part of an activity where auto-updating is essential.</p>
+        <p>A mechanism must be provided to either pause, stop, or hide moving or BLINKING CONTENT that is pure DECORATION.</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
+
       <h2 id="g26"></h2>
       <div class="guideline_content">
         <a class="skippy" href="#toc">Back to TOC</a>
