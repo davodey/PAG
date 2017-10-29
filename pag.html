@@ -927,7 +927,7 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
 
         <h3>HTML</h3>
         <h4>In-Page Links</h4>
-        <p>When coding in-page anchor links, code the target of the in-page link using an <code>a</code> element with <code>tabindex="-1"</code>. This ensures that you will avoid two bugs in Internet Explorer (versions 5-8) that break keyboard access. Without tabindex="-1" many inpage links will appear to work visually when first activated, but when the user tries to move forward using the tab key, the user is brought back to the skip link instead of moving forward on the page.</p>
+        <p>When coding in-page anchor links, code the target of the in-page link using an <code>a</code> element with <code>tabindex="-1"</code>. This ensures that you will avoid two bugs in Internet Explorer (versions 5-8) that break keyboard access. Without <code>tabindex="-1"</code> many inpage links will appear to work visually when first activated, but when the user tries to move forward using the tab key, the user is brought back to the skip link instead of moving forward on the page.</p>
 
         <h4>Image Maps</h4>
         <p>When creating image maps, use <code>usemap</code>, <code>&lt;map&gt;</code> and <code>&lt;area&gt;</code>. Do not use <code>ismap</code> or the x and y coordinates provided by <code>input type="image"</code> to create image maps. Browsers allow keyboard access users to tab to area elements, but do not support selecting a location using the keyboard in image maps created using <code>ismap</code> or <code>input type="image"</code>.</p>
@@ -938,10 +938,9 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
 
         <h4>Keyboard Shortcuts</h4>
         <p>Common browsers allow <code>accesskey</code> attributes to override keyboard access to browser menus. <code>Accesskey</code> attributes can also override the keystroke commands that allow keyboard access with a screen reader. Do not use <code>accesskey</code> unless:</p>
-
         <ul class="pe-list pe-styled-lists--unordered">
-          <li>You use only numeric <code>accesskey</code> values (0-9)
-            <p>OR</p>
+          <li><p>You use only numeric <code>accesskey</code> values (0-9)</p>
+            <p>~OR~</p>
           </li>
           <li>The access keys are not active by default. Instead, the user can switch them on after reviewing the list of keys in user preferences.</li>
         </ul>
@@ -976,7 +975,10 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <h3>JavaScript</h3>
         <p>Be Careful using <code>blur()</code> ("Stop the Ants")</p>
         <p>Do not trigger <code>blur()</code> for an element in response to an <code>onFocus</code> event for that element. This prevents keyboard access for the element. This mistake is often made when developers wish to remove the outline that appears around a link when the link is clicked. Instead, use the following CSS code to remove that outline in modern browsers (e.g. Firefox 3+, Internet Explorer 8+).</p>
-        <pre><code>a:active {     outline-width: 0; }</code></pre>
+        <pre><code>
+a:active {
+  outline-width: 0;
+}</code></pre>
         <p>The CSS above uses <code>a:active</code>. Do NOT use <code>a:focus</code> or even just <code>a</code> in the code above, as this would hide the focus indicator (See <a href="#g7">PG 7</a>).</p>
 
         <h4>Select Menus and OnChange</h4>
@@ -990,17 +992,17 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <ul class="pe-list pe-styled-lists--unordered">
           <li><p>(BEST) Start with HTML/XHTML elements that are interactive by default (e.g. a, <code>button</code>, <code>input</code>*). For example, you may wish to have a box that acts as a control that changes the page. Instead of making a <code>div</code> element interactive, you might use a <code>button</code> element. This way, you take advantage of well-tested standard keyboard access that comes with elements that are interactive by default. You can use CSS to adjust the <code>button</code> element to appear as you wish:</p> 
             <pre><code>button.myactivebox {
-width: 3em;
-height: 3em;
-float: left;
-/* remove browser-provided 3d edge effect */
-border: 0;
-/* remove color assigned by browser */
-background: transparent;
-/* add basic link-style cursor for mouse users*/
-cursor: pointer;
+  width: 3em;
+  height: 3em;
+  float: left;
+  /* remove browser-provided 3d edge effect */
+  border: 0;
+  /* remove color assigned by browser */
+  background: transparent;
+  /* add basic link-style cursor for mouse users*/
+  cursor: pointer;
 }</code></pre>
-            <p>*The following elements require additional consideration and so may not be the best choice as a base for your custom control: <code>input type="submit"</code> or <code>input type="image"</code>. For these elements, the onClick event can be triggered if a user presses enter anywhere within the form, or anywhere within the page if there are no <code>&lt;form&gt;</code> tags. (This won't happen, though, if the focus is on a natively active element, like a link, when the user presses Enter, which is why these elements are appropriate for use with typical forms.) Also, in some browsers, these elements automatically cause a page refresh. See <a href="#g10">PG 10</a> for tips on avoiding changing the user's place on a page unexpectedly.</p></li>
+            <p>* The following elements require additional consideration and so may not be the best choice as a base for your custom control: <code>input type="submit"</code> or <code>input type="image"</code>. For these elements, the onClick event can be triggered if a user presses enter anywhere within the form, or anywhere within the page if there are no <code>&lt;form&gt;</code> tags. (This won't happen, though, if the focus is on a natively active element, like a link, when the user presses Enter, which is why these elements are appropriate for use with typical forms.) Also, in some browsers, these elements automatically cause a page refresh. See <a href="#g10">PG 10</a> for tips on avoiding changing the user's place on a page unexpectedly.</p></li>
           <li>Or, you might use scripting to make an element that is not normally interactive into an interactive element. This requires considerable careful consideration for keyboard access. First, give the element a <code>tabindex="0"</code> attribute. This way, the element will be included in the natural tab order. And, be sure to follow the coding tips below. Unlike natively active elements, these items won't be keyboard accessible if you only use onClick and they may cause problems if there are submit buttons nearby:
             <ol class="pe-list.pe-styled-lists--ordered">
               <li> While browsers allow the keyboard to trigger <code>onclick</code> events for active elements, they typically do not allow the keyboard to trigger <code>onclick</code> events for elements that are not normally active. So, add an <code>onkeypress</code> event if needed. Be sure to code the <code>onkeypress</code> event so that it only triggers an action if the <strong>appropriate</strong> key is pressed (usually the enter key). See "When using <code>Onkeypress</code>, <code>Onkeydown</code>, or <code>Onkeyup</code>" below for more detail on the key-related events.</li>
@@ -1049,7 +1051,7 @@ cursor: pointer;
 
         <h4>How to make custom views accessible</h4>
         <p>There are two ways to make a custom individual view accessible:</p>
-        <ol class="pe-list.pe-styled-lists--ordered">
+        <ol class="pe-list pe-styled-lists--ordered">
           <li>Set the custom view's accessibility status in the code that instantiates it</li>
           <li>Implement the <code>isAccessibleElement</code> method of the <code>UIAccessibility</code> protocol in the custom subclass</li>
         </ol>
@@ -1414,11 +1416,19 @@ a:active {
                 </li>
                 <li>Use the JavaScript event handler <code>onFocus</code> as you would use the event handler <code>onMouseOver</code>. Also use <code>onBlur</code> as you would use <code>onMouseOut</code>.
                   <pre><code>
-&lt;a href="filename.html" onmouseover="JavaScriptCodeOn();" onfocus="JavaScriptCodeOn();" onmouseout="JavaScriptCodeOff();" onblur="JavaScriptCodeOff();"&gt;
+&lt;a href="filename.html"
+  onmouseover="JavaScriptCodeOn();"
+  onfocus="JavaScriptCodeOn();"
+  onmouseout="JavaScriptCodeOff();"
+  onblur="JavaScriptCodeOff();"&gt;
 </code></pre>
                   <p>OR</p>
                   <pre><code>
-&lt;a href="filename.html" onmouseover="JavaScriptCodeOn();" onfocus="this.onmouseover" onmouseout="JavaScriptCodeOff();" onblur="this.onmouseout"&gt;
+&lt;a href="filename.html"
+  onmouseover="JavaScriptCodeOn();"
+  onfocus="this.onmouseover"
+  onmouseout="JavaScriptCodeOff();"
+  onblur="this.onmouseout"&gt;
 </code></pre>
                 </li>
               </ul>
@@ -1428,7 +1438,7 @@ a:active {
         <h3>Android Applications</h3>
           <p>When a user uses either swipe gestures or a Bluetooth keyboard, a visible indicator on the screen should show the current element that has focus. This is done by default for standard elements. Custom elements should set the style when <code>state_focused="true"</code>.</p>
           <p>Android provides several elegant ways to change the visual appearance based on state:</p>
-            <ul>
+            <ul class="pe-list pe-styled-lists--unordered">
               <li>Change color: <a href="https://developer.android.com/guide/topics/resources/color-list-resource.html" target="_blank">Open Google's Color State List Resource in a new window.</a></li>
               <li>Change images: <a href="https://developer.android.com/guide/topics/resources/drawable-resource.html#StateList" target="_blank">Open Google's  Drawable State List Resource in a new window.</a></li>
             </ul>
