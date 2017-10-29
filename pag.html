@@ -75,8 +75,8 @@
         <li><a href="#g4">4: Check the order that content is read in screen readers &amp; correct any issues (Sensible Reading Order)</a></li>
         <li><a href="#g5">5: Make sure screen reader users can find dynamic additions to the screen (Findable Added Content)</a></li>
         <li><a href="#g6">6: Check keyboard access (access without a pointing device) and correct any issues (Keyboard Access)</a></li>
-        <li><a href="#g7">7: </a></li>
-        <li><a href="#g8">8: </a></li>
+        <li><a href="#g7">7: Ensure keyboard access visibility (Keyboard Access Visibility)</a></li>
+        <li><a href="#g8">8: Provide keyboard access instructions (Keyboard Access Instructions)</a></li>
         <li><a href="#g9">9: </a></li>
         <li><a href="#g10">10: </a></li>
         <li><a href="#g11">11: </a></li>
@@ -862,6 +862,7 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <p>Note: This success criterion is primarily for Web authors who develop or script their own user interface components. For example, standard HTML controls already meet this success criterion when used according to specification.</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
       <h2 id="g6">Guideline 6. Check keyboard access (access without a pointing device) and correct any issues (Keyboard Access)</h2>
       <div class="guideline_content">
         <p class="summary">Ensure that keyboard keys (instead of a mouse and instead of touch screen gestures that require eye-hand coordination) can be used to:</p>
@@ -1357,14 +1358,195 @@ cursor: pointer;
         <p>If a Web page can be navigated sequentially and the navigation sequences affect meaning or operation, focusable components receive focus in an order that preserves meaning and operability. (Level A)</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
-      <h2 id="g7"></h2>
+
+      <h2 id="g7">Guideline 7. Ensure keyboard access visibility (Keyboard Access Visibility)</h2>
       <div class="guideline_content">
+        <p class="summary">Ensure that the user's location on the page will be visually apparent when keyboard keys are used to move from item to item.</p>
+        <p>Note: This is primarily the responsibility of the user agent (e.g. Web browser, PDF reader, Flash player). To address this guideline, we ensure that our content does not interfere with the user agent's solution.</p>
+
+        <h3>Rationale</h3>
+        <p>Users with mobility impairment often use keyboard access without screen readers. When using keyboard access, the user is not pointing to a particular location on the page. Instead, they are moving through links and controls without specifying the order in which each item will receive focus. As such, they need to be able to see where focus is on the page.</p>
+        <p>Most user agents provide a visual effect called a focus indicator that differentiates the item that currently has focus:</p>
+        <h4>HTML links in Firefox 3:</h4>
+        <img width="91" height="65" alt="box drawn with thin blue dashes surrounds blue link text" src="images/html_links_ff3.png">
+        <h4>HTML links in Safari 3:</h4>
+        <img width="91" height="65" alt="box drawn with thick fuzzy blue lines and rounded corners surrounds the link text" src="images/html_links_s3.png">
+        <p>Some form elements have special focus indicators. For example, a text field that is in focus will contain the text cursor as shown in IE 6 below:</p>
+        <img width="400" height="61" alt="A short, but wide white rectangle represents the text input field. In the field, far to the left, is a vertical black line, a visual representation of the input cursor. " src="images/text_cursor_ie6.png">
+        <p>However, it is possible to obscure the focus indicator through visual effects or through the layout of the content.</p>
+        
+        <h3>General Techniques</h3>
+        <p>If the focus indicator is not visible, we have two choices in most media types:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Correct the reason the default focus indicator is not visible</li>
+          <li>Add a new focus indicator. Decorative mouse-over effects can often be reused for this.</li>
+        </ul>
+        <h3>HTML &amp; JavaScript</h3>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Test to be sure the focus indicator is visible in each supported browser.</li>
+          <li>If the focus indicator is partially hidden due to the layout, adjust your CSS to accommodate the focus indicator. For example, if you increase the padding the focus indicator may be hidden by neighboring elements:
+              <p><img width="118" height="92" alt="Only the upper right corner and the left side of the focus rectangle are visible. The rest is hidden by the padding of neighboring links." src="images/neighboring_elements.png"><br>
+              This is because the focus indicator surrounds the padding in block elements. So, in this case, you might use the margin property in place of padding. The focus indicator does not surround margins.</p></li>
+          <li>If the visual design makes the focus indicator difficult to see on your supported browsers, create your own visual effect for the on-focus state. The link in the image below is a grey box that has focus in Firefox 2. The focus indicator is nearly invisible, a good candidate for a custom visual effect:
+              <p><img width="162" height="205" alt="The focus indicator in Firefox 2 is a black dashed line, so it blends into the dark grey box it surrounds and can barely be seen." src="images/custom_visual_effect.png"><br>
+              If you've ever created a mouse-over effect, creating an on-focus effect will seem familiar:</p>
+              <p>OR</p>
+              <ul>
+                <li>Use the CSS :focus class as you would use the CSS :hover class:
+                  <pre><code>
+/* mouse */
+a:hover {
+  background-color: #FFFFCC;
+}
+/* keyboard */
+a:focus {
+  background-color: #FFFFCC;
+}</code></pre>
+                  <p>Since a:focus doesn’t work in IE (as of IE 7) you may want to add  a:active in addition to a:focus:</p>
+                  <pre><code>
+/* keyboard */
+a:focus {
+  background-color: #FFFFCC;
+}
+a:active {
+  background-color: #FFFFCC;
+}</code></pre>
+                </li>
+                <li>Use the JavaScript event handler <code>onFocus</code> as you would use the event handler <code>onMouseOver</code>. Also use <code>onBlur</code> as you would use <code>onMouseOut</code>.
+                  <pre><code>
+&lt;a href="filename.html" onmouseover="JavaScriptCodeOn();" onfocus="JavaScriptCodeOn();" onmouseout="JavaScriptCodeOff();" onblur="JavaScriptCodeOff();"&gt;
+</code></pre>
+                  <p>OR</p>
+                  <pre><code>
+&lt;a href="filename.html" onmouseover="JavaScriptCodeOn();" onfocus="this.onmouseover" onmouseout="JavaScriptCodeOff();" onblur="this.onmouseout"&gt;
+</code></pre>
+                </li>
+              </ul>
+            </li>
+          <li>The "outline" for <code>onfocus</code> is in fact the default focus indicator. So, do not remove the "outline" for the onfocus state using CSS styling.</li> 
+        </ol>
+        <h3>Android Applications</h3>
+          <p>When a user uses either swipe gestures or a Bluetooth keyboard, a visible indicator on the screen should show the current element that has focus. This is done by default for standard elements. Custom elements should set the style when <code>state_focused="true"</code>.</p>
+          <p>Android provides several elegant ways to change the visual appearance based on state:</p>
+            <ul>
+              <li>Change color: <a href="https://developer.android.com/guide/topics/resources/color-list-resource.html" target="_blank">Open Google's Color State List Resource in a new window.</a></li>
+              <li>Change images: <a href="https://developer.android.com/guide/topics/resources/drawable-resource.html#StateList" target="_blank">Open Google's  Drawable State List Resource in a new window.</a></li>
+            </ul>
+        <h3>iOS Applications</h3>
+          <p>iOS provides a visible focus indicator for elements that receive keyboard input.</p>
+          <p>When a user uses swipe gestures with VoiceOver, the element on the page that has VoiceOver focus will have a black rectangle outline. This focus indicator is determined from the property which is a subclass of <code>UIView</code>. Objects should not override the visual focus indicator or set the <code>accessibilityFrame</code> property to <code>nil.</code></p>
+        <h3>PDF in Acrobat</h3>
+          <p>In the link properties, specify the link appearance.</p>
+          <img width="339" height="267" alt="" src="images/link_appearance.jpg">
+          <p>It is important to have the following settings:</p>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li><strong>Link Type</strong> – Visual Rectangle</li>
+            <li><strong>Highlight Style</strong> – Inset</li>
+            <li><strong>Line Thickness</strong> – Thin</li>
+            <li><strong>Line Style</strong> – Underlined</li>
+            <li><strong>Color</strong> – Set a color that has 4.5:1 color ratio between the text color and text background color. See <a href="#g26">PG26</a> for more details on color contrast.</li>
+          </ul>
+        <h3>Testing</h3>
+        <table class="pe-table">
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Tools</th>
+                <td>Test for this while you are testing for keyboard access <a href="#g6">(Pearson Guideline 6)</a>.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Output</th>
+                <td>Find and list those objects that lack adequate focus indication.</td>
+              </tr>
+              <tr>
+                <th scope="row">Analysis</th> 
+                <td>Make note of instances where keyboard focus is not visible.</td>
+              </tr>
+            </tbody>
+          </table>
+        <h3>Testing PDF in Acrobat</h3>
+        <table class="pe-table">
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Tools</th>
+                <td><p>Test for this while you are testing for keyboard access <a href="#g6">(PG 6)</a>.</p>
+                  <p>For links, use the Select Object tool to highlight each link. In Acrobat 9, this is under Tools &gt; Advanced Editing &gt; Select Object; in Acrobat 10 it is under Tools &gt; Content. Right-click to select properties and verify that the link properties conform to the guideline above, with Link Action set to "Go to a page view" or "Open a web page" as appropriate.</p>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Output</th>
+                <td>As you tab to form fields and links, the cursor and focus indicator should be visible in the form field and you should see the focus indicator on each link.</td>
+              </tr>
+              <tr>
+                <th scope="row">Analysis</th> 
+                <td>Make note of instances in which the focus indicator is not visible.</td>
+              </tr>
+            </tbody>
+          </table>
+
+        <h3>Related Guidelines</h3>
+        <h4>508 Software § 1194.21 (c)</h4>
+          <p>A well-defined on-screen indication of the current focus shall be provided that moves among interactive interface elements as the input focus changes. The focus shall be programmatically exposed so that assistive technology can track focus and focus changes.</p>
+        <h4>WCAG 2.0 AA – SC 2.4.7 Focus Visible:</h4>
+          <p>Any keyboard operable user interface has a mode of operation where the keyboard focus indicator is visible. (Level AA)</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
-      <h2 id="g8"></h2>
+
+      <h2 id="g8">Guideline 8. Provide keyboard access instructions (Keyboard Access Instructions)</h2>     
       <div class="guideline_content">
+        <p class="summary">Provide instructions describing the keys (or gestures) needed for keyboard access if your media uses keys or techniques that differ from user agent (e.g. Web browser, PDF reader, Flash player) or mobile device defaults.</p>
+        <h3>Rationale</h3>
+          <p>Keyboard access users will usually be aware of basic keyboard access methods in their user agents. So, they will try those when they arrive at your media. </p>
+          <p>However, users (and even accessibility specialists at schools) cannot discover non-typical keyboard access methods without viewing the source code. Often the source code is not available (as in Flash applications). Even when it is available, review of the source code is too much to expect.</p>
+        <h3>Commonly Used Keys</h3>
+          <p>These are the basic keyboard interactions that typically work for Web products. If your application uses only these, there is no need to provide special keyboard access instructions:</p>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>Tab and Shift Tab to bring elements into focus</li>
+            <li>Enter or Spacebar to activate elements</li>
+            <li>Arrow Keys to select radio buttons, checkboxes or menu items</li>
+          </ul>   
+          <h3>Testing</h3>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>Test for this while you are testing for keyboard access (<a href="#g6">Pearson Guideline 6</a>).
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Output</th>
+                  <td>Rarely, you may stumble upon a way to operate a site using the keyboard that is non-standard. Or perhaps someone from the product team might mention that keyboard access works, but only in some non-standard way.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Analysis</th> 
+                  <td>If something other than tab, shift + tab, spacebar, and arrow keys is needed to move about and select form options or if something other than enter or spacebar is needed to activate a link or button, users will need to be informed of the special keyboard access features in the product. This is an error only if there are no keyboard instructions that provide this information. The fix is to provide these instructions.</td>
+                </tr>
+              </tbody>
+            </table>
+          <h3>Related Guidelines</h3>
+            <h4>WCAG 2.0 A – SC 2.1.2 No Keyboard Trap: </h4>
+            <p>If keyboard focus can be moved to a component of the page using a keyboard interface, then focus can be moved away from that component using only a keyboard interface, and, if it requires more than unmodified arrow or tab keys or other standard exit methods, the user is advised of the method for moving focus away. (Level A) </p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
       <h2 id="g9"></h2>
       <div class="guideline_content">
         <a class="skippy" href="#toc">Back to TOC</a>
