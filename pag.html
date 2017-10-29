@@ -76,7 +76,7 @@
         <li><a href="#g5">5: Make sure screen reader users can find dynamic additions to the screen (Findable Added Content)</a></li>
         <li><a href="#g6">6: </a></li>
         <li><a href="#g7">7: Ensure keyboard access visibility (Keyboard Access Visibility)</a></li>
-        <li><a href="#g8">8: </a></li>
+        <li><a href="#g8">8: Provide keyboard access instructions (Keyboard Access Instructions)</a></li>
         <li><a href="#g9">9: </a></li>
         <li><a href="#g10">10: </a></li>
         <li><a href="#g11">11: </a></li>
@@ -893,23 +893,42 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <h3>HTML &amp; JavaScript</h3>
         <ol class="pe-list pe-styled-lists--ordered">
           <li>Test to be sure the focus indicator is visible in each supported browser.</li>
-          <li>If the focus indicator is partially hidden due to the layout, adjust your CSS to accommodate the focus indicator. For example, if you increase the padding the focus indicator may be hidden by neighboring elements:<br>
-              <img width="118" height="92" alt="Only the upper right corner and the left side of the focus rectangle are visible. The rest is hidden by the padding of neighboring links." src="images/neighboring_elements.png"><br>
-              This is because the focus indicator surrounds the padding in block elements. So, in this case, you might use the margin property in place of padding. The focus indicator does not surround margins.</li>
-          <li>If the visual design makes the focus indicator difficult to see on your supported browsers, create your own visual effect for the on-focus state. The link in the image below is a grey box that has focus in Firefox 2. The focus indicator is nearly invisible, a good candidate for a custom visual effect:<br>
-              <img width="162" height="205" alt="The focus indicator in Firefox 2 is a black dashed line, so it blends into the dark grey box it surrounds and can barely be seen." src="images/custom_visual_effect.png"><br>
-              If you've ever created a mouse-over effect, creating an on-focus effect will seem familiar:<br>
-              OR<br>
-              <ul class="pe-list pe-styled-lists--unordered">
-                <li>Use the CSS :focus class as you would use the CSS :hover class:<br>
-                  <pre><code>/* mouse */ a:hover {background-color: #FFFFCC;}  /* keyboard */ a:focus {background-color: #FFFFCC;}</code></pre>
-                  Since a:focus doesn’t work in IE (as of IE 7) you may want to add  a:active in addition to a:focus:<br>
-                  <pre><code>/* keyboard */ a:focus {background-color: #FFFFCC;} a:active {background-color: #FFFFCC;}</code></pre>
+          <li>If the focus indicator is partially hidden due to the layout, adjust your CSS to accommodate the focus indicator. For example, if you increase the padding the focus indicator may be hidden by neighboring elements:
+              <p><img width="118" height="92" alt="Only the upper right corner and the left side of the focus rectangle are visible. The rest is hidden by the padding of neighboring links." src="images/neighboring_elements.png"><br>
+              This is because the focus indicator surrounds the padding in block elements. So, in this case, you might use the margin property in place of padding. The focus indicator does not surround margins.</p></li>
+          <li>If the visual design makes the focus indicator difficult to see on your supported browsers, create your own visual effect for the on-focus state. The link in the image below is a grey box that has focus in Firefox 2. The focus indicator is nearly invisible, a good candidate for a custom visual effect:
+              <p><img width="162" height="205" alt="The focus indicator in Firefox 2 is a black dashed line, so it blends into the dark grey box it surrounds and can barely be seen." src="images/custom_visual_effect.png"><br>
+              If you've ever created a mouse-over effect, creating an on-focus effect will seem familiar:</p>
+              <p>OR</p>
+              <ul>
+                <li>Use the CSS :focus class as you would use the CSS :hover class:
+                  <pre><code>
+/* mouse */
+a:hover {
+  background-color: #FFFFCC;
+}
+/* keyboard */
+a:focus {
+  background-color: #FFFFCC;
+}</code></pre>
+                  <p>Since a:focus doesn’t work in IE (as of IE 7) you may want to add  a:active in addition to a:focus:</p>
+                  <pre><code>
+/* keyboard */
+a:focus {
+  background-color: #FFFFCC;
+}
+a:active {
+  background-color: #FFFFCC;
+}</code></pre>
                 </li>
-                <li>Use the JavaScript event handler onFocus as you would use the event handler onMouseOver. Also use onBlur as you would use onMouseOut.<br> 
-                  <pre><code>&lt;a href="filename.html"        onmouseover="JavaScriptCodeOn();"       onfocus="JavaScriptCodeOn();"        onmouseout="JavaScriptCodeOff();"      onblur="JavaScriptCodeOff();" &gt;</code></pre>
-                  OR<br>
-                  <pre><code>&lt;a href="filename.html"             onmouseover="JavaScriptCodeOn();"       onfocus="this.onmouseover"        onmouseout="JavaScriptCodeOff();"       onblur="this.onmouseout" &gt;</code></pre>
+                <li>Use the JavaScript event handler <code>onFocus</code> as you would use the event handler <code>onMouseOver</code>. Also use <code>onBlur</code> as you would use <code>onMouseOut</code>.
+                  <pre><code>
+&lt;a href="filename.html" onmouseover="JavaScriptCodeOn();" onfocus="JavaScriptCodeOn();" onmouseout="JavaScriptCodeOff();" onblur="JavaScriptCodeOff();"&gt;
+</code></pre>
+                  <p>OR</p>
+                  <pre><code>
+&lt;a href="filename.html" onmouseover="JavaScriptCodeOn();" onfocus="this.onmouseover" onmouseout="JavaScriptCodeOff();" onblur="this.onmouseout"&gt;
+</code></pre>
                 </li>
               </ul>
             </li>
@@ -995,8 +1014,47 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
 
-      <h2 id="g8"></h2>
+      <h2 id="g8">Guideline 8. Provide keyboard access instructions (Keyboard Access Instructions)</h2>     
       <div class="guideline_content">
+        <p class="summary">Provide instructions describing the keys (or gestures) needed for keyboard access if your media uses keys or techniques that differ from user agent (e.g. Web browser, PDF reader, Flash player) or mobile device defaults.</p>
+        <h3>Rationale</h3>
+          <p>Keyboard access users will usually be aware of basic keyboard access methods in their user agents. So, they will try those when they arrive at your media. </p>
+          <p>However, users (and even accessibility specialists at schools) cannot discover non-typical keyboard access methods without viewing the source code. Often the source code is not available (as in Flash applications). Even when it is available, review of the source code is too much to expect.</p>
+        <h3>Commonly Used Keys</h3>
+          <p>These are the basic keyboard interactions that typically work for Web products. If your application uses only these, there is no need to provide special keyboard access instructions:</p>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>Tab and Shift Tab to bring elements into focus</li>
+            <li>Enter or Spacebar to activate elements</li>
+            <li>Arrow Keys to select radio buttons, checkboxes or menu items</li>
+          </ul>   
+          <h3>Testing</h3>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>Tools	Test for this while you are testing for keyboard access (<a href="#g6">Pearson Guideline 6</a>).
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Output</th>
+                  <td>Rarely, you may stumble upon a way to operate a site using the keyboard that is non-standard. Or perhaps someone from the product team might mention that keyboard access works, but only in some non-standard way.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Analysis</th> 
+                  <td>If something other than tab, shift + tab, spacebar, and arrow keys is needed to move about and select form options or if something other than enter or spacebar is needed to activate a link or button, users will need to be informed of the special keyboard access features in the product. This is an error only if there are no keyboard instructions that provide this information. The fix is to provide these instructions.</td>
+                </tr>
+              </tbody>
+            </table>
+          <h3>Related Guidelines</h3>
+            <h4>WCAG 2.0 A – SC 2.1.2 No Keyboard Trap: </h4>
+            <p>If keyboard focus can be moved to a component of the page using a keyboard interface, then focus can be moved away from that component using only a keyboard interface, and, if it requires more than unmodified arrow or tab keys or other standard exit methods, the user is advised of the method for moving focus away. (Level A) </p>
+
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
       <h2 id="g9"></h2>
