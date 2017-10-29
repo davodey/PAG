@@ -886,52 +886,74 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         
         <h3>General Techniques</h3>
         <p>If the focus indicator is not visible, we have two choices in most media types:</p>
-        <ul class="pe-list pe-styled-lists--ordered">
+        <ul class="pe-list pe-styled-lists--unordered">
           <li>Correct the reason the default focus indicator is not visible</li>
           <li>Add a new focus indicator. Decorative mouse-over effects can often be reused for this.</li>
         </ul>
         <h3>HTML &amp; JavaScript</h3>
         <ol class="pe-list pe-styled-lists--ordered">
           <li>Test to be sure the focus indicator is visible in each supported browser.</li>
-          <li>If the focus indicator is partially hidden due to the layout, adjust your CSS to accommodate the focus indicator. For example, if you increase the padding the focus indicator may be hidden by neighboring elements:</li>
+          <li>If the focus indicator is partially hidden due to the layout, adjust your CSS to accommodate the focus indicator. For example, if you increase the padding the focus indicator may be hidden by neighboring elements:
               <p><img width="118" height="92" alt="Only the upper right corner and the left side of the focus rectangle are visible. The rest is hidden by the padding of neighboring links." src="images/neighboring_elements.png"><br>
-              This is because the focus indicator surrounds the padding in block elements. So, in this case, you might use the margin property in place of padding. The focus indicator does not surround margins.</p>
-          <li>If the visual design makes the focus indicator difficult to see on your supported browsers, create your own visual effect for the on-focus state. The link in the image below is a grey box that has focus in Firefox 2. The focus indicator is nearly invisible, a good candidate for a custom visual effect:</li>
+              This is because the focus indicator surrounds the padding in block elements. So, in this case, you might use the margin property in place of padding. The focus indicator does not surround margins.</p></li>
+          <li>If the visual design makes the focus indicator difficult to see on your supported browsers, create your own visual effect for the on-focus state. The link in the image below is a grey box that has focus in Firefox 2. The focus indicator is nearly invisible, a good candidate for a custom visual effect:
               <p><img width="162" height="205" alt="The focus indicator in Firefox 2 is a black dashed line, so it blends into the dark grey box it surrounds and can barely be seen." src="images/custom_visual_effect.png"><br>
               If you've ever created a mouse-over effect, creating an on-focus effect will seem familiar:</p>
               <p>OR</p>
               <ul>
-                <li>Use the CSS :focus class as you would use the CSS :hover class:</li>
-                  <pre><code>/* mouse */ a:hover {background-color: #FFFFCC;}  /* keyboard */ a:focus {background-color: #FFFFCC;}</code></pre>
+                <li>Use the CSS :focus class as you would use the CSS :hover class:
+                  <pre><code>
+/* mouse */
+a:hover {
+  background-color: #FFFFCC;
+}
+/* keyboard */
+a:focus {
+  background-color: #FFFFCC;
+}</code></pre>
                   <p>Since a:focus doesn’t work in IE (as of IE 7) you may want to add  a:active in addition to a:focus:</p>
-                  <pre><code>/* keyboard */ a:focus {background-color: #FFFFCC;} a:active {background-color: #FFFFCC;}</code></pre>
-                <li>Use the JavaScript event handler onFocus as you would use the event handler onMouseOver. Also use onBlur as you would use onMouseOut. </li>
-                  <pre><code>&lt;a href="filename.html"        onmouseover="JavaScriptCodeOn();"       onfocus="JavaScriptCodeOn();"        onmouseout="JavaScriptCodeOff();"      onblur="JavaScriptCodeOff();" &gt;</a></code></pre>
+                  <pre><code>
+/* keyboard */
+a:focus {
+  background-color: #FFFFCC;
+}
+a:active {
+  background-color: #FFFFCC;
+}</code></pre>
+                </li>
+                <li>Use the JavaScript event handler <code>onFocus</code> as you would use the event handler <code>onMouseOver</code>. Also use <code>onBlur</code> as you would use <code>onMouseOut</code>.
+                  <pre><code>
+&lt;a href="filename.html" onmouseover="JavaScriptCodeOn();" onfocus="JavaScriptCodeOn();" onmouseout="JavaScriptCodeOff();" onblur="JavaScriptCodeOff();" &gt;
+</code></pre>
                   <p>OR</p>
-                  <pre><code>&lt;a href="filename.html"             onmouseover="JavaScriptCodeOn();"       onfocus="this.onmouseover"        onmouseout="JavaScriptCodeOff();"       onblur="this.onmouseout" &gt;</a></code></pre>
+                  <pre><code>
+&lt;a href="filename.html" onmouseover="JavaScriptCodeOn();" onfocus="this.onmouseover" onmouseout="JavaScriptCodeOff();" onblur="this.onmouseout"&gt;
+</code></pre>
+                </li>
               </ul>
+            </li>
           <li>The "outline" for <code>onfocus</code> is in fact the default focus indicator. So, do not remove the "outline" for the onfocus state using CSS styling.</li> 
         </ol>
         <h3>Android Applications</h3>
           <p>When a user uses either swipe gestures or a Bluetooth keyboard, a visible indicator on the screen should show the current element that has focus. This is done by default for standard elements. Custom elements should set the style when <code> state_focused="true".</code></p>
           <p>Android provides several elegant ways to change the visual appearance based on state:</p>
             <ul>
-              <li>Change color: <a href="https://developer.android.com/guide/topics/resources/color-list-resource.html">Open Google's Color State List Resource in a new window.</a></li>
-              <li>Change images: <a href="https://developer.android.com/guide/topics/resources/drawable-resource.html#StateList">Open Google's  Drawable State List Resource in a new window.</a></li>
+              <li>Change color: <a href="https://developer.android.com/guide/topics/resources/color-list-resource.html"  target="_blank">Open Google's Color State List Resource in a new window.</a></li>
+              <li>Change images: <a href="https://developer.android.com/guide/topics/resources/drawable-resource.html#StateList"  target="_blank">Open Google's  Drawable State List Resource in a new window.</a></li>
             </ul>
         <h3>iOS Applications</h3>
           <p>iOS provides a visible focus indicator for elements that receive keyboard input.</p>
           <p>When a user uses swipe gestures with VoiceOver, the element on the page that has VoiceOver focus will have a black rectangle outline. This focus indicator is determined from the property which is a subclass of <code>UIView</code>. Objects should not override the visual focus indicator or set the <code>accessibilityFrame</code> property to <code>nil.</code></p>
         <h3>PDF in Acrobat</h3>
           <p>In the link properties, specify the link appearance.</p>
-          <img width="339" height="267" src="images/link_appearance.jpg">
+          <img width="339" height="267" alt="" src="images/link_appearance.jpg">
           <p>It is important to have the following settings:</p>
-          <ul>
+          <ul class="pe-list pe-styled-lists--unordered">
             <li><strong>Link Type</strong> – Visual Rectangle</li>
             <li><strong>Highlight Style</strong> – Inset</li>
             <li><strong>Line Thickness</strong> – Thin</li>
             <li><strong>Line Style</strong> – Underlined</li>
-            <li><strong>Color</strong> – Set a color that has 4.5:1 color ratio between the text color and text background color. See PG26 for more details on color contrast.</li>
+            <li><strong>Color</strong> – Set a color that has 4.5:1 color ratio between the text color and text background color. See <a href="#g26">PG26</a> for more details on color contrast.</li>
           </ul>
         <h3>Testing</h3>
         <table class="pe-table">
@@ -944,7 +966,7 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
             <tbody>
               <tr>
                 <th scope="row">Tools</th>
-                <td>Test for this while you are testing for keyboard access (Pearson Guideline 6).</p>
+                <td>Test for this while you are testing for keyboard access <a href="#g6">(Pearson Guideline 6)</a>.
                 </td>
               </tr>
               <tr>
@@ -968,8 +990,8 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
             <tbody>
               <tr>
                 <th scope="row">Tools</th>
-                <td><p>Test for this while you are testing for keyboard access (PG 6).</p>
-                  <p>For links, use the Select Object tool to highlight each link. In Acrobat 9, this is under Tools > Advanced Editing > Select Object; in Acrobat 10 it is under Tools > Content. Right-click to select properties and verify that the link properties conform to the guideline above, with Link Action set to "Go to a page view" or "Open a web page" as appropriate.</p>
+                <td><p>Test for this while you are testing for keyboard access <a href="#g6">(PG 6)</a>.</p>
+                  <p>For links, use the Select Object tool to highlight each link. In Acrobat 9, this is under Tools &gt; Advanced Editing &gt; Select Object; in Acrobat 10 it is under Tools &gt; Content. Right-click to select properties and verify that the link properties conform to the guideline above, with Link Action set to "Go to a page view" or "Open a web page" as appropriate.</p>
                 </td>
               </tr>
               <tr>
@@ -989,10 +1011,6 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <h4>WCAG 2.0 AA – SC 2.4.7 Focus Visible:</h4>
           <p>Any keyboard operable user interface has a mode of operation where the keyboard focus indicator is visible. (Level AA)</p>
         
-        <h4>508 Refresh Draft - 3-T: Focus Indicator</h4>
-            <p>Any KEYBOARD operable user interface must support a mode of operation where the indication of KEYBOARD focus has a high degree of visibility. Note 1: The presence of a highly visible text insertion point is sufficient for a text area.</p>
-            <p>Note 2: A focus cursor that is visually locatable at 3.5 times the typical viewing distance without moving the cursor by people who have unimpaired vision and are familiar with what the focus cursor looks like is sufficient. For example, when software is displayed on a 38 cm (15 inch) diagonal screen at 1024 x 768 pixels resolution, a focus cursor that is visually locatable at 2.5 meters without moving the cursor by people who are familiar with what the cursor looks like and have an unimpaired vision is sufficient.</p>
-            <p>Note 3: This can be provided by the interface itself or by the interface in combination with focus services provided by the platform.</mark></p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
 
