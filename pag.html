@@ -4729,8 +4729,161 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
 
       <h2 id="g32">Guideline 32. Keep decorative and redundant images silent in screen readers (Decorative &amp; Redundant Images)</h2>
       <div class="guideline_content">
+        <p class="summary">Allow screen reading software to ignore features that are purely decorative, including images whose meaning is fully expressed through adjacent text.</p>
+        <h3>Rationale</h3>
+        <p>When listening to content with a screen reader unnecessary output can quickly degrade the experience, making use of the media tiresome and often also confusing.</p>
+        
+        <h3>HTML &amp; JavaScript</h3>
+        
+        <h4>Legacy HTML</h4>
+        <p>If you have a site that uses images for spacing either:Incorrect: When the following code is used, a screen reader will read the word "spacer" aloud:</p>
+        <pre><code>&lt;!-- Do not use if the image is          only for visual spacing: --&gt;     &lt;img src="spacer.gif" alt="spacer"&gt;</code></pre>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Revise the site to use css for spacing<br>
+            OR</li>
+          <li>Give each such image an empty <code>alt</code> attribute of the form, <code>alt=""</code>. Include no spaces or other characters in the value of the <code>alt</code> attribute. This tells screen readers to ignore the image.</li>
+        </ul>
+        
+        <h4>HTML | XHTML | CSS</h4>
+        <h5>Basic Decorative images (that do not provide information) should:</h5>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Be background images, or be otherwise added through CSS, OR</li>
+          <li>Should have empty <code>alt</code> attributes of the form <code>alt=""</code>, with no space between the quotes<br>
+            Correct for a decorative image: A screen reader will skip the image:
+            <pre><code>&lt;img src="fluffy_cloud.gif" alt=""&gt;</code></pre>
+            Incorrect: <code>alt</code> attributes are required for images, and a screen reader may read the file name or other unnecessary information:
+            <pre><code>&lt;!-- Incorrect --&gt;    &lt;img src="fluffy_cloud.gif"&gt;</code></pre>
+            Incorrect: A screen reader will read the word "fluffy cloud" aloud, which, in this case, is not relevant to the content:
+            <pre><code>&l;!-- Not Recommended --&gt;   &lt;img src="spacer.gif" alt="fluffy cloud"&gt;</code></pre>
+          </li>
+        </ul>
+
+        <h5>Links that have both text and images</h5>
+        <p>Often on Web pages, we mark a link with both an icon and link text where both are clickable:</p>
+        <img src="images/helpicon.JPG" width="60" height="29" alt="A screen shot shows a link with 'Help' as link text followed by an image of a question mark.">
+         
+        <p>If the icon is an active link, it will be announced as a link by screen readers. Because of this, the icon image needs alt-text so that a screen reader user will know the purpose of the link. Unfortunately, this often results in screen reader users hearing every such link twice: once for the text link and once for the icon link. This can become very tedious when navigating repetitive pages with a screen reader.</p>
+        
+        <p>The solution is to put the image and the link text in the same link tag. Then the image can be given alt-text of <code>alt=""</code>, called null alt-text. This tells the screen reader not to announce the image. With this sample code, the link would be announced just once as "link, Help": </p>
+        <pre><code>&lt;a href="help.html" id="helplink"&gt;      &lt;img border="0" src="need-help.gif" alt="" /&gt;      &lt;span id="helplinktext"&gt;Help&lt;/span&gt; &lt;/a&gt;</code></pre>
+        <p>A minor problem remains. Some browsers will underline the image. CSS to set <code>text-decoration</code> to none for the image will not work. To remove the underline from the image, use CSS to assign <code>text-decoration: none</code>; to the link. Then, use CSS to assign <code>text-decoration: underline</code>; to the link text. For the HTML shown just above, the CSS might be as follows:</p>
+        <pre><code>#helplink {      text-decoration: none; } #helplinktext {      text-decoration: underline; }</code></pre>
+        <h5>Images Added Through the CSS "Content:" Property</h5>
+        <p>When images or icons are added through <code>content:</code> one of three things happen:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>VoiceOver, NVDA, and other screen readers read the letter used to represent the icon</li>
+          <li>VoiceOver presents the user with an empty element</li>
+          <li>VoiceOver indicates that there is a graphic without alt-text.</li>
+        </ul>
+
+        <p>To prevent this, make sure the element used to place the image or icon doesn't include any important text, and add <code>aria-hidden="true"</code> to the element.</p>
+
+        <h3>Android Applications</h3>
+        
+        <p>Decorative images should be ignored. Set the <code>android:focusable</code> property to <code>false</code>.</p>
+ 
+        <h3>iOS Applications</h3>
+        
+        <p>Images that convey no information should be ignored by VoiceOver. To hide these images or set them to be ignored, set the <code>setIsAccessibilityElement</code> property to <code>no</code>.</p>
+
+        <h3>PDF in Acrobat</h3>
+        
+        <p>Sometimes there are images on the page that are purely decorative and provide no additional information. These images should be ignored by screen readers. There are two ways to do this in Acrobat 9 Pro:</p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Open the TouchUp Reading Order (TURO) and select the element (or elements) on the page that you want to be ignored. Select background in the TURO dialog box (or right-click on the selection and select Tag as background).<br>
+            <img src="images/TURO-background-image.jpg" width="213" height="416" alt="">
+          </li>
+          <li>In the tag tree, you can set the image to an artifact by opening the context menu and selecting Change Tag to Artifact.<br>
+            <img src="images/artifact.jpg" width="251" height="271" alt="">
+          </li>
+        </ol>
+ 
+        <h3>Word</h3>
+        <p>Decorative images have no content and do not add any intrinsic value to the document. As the name suggests, they are for decoration only and therefore should be ignored by screen readers. In Word, leave the alternative text field blank.</p>
+
+        <h3>PowerPoint</h3>
+        
+        <p>Decorative images have no content and do not add any intrinsic value to the document. As the name suggests, they are for decoration only and therefore should not have alternative text. In PowerPoint, leave the alternative text field blank. Examples of decorative images include watermarks, background pictures, shading, or patterns, divider lines, borders, and most pictures of people.</p>
+         
+        <h3>Flash</h3>
+        <h4>When the Entire Flash Movie is Decorative</h4>
+        <p>Set the entire movie to inaccessible in the accessibility panel in Flash. This ensures that nothing from the Flash movie will be read. However, the browser will not know about this setting, so the Flash movie will be announced by screen readers.</p>
+        
+        <p>To completely hide the existence of the Flash from screen readers and to prevent keyboard access to the movie, add <code>&lt;param name="wmode" value="opaque"&gt;</code> inside the object tag and add <code>wmode="opaque"</code> to the embed tag.</p>
+        
+        <p>For further reading if you want more detail, see <mark><a href="https://webaim.org/articles/flash#hiding">WebAIM's article on Hiding Unimportant Flash Content. (opens in new window)</a></mark></p>
+        
+        <h4>When Part of a Flash Movie is Decorative</h4>
+        <p>Mark the top-most decorative object as inaccessible in the accessibility panel, or use action script to set the silent property to true.</p>
+        
+        <h3>Testing HTML</h3>
+        <p>HTMLToolsUse the formatting images favelet, which will highlight every small image (less than 10 px in either dimension) and display the alt-text next to the image <strong>if that alt-text is not</strong> <code>alt=""</code>. You may want to disable CSS and then apply the favelet so that results are more easily viewed. Disabling CSS is possible from the View menu in most browsers.OutputThe alert lets you know the number of images lacking alt attributes (errors) and the number you need to check out. Those that need checking out are the ones which have alt-text which is not <code>alt=""</code>; you see, <code>alt=""</code> is assumed to be correct for such a small inactive image. These assumed-to-be-correct images are outlined with a dotted line, and will be silent in a screen reader.AnalysisMake sure developers have not used <code>alt="spacer"</code> or other such encumbering additions on these images. (Larger decorative images would be analyzed with the testing techiques for <a href="#g29">Pearson Guideline 29</a> – Images or Animations that Provide Information.)</p>
+         
+        <h3>Testing Mobile Applications</h3>
+        <table class="pe-table">
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Tools</th>
+                <td>Look at the screen and identify areas of the screen that use images for decoration and images that are redundant to the content already on the screen. Use the screen reader on the device (VoiceOver on iOS and TalkBack on Android) to read the text alternative for the images.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Output / Analysis</th> 
+                <td>The screen reader will announce the image and the text alternative if it is incorrectly defined. If it is defined correctly, nothing will be announced by the screen reader.<br>
+                  <br>
+                  If the image role is announced or if the image role is announced with text alternative, then this is an error. Decorative or redundant images should be silent in the screen reader.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+         
+        <h3>Testing PDF in Acrobat</h3>
+        <table class="pe-table">
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Tools</th>
+                <td>Use TouchUp Reading Order (TURO) with "Show images and tables" checked to evaluate each image. In Acrobat 9, TURO is under Advanced &gt; Accessibility.  In Acrobat 10, TURO is a tool on the toolbar labeled "Adjust Reading Order" and it is also under Tools &gt; Accessibility.  Images that have been converted to artifacts or marked as "background" will not be highlighted in this view.  Only those images with figure tags will be highlighted.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Output</th> 
+                <td>Look for the presence or absence of figure tags.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Analysis</th> 
+                <td>Make note of images that should not have alternative text because they are decorative or redundant with the body text.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        <h3>Related Guidelines</h3>
+        <h4>508 Web § 1194.22 (a)</h4>
+        <p>A text alternative for every non-text element shall be provided (e.g., via "alt", "longdesc", or in element content).</p>
+        <h4>WCAG 2.0 Level A - 1.1.1 Non-text Content</h4>
+        <p>All non-text content that is presented to the user has a text alternative that serves the equivalent purpose, except for the situations listed below. </p>
+        <p>. . . </p>
+        <p>Decoration, Formatting, Invisible: If non-text content is pure decoration, is used only for visual formatting or is not presented to users, then it is implemented in a way that it can be ignored by assistive technology.</p>
+        <h4>508 Refresh - 3-F – Non-text Objects</h4>
+        <p>All NON-TEXT OBJECTS that are presented to the user must have a TEXT alternative that presents equivalent information, except for the situations listed below.</p>
+        <p>. . . </p>
+        <p>DECORATION, Formatting, Invisible Objects: If a NON-TEXT OBJECT is pure DECORATION, or used only for visual formatting, or if it is not presented to users, then it must be implemented such that it can be ignored by ASSISTIVE TECHNOLOGY.</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
+      
       <h2 id="g33"></h2>
       <div class="guideline_content">
         <a class="skippy" href="#toc">Back to TOC</a>
