@@ -72,7 +72,11 @@
       }
 
       .with-color{
-        color: blue;
+        color:#1565C0;
+      }
+
+      .incorrect{
+        color:#B71C1C;
       }
 
     </style>
@@ -4154,7 +4158,7 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <p>For example, assume the graph below is part of a report on the pros and cons of a park renovation project. In that case, the alt-text shown below would <strong>not</strong> be correct for the graph, as the information provided by the graph is missing:</p>
         <img src="images/dogs_in_park.png" width="294" height="203" alt="image accurately described in both the incorrect and correct alt-text examples below">
 
-        <pre><code>Incorrect alt-text: Two slightly three dimensional silver rectangles with some numbered blue dotted lines show how many dogs were in the park on Saturday and Sunday.</code></pre>
+        <pre class="incorrect"><code>Incorrect alt-text: Two slightly three dimensional silver rectangles with some numbered blue dotted lines show how many dogs were in the park on Saturday and Sunday.</code></pre>
         <p>The alt-text shown below, though, is appropriate as the description provides the information conveyed through the graph:</p>
         
         <pre><code>Correct alt-text: A graph shows that nearly twice as many dogs were in the park on Saturday compared to Sunday, with 31 on Saturday and 17 on Sunday.</code></pre>
@@ -4260,156 +4264,233 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
           <li>For additional information on images introduced through CSS files, see <a href="#g13">PG 13</a>.</li>
         </ol>
 
-        JavaScript
-        See Pearson Guideline 30.
+        <h4>JavaScript</h4>
+        <p>See <a href="#g30">Pearson Guideline 30</a>.</p>
          
-        Object, Embed, Noscript
-        Unlike the case with HTML 5 <canvas> elements, the fallback content that appears inside <object>, <embed> and <noscript> tags is only served when the browser does not have the ability to present the content.
+        <h3>Object, Embed, Noscript</h3>
+        <p>Unlike the case with HTML 5 <code>&lt;canvas&gt;</code> elements, the fallback content that appears inside <code>&lt;object&gt;</code>, <code>&lt;embed&gt;</code> and <code>&lt;noscript&gt;</code> tags is only served when the browser does not have the ability to present the content.</p>
         
-        Because of this, the default media provided by <object> or <embed> tags is almost always what is served to screen readers, and the fall-back content from object/embed is not served.
+        <p>Because of this, the default media provided by <code>&lt;object&gt;</code> or <code>&lt;embed&gt;</code> tags is almost always what is served to screen readers, and the fall-back content from object/embed is not served.</p>
         
-        Similarly, the information is inside a <noscript> tag is only served when JavaScript is not available. Screen reader users are likely to have scripting on, and, in this case, the browser would not serve content inside <noscript> tags to screen readers.
+        <p>Similarly, the information is inside a <code>&lt;noscript&gt;</code> tag is only served when JavaScript is not available. Screen reader users are likely to have scripting on, and, in this case, the browser would not serve content inside <code>&lt;noscript&gt;</code> tags to screen readers.</p>
         
-        So, there are two choices:
+        <p>So, there are two choices:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Make the default media accessible (See sections of the Pearson Guidelines that apply to the technology in question.)</li>
+          <li>Explicitly hide the default media from screen readers and provide an equivalent hidden offscreen (See <a href="#g32">Pearson Guidelines 32</a> and <a href="#g33">33</a> for techniques to use to hide media from screen readers.)</li>
+        </ul>
         
-        Make the default media accessible (See sections of the Pearson Guidelines that apply to the technology in question.)
-        Explicitly hide the default media from screen readers and provide an equivalent hidden offscreen (See Pearson Guidelines 32 and 33 for techniques to use to hide media from screen readers.)
-        The following CSS can be used to place hidden alternatives on the page. Anything hidden this way will be available to screen readers and will be available when CSS is turned off. In some cases, it will appear for users of custom style sheets.
+        <p>The following CSS can be used to place hidden alternatives on the page. Anything hidden this way will be available to screen readers and will be available when CSS is turned off. In some cases, it will appear for users of custom style sheets.</p>
         
-        .screen_readers_only {    position:absolute;    left:-999px;    top:auto;    width:1px;    height:1px;    overflow:hidden; }
+        <pre><code>.screen_readers_only {    position:absolute;    left:-999px;    top:auto;    width:1px;    height:1px;    overflow:hidden; }</code></pre>
          
-        Canvas in HTML 5
-        Unlike the case with <object>, <embed> and <noscript> tags, the fallback content that appears between open and close <canvas> tags is available to both screen reader users and keyboard access users.
+        <h3>Canvas in HTML 5</h3>
+        <p>Unlike the case with <code>&lt;object&gt;</code>, <code>&lt;embed&gt;</code> and <code>&lt;noscript&gt;</code> tags, the fallback content that appears between open and close <code>&lt;canvas&gt;</code> tags is available to both screen reader users and keyboard access users.</p>
         
-        This makes it easy to add alternatives for images that are drawn to the page using <canvas>. There are no length restrictions for this fallback content and you have the full power of semantic markup to use to structure the alternative content.
+        <p>This makes it easy to add alternatives for images that are drawn to the page using <code>&lt;canvas&gt;</code>. There are no length restrictions for this fallback content and you have the full power of semantic markup to use to structure the alternative content.</p>
         
-        When <canvas> is interactive, you can even include interactive elements in the fallback content. The important challenge to remember in this case is that some people will be seeing the canvas while interacting with the fallback content. This includes keyboard access users with average vision and also those with low vision who might be using a combination of magnification and screen reader speech. JavaScript should be used to ensure that the experience for these users matches up. For example, when a button in the fallback content is in focus, you might show a focus indicator around the corresponding element on the canvas.
+        <p>When <code>&lt;canvas&gt;</code> is interactive, you can even include interactive elements in the fallback content. The important challenge to remember in this case is that some people will be seeing the canvas while interacting with the fallback content. This includes keyboard access users with average vision and also those with low vision who might be using a combination of magnification and screen reader speech. JavaScript should be used to ensure that the experience for these users matches up. For example, when a button in the fallback content is in focus, you might show a focus indicator around the corresponding element on the canvas.</p>
         
-        Supporting Safari & VoiceOver
-        Safari does not yet support the fallback content. So, conditionally for Safari, place the fallback content in a <div> just after the closing tag, have this <div> styled offscreen:
+        <h4>Supporting Safari &amp; VoiceOver</h4>
+        <p>Safari does not yet support the fallback content. So, conditionally for Safari, place the fallback content in a <code>&lt;div&gt;</code> just after the closing tag, have this <code>&lt;div&gt;</code> styled offscreen:</p>
         
-        .screen_readers_only {         position:absolute;      left:-999px;      top:auto;      width:1px;      height:1px;      overflow:hidden; }     
+        <pre><code>.screen_readers_only {         position:absolute;      left:-999px;      top:auto;      width:1px;      height:1px;      overflow:hidden; }</code></pre>  
          
-        Android Applications
-        Images that provide information must have a text alternative. Use the android:contentDescription property to define the text alternative.
+        <h3>Android Applications</h3>
+        <p>Images that provide information must have a text alternative. Use the <code>android:contentDescription</code> property to define the text alternative.</p>
         
+        <h3>iOS Applications</h3>
+        
+        <p>Images that provide information must have a text alternative. When the text alternative can be about 30 words or fewer, use the <code>accessibilityLabel</code> attribute to define the text alternative. If more than 30 words is needed, use the <code>accessibilityHint</code> attribute along with the <code>accessibilityLabel</code> attribute to provide full text alternative.</p>
+
+        <h3>PDF in Acrobat</h3>
+        
+        <p>Alternative text can be added to images and other elements in the document. Alternative text is text that will be read instead of the text in the tag. There are two ways to add alternative text to images:</p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li><strong>Tags tree</strong> – select the <code>&lt;Figure&gt;</code> tag and go to Properties option in the context menu. Fill in the Alternative text field.<br>
+            <img src="images/tag-alt-text.jpg" width="385" height="388" alt=""></li>
+          <li><strong>TouchUp Reading Order (TURO)</strong> – In TURO select the option to show tables and figures. This will list the alternative text for the image. If the image does not have alternative text, it will put "no alternative text exists". To add alternative text, right-click to get to the context menu. Select Edit Alternative Text. Add the alternative text in the dialog window.<br>
+            <img src="images/TURO-alt-text.jpg" width="351" height="255" alt=""></li>
+        </ol>
+
+        <h4>Tips for Alternative Text in Acrobat</h4>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>The text can be long but consider that the screen reader will read this text to the user. Concise, clear text that describes the concept or action of the picture rather than the visual characteristics of the picture is useful to visually impaired users.</li>
+          <li>Alternative text can also be provided for any tag containing text.</li>
+        </ul>
+        
+        <h3>Word</h3>
+        <p>Images that are part of the content add value to all users and should have alternative text.</p>
+        
+        <p>The location to enter the alternative text will vary depending on your version of Word.</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Word 2003 - Go to Format Picture &gt; Web. Enter the alternative text in the form field.</li>
+          <li>Word 2007 - Set the alternative text in the Size properties. Go to Size &gt; Alt Text.</li>
+          <li>Word 2010 - Set the alternative text by selecting Format Shape &gt; Alt Text. Enter the alternative text into the description box.</li>
+          <li>Word 2013 &amp; Word 2016 - See <a href="https://support.office.com/en-us/article/Add-alternative-text-to-a-picture-shape-chart-SmartArt-graphic-or-table-52327e7c-cecb-45d4-9367-f911aa442371?CorrelationId=e35ebb87-d56b-4ee9-9181-527d57d015cb&ui=en-US&rs=en-US&ad=US">Guidance from Microsoft</a>. Use the description field and only add a title if you'd like the image to be labeled with short title instead of your description. In that case, the user will be given the option to access the longer description.</li>
+        </ul>
+
+        <p>If multiple images are related to represent a single concept, consider grouping them first. The alternative text is should be set on the group object.</p>
+        
+        <h4>Word Art</h4>
+        <p>WordArt is stylized text. In Word 2003 and 2007, it is treated as a picture so you should add alternative text. Word 2010 treats it as text; no alternative text is required.</p>
+        
+        <h4>SmartArt</h4>
+        <p>SmartArt is the collection of diagrams and shapes that Word provides. For most of these, the arrows cannot take alternative text and would therefore be inaccessible. The content holders are text boxes, which screen readers do not read (see <a href="#g4">PG 4</a>). Consider the following options:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Describe the meaning of the diagram and the information it conveys in adjacent text of the main content. Do not describe the appearance of the diagram unless it is necessary to understand the meaning.</li>
+          <li>Add a caption to the diagram that succinctly to describe the point.</li>
+          <li>Group the images and add alternative text. Users can still navigate to components of the group.</li>
+          <li>Replace the SmartArt with a picture of it, using the Windows 7 Snipping tool or other screen capture programs.</li>
+        </ul>
+
+        <h3>PowerPoint</h3>
+        
+        <p>Images that are part of the content add value to all users and should have alternative text, captions, or both. If the image simply illustrates steps that have been clearly described in the text, it is redundant and should have no alternative text. If it does not any extra value and is merely decorative (e.g. banners, lines, pictures of people), it should not have alternative text (see <a href="#g32">PG 32</a>: Decorative Images).</p>
+        
+        <p>The location to enter the alternative text will vary depending on your version of PowerPoint.</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>PowerPoint 2003 - Go to Format Picture &gt; Web. Enter the alternative text in the form field.</li>
+          <li>PowerPoint 2007 - Set the alternative text in the Size properties. Go to Size &gt; Alt Text.</li>
+          <li>PowerPoint 2010 - Set the alternative text by selecting Format Shape &gt; Alt Text. Enter the alternative text into the description box.</li>
+          <li>PowerPoint 2013 &amp; PowerPoint 2016 - See <a href="https://support.office.com/en-us/article/Add-alternative-text-to-a-picture-shape-chart-SmartArt-graphic-or-table-52327e7c-cecb-45d4-9367-f911aa442371?CorrelationId=e35ebb87-d56b-4ee9-9181-527d57d015cb&ui=en-US&rs=en-US&ad=US">Guidance from Microsoft</a>. Use the description field and only add a title if you'd like the image to be labeled with short title instead of your description. In that case, the user will be given the option to access the longer description.</li>
+        </ul>
+
+        <p>If multiple images are related to represent a single concept, consider grouping them and adding a single alternative text.</p>
+        
+        <h4>WordArt</h4>
+        <p>WordArt is stylized text. In PowerPoint 2003 and 2007, it is treated as a picture so you should add alternative text. PowerPoint 2010 treats it as text; no alternative text is required.</p>
+        
+        <h4>SmartArt</h4>
+        <p>SmartArt is the collection of diagrams and shapes that PowerPoint provides. PowerPoint does not read the alternate text for the text boxes and arrows in the diagram, but you can set alternate text for the entire diagram, which is read, by right-clicking on its frame and selecting alt text.</p>
+        
+        <p>In some cases, it may be easier to take a picture of the SmartArt diagram and add alternative text.</p>
+        
+        <h4>Shapes</h4>
+        <p>PowerPoint does not read the alternate text for shapes, but it will read text in the shape.</p>
+        
+        <p>Consider the following options for diagrams and collections of shapes that are not read properly:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Describe the meaning of the diagram and the information it conveys in adjacent text of the main content. Do not describe the appearance of the diagram.</li>
+          <li>Add a caption to the diagram that succinctly describes the point.</li>
+          <li>Group the images and add alternative text.</li>
+        </ul>
+
+        <h3>Testing HTML</h3>
+        <table class="pe-table">
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                  <th scope="row">Tools</th>
+                  <td>Use the <a href="http://www.jimthatcher.com/favelets/">larger images favelet</a> to highlight and display the alt-text for images which are not active and are 10px or larger in both dimensions. These are likely to be either decorative or information-bearing. You may want to disable CSS and then apply the favelet so that results are more easily viewed. Disabling CSS is possible from the View menu in most browsers.
+                  </td>
+                </tr>
+              <tr>
+                <th scope="row">Output</th>
+                <td>The alert will notify you of the number of images without alt attributes (errors!) and how many you need to analyze. It will also let you know if any images on the page (even small and active images) have long description attributes. When alt-text is present, it is displayed near the image for your analysis. When long descriptions are present, links to the long descriptions are provided near the image.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Analysis</th>
+                <td>For those images with alt-text, compare that alt-text with the adjacent image. Be sure the alt-text clearly conveys <strong>the information</strong> that is conveyed by the image. This includes the case where the image is decorative or its information is redundant with other text on the page; then the alt-text should be empty, <code>alt=""</code>.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        <h3>Testing Mobile Applications</h3>
+        <table class="pe-table">
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                  <th scope="row">Tools</th>
+                  <td>Look at the screen and identify areas of the screen that use images. Use the screen reader on the device (VoiceOver on iOS and TalkBack on Android) to read the text alternative for the images.
+                  </td>
+                </tr>
+              <tr>
+                <th scope="row">Output</th>
+                <td>The screen reader will read the text alternative for the image if it is defined. If there is an image on the screen that is not read, then that image has been defined as a background image or has been removed as an accessible element. 
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Analysis</th>
+                <td>For those images with text alternative, compare the information that is being conveyed by the image and the text alternative being read. Be sure the text alternative clearly conveys <strong>the information</strong> that is conveyed by the image. This includes the case where the image is decorative or its information is redundant with other text on the page; then image should be ignored by the screen reader.
+                </td>
+              </tr>
+            </tbody>
+          </table>
          
-        
-        iOS Applications
-        
-        Images that provide information must have a text alternative. When the text alternative can be about 30 words or fewer, use the accessibilityLabel attribute to define the text alternative. If more than 30 words is needed, use the accessibilityHint attribute along with the accessibilityLabel attribute to provide full text alternative.
-        
-         
-        
-        PDF in Acrobat
-        
-        Alternative text can be added to images and other elements in the document. Alternative text is text that will be read instead of the text in the tag. There are two ways to add alternative text to images:
-        Tags tree – select the <Figure> tag and go to Properties option in the context menu. Fill in the Alternative text field.
-        
-        TouchUp Reading Order (TURO) – In TURO select the option to show tables and figures. This will list the alternative text for the image. If the image does not have alternative text, it will put “no alternative text exists”. To add alternative text, right-click to get to the context menu. Select Edit Alternative Text. Add the alternative text in the dialog window.
-        
-        Tips for Alternative Text in Acrobat
-        The text can be long but consider that the screen reader will read this text to the user. Concise, clear text that describes the concept or action of the picture rather than the visual characteristics of the picture is useful to visually impaired users.
-        Alternative text can also be provided for any tag containing text.
-         
-        
-        Word
-        Images that are part of the content add value to all users and should have alternative text.
-        
-        The location to enter the alternative text will vary depending on your version of Word.
-        
-        Word 2003 - Go to Format Picture > Web. Enter the alternative text in the form field.
-        Word 2007 - Set the alternative text in the Size properties. Go to Size > Alt Text.
-        Word 2010 - Set the alternative text by selecting Format Shape > Alt Text. Enter the alternative text into the description box.
-        Word 2013 & Word 2016 - See Guidance from Microsoft. Use the description field and only add a title if you'd like the image to be labeled with short title instead of your description. In that case, the user will be given the option to access the longer description.
-        If multiple images are related to represent a single concept, consider grouping them first. The alternative text is should be set on the group object.
-        
-        Word Art
-        WordArt is stylized text. In Word 2003 and 2007, it is treated as a picture so you should add alternative text. Word 2010 treats it as text; no alternative text is required.
-        
-        SmartArt
-        SmartArt is the collection of diagrams and shapes that Word provides. For most of these, the arrows cannot take alternative text and would therefore be inaccessible. The content holders are text boxes, which screen readers do not read (see PG 4). Consider the following options:
-        
-        Describe the meaning of the diagram and the information it conveys in adjacent text of the main content. Do not describe the appearance of the diagram unless it is necessary to understand the meaning.
-        Add a caption to the diagram that succinctly to describe the point.
-        Group the images and add alternative text. Users can still navigate to components of the group.
-        Replace the SmartArt with a picture of it, using the Windows 7 Snipping tool or other screen capture programs.
-         
-        PowerPoint
-        
-        Images that are part of the content add value to all users and should have alternative text, captions, or both. If the image simply illustrates steps that have been clearly described in the text, it is redundant and should have no alternative text. If it does not any extra value and is merely decorative (e.g. banners, lines, pictures of people), it should not have alternative text (see PG 32: Decorative Images).
-        
-        The location to enter the alternative text will vary depending on your version of PowerPoint.
-        
-        PowerPoint 2003 - Go to Format Picture > Web. Enter the alternative text in the form field.
-        PowerPoint 2007 - Set the alternative text in the Size properties. Go to Size > Alt Text.
-        PowerPoint 2010 - Set the alternative text by selecting Format Shape > Alt Text. Enter the alternative text into the description box.
-        PowerPoint 2013 & PowerPoint 2016 - See Guidance from Microsoft. Use the description field and only add a title if you'd like the image to be labeled with short title instead of your description. In that case, the user will be given the option to access the longer description.
-        If multiple images are related to represent a single concept, consider grouping them and adding a single alternative text.
-        
-        WordArt
-        WordArt is stylized text. In PowerPoint 2003 and 2007, it is treated as a picture so you should add alternative text. PowerPoint 2010 treats it as text; no alternative text is required.
-        
-        SmartArt
-        SmartArt is the collection of diagrams and shapes that PowerPoint provides. PowerPoint does not read the alternate text for the text boxes and arrows in the diagram, but you can set alternate text for the entire diagram, which is read, by right-clicking on its frame and selecting alt text.
-        
-        In some cases, it may be easier to take a picture of the SmartArt diagram and add alternative text.
-        
-        Shapes
-        PowerPoint does not read the alternate text for shapes, but it will read text in the shape.
-        
-        Consider the following options for diagrams and collections of shapes that are not read properly:
-        
-        Describe the meaning of the diagram and the information it conveys in adjacent text of the main content. Do not describe the appearance of the diagram.
-        Add a caption to the diagram that succinctly describes the point.
-        Group the images and add alternative text.
-         
-        Testing HTML
-        Tools	Use the larger images favelet to highlight and display the alt-text for images which are not active and are 10px or larger in both dimensions. These are likely to be either decorative or information-bearing. You may want to disable CSS and then apply the favelet so that results are more easily viewed. Disabling CSS is possible from the View menu in most browsers.
-        Output	The alert will notify you of the number of images without alt attributes (errors!) and how many you need to analyze. It will also let you know if any images on the page (even small and active images) have long description attributes. When alt-text is present, it is displayed near the image for your analysis. When long descriptions are present, links to the long descriptions are provided near the image.
-        Analysis	For those images with alt-text, compare that alt-text with the adjacent image. Be sure the alt-text clearly conveys the information that is conveyed by the image. This includes the case where the image is decorative or its information is redundant with other text on the page; then the alt-text should be empty, alt=””.
-         
-        Testing Mobile Applications
-        Tools	Look at the screen and identify areas of the screen that use images. Use the screen reader on the device (VoiceOver on iOS and TalkBack on Android) to read the text alternative for the images.
-        Output	The screen reader will read the text alternative for the image if it is defined. If there is an image on the screen that is not read, then that image has been defined as a background image or has been removed as an accessible element. 
-        Analysis	For those images with text alternative, compare the information that is being conveyed by the image and the text alternative being read. Be sure the text alternative clearly conveys the information that is conveyed by the image. This includes the case where the image is decorative or its information is redundant with other text on the page; then image should be ignored by the screen reader.
-         
-        Testing PDF in Acrobat
-        Tools	
-        To quickly spot images without alternative text, use TouchUp Reading Order with “Show images and tables” checked.  To evaluate the appropriateness of the alternative text, right click on the image to edit the alternative text.  Note that you can resize this dialog box.
-        
-        Output	
-        Look for “Figure – No alternate text exists” to spot omissions.  Evaluate the wording against the Pearson guidelines for alternative text.
-        
-        Analysis	
-        For those images with alt-text, compare that alt-text with the adjacent image. Be sure the alt-text clearly conveys the information that is conveyed by the image. 
-        
-         
-        Related Guidelines
-        508 Web § 1194.22 (a)
-        A text alternative for every non-text element shall be provided (e.g., via "alt", "longdesc", or in element content).
-        WCAG 2.0 Level A - 1.1.1 Non-text Content
-        All non-text content that is presented to the user has a text alternative that serves the equivalent purpose, except for the situations listed below. 
-        Controls, Input: If non-text content is a control or accepts user input, then it has a name that describes its purpose. (Refer to Guideline 4.1 for additional requirements for controls and content that accepts user input.)
-        Time-Based Media: If non-text content is time-based media, then text alternatives at least provide descriptive identification of the non-text content. (Refer to Guideline 1.2 for additional requirements for media.)
-        Test: If non-text content is a test or exercise that would be invalid if presented in text, then text alternatives at least provide descriptive identification of the non-text content.
-        Sensory: If non-text content is primarily intended to create a specific sensory experience, then text alternatives at least provide descriptive identification of the non-text content.
-        CAPTCHA: If the purpose non-text content is to confirm that content is being accessed by a person rather than a computer, then text alternatives that identify and describe the purpose of the non-text content are provided, and alternative forms of CAPTCHA using output modes for different types of sensory perception are provided to accommodate different disabilities.
-        Decoration, Formatting, Invisible: If non-text content is pure decoration, is used only for visual formatting, or is not presented to users, then it is implemented in a way that it can be ignored by assistive technology.
-        WCAG 2.0 Level A - SC 1.2.1 Audio-only and Video-only (Prerecorded)
-        For prerecorded audio-only and prerecorded video-only media, the following are true, except when the audio or video is a media alternative for text and is clearly labeled as such: (Level A) 
-        Prerecorded Audio-only: An alternative for time-based media is provided that presents equivalent information for prerecorded audio-only content.
-        Prerecorded Video-only: Either an alternative for time-based media or an audio track is provided that presents equivalent information for prerecorded video-only content.
-        508 Refresh - 3-F – Non-text Objects
-        All NON-TEXT OBJECTS that are presented to the user must have a TEXT alternative that presents equivalent information, except for the situations listed below.
-        Controls-Input: If a NON-TEXT OBJECT is a control or accepts user input, then it must have a name that describes its purpose. (See also User Interface Components provisions.)
-        Media: If a NON-TEXT OBJECT is SYNCHRONIZED MEDIA, live audio-only or live video-only CONTENT, then text alternatives must at least provide a descriptive LABEL that identifies the NON-TEXT OBJECT. (For SYNCHRONIZED MEDIA, see also Audio and/or Video provisions.)
-        Test: If a NON-TEXT OBJECT is a test or exercise that must be presented in non-text format, then text alternatives must identify at least the NON-TEXT OBJECT with a descriptive text LABEL. (For SYNCHRONIZED MEDIA, see also Audio and/or Video provisions.)
-        Sensory: If a NON-TEXT OBJECT is primarily intended to create a specific sensory experience, then text alternatives must identify at least the NON-TEXT OBJECT with a descriptive text LABEL. (For SYNCHRONIZED MEDIA, see also Audio and/or Video provisions.)
-        CAPTCHA: If the purpose of a NON-TEXT OBJECT is to confirm that CONTENT is being accessed by a person rather than a computer then text alternatives that identify and describe the purpose of the NON-TEXT OBJECT must be provided and alternative forms in different modalities must be provided to accommodate different disabilities.
-        DECORATION, Formatting, Invisible Objects: If a NON-TEXT OBJECT is pure DECORATION, or used only for visual formatting, or if it is not presented to users, then it must be implemented such that it can be ignored by ASSISTIVE TECHNOLOGY.
+        <h3>Testing PDF in Acrobat</h3>
+        <table class="pe-table">
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                  <th scope="row">Tools</th>
+                  <td>To quickly spot images without alternative text, use TouchUp Reading Order with "Show images and tables" checked.  To evaluate the appropriateness of the alternative text, right click on the image to edit the alternative text.  Note that you can resize this dialog box.
+                  </td>
+                </tr>
+              <tr>
+                <th scope="row">Output</th>
+                <td>Look for "Figure – No alternate text exists" to spot omissions.  Evaluate the wording against the Pearson guidelines for alternative text.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Analysis</th>
+                <td>For those images with alt-text, compare that alt-text with the adjacent image. Be sure the alt-text clearly conveys the information that is conveyed by the image. 
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        <h3>Related Guidelines</h3>
+        <h4>508 Web § 1194.22 (a)</h4>
+        <p>A text alternative for every non-text element shall be provided (e.g., via "alt", "longdesc", or in element content).</p>
+        <h4>WCAG 2.0 Level A - 1.1.1 Non-text Content</h4>
+        <p>All non-text content that is presented to the user has a text alternative that serves the equivalent purpose, except for the situations listed below. </p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Controls, Input: If non-text content is a control or accepts user input, then it has a name that describes its purpose. (Refer to Guideline 4.1 for additional requirements for controls and content that accepts user input.)</li>
+          <li>Time-Based Media: If non-text content is time-based media, then text alternatives at least provide descriptive identification of the non-text content. (Refer to Guideline 1.2 for additional requirements for media.)</li>
+          <li>Test: If non-text content is a test or exercise that would be invalid if presented in text, then text alternatives at least provide descriptive identification of the non-text content.</li>
+          <li>Sensory: If non-text content is primarily intended to create a specific sensory experience, then text alternatives at least provide descriptive identification of the non-text content.</li>
+          <li>CAPTCHA: If the purpose non-text content is to confirm that content is being accessed by a person rather than a computer, then text alternatives that identify and describe the purpose of the non-text content are provided, and alternative forms of CAPTCHA using output modes for different types of sensory perception are provided to accommodate different disabilities.</li>
+          <li>Decoration, Formatting, Invisible: If non-text content is pure decoration, is used only for visual formatting, or is not presented to users, then it is implemented in a way that it can be ignored by assistive technology.</li>
+        </ul>
+        <h4>WCAG 2.0 Level A - SC 1.2.1 Audio-only and Video-only (Prerecorded)</h4>
+        <p>For prerecorded audio-only and prerecorded video-only media, the following are true, except when the audio or video is a media alternative for text and is clearly labeled as such: (Level A) </p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Prerecorded Audio-only: An alternative for time-based media is provided that presents equivalent information for prerecorded audio-only content.</li>
+          <li>Prerecorded Video-only: Either an alternative for time-based media or an audio track is provided that presents equivalent information for prerecorded video-only content.</li>
+        </ul>
+
+        <h4>508 Refresh - 3-F – Non-text Objects</h4>
+        <p>All NON-TEXT OBJECTS that are presented to the user must have a TEXT alternative that presents equivalent information, except for the situations listed below.</p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Controls-Input: If a NON-TEXT OBJECT is a control or accepts user input, then it must have a name that describes its purpose. (See also User Interface Components provisions.)</li>
+          <li>Media: If a NON-TEXT OBJECT is SYNCHRONIZED MEDIA, live audio-only or live video-only CONTENT, then text alternatives must at least provide a descriptive LABEL that identifies the NON-TEXT OBJECT. (For SYNCHRONIZED MEDIA, see also Audio and/or Video provisions.)</li>
+          <li>Test: If a NON-TEXT OBJECT is a test or exercise that must be presented in non-text format, then text alternatives must identify at least the NON-TEXT OBJECT with a descriptive text LABEL. (For SYNCHRONIZED MEDIA, see also Audio and/or Video provisions.)</li>
+          <li>Sensory: If a NON-TEXT OBJECT is primarily intended to create a specific sensory experience, then text alternatives must identify at least the NON-TEXT OBJECT with a descriptive text LABEL. (For SYNCHRONIZED MEDIA, see also Audio and/or Video provisions.)</li>
+          <li>CAPTCHA: If the purpose of a NON-TEXT OBJECT is to confirm that CONTENT is being accessed by a person rather than a computer then text alternatives that identify and describe the purpose of the NON-TEXT OBJECT must be provided and alternative forms in different modalities must be provided to accommodate different disabilities.</li>
+          <li>DECORATION, Formatting, Invisible Objects: If a NON-TEXT OBJECT is pure DECORATION, or used only for visual formatting, or if it is not presented to users, then it must be implemented such that it can be ignored by ASSISTIVE TECHNOLOGY.</li>
+        </ol>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
+      
       <h2 id="g30"></h2>
       <div class="guideline_content">
         <a class="skippy" href="#toc">Back to TOC</a>
