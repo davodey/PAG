@@ -121,7 +121,7 @@
         <li><a href="#g31">31: Provide alternatives for video and animation that provide information (Complete Narration or Audio Description)</a></li>
         <li><a href="#g32">32: Keep decorative and redundant images silent in screen readers (Decorative &amp; Redundant Images)</a></li>
         <li><a href="#g33">33: Keep hidden or dimmed content silent in screen readers (Hidden or Dimmed Content)</a></li>
-        <li><a href="#g34">34: </a></li>
+        <li><a href="#g34">34: Let user control the audio (User Control of Audio)</a></li>
         <li><a href="#g35">35: </a></li>
         <li><a href="#g36">36: </a></li>
         <li><a href="#g37">37: </a></li>
@@ -4981,11 +4981,99 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
 
-      
-      <h2 id="g34"></h2>
+
+      <h2 id="g34">Guideline 34. Let user control the audio (User Control of Audio)</h2>
       <div class="guideline_content">
+        <p class="summary">If audio plays longer than three seconds, either only play the audio on user request or allow it to be stopped easily using a screen reader. Allow users to restart and replay any audio that provides information.</p>
+        <p>Note: This includes multimedia presentations with audio.</p>
+        <h3>Rationale</h3>
+        <p>Screen reader users need to be able to control when audio plays so that they can hear and focus either on what their screen reader is speaking or on the audio. When audio begins automatically, it can be difficult or impossible for a screen reader user to navigate to a stop button. Similarly, screen reader users may miss audio that plays just after the page loads, as their screen reader may be speaking a summary of what's on the page, such as, "Page has 3 Landmarks, 23 headings, and 212 links."</p>
+        
+        <p>Audio can also interfere with voice recognition software. If audio begins automatically and can't be stopped without navigating to a stop button, users with mobility impairment who use voice recognition to control the computer may not be able to turn off the audio.</p>
+
+        <h3>Techniques</h3>
+        
+        <h4>Audio that does not Start Automatically</h4>
+        <p>Ideally, do not have the audio play automatically and provide a play button with a stop or pause button near (or replacing) the play button.</p>
+        
+        <h4>Making Audio Easy to Stop</h4>
+        <p>There are a few options for making audio easy to stop:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Escape - If the audio begins automatically, allow the escape key to stop the audio. Be sure the escape key will work without the user having to move focus to any controls or to a video. Be sure to only capture escape once to stop the audio. When the audio is not playing, the escape key must have its default behavior.</li>
+          <li>A stop or pause button at the top of the page - If audio begins automatically when a page or screen is loaded, include a Stop Audio button at the very beginning of that page or screen. Be sure this button is at the very beginning of the reading order. See Pearson Guideline 4 for more information on reading order.</li>
+          <li>Moving focus to the stop or pause button - In some cases, it is okay to use scripting to move the focus to the stop or pause button if audio starts automatically. For example, if a video plays while you are advancing through a learning module and users know what to expect, you might place focus on the pause button right when the page loads.</li>
+        </ul>
+
+        <h3>Flash &amp; Flex</h3>
+        <p>Ideally, Flash content should not use audio that plays automatically, but, when it does, the following must be implemented:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Interactive controls that allow the audio to be paused and resumed.</li>
+          <li>Global shortcuts that allow the user to pause and resume the audio.</li>
+        </ul>
+        
+        <p>Note that while implementing the shortcuts alone would meet this guideline, implementing both is recommended.</p>
+        <p>Interactive controls can be as simple as basic buttons, but they can also be custom components (as long as these components are themselves accessible).</p>
+        <p>For global keyboard shortcuts, it’s important to keep in mind that key event handlers defined within Flash are effective only within the Flash movie’s scope. In other words, Flash-based keyboard shortcuts work only when the current keyboard focus is placed inside the Flash movie. </p>
+        <p>To resolve this, you can add JavaScript-based key handlers to the HTML document containing the Flash movie. The JavaScript-based event handlers can then call the Flash-based event handlers, using Flash’s ExternalInterface class. With this approach, keyboard shortcuts will work both inside and outside the Flash movie, ensuring that the user is always able to turn the sound off.</p>
+        <h4>Enhancing Your Solution with Screen Reader Detection</h4>
+        <p>Flash has the capability to check whether an MSAA client (which could be a screen reader) is currently running. Using this capability, you can prevent audio from playing automatically for screen reader users.</p>
+        <p>The code snippet below shows how to set the autoPlay property of an existing FLVPlayback instance to false. This disables the entire movie (including audio) from playing automatically for screen reader users.</p>
+        <pre><code>import flash.accessibility.Accessibility; import flash.system.Capabilities; import fl.video.FLVPlayback; var myPlayer:FLVPlayback;  // Capabilities.hasAccessibility  //      indicates whether the current operating system supports  //      MSAA (which basically means that the OS is Windows based)  // Accessibility.active  //      indicates whether an MSAA client is currently active   if (Capabilities.hasAccessibility &amp;&amp; Accessibility.active) {      myPlayer.autoPlay = false; }</code></pre>
+        <p><strong>Note:</strong> The Accessibility.active check does not guarantee that all screen reader types are detected (it specifically checks for MSAA clients). This solution should only be used as a last resort, e.g. when it’s not possible to disable automatically playing audio for all users or make this behavior configurable by users.</p>
+        <h4>Example with Keyboard Shortcuts, Toggle Button, and Screen Reader Detection</h4> 
+        <p>The code example below shows a sample class that automatically starts playing music. The following features are included in this sample:</p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>A button is provided that allows users to stop the music.</li>
+          <li>Shortcuts are defined in both the Flash movie as well as in the HTML document, allowing the user to pause / play (p), stop (esc), and restart (r) the music in either the Flash movie or the HTML content.</li>
+          <li>The demo checks for the presence of a running screen reader and will not play the music automatically if one is detected.</li>
+        </ol>
+
+        <p>The code includes inline comments to highlight each feature.</p>
+        <p><strong>Note:</strong> This example uses a third party class for handling audio called ‘SoundManager.’ (<mark><a href="http://wps.pearsoned.com/accessibility/220/56429/14445976.cw/%E2%80%9Dhttp://evolve.reintroducing.com/2008/07/15/as3/as3-soundmanager%E2%80%9D">Open Web page about Sound Manager in a new window.</a></mark>) This specific class is not required for this technique and is only used to simplify the code example below.</p>
+        <h4>ActionScript 3.0 Code:</h4>
+        <pre><code>import SoundDemo; // Get an instance of the SoundDemo class  //     (specifically made for this demo) // The string determines which music will play var mySoundDemo:SoundDemo = new  SoundDemo("http://freepd.com/Classical/Allemande.mp3"); this.addChild(mySoundDemo); SoundDemo Class (ActionScript 3.0 Code): package {   import fl.controls.Button;   import fl.accessibility.ButtonAccImpl;   import flash.accessibility.Accessibility;   import flash.system.Capabilities;   import flash.display.Sprite;   import flash.events.MouseEvent;   import flash.external.ExternalInterface;   import flash.events.KeyboardEvent;   import com.reintroducing.sound.SoundManager;      public class SoundDemo extends Sprite {     // Private variables      private var myButton:Button;     private var mySoundManager:SoundManager;          // Constructor     public function SoundDemo(mp3String):void {       if (ExternalInterface.available) {        //Make public methods in this class callable by JavaScript        ExternalInterface.addCallback("toggleMusic", this.toggleMusic);        ExternalInterface.addCallback("pauseMusic", this.pauseMusic);        ExternalInterface.addCallback("restartMusic", this.restartMusic);       }             //load the music using the third party SoundManager class       mySoundManager = SoundManager.getInstance();       mySoundManager.addExternalSound(mp3String, "demoMusic");              // create the button for pausing the music ButtonAccImpl.enableAccessibility();       myButton = new Button();       myButton.x = myButton.y = 10;       myButton.width = 150;       myButton.addEventListener(MouseEvent.CLICK, clickHandler);       this.addChild(myButton);       myButton.label = "Start music";              this.addEventListener(KeyboardEvent.KEY_UP, keyUpHandler);        if (!Capabilities.hasAccessibility || !Accessibility.active) {         // No screen reader detected,          //     automatically start playing the music         mySoundManager.playSound("demoMusic");         myButton.label = "Pause music";       }           }     public function toggleMusic() {       if (!mySoundManager.isSoundPaused("demoMusic")) {         pauseMusic();       } else {         playMusic();       }     }      public function playMusic():void {       mySoundManager.playSound("demoMusic");       myButton.label = "Pause music";     }      public function pauseMusic():void {       mySoundManager.pauseSound("demoMusic");       myButton.label = "Resume music";     }      public function restartMusic():void {       mySoundManager.stopSound("demoMusic");       playMusic();       myButton.label = "Pause music";     }              private function clickHandler(e:MouseEvent):void {       toggleMusic();     }          // global key event handlers for manipulating music playback     //     These shortcuts only work when keyboard focus is inside      //     the Flash movie. See HTML Code below for solution.     private function keyUpHandler(e:KeyboardEvent):void {       trace (e.keyCode);       switch (e.keyCode) {         case 27: // Esc key           pauseMusic();         break;         case 80: // P key           toggleMusic()         break;         case 82: // R key           restartMusic();         break;       }     }   } }</code></pre>
+        <h4>HTML Code:</h4>
+        <pre><code>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;   &lt;html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"&gt;   &lt;head&gt;    &lt;title>audio&lt;/title&gt;    &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt;    &lt;style type="text/css" media="screen"&gt;    &lt;/style&gt;    &lt;script type="text/javascript" src="swfobject.js"&gt;&lt;/script&gt;        &lt;script type="text/javascript"&gt;           // Use SWFObject to dynamically load the Flash movie.           //     The "mySwf" id can be used later to reference           //      methods in the Flash movie.      swfobject.embedSWF("audio.swf", "mySwf", "200", "200", "8");               window.onkeyup = keyUpHandler;      // This key up handler ensures that the shortcut keys for          //       audio manipulation are also available in the entire         //       web page, not just when focus is in the Flash content        function keyUpHandler(e) {           e = e || window.event;           var mySwf = document.getElementById("mySwf");           switch (e.keyCode) {                // each of these Flash based methods were made                 // available to JavaScript through use of the                // ExternalInterface.addCallback() method in                 // the Flash movie's code.                case 27: // Esc key                     mySwf.pauseMusic();                break;                case 80: // P key                     mySwf.toggleMusic()                break;                case 82: // R key                     mySwf.restartMusic();                break;           }      }      &lt;/script&gt; &lt;/head&gt; &lt;body&gt;      &lt;div id="flashContent"&gt;            &lt;h1&gt; Flash Automatic Sound Demo&lt;/h1&gt;             &lt;p&gt; This page contains a Flash movie that                  automatically starts playing sound. Use the                  button below to stop or start the sound.                  Additionally, you can use the following shortcuts:                 &lt;/p&gt;             &lt;ul&gt;                 &lt;li&gt; esc: Stop Music&lt;/li&gt;                 &lt;li&gt; p: Pause / Play Music&lt;/li&gt;                &lt;li&gt; r: Restart Music&lt;/li&gt;            &lt;/ul&gt;             &lt;!-- This fallback content will be replaced by swfobject                 when Javascript and Flash are supported:--&gt;             &lt;p id="mySwf">Flash needs to be installed for this           example to work.                         &lt;a href="http://get.adobe.com/flashplayer/"&gt;                               Get the Adobe Flash Player                        &lt;/a&gt;                  &lt;/p&gt;       &lt;/div&gt;  &lt;/body&gt; &lt;/html&gt;</code></pre>
+        <h4>Additional Details and Background Information (open in a new window/tab)</h4>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>The <a href="https://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/external/ExternalInterface.html" target="_blank">ExternalInterface class</a>, needed for JavaScript and ActionScript to communicate with each other (Adobe AS3 reference).</li>
+          <li><a href="https://www.w3.org/TR/WCAG-TECHS/FLASH18.html" target="_blank">WCAG 2.0 Technique FLASH18: Providing a control to turn off sounds that play automatically in Flash</a></li>
+          <li><a href="https://www.w3.org/TR/WCAG-TECHS/FLASH34.html" target="_blank">WCAG 2.0 Technique FLASH34: Turning off sounds that play automatically when an assistive technology is detected</a></li>
+        </ul>
+
+        <h3>PowerPoint</h3>
+        <p>PowerPoint automatically adds a control to start and pause the video or audio clip. By default the user can control when the content starts to play because it is configured to play when they click. Be sure to not select "Play automatically" so that the screen reader can read the content of the screen first.</p>
+         
+        <h3>Testing</h3>
+        <table class="pe-table">
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Review</th>
+                <td>Just review the page for any sound that starts automatically and continues for more than three seconds and for any sound that provides information.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Analysis</th> 
+                <td>Make sure any sound that plays automatically for more than three seconds can be stopped by pressing escape. Make sure any sound that provides information can be replayed.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        <h3>Related Guidelines</h3>
+        <h4>WCAG 2.0 Level A - SC 1.4.2 Audio Control:</h4> 
+        <p>If any audio on a Web page plays automatically for more than 3 seconds, either a mechanism is available to pause or stop the audio, or a mechanism is available to control audio volume independently from the overall system volume level. (Level A)</p>
+        <h4>508 Refresh 3-L: Audio Turnoff</h4>
+        <p>When any audio plays automatically for more than 3 seconds, there must be a mechanism to pause or stop the audio, or a mechanism to control audio volume that can be set to be a different level from the system volume level. This provision does not apply to emergency messages regarding risk of personal injury or loss of property or data, or to audio messages required by law.</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
+
       <h2 id="g35"></h2>
       <div class="guideline_content">
         <a class="skippy" href="#toc">Back to TOC</a>
