@@ -118,7 +118,7 @@
         <li><a href="#g28">28: Have sufficient color contrast in key images (Color Contrast in Key Images)</a></li>
         <li><a href="#g29">29: Provide alternatives for images that provide information (Images that Provide Info)</a></li>
         <li><a href="#g30">30: Provide alternatives for image buttons and links that provide information (Image Buttons &amp; Links)</a></li>
-        <li><a href="#g31">31: </a></li>
+        <li><a href="#g31">31: Provide alternatives for video and animation that provide information (Complete Narration or Audio Description)</a></li>
         <li><a href="#g32">32: </a></li>
         <li><a href="#g33">33: </a></li>
         <li><a href="#g34">34: </a></li>
@@ -4649,10 +4649,84 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
       </div>
 
 
-      <h2 id="g31"></h2>
+      <h2 id="g31">Guideline 31. Provide alternatives for video and animation that provide information (Complete Narration or Audio Description)</h2>
       <div class="guideline_content">
+          <p class="summary">When multimedia (e.g. video, narrated animation) includes important visual and auditory information, provide spoken description of any significant visual elements that would be missed when listening to the audio alone.</p>
+          
+          <p>Notes: </p>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>If you have an interactive with both important sound and motion, but they are presented separately, with transitions triggered by the user, you can use the simpler accommodations described in <a href="g29">guidelines 29</a> (alternative text) and <a href="#g36">36</a> (captions).</li>
+            <li>In cases where the spoken description needed is <strong>not</strong> helpful for all audiences, the additional description should go into a separate audio track or second version of the video.</li>
+          </ul>
+          
+          <h3>Rationale</h3>
+          <p>People with vision impairment can often follow most of the content of multimedia by listening to the audio. However, when key events and visuals are not apparent through the default sound track, additional information is needed. By adding spoken descriptions that play during the multimedia, we can provide that information at the right moments during the video, making it possible for those with visual impairments to follow the default audio.</p>
+          
+          <p>Note: These spoken descriptions of the visual content of multimedia are called audio descriptions, where "audio" refers to the mode of delivery.</p>
+
+          <h3>General Techniques</h3>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>If the visuals are insignificant, for example, a speaker who does not provide any type of demonstration, there is no need to provide audio description of the visuals.</li>
+            <li>If the sounds are insignificant, for example, background music, the media can be treated as a silent animation. See <a href="#g29">PG 29</a>.</li>
+            <li>Audio description can be:
+                <ul class="pe-list pe-styled-lists--unordered">
+                  <li>included in a separate audio description track that can be activated or deactivated</li>
+                  <li>provided in a separate copy of the multimedia<br>
+                  OR</li>
+                  <li>worked into the default sound track for all users</li>
+                </ul>
+            </li>
+            <li>When possible, provide spoken description of visuals during pauses in the soundtrack. If pauses in the soundtrack are too short or too infrequent, pause the media to insert sufficient description of the visual information.</li>
+            <li>It is only necessary to describe those visual elements needed to understand the multimedia through audio alone.</li>
+            <li>When providing audio description it can be helpful to have the description label background sounds. For example, although understanding a zoologist's philosophy may not require knowing what animal is behind her, if the animal is growling, people are going to wonder. Try to include the information in a natural way, with other important information, as in, "Professor Smith of the Smith Zoo speaks to a small crowd at the zoo's lion exhibit."</li>
+            <li>For more information on audio description, visit the <a href="http://www.acb.org/adp/ad.html" target="_blank">Audio Description Project in a new window</a>.</li>
+          </ul>
+
+          Testing
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Review</th>
+                  <td>Check for any options to turn on "Audio Description." This is often provided using links that say simply "AD". If audio description exists, activate it.<br>
+                    <br>
+                    Listen to the video with your screen off. Note whether anything is confusing. Watch the video. Note whether any important information is available only through the visuals.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Analysis</th> 
+                  <td>Report as errors any cases where listening to the audio alone is confusing. For example, you may not know who was speaking. Also, report as errors any cases where important information was available only in the visuals. For example, the liquid in a chemistry experiment may have turned blue without this detail being mentioned by the narrator.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          <h3>Related Guidelines</h3>
+          <h4>508 § 1194.22 Web (b)</h4>
+          <p>Equivalent alternatives for any multimedia presentation shall be synchronized with the presentation.</p>
+          <h4>WCAG 2.0 Level A - 1.2.3 Audio Description or Media Alternative: </h4>
+          <p>An alternative for time-based media or audio description of the prerecorded video content is provided for synchronized media, except when the media is a media alternative for text and is clearly labeled as such. (Level A)</p>
+          <h4>WCAG 2.0 Level AA - 1.2.5 Audio Description: </h4>
+          <p>Audio description is provided for all prerecorded video content in synchronized media. (Level AA)</p>
+          <h4>WCAG 2.0 Level AAA - 1.2.7 Audio Description (Extended): </h4>
+          <p>Where pauses in foreground audio are insufficient to allow audio descriptions to convey the sense of the video, extended audio description is provided for all prerecorded video content in synchronized media. (Level AAA)</p>
+          <h4>508 Refresh 5-B: Video Description</h4>
+          <p>Materials containing video and/or audio, regardless of format, that contain visual information necessary for the comprehension of the CONTENT, must comply with the following:</p>
+          <ol class="pe-list pe-styled-lists--ordered">
+            <li>Materials containing prerecorded video and no original audio or other additional time-based CONTENT must provide either a separate TEXT description of the video or provide an additional audio track to convey the informational CONTENT of the video.</li>
+            <li>When the visual informational CONTENT is not conveyed through other means, materials containing prerecorded video with concurrent audio must provide synchronized VIDEO DESCRIPTIONS, or when space is not available in the main program audio for synchronized VIDEO DESCRIPTIONS, a separate TEXT description of the video CONTENT must be provided.</li>
+            <li>Materials containing live video must provide synchronized VIDEO DESCRIPTIONS in real time to convey any informational CONTENT of the video that is not conveyed through other means.<br>
+              Note: At the time of playback, video descriptions must be either (a) capable of being turned on and off ("closed"), or (b) visible or audible to all users ("open").</li>
+          </ol>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
+
       <h2 id="g32"></h2>
       <div class="guideline_content">
         <a class="skippy" href="#toc">Back to TOC</a>
