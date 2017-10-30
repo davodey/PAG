@@ -4493,8 +4493,162 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
 
       <h2 id="g30">Guideline 30. Provide alternatives for image buttons and links that provide information (Image Buttons &amp; Links)</h2>
       <div class="guideline_content">
+          <p class="summary">If an image represents a control or a link, provide text that can serve the same purpose when images are not available.</p>
+          
+          <p>Note: This includes videos and animations that are silent or are accompanied by sounds that do not provide information, such as background music.</p>
+          
+           
+          <h3>Rationale</h3>
+          <p>This allows screen reader users to use the control.</p>
+          
+          <p>Additional Benefit: This also helps when users have images turned off or unavailable as in mobile browsing.</p>
+
+          <h3>General Techniques</h3>
+          <ol class="pe-list pe-styled-lists--ordered">
+            <li>For active images the alt-text should be written as link text would be written for a standard link with the same function. The screen capture below shows a Web site where the images have been outlined using the Web Developer Toolbar in Firefox. The house icon and the word "home" are part of a single active image: <br>
+                <img src="images/homeimage.png" width="270" height="214" alt="Home link in graphical user interface as described above"><br>
+                This image should have "Home" as the alt-text: 
+                <pre><code>&lt;a href="home.html"&gt;      &lt;img src="home.gif" alt="Home" /&gt; &lt;/a&gt;</code></pre>
+            </li>
+            <li>Often on Web pages, we mark a link with both an icon and link text. For example, we might have an icon showing a house, followed by the word "Home".<br>
+              <br>
+              If the icon is an active link, it will be announced as a link by screen readers. Because of this, the icon image needs alt-text so that a screen reader user will know the purpose of the link. Unfortunately, this often results in screen reader users hearing every such link twice: once for the icon link and once for the text link. This can become very tedious when navigating repetitive pages with a screen reader.<br>
+              <br>
+              The solution is to put the image and the link text in the same link tag. Then the image can be given alt-text of <code>alt=""</code>, called null alt-text. This tells the screen reader not to announce the image.<br>
+              <br>
+              With this sample code, the link would be announced just once as "link, Home":
+              <pre><code>&lt;a href="home.html"&gt;      &lt;img src="home_icon.gif" alt="" /&gt;Home &lt;/a&gt;</code></pre>
+            </li>
+          </ol>
+
+          <h3>HTML &amp; JavaScript</h3>
+          
+          <h4>HTML | XHTML | CSS</h4>
+          <ol class="pe-list pe-styled-lists--ordered">
+            <li>The alt attribute should be used to convey the purpose of the link, button or control:
+              <pre><code>&lt;a href="home.html"&gt;      &lt;img src="home.gif" alt="Home" /&gt; &lt;/a&gt;</code></pre>
+              <pre><code>&lt;input type="image"         src="create_account.gif"         alt="Create Account"&gt;</code></pre></li>
+            <li>When making client-side image maps accessible, add <code>alt</code> attributes as follows:
+              <ul class="pe-list pe-styled-lists--unordered">
+                <li>Each clickable <code>area</code> element in a client-side image map should have an altattribute that describes the purpose of the <code>area</code> element.</li>
+                <li>See <a href="#g29">PG 29</a> for information on alt-text for the image map image itself.</li>
+              </ul>
+            </li>
+          </ol>
+          
+          <h4>JavaScript</h4>
+          <p>Sometimes a change in the meaning of an element is communicated by changing an image (e.g. a play button becomes a pause button, an expand button becomes a collapse button). In these cases, be sure to update the alt-text as well. For example, the following code changes both the image file (<code>src</code> attribute) and the value of the <code>alt</code> attribute for an image with id <code>uicontrol1</code>: </p>
+              <pre><code>document.getElementById('uicontrol1').src='minus.gif';     document.getElementById('uicontrol1').alt='Collapse menu';</code></pre>
+          <p>. . . </p>
+              <pre><code>&lt;button type="button" onclick="toggleMenu();"&gt;         &lt;img src="plus.gif"               alt="Expand menu"               id="uicontrol1" /&gt;     &lt;/button&gt;</code></pre>
+           
+          <h3>Android Applications</h3>
+          
+          <p>Active images must have a text alternative that conveys the purpose of the link, button or control. Use the <code>android:contentDescription</code> property to define the text alternative.</p>
+
+          <h3>iOS Applications</h3>
+          
+          <p>Image buttons and links should define the alternative text using the <code>accessibilityLabelproperty</code> and <code>the accessibilityTraits</code> property to define the element’s type, state, or behavior. For example, a login image button would have the <code>accessibilityLabel</code> set to "Login" and would be defined with the Link and Image <code>accessibilityTraits</code>.</p>
+          <p>Use the <code>accessibilityHint</code> property to provide supplemental information that provides further instructions of what will happen by performing the action if it will be unclear or confusing.</p>
+           
+          <h3>Testing HTML</h3>
+          <table class="pe-table">
+              <caption class="pe-sr-only">HTML</caption>
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>Use the <a href="http://www.jimthatcher.com/favelets/">active images favelet</a> to highlight active images and their alt-text. You may want to disable CSS and then apply the favelet so that results are more easily viewed. Disabling CSS is possible from the View menu in most browsers.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Output</th>
+                  <td>The alert announces the number of definite errors and the number of images that need to be reviewed. The definite errors are:
+                      <ul class="pe-list pe-styled-lists--unordered">
+                        <li>images with no <code>alt</code> attribute, or</li>
+                        <li>images with an empty <code>alt</code> attribute (<code>alt=""</code>) and no other text in the link or button.</li>
+                      </ul>
+                      When alt-text is present, it is displayed next to (near) the image.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Analysis</th> 
+                  <td>Check that the existing alt-text clearly gives the purpose or function of the button or image link. This should <strong>not</strong> be descriptive alt-text. Instead, it should clearly indicate what the object does. In other words, it should be text you might use for a text link that serves the same function.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          <h3>Testing Mobile Applications</h3>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>Look at the screen and identify areas of the screen that use images for links, buttons or other functional controls. Use the screen reader on the device (VoiceOver on iOS and TalkBack on Android) to read the text alternative for the images.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Output</th>
+                  <td>The alert announces the number of definite errors and the number of images that need to be reviewed. The definite errors are:
+                      <ul class="pe-list pe-styled-lists--unordered">
+                        <li>images with no text alternative, or</li>
+                        <li>images with incorrext text alternative</li>
+                      </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Analysis</th> 
+                  <td>Check that the existing alt-text clearly gives the purpose or function of the button or image link. This should <strong>not</strong> be descriptive text alternative. Instead, it should clearly indicate what the control does. In other words, it should be text you might use for a text link that serves the same function.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          <h3>Related Guidelines</h3>
+          <h4>508 Web § 1194.22 (a)</h4>
+          <p>A text alternative for every non-text element shall be provided (e.g., via "alt", "longdesc", or in element content).</p>
+          <h4>WCAG 2.0 Level A - 1.1.1 Non-text Content</h4>
+          <p>All non-text content that is presented to the user has a text alternative that serves the equivalent purpose, except for the situations listed below. </p>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>Controls, Input: If non-text content is a control or accepts user input, then it has a name that describes its purpose. (Refer to Guideline 4.1 for additional requirements for controls and content that accepts user input.)</li>
+            <li>Time-Based Media: If non-text content is time-based media, then text alternatives at least provide descriptive identification of the non-text content. (Refer to Guideline 1.2 for additional requirements for media.)</li>
+            <li>Test: If non-text content is a test or exercise that would be invalid if presented in text, then text alternatives at least provide descriptive identification of the non-text content.</li>
+            <li>Sensory: If non-text content is primarily intended to create a specific sensory experience, then text alternatives at least provide descriptive identification of the non-text content.</li>
+            <li>CAPTCHA: If the purpose non-text content is to confirm that content is being accessed by a person rather than a computer, then text alternatives that identify and describe the purpose of the non-text content are provided, and alternative forms of CAPTCHA using output modes for different types of sensory perception are provided to accommodate different disabilities.</li>
+            <li>Decoration, Formatting, Invisible: If non-text content is pure decoration, is used only for visual formatting or is not presented to users, then it is implemented in a way that it can be ignored by assistive technology.</li>
+          </ul>
+          <h4>WCAG 2.0 Level A - SC 1.2.1 Audio-only and Video-only (Prerecorded)</h4>
+          <p>For prerecorded audio-only and prerecorded video-only media, the following are true, except when the audio or video is a media alternative for text and is clearly labeled as such: (Level A) </p>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>Prerecorded Audio-only: An alternative for time-based media is provided that presents equivalent information for prerecorded audio-only content.</li>
+            <li>Prerecorded Video-only: Either an alternative for time-based media or an audio track is provided that presents equivalent information for prerecorded video-only content.</li>
+          </ul>
+
+          <h4>508 Refresh - 3-F – Non-text Objects</h4>
+          <p>All NON-TEXT OBJECTS that are presented to the user must have a TEXT alternative that presents equivalent information, except for the situations listed below.</p>
+          <ol class="pe-list pe-styled-lists--ordered">
+            <li>Controls-Input: If a NON-TEXT OBJECT is a control or accepts user input, then it must have a name that describes its purpose. (See also User Interface Components provisions.)</li>
+            <li>Media: If a NON-TEXT OBJECT is SYNCHRONIZED MEDIA, live audio-only or live video-only CONTENT, then text alternatives must at least provide a descriptive LABEL that identifies the NON-TEXT OBJECT. (For SYNCHRONIZED MEDIA, see also Audio and/or Video provisions.)</li>
+            <li>Test: If a NON-TEXT OBJECT is a test or exercise that must be presented in non-text format, then text alternatives must identify at least the NON-TEXT OBJECT with a descriptive text LABEL. (For SYNCHRONIZED MEDIA, see also Audio and/or Video provisions.)</li>
+            <li>Sensory: If a NON-TEXT OBJECT is primarily intended to create a specific sensory experience, then text alternatives must identify at least the NON-TEXT OBJECT with a descriptive text LABEL. (For SYNCHRONIZED MEDIA, see also Audio and/or Video provisions.)</li>
+            <li>CAPTCHA: If the purpose of a NON-TEXT OBJECT is to confirm that CONTENT is being accessed by a person rather than a computer then text alternatives that identify and describe the purpose of the NON-TEXT OBJECT must be provided and alternative forms in different modalities must be provided to accommodate different disabilities.</li>
+            <li>DECORATION, Formatting, Invisible Objects: If a NON-TEXT OBJECT is pure DECORATION, or used only for visual formatting, or if it is not presented to users, then it must be implemented such that it can be ignored by ASSISTIVE TECHNOLOGY.</li>
+          </ol>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
+
       <h2 id="g31"></h2>
       <div class="guideline_content">
         <a class="skippy" href="#toc">Back to TOC</a>
