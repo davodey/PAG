@@ -129,7 +129,7 @@
         <li><a href="#g34">34: Let user control the audio (User Control of Audio)</a></li>
         <li><a href="#g35">35: Set or allow user to adjust audio clarity &amp; contrast (Audio Clarity &amp; Contrast)</a></li>
         <li><a href="#g36">36: Provide transcripts and visual alerts for sounds that provide info (audio files, podcasts, video) (Transcripts &amp; Visual Alerts)</a></li>
-        <li><a href="#g37">37: </a></li>
+        <li><a href="#g37">37: Provide captions for sounds that provide info (audio files, podcasts, video) (Captions)</a></li>
         <li><a href="#g38">38: </a></li>
         <li><a href="#g39">39: </a></li>
         <li><a href="#g40">40: </a></li>
@@ -5241,10 +5241,72 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
       </div>
 
 
-      <h2 id="g37"></h2>
+      <h2 id="g37">Guideline 37. Provide captions for sounds that provide info (audio files, podcasts, video) (Captions)</h2>
       <div class="guideline_content">
+        <p class="summary">When movies, animations, slideshows or games use synchronized visuals and sound to provide information, use captions to provide all important auditory information. </p>
+        <p>Note: Captions are not required if the audio is a narrator reading on-screen text aloud.</p>
+        <h3>Rationale</h3>
+        <p>Captions provide an alternative to the audio content for people who can't hear the audio well or at all. They also benefit people with auditory processing dysfunction, a learning disability that makes taking in audio content difficult.</p>
+        
+        <h4>Additional Benefits:</h4>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Captions are useful to any user in environments where the sound is unavailable.</li>
+          <li>Seeing the written text can improve comprehension for students who are new to the language spoken in the video.</li>
+        </ul>
+
+        <h3>General Techniques</h3>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>The caption text should be presented in short readable portions, as corresponding sounds play. </li>
+          <li>Do not present captions as full paragraphs of text. Users will be reading the captions and watching the video through peripheral vision and by occasionally glancing at the video. They will not be able to keep their place in a full paragraph of text. Also, without sound, it can be difficult or impossible to know which sentence in the paragraph is relevant at any particular time.</li>
+          <li>If there are multiple speakers, position captions to show who is speaking or include speaker IDs.</li>
+          <li>Notate important sound effects. (e.g. "laughing", "a clap of thunder", "the door bell rings") </li>
+          <li>Ideally, if there are periods of time where the only sounds are unimportant, notate these as well (e.g. "cheerful music"). This way, users who hear these sounds indistinctly won't wonder what the sound is, or what they might be missing.</li>
+        </ol>
+        <p>For more detail on conventions for captions see:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li><a href="http://www.captioningkey.org/quality_captioning.html">Captioning Key from The National Association of the Deaf</a> (This is page is particularly helpful if you are captioning math, music, or multiple languages:  Special Considerations.)</li>
+          <li><a href="http://main.wgbh.org/wgbh/pages/mag/services/captioning/faq/sugg-styles-conv-faq.html">WGBH Captioning FAQs</a> (with additional examples at <a href="http://ncam.wgbh.org/invent_build/web_multimedia/accessible-digital-media-guide/adm-guidelines-appendices#ADM_Guidelines:_Appendix_3">Accessible Digital Media Guidelines - Appendix 3</a>)</li>
+        </ul>
+      
+        <h3>Testing</h3>
+        <table class="pe-table">
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Review</th>
+                <td>Check for any options to turn on captions. This is often provided using links that say simply "CC". If captions exist, activate them.<br>
+                  <br>
+                  Watch the video with your sound off. Note whether anything is confusing. Watch the video with the sound on. Note whether any important information is available only through sound and is not included in the captions.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Analysis</th> 
+                <td>Report as errors any cases where watching the video without sound is confusing. For example, you may not know who was speaking. Also report as errors any cases where important information was available only in the audio. For example, there may be a sound effect, such an audience reaction, that was not represented in the captions.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        <h3>Related Guidelines</h3>
+        <h4>508 Web § 1194.22 (b) </h4>
+        <p>Equivalent alternatives for any multimedia presentation shall be synchronized with the presentation.</p>
+        <h4>WCAG 2.0 Level A - 1.2.2 Captions (Prerecorded)</h4>
+        <p>Captions are provided for all prerecorded audio content in synchronized media, except when the media is a media alternative for text and is clearly labeled as such. (Level A)</p>
+        <h4>508 Refresh 5-A: Captions and Transcripts</h4>
+        <p>Materials containing video and/or audio, regardless of format, that contain speech or other audio information necessary for the comprehension of the CONTENT, must comply with the following:</p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Materials containing prerecorded audio information, and no original video or other additional time-based CONTENT must provide a separate transcript of the audio information.</li>
+          <li>Materials containing prerecorded video with concurrent audio information must provide synchronized CAPTIONS.</li>
+          <li>Materials containing real-time audio, with or without video, must provide synchronized real-time CAPTIONS. Note: At the time of playback, captions must be either (a) capable of being turned on and off ("closed"), or (b) visible or audible to all users ("open").</li>
+        </ol>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
+
       <h2 id="g38"></h2>
       <div class="guideline_content">
         <a class="skippy" href="#toc">Back to TOC</a>
