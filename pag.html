@@ -122,7 +122,7 @@
         <li><a href="#g32">32: Keep decorative and redundant images silent in screen readers (Decorative &amp; Redundant Images)</a></li>
         <li><a href="#g33">33: Keep hidden or dimmed content silent in screen readers (Hidden or Dimmed Content)</a></li>
         <li><a href="#g34">34: Let user control the audio (User Control of Audio)</a></li>
-        <li><a href="#g35">35: </a></li>
+        <li><a href="#g35">35: Set or allow user to adjust audio clarity &amp; contrast (Audio Clarity &amp; Contrast)</a></li>
         <li><a href="#g36">36: </a></li>
         <li><a href="#g37">37: </a></li>
         <li><a href="#g38">38: </a></li>
@@ -5074,10 +5074,66 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
       </div>
 
 
-      <h2 id="g35"></h2>
+      <h2 id="g35">Guideline 35. Set or allow user to adjust audio clarity &amp; contrast (Audio Clarity &amp; Contrast)</h2>
       <div class="guideline_content">
+          <p class="summary">When you have the opportunity to set the volume of speech relative to volume of background sound:</p>
+          <ul class="pe-list pe-styled-lists--unordered summary">
+            <li>Allow the user to access the foreground speech without the background sound (e.g. control to turn off background sound, separate volume controls)<br>
+            OR</li>
+            <li>Set the background sound to be 20 decibels lower than the foreground speech</li>
+          </ul>
+           
+          <h3>Rationale</h3>
+          <p>This guideline is based on a WCAG 2.0 Level AAA guideline. Level AAA guidelines are advanced guidelines that aren't always possible or required. In general, the PGs do not cover Level AAA guidelines.</p>
+          
+          <p>This guideline, however, offers valuable information on how to allow people with hearing impairment to distinguish foreground speech from background sounds.</p>
+          
+          <p>As such, this PG is included to provide guidance for cases where we do have the opportunity to set the difference between foreground and background volume.</p>
+          
+          <p>When we do not have this opportunity, captions (see <a href="#g37">PG 37</a>) will ensure that the information provided by the audio is available to these users. However, for those with minor hearing impairments, the user experience will be better when this PG is followed.</p>
+
+          <h3>General Techniques</h3>
+          
+          <p>This is not required when:</p>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>Foreground and background sound are recorded together</li>
+            <li>You are reusing audio files that have already been finalized</li>
+          </ul>
+
+          <h3>Testing</h3>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Review</th>
+                  <td>While you are testing for either <a href="#g36">Pearson Guideline 36</a> or <a href="#g37">37</a>, notice whether it is difficult to pay attention to the main audio content due to loud background noise or music. If so, look to see whether there are user options that would improve this, like the ability to adjust foreground/background volume separately. 
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Analysis</th> 
+                  <td>If you find there's no way to achieve a comfortable listening experience, report this as an error. 
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          <h3>Related Guidelines</h3>
+          <h4>WCAG 2.0 Level AAA 1.4.7 Low or No Background Audio</h4>
+          <p>For prerecorded audio-only content that (1) contains primarily speech in the foreground, (2) is not an audio CAPTCHA or audio logo, and (3) is not vocalization intended to be primarily musical expression such as singing or rapping, at least one of the following is true: (Level AAA) </p>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>No Background: The audio does not contain background sounds.</li>
+            <li>Turn Off: The background sounds can be turned off.</li>
+            <li>20 dB: The background sounds are at least 20 decibels lower than the foreground speech content, with the exception of occasional sounds that last for only one or two seconds.</li>
+          </ul>
+          <p>Note: Per the definition of "decibel," background sound that meets this requirement will be approximately four times quieter than the foreground speech content.</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
+      
       <h2 id="g36"></h2>
       <div class="guideline_content">
         <a class="skippy" href="#toc">Back to TOC</a>
