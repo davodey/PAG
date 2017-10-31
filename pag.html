@@ -132,7 +132,7 @@
         <li><a href="#g37">37: Provide captions for sounds that provide info (audio files, podcasts, video) (Captions)</a></li>
         <li><a href="#g38">38: Ensure that alternatives (e.g. transcripts, eBooks) mirror source materials (Mirroring Source Materials)</a></li>
         <li><a href="#g39">39: Allow &amp; encourage accessibility in content provided by users (User Content)</a></li>
-        <li><a href="#g40">40: </a></li>
+        <li><a href="#g40">40: Use accessible publishing options (e.g. PDF settings, Flash import scripts) (Publishing Options &amp; Security)</a></li>
         <li><a href="#g41">41: </a></li>
         <li><a href="#g42">42: </a></li>
       </ul>
@@ -5417,11 +5417,129 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
 
-      
-      <h2 id="g40"></h2>
+
+      <h2 id="g40">Guideline 40. Use accessible publishing options (e.g. PDF settings, Flash import scripts) (Publishing Options &amp; Security)</h2>
       <div class="guideline_content">
+        <p class="summary">Publish your media so that the accessibility features for the media are included and so that screen readers work with any security features.</p>
+        <h3>Rationale</h3>
+        <p>Sometimes authoring tools that produce media allow publication of files that do not include the accessibility features that are available in the media type. The inaccessible publication options may even be the default setting. </p>
+        
+        <p>Similarly, some media types offer security options that do not work with screen readers.</p>
+        
+        <p>For many media types and especially Flash, Flex and PDF, selecting the correct publishing options is as important as basic accessibility techniques, such as adding alternative text or providing a sensible reading order.</p>
+
+        <h3>HTML &amp; JavaScript</h3>
+        
+        <h4>Do not use <code>role="application"</code> except where your application will handle all keystrokes for keyboard access and screen readers</h4>
+        <p>This role causes the screen reader to switch to a mode where your application is expected to handle key presses.</p>
+        
+        <h4>Digital Rights Management (DRM)</h4>
+        <p>If you use security techniques to prevent text from being copied and pasted or otherwise easily shared, be sure that screen readers will still be able to access the text. Include screen reader access in both your requirements and your test plan for Digital Rights Management techniques.</p>
+        
+        <h4>Password Protection</h4>
+        <p>If you password protect your pages, user interface features associated with the password protection (e.g. log in page, registration page) must be accessible.</p>
+        
+        <h4>Browser Chrome / Browser Toolbars (Recommendation)</h4>
+        <p>Although this is not a strict requirement of the standards, browser toolbars should not be removed as they provide access to accessibility features such as:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>zoom or resize text</li>
+          <li>custom style sheets</li>
+          <li>adjustable font face and font colors</li>
+        </ul>
+
+        <h3>Android Applications</h3>
+        
+        <p>Android provides functions for changing the font size that are set at the system level. To enable system font size in your app, mark text and their associated containers to be measured in scale pixels. </p>
+        <p>When users have large fonts enabled or the labels support internationalization, their type might be larger than the space allotted for the control label. Read <a href="https://developer.android.com/design/style/devices-displays.html">Devices and Displays</a> and <a href="https://developer.android.com/guide/practices/screens_support.html">Supporting Multiple Screens</a> for more information on how to support flexible layout.</p>
+         
+        
+        <h3>iOS Applications</h3>
+        
+        <h4>iOS applications should honor the user settings defined in the operating system.</h4>
+         
+        <p>Support Dynamic Type where possible within the application. Dynamic Type will automatically adjust to letter spacing and line height for every font size, provide the ability to specify different text styles for semantically distinct blocks of text, and the text will respond appropriately to changes the user makes to text-size settings (including accessibility text sizes). If the application uses a custom font, the text can be scaled according to the system setting for text size programmatically. Ensure that the application responds appropriately when the user changes the setting.To learn how to use text styles and ensure that your app gets notified when the user changes the text size setting, see <a href="https://developer.apple.com/library/content/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/CustomTextProcessing/CustomTextProcessing.html#//apple_ref/doc/uid/TP40009542-CH4-SW65">Text Styles</a> in <a href="https://neo.pearson.com/docs/DOC-628153" style="font-style:italic;">Text Programming Guide for iOS</a>.</p>
+         
+        <h3>PDF in Acrobat</h3>
+        
+        <h4>Security Settings</h4>
+        <p>If the PDF security settings are required, select the option to "Enable text access for screen reader devices for the visually impaired". If this is not selected, the document cannot be read by screen readers even if it has been tagged.</p>
+        <h4>Unicode</h4>
+        <p>In a PDF document, text is rendered for display using specific graphic designs that are captured in fonts called glyphs. The text content of pages is in glyphs not characters and the text is then interpreted using <a href="http://unicode.org/">Unicode</a>, a common character encoding technology. If a character used on the page does not have a Unicode equivalent, then the text cannot be read by screen readers. </p>
+        <p>Common Issues:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Non–standard bullet characters</li>
+          <li>Symbols and other document markers</li>
+          <li>Some fonts</li>
+        </ul>
+
+        <p>If there are Unicode issues within the PDF document, running the full accessibility check in Acrobat will generate an error. To fix these errors, choose a different font and generate the PDF again.</p>
+        <p>For characters and symbols:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>If the symbol or character does not convey information, change it to an artifact.</li>
+          <li>If a character used conveys information, either change the font or add it as an image with alternative text. These changes will need to be made in the source document then converted to a PDF.</li>
+        </ul>
+
+        <h3>Testing</h3>
+        <table class="pe-table">
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Review</th>
+                <td>Once the media is in its <strong>final</strong> state for publishing, try reading some of the media with one screen reader on each platform (windows/mac/ipad) just be sure the publishing process is not blocking screen reader access.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Analysis</th> 
+                <td>If there are any issues, report them to the development team as an error.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+ 
+        <h3>Testing PDF in Acrobat</h3>
+        <table class="pe-table">
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Tools</th>
+                <td>Use the File &gt; Properties dialog, security tab to see if the document has security applied.  If it does, click Change Setting to see if the "Enable text access for screen reader devices for the visually impaired" option is checked.  If this is set properly you should also be able to hear the document being read by a screen reader.<br>
+                  <br>
+                  To detect Unicode issues, run the full accessibility check and look for those errors.  In Acrobat 9, the full check is under Advanced &gt; Accessibility.  In Acrobat 10, it is under Tools &gt; Accessibility.  Note: in version 10, you can add it to the toolbar using the context menu.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Review</th>
+                <td>Inspect the accessibility report produced by the full accessibility check.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Analysis</th> 
+                <td>Make note of an error if security is enabled without the option above being checked.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+ 
+        <h3>Related Guidelines</h3>
+        <p>In general, most standards merely imply that this guideline be met! This is so essential, it tends to be overlooked in the process of writing guidelines. However, the guidelines listed below are closely related to this idea.</p>
+        <h4>508 Refresh - 3-Q – Disruption of Access Features</h4>
+        <p>Applications must not, except by specific user request, disrupt the features of the platform that are defined, in the documentation intended for application developers, as having an accessibility usage.</p>
+        <h4>§ 1194.21 Software applications and operating systems. (b)</h4>
+        <p>Applications shall not disrupt or disable activated features of other products that are identified as accessibility features, where those features are developed and documented according to industry standards. Applications also shall not disrupt or disable activated features of any operating system that are identified as accessibility features where the application programming interface for those accessibility features has been documented by the manufacturer of the operating system and is available to the product developer.</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
+
       <h2 id="g41"></h2>
       <div class="guideline_content">
         <a class="skippy" href="#toc">Back to TOC</a>
