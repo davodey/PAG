@@ -130,7 +130,7 @@
         <li><a href="#g35">35: Set or allow user to adjust audio clarity &amp; contrast (Audio Clarity &amp; Contrast)</a></li>
         <li><a href="#g36">36: Provide transcripts and visual alerts for sounds that provide info (audio files, podcasts, video) (Transcripts &amp; Visual Alerts)</a></li>
         <li><a href="#g37">37: Provide captions for sounds that provide info (audio files, podcasts, video) (Captions)</a></li>
-        <li><a href="#g38">38: </a></li>
+        <li><a href="#g38">38: Ensure that alternatives (e.g. transcripts, eBooks) mirror source materials (Mirroring Source Materials)</a></li>
         <li><a href="#g39">39: </a></li>
         <li><a href="#g40">40: </a></li>
         <li><a href="#g41">41: </a></li>
@@ -5307,10 +5307,56 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
       </div>
 
 
-      <h2 id="g38"></h2>
+      <h2 id="g38">Guideline 38. Ensure that alternatives (e.g. transcripts, eBooks) mirror source materials (Mirroring Source Materials)</h2>
       <div class="guideline_content">
+        <p class="summary">When creating alternative versions (e.g. alt-text for an image, e-book alternative to a printed text), keep content divisions (e.g. page numbers, learning unit divisions) and user interface elements (e.g. text label for a button, whether a list is numbered or bulleted) consistent with the standard version.</p>
+        <h3>Rationale</h3>
+        <p>Learners and instructors who use alternate versions not only need the same information as their peers, but also need to be able to communicate with others in the school environment regarding the materials. For example, instructors need to know which page to tell the class to go to. Students need to be able to draw their peers' attention to a particular element or to find an element that has been mentioned. This is true when the alternative is for a small portion of the media, as in a text alternative for an image, as well as when the alternative completely replaces the media, as in an e-book used to replace a printed textbook.</p>
+        
+        <p>Obviously, people can and will work around some of this type of issue through open communication. However, we want to do what we can to reduce as much as possible the amount of time spent on this type of clarification.</p>
+
+        <h3>General Techniques</h3>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li><a href="#g29">Pearson Guideline 29</a> explains that alt-text should not describe the image but instead should replace the image. However, for significant images that provide information, alt-text should identify the type of image (e.g. photograph, cartoon, line graph). Images come with these inherent identification queues, allowing people to easily refer to the images. As such, for images likely to be discussed, replacing the image includes replacing this key identifying information. Place such identifying information at the beginning of the alt-text (i.e. "A cartoon shows ... ", "A graph illustrates …", "Photograph of . . . ".) This way, when a student or instructor refers to the item, a student who uses alt-text can find the item being discussed. This does not apply to images used as user interface elements. For example, if a drawing of a house is used as a link to the home page, the alt-text should simply be "Home," not "Drawing of a house". Also, screen readers will let the user know that an item is an image, so there is no need to mention "image".</li>
+          <li>When providing an alternative for media that is organized by divisions (e.g. chapters, pages), include the same divisions in the alternative version. This way, when an instructor assigns a particular portion of the media or a particular portion of the media is discussed in class (e.g. “at the top of page 12”, “the folk song at the beginning of Chapter 2”), all students can identify the relevant content. Examples:
+              <ul class="pe-list pe-styled-lists--unordered">
+                <li>If a recorded lecture is divided into three parts, ensure that the text transcript is divided correspondingly. </li>
+                <li>If an ebook is provided as an alternative for a printed (or otherwise inaccessible) textbook, ensure that chapter numbers, section numbers, subsection numbers, figure numbers, etc, correspond to these numbers in the printed textbook.</li>
+                <li>Also, if an ebook is provided as an alternative for a printed (or otherwise inaccessible) textbook:
+                    <ul class="pe-list pe-styled-lists--unordered">
+                      <li>Be sure that page divisions and numbers that correspond to the printed book are present by default or can be displayed</li>
+                      <li>And, provide a feature that allows users to find the location in the alternative ebook that matches the beginning of any printed page. For example, you might provide "jump to page," "next page" and "previous page" user input controls, allowing the ebook users to, for example, “open to page 34” and “go to the next page” with the rest of the class.</li>
+                    </ul>
+                </li>
+              </ul>
+          </li>
+          <li>Use the same heading, label and title text that is used for standard access when coding for accessibility. For example, in HTML, if an image of text is used as heading, the alt-text for the image should correspond to the text on the image. In the code below, an image of text that reads "Historic Note" has alt-text that also says "Historic Note." If a professor should ask the class why the "Historic Note" is relevant, all students including those using screen readers will be able to identify the section being discussed.
+            <pre><code>&lt;h4&gt;&lt;img src="image_that_says_Historic_Note.gif"           alt="Historic Note"&gt;&lt;/h4&gt;</code></pre>
+            (It is ok to provide additional information for screen reader users if needed.)
+          </li>
+        </ol>
+         
+        <h3>Testing</h3>
+        <p>There are no separate testing techniques for this. This is something to keep in mind while testing for the other guidelines.</p>
+         
+        <h3>Related Guidelines</h3>
+        <p>This PG is customized for learning technology and is related to the following guidelines.</p>
+        <h4>WCAG 2.0 – Level A - 1.3.1 Info and Relationships:</h4> 
+        <p>Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text. (Level A)</p>
+        <h4>508 Refresh 3-O: Information and Relationships</h4>
+        <p>Information and relationships conveyed through the presentation of electronic documents must be either PROGRAMMATICALLY DETERMINABLE or available in TEXT, and notification of changes to these must be available to user agents, including assistive technologies. For example:</p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Row and column headers are identified for data tables.<br>
+            Note: In order to achieve this provision, table objects in data operated on by the software would need to be associated with sufficient information to identify any row and column headers for the table, that the software can obtain as readily as it can obtain the table itself.</li>
+          <li>In data tables that have two or more logical levels of row or column headers, data cells are associated with header cells.<br>
+            Note: In order to achieve this provision, cells in table objects with multiple logical levels of headers in data operated on by the software would need to be associated with sufficient information to identify any row and column headers for the table cell, that the software can obtain as readily as it can obtain the table cell itself.</li>
+          <li>Section headings are identified.</li>
+          <li>Form element LABELS are associated with form fields.</li>
+        </ol>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
+      
       <h2 id="g39"></h2>
       <div class="guideline_content">
         <a class="skippy" href="#toc">Back to TOC</a>
