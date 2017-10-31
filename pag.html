@@ -133,7 +133,7 @@
         <li><a href="#g38">38: Ensure that alternatives (e.g. transcripts, eBooks) mirror source materials (Mirroring Source Materials)</a></li>
         <li><a href="#g39">39: Allow &amp; encourage accessibility in content provided by users (User Content)</a></li>
         <li><a href="#g40">40: Use accessible publishing options (e.g. PDF settings, Flash import scripts) (Publishing Options &amp; Security)</a></li>
-        <li><a href="#g41">41: </a></li>
+        <li><a href="#g41">41: Provide links to accessible players (Links to Accessible Players)</a></li>
         <li><a href="#g42">42: </a></li>
       </ul>
       <h2 id="g1">Guideline 1. Choose technologies (e.g. HTML vs. Flash) with accessibility in mind (Choosing Technologies)</h2>
@@ -5540,10 +5540,35 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
       </div>
 
 
-      <h2 id="g41"></h2>
+      <h2 id="g41">Guideline 41. Provide links to accessible players (Links to Accessible Players)</h2>
       <div class="guideline_content">
+        <p class="summary">If your product's accessibility relies on more than the user's assistive technology and a common Web browser, provide a link to an accessible download location for each add-on (e.g. plugin, player, script).</p>
+        <h3>Rationale</h3>
+        <p>Some technologies are only accessible when used with particular browsers, plugins, players and scripts. </p>
+        
+        <p>For example, some accessible FLEX UI components require scripts for compatibility with the JAWS screen reader. Even with thorough accessibility coding and testing, JAWS users won't be able to access the affected UI elements unless the information about the need for the scripts is made available to them.</p>
+
+        <h3>Technology Specifics</h3>
+        
+        <h4>HTML | XHTML | CSS | JavaScript</h4>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Users who use keyboard access without a screen reader will require a special tool to use headings navigation:
+              <ul class="pe-list pe-styled-lists--unordered">
+                <li>the Opera Web browser<br>
+                  OR
+                </li>
+                <li>the Pearson-sponsored Headings Navigation Firefox Add-on (The add-on is currently in testing. Details will be provided here when the extension is ready.) </li>
+              </ul>
+          </li>
+          <li>Otherwise, the tools needed for accessible HTML/XHTML are so well-known that we don't have to provide the information with our products.</li>
+        </ol>
+        <h3>Related Guidelines</h3>
+        <h4>508 Web § 1194.22 (m)</h4>
+        When a web page requires that an applet, plug-in or other application be present on the client system to interpret page content, the page must provide a link to a plug-in or applet that complies with §1194.21(a) through (l).
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
+      
       <h2 id="g42"></h2>
       <div class="guideline_content">
         <a class="skippy" href="#toc">Back to TOC</a>
