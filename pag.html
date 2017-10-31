@@ -131,7 +131,7 @@
         <li><a href="#g36">36: Provide transcripts and visual alerts for sounds that provide info (audio files, podcasts, video) (Transcripts &amp; Visual Alerts)</a></li>
         <li><a href="#g37">37: Provide captions for sounds that provide info (audio files, podcasts, video) (Captions)</a></li>
         <li><a href="#g38">38: Ensure that alternatives (e.g. transcripts, eBooks) mirror source materials (Mirroring Source Materials)</a></li>
-        <li><a href="#g39">39: </a></li>
+        <li><a href="#g39">39: Allow &amp; encourage accessibility in content provided by users (User Content)</a></li>
         <li><a href="#g40">40: </a></li>
         <li><a href="#g41">41: </a></li>
         <li><a href="#g42">42: </a></li>
@@ -5356,11 +5356,68 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
 
-      
-      <h2 id="g39"></h2>
+
+      <h2 id="g39">Guideline 39. Allow &amp; encourage accessibility in content provided by users (User Content)</h2>
       <div class="guideline_content">
+        <p class="summary">When end users (e.g. students, instructors) can upload or create content, allow and facilitate alternatives for non-text content (e.g. alt-text for images, captions and audio descriptions for video, transcripts for audio) and, where significant text editing is possible, semantic markup (e.g. headings, data tables, and lists).</p>
+        <h3>Rationale</h3>
+        <p>This helps users with disabilities access information provided by fellow users.</p>
+
+        <h3>General Techniques</h3>
+        
+        <h4>Generating Information</h4>
+        <p>If possible, automatically generate alt-text, transcripts, captions and/or audio descriptions. Most often, this is not possible today. But, in some cases it is, for example:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>If a profile photo that the user uploads is used to represent the user without accompanying onscreen text, the user's name might be used as alt-text.</li>
+          <li>If a user creates an avatar or another object using tools within your product, the physical characteristics that the user chooses might be used to generate alt-text for the avatar or object.</li>
+          <li>If a user can choose a voice and type what the voice should say, a transcript can be automatically generated.</li>
+        </ul>
+
+        <h4>Collecting Information</h4>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Allow users to enter or upload alt-text or transcripts. </li>
+          <li>Allow users to indicate if non-text content is purely decorative and should be skipped by screen readers.</li>
+          <li>Allow users to upload multimedia that includes captions and audio description. (And/or provide a service that adds these features.)</li>
+          <li>Automatically detect which accessibility features are available and/or allow users to indicate which accessibility features they've added.</li>
+        </ul>
+
+        <h4>Displaying Alternatives</h4>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>When displaying user-provided content, include alternatives for non-text content, as described in <a href="#g27">Pearson Guidelines 27</a>, <a href="#g28">28</a>, &amp; <a href="#g34">34</a>.</li>
+          <li>If the non-text content is known to be decorative, employ the techniques described in <a href="#g32">Pearson Guideline 32</a>.</li>
+          <li>If applicable, allow users to search for content based on accessibility features. For example, when searching a database of educational video, students might be given the option to indicate that captioned video should be given priority in search results.</li>
+        </ul>
+
+        <h3>Testing</h3>
+        <table class="pe-table">
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Review</th>
+                <td>Identify any features that allow users to upload content.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Analysis</th> 
+                <td>Make sure that users are able to upload accessibility features (e.g. alt-text for images, captions and audio descriptions for video, transcripts for audio) with their media.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        <h3>Related Guidelines</h3>
+        <p><a href="#g39">PG 39</a> reflects the spirit of the <a href="https://www.w3.org/TR/ATAG20/">W3C's Authoring Tool Accessibility Guidelines Version 2.0</a>, but is simplified for basic end-user Web 2.0 features.</p>
+        
+        <p>Also see Related Guidelines for <a href="#g27">Pearson Guidelines 27</a>, <a href="#g28">28</a>, <a href="#g29">29</a>, <a href="#g30">30</a>, <a href="#g34">34</a> &amp; <a href="#g35">35</a>.</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
+      
       <h2 id="g40"></h2>
       <div class="guideline_content">
         <a class="skippy" href="#toc">Back to TOC</a>
