@@ -134,7 +134,7 @@
         <li><a href="#g39">39: Allow &amp; encourage accessibility in content provided by users (User Content)</a></li>
         <li><a href="#g40">40: Use accessible publishing options (e.g. PDF settings, Flash import scripts) (Publishing Options &amp; Security)</a></li>
         <li><a href="#g41">41: Provide links to accessible players (Links to Accessible Players)</a></li>
-        <li><a href="#g42">42: </a></li>
+        <li><a href="#g42">42: Document your product's accessibility (Document Accessibility)</a></li>
       </ul>
       <h2 id="g1">Guideline 1. Choose technologies (e.g. HTML vs. Flash) with accessibility in mind (Choosing Technologies)</h2>
       <div class="guideline_content">
@@ -5569,8 +5569,38 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
       </div>
 
       
-      <h2 id="g42"></h2>
+      <h2 id="g42">Guideline 42. Document your product's accessibility (Document Accessibility)</h2>
       <div class="guideline_content">
+        <p class="summary">Document the accessibility of your product by recording what your team did to meet each guideline.</p>
+        <h3>Rationale</h3>
+        <h4>Recording what was done helps the full team to maintain the features.</h4>
+        <p>For internal purposes, this document will track the accessibility level through releases, ensuring changes do not cause the product to fall short of professional user interface coding. For example, a user experience professional might carefully assign labels to each form field, making sure that the 'for' attributes in the labels match the 'id' attributes in the form fields. An engineer may later need to change the ids of each form field. If an accessibility document has been handed from the user experience team to the engineering team, the engineers are less likely to change the form fields' ids without also updating the label elements' 'for' attributes. Similarly, if the document is passed to the quality assurance team, quality assurance professionals will know to test the features.</p>
+        <h4>Let customers know about the accessibility of your product</h4>
+        <p>This document is also key to fully realizing return on investment for following standards. Like most technical standards, accessibility standards help to ensure that our software and content is reusable, future-compatible, and robust. However, more so than with other technical standards, customers are interested in detailed information on the level of accessibility. This is because unlike other standards, details on accessibility standards are key to understanding who can use which pieces of an application. This information is essential to customers with disabilities and it helps schools to meet their obligations to students with disabilities. As such, the document can be used to provide information to customers who are looking to purchase an accessible product. Some schools are setting up databases to store such documents for all products they've evaluated to speed up their evaluation process.</p>
+        <h4>Helping customers to plan when the product is not yet fully accessible</h4>
+        <p>Even when a product is not fully accessible, the document can be useful for customers with disabilities and for those who provide services for students with disabilities. Customers with disabilities can optimize their time and what they get from the product if they know what will work for them and what won't. If 75% of the features in a product are fully accessible to a particular customer, the time and frustration experienced when encountering the 25% that is not can render the entire experience inaccessible. However, if the customer has a document that explains which items will not work, he or she can plan accordingly and avoid spending any time within those areas. In that case, the 75% that is accessible can be very useful.</p>
+        <p>When there are no fully accessible products of a particular type available on the market, schools will need to know how the products they have to choose from are accessible and how they are not. This helps schools with policies obligating them to purchase the most accessible product available. It also helps schools to plan how to best use their resources to support the students working with the products.</p>
+        <h4>Reduce the Need for Costly Accessibility Evaluations</h4>
+        <p>While there are many times when a full outside accessibility review is essential, this can be expensive. Keeping an internal document up-to-date as we develop and enhance the products allows us to avoid such reviews for minor releases.</p>
+         
+        <h3>Accessibility Templates</h3>
+        
+        <p>In the United States, documents that provide details on the accessibility of a product are often called VPATs (pronounced Vee Pat). These documents are written by filling in a <mark><a href="http://www.itic.org/index.php?submenu=Resources&submenu=Resources&src=gendocs&ref=vpat&category=resources">Voluntary Product Accessibility Template</a></mark> designed by the Information Technology Industry Council and the U.S. General Services Administration. The template is a table that lists the current Section 508 standards and provides space and specific language for comment on how each standard was addressed.</p>
+        
+        <p>The Section 508 guidelines are under revision and the current international standards require more than the current Section 508 standards. Because of this, to answer international and future customer inquiries, we need to record more information than the current VPAT template is designed to hold. So we recommend using a Pearson Accessibility Template (<a href="https://neo.pearson.com/external-link.jspa?url=http%3A%2F%2Fwps.pearsoned.com%2Fwps%2Fmedia%2Fobjects%2F7400%2F7578605%2FPearsonAccessibiltyTemplate_V1.doc">PearsonAccessibiltyTemplate_V1.doc</a> ) instead. The Pearson Accessibility Template is designed to hold all of the information you'll need if a customer asks for a VPAT, if a customer asks how the product complies with the international standards, etc.</p>
+        
+        <p>Pearson Accessibility Templates can also serve as requirements documents. Attach the template to your requirements document and ask each person who modifies or tests the product to add to the commentary. This is a great way to track the level of accessibility that design and development vendors provide.</p>
+        
+        <p><strong>Download Pearson Accessibility Template as a Word Document</strong></p>
+        <a href="https://neo.pearson.com/external-link.jspa?url=http%3A%2F%2Fwps.pearsoned.com%2Fwps%2Fmedia%2Fobjects%2F7400%2F7578605%2FPearsonAccessibiltyTemplate_V1.doc">PearsonAccessibiltyTemplate_V1.doc</a>
+         
+        <h3>General Techniques</h3>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>While many team members will contribute to the information in the Pearson Accessibility Template for your product, one point person should be assigned responsibility for the document. This could be a product manager, project manager or a QA lead, depending on your team's size and structure.</li>
+          <li>Attach the <a href="https://neo.pearson.com/external-link.jspa?url=http%3A%2F%2Fwps.pearsoned.com%2Fwps%2Fmedia%2Fobjects%2F7400%2F7578605%2FPearsonAccessibiltyTemplate_V1.doc">Pearson Accessibility Template (.doc)</a> to your requirements document and ask each group that modifies or tests the product to add commentary.</li>
+          <li>Update the document with each release.</li>
+          <li>Create an accessibility statement for end-users, including information on whom to contact to report any accessibility issues.</li>
+        </ol>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
     </main>
