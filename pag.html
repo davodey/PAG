@@ -1373,10 +1373,10 @@ cursor: pointer;
       <div class="guideline_content">
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
       <h2 id="g11">Guideline 11. Use semantic markup for its intended purposes (Semantic Markup)</h2>
       <div class="guideline_content">
         <p class="summary">Identify roles (e.g. heading, numbered list, bulleted list, data table, paragraph, emphasized text) of page elements using conventions for the media type. (And do not misidentify roles by using those conventions solely for their visual effects.)</p>
-
         <h3>Rationale</h3>
         <p>Media content will be transformed into:</p>
         <ul class="pe-list pe-styled-lists--unordered">
@@ -1391,6 +1391,7 @@ cursor: pointer;
         <p>Also, breaking up large blocks of text by marking them as headings, paragraphs, lists, etc helps all users to read the content more easily and is especially helpful for those with learning disabilities or cognitive impairments.</p>
 
         <h3>HTML &amp; JavaScript</h3>
+       
         <h4>HTML | XHTML | CSS</h4>
         <p><strong>Where markup exists to define an element-type, use that markup for that type of element.</strong></p>
         <p>Examples:</p>
@@ -1487,296 +1488,505 @@ body &gt; ul &gt; li &gt; ul {
 <pre><code>
 &lt;table . . . &gt;   &lt;caption&gt;      Average Park Use in 2009   &lt;/caption&gt;   &lt;tr&gt;      &lt;th rowspan="2"&gt;&lt;/th&gt;       &lt;th colspan="2" id="p"&gt;People&lt;/th&gt;      &lt;th colspan="2" id="d"&gt;Dogs&lt;/th&gt;      &lt;th colspan="3" id="o"&gt;Other Pets&lt;/th&gt;   &lt;/tr&gt;   &lt;tr&gt;      &lt;th id="adult"&gt;Adults&lt;/th&gt;      &lt;th id="child"&gt;Children&lt;/th&gt;      &lt;th id="toy"&gt;Toy Dogs&lt;/th&gt;      &lt;th id="od"&gt;Other Dogs&lt;/th&gt;      &lt;th id="mam"&gt;Mammals&lt;/th&gt;      &lt;th id="birds"&gt;Birds&lt;/th&gt;      &lt;th id="rep"&gt;Reptiles&lt;/th&gt;   &lt;/tr&gt;   &lt;tr&gt;      &lt;th id="M"&gt;Monday&lt;/th&gt;           &lt;td headers="adult M"&gt;52&lt;/td&gt;      &lt;td headers="child M"&gt;30&lt;/td&gt;      &lt;td headers="toy M"&gt;3&lt;/td&gt;      &lt;td headers="od M"&gt;52&lt;/td&gt;      &lt;td headers="mam M"&gt;30&lt;/td&gt;      &lt;td headers="birds M"&gt;3&lt;/td&gt;      &lt;td headers="rep M"&gt;3&lt;/td&gt;   &lt;/tr&gt;   &lt;tr&gt;      &lt;th id="Tu"&gt;Tuesday&lt;/th&gt;      &lt;td headers="adult Tu"&gt;65&lt;/td&gt;      &lt;td headers="child Tu"&gt;31&lt;/td&gt;      &lt;td headers="toy Tu"&gt;8&lt;/td&gt;      &lt;td headers="od Tu"&gt;54&lt;/td&gt;      &lt;td headers="mam Tu"&gt;40&lt;/td&gt;      &lt;td headers="birds Tu"&gt;2&lt;/td&gt;      &lt;td headers="rep Tu"&gt;1&lt;/td&gt;   &lt;/tr&gt;         . . .  &lt;/table&gt;</code></pre>
         <p><a target="_blank" href="table_headers_id_attributes.html">Open Table Headers and Id Attributes Sample Page in a New Window</a>.</p>
-        <p>Do not use semantic tags for visual effects that are not consistent with the meaning of the tag.</p>
+        <p><strong>Do not use semantic tags for visual effects that are not consistent with the meaning of the tag.</strong></p>
         <p>For example, do not use <code>&lt;blockquote&gt;</code> to indent text when the text is not a quotation. And, do not use definition lists for items that are not definitions.</p>
 
         <h4>Legacy HTML</h4>
-If you use table markup for layout (rather than for tabular data), use only <code>&lt;table&gt;&lt;tr&gt;</code> and <code>&lt;td&gt;</code> without any semantic markup (<code>&lt;th&gt;</code>, <code>scope</code>, <code>headers</code>, <code>&lt;caption&gt;</code>, <code>summary</code>). Add <code>role="presentation"</code> to the opening <code>&lt;table&gt;</code> tag for layout tables to prevent screen readers from announcing the tables.
-Note: Unless the targeted user agents cannot support the desired layout in CSS, new content should not use tables for layout as they are not semantically correct. However, because layout tables were used so extensively, current assistive technology has been adapted for them. So, legacy content may use layout tables without significantly degrading the experience for users with disabilities. (As layout tables disappear from the Web, future assistive technologies  may not handle layout tables well.)
-
-JavaScript
-When adding content using JS, include correct semantic mark-up.
-When adding content to the Document Object Model, use nodes that describe the content semantically:
-<pre><code>
-function addNews() {   
-  /* create a heading */
-  var myH = document.createElement("h3");
-
-  /* create a text node */
-  var myHT = document.createTextNode("Author is Online");
-
-  /* place text node into the heading element */
-  myH.appendChild(myHT);
-
-  /* place heading element on the page */
-  document.body.appendChild(myH);
-
-  /* do the same for a paragraph of text */
-  var myP = document.createElement("p");
-  var myPT = document.createTextNode("To chat with ...");
-  myP.appendChild(myPT);
-  document.body.appendChild(myP);
-}</code></pre>
- 
-Android Applications
-
-User interface elements should be used in accordance with their intended purpose.  Wherever possible use standard UI elements as these will automatically convey the element role.
-
-Note: Android 5.0 and below does not currently provide semantic markup for headings.
-
- 
-
-iOS Applications
-
-User interface elements should be used in accordance with their intended purpose.  Wherever possible use standard UI elements as these will be automatically updated when the iOS changes and they contain the framework to make UI elements fully accessible.
-The UIAccessibility informal protocol provides information about the type of user interface control. The accessibilityTraits property is used to define the element semantics. An element on the page can have more than one trait. The following traits can be used:
-UIAccessibilityTraitButton - button element
-UIAccessibilityTraitLink - link
-UIAccessibilityTraitSearchField - search field
-UIAccessibilityTraitImage - image
-UIAccessibilityTraitStaticText - element is treated as static text and cannot be changed
-UIAccessibilityTraitHeader - heading
- 
-
-PDF in Acrobat
-
-Acrobat supports creating tags for any content within your PDF without changing the visual appearance of the PDF. The tools to use for this are the TouchUp Reading Order Tool (TURO) and the Tags Panel. The location of the Tags Panel and TURO will vary depending on your version of Acrobat. In Acrobat 9 Pro, for example, you can find the Tags Panel at View &gt; Navigation Panels &gt; Tags and TURO is at Advanced &gt; Accessibility &gt; TouchUp Reading Order or Alt + AAT. In version X they are under the Tools menu.
-If the document is simple and the tags do not already exist in the PDF, it is easiest to begin with Acrobat's automatic tagging (Advanced &gt; Accessibility &gt; Add tags to document) and then manually adjust any tags that are not semantically correct. For more complex pages use Acrobat's Tags Panel or TURO to add tags.
-PDF Tags
-Semantic markup is created using tags. In order for your document to be correctly interpreted by assistive devices, the correct tags need to be defined.
-The common PDF tags include:
-Tag Type  Purpose Tag Name  Tag Tree Icon
-Heading Document Title  &lt;H&gt; Generic tag
-Heading Level 1-6 Section headings  &lt;H1&gt; to &lt;H6&gt;  Generic tag
-Paragraph Paragraphs of text  &lt;P&gt; Paragraph Mark
-Figure  Images  &lt;Figure&gt;  Generic tag
-Caption Captions for images and figures &lt;Caption&gt; Generic tag
-List  Ordered and Unordered List Items  &lt;L&gt; Generic tag
-List Item List item &lt;LI&gt;  Generic tag
-Table of Contents Group of table of contents items  &lt;TOC&gt; Generic tag
-Table of Contents Item  Table of content entry  &lt;TOCI&gt;  Generic tag
-Table Table made of rows and data cells &lt;Table&gt; rectangular grid
-Table Row Row of data &lt;TR&gt;  rectangular grid with one row highlighted in red
-Table Header Cell Row or column header for the data cell  &lt;TH&gt;  rectangular grid with top left corner cell in red
-Table Data Cell Data  &lt;TD&gt;  rectangular grid with one cell in blue
-Link  External hyperlinks &lt;Link&gt;  Generic tag
-Reference References to text in the same document by on another page  &lt;Reference&gt; Generic tag
-Quote Inline quote  &lt;Quote&gt; Generic tag
-Blockquote  Quotation &lt;Blockquote&gt;  Generic tag
-Document  Container Element &lt;Document&gt;  Generic tag
-Part  Container Element &lt;Part&gt;  Generic tag
-Division  Container Element &lt;Div&gt; Generic tag
-Article Container Element &lt;Art&gt; Generic tag
-Section Container Element &lt;Sect&gt;  Note with lines with one section highlighted with red rectangle
-Span  Group of words  &lt;Span&gt;  Generic tag
-Note  Footnotes &lt;Note&gt;  Generic tag
-Sometimes tags will appear in the tags tree that are different than the defined standard tag names used by Adobe Acrobat. These are defined by the authoring software tool. For example, Microsoft Word often uses the tag Normal instead of &lt;P&gt; for paragraphs
-Role mapping is a function that is mainly used with authoring software tools to map these non-standard tags to the standard Adobe Acrobat tags. If the tag is mapped to a standard tag name then you do not need to change the tag names in the tags tree.
-To view the list of role map items by selecting Edit Role Map in the Tags navigation panel options. If any of the role mappings are incorrect, edit the item. If a tag does not appear in this list, you can manually add it using the functions in this window.
-
-Headings
-Document Title
-The main document title should be labeled using the tag. Typically this is shown on the cover or the first page of the document. This tag should only be used once in the document.
-Section Headings
-When a document includes section headings, those headings should be defined as heading tags. Adobe Acrobat provides 6 levels of headings which can be used define the hierarchy of headings and sub-headings in the document.
-Image Section Headings
-If an image is the heading for the section, tag the image as a heading. Add a new tag for the heading at the appropriate level and then add the &lt;Figure&gt; tag as a child of the heading tag.
-Lists
-If the document uses a list, the list should be marked up using list tags (&lt;L&gt; and &lt;LI&gt;). The &lt;LI&gt; tags should be grouped as children of a list (&lt;L&gt;) tag.
-Common list structure is L tag with children LI tags .  Typically under the LI tag is either the content, P tag with content or LBody tag
-Tip:
-Sometimes you may see &lt;LBody&gt; present in the tags tree. This tag is not used by screen readers and is not necessary. If they are present, they can be kept but there is no need to manually add them.
-Unordered Lists
-Unordered lists will often include the bullet character within the list item &lt;LI&gt; tag. To tell screen readers to ignore this character, select the bullet and change it to background content using TURO. This will artifact the tag and it will no longer show up in the tags tree. 
-Ordered Lists
-Ordered lists are defined in the same way as unordered lists. However, the numbers within the list text needs to be part of the &lt;LI&gt; tag and should not be set to background text.
-
-Nested Lists
-To nest lists, add the &lt;L&gt; tag as a child to the &lt;LI&gt; of the parent list. The structure could look something like this:
-The &lt;L&gt; tag has 4 &lt;LI&gt;.  Under one of the &lt;LI&gt; is a sublist.  The sublist &lt;L&gt; is a child of the &lt;LI&gt;
-Paragraphs
-All text that is not a heading or cannot be tagged with another tag should be defined as a paragraph (&lt;P&gt;) tag. This includes introductory paragraphs, abstracts and text that are highlighted graphically.
-Sometimes paragraphs are defined using non-standard tag names. These may be mapped using the Role Mapping and would act like a paragraph. Check the role mapping before reassigning the tag as these may not need to be changed.
-Content that spans multiple pages
-If text straddles two or more pages, the text should be combined into a single paragraph tag. To combine two tags, select and expand each tag in the tags panel to show their text containers. Drag one to combine the two containers under one tag, and then delete the remaining, empty tag. The same situation can occur with lists, tables, and tables of content but they tend to be easier to identify because their parent tag repeats.
-Multiple tables are often caused intentionally by the content author. For screen reader users it is best to combine them into one table with one column header row.
-Tables
-Tables need to be structured in a way that helps users who cannot see the screen understand the relationship of the data in the cells. The following table tags should be used:
-Table row (&lt;TR&gt;) to define each row of table cells
-Table headers (&lt;TH&gt;) for table header cells
-Table data (&lt;TD&gt;) for table data cells
-Table Headers
-Both row and column headers can be defined using the table header (&lt;TH&gt;) tag and scope to define whether or not a cell is a column or row header. 
-The easiest way to set the scope of a header cell is using the table editor.
-
-In the properties, set the type to header cell and the scope to the appropriate value. The scope property can have the following values: 
-Row – for row headers
-Column – for column headers
-Both – for cells that are both a row header and a column header
-If the table has complex headers and the scope attributes are not sufficient to associate header cells with data cells, you will need to use header IDs. This usually happens when you have a header cell that spans multiple columns and only applies to some of the cells below.
-To assign to headers and IDs to the table cells, first define the cell as a &lt;TH&gt; then give the header cell an ID. Make sure that the scope is set to NONE. Then for each data cell, assign the associate header cell IDs.
-In the table cell properties dialog, set the type radio button to header cell.  The scope should be set to none.  In the attribute section, type in a value in the ID textbox.
-Screen Reader Tips:
-JAWS 12 will only read column header. Row headers are ignored. This is a bug in JAWS.
-Screen readers read the header ids starting with the column header and then the row headers. The order displayed in the Associated Header Cells IDs list does not matter.
-Spanning Cells
-If a cell spans two or more rows or columns should use RowSpan and ColSpan attribute to define the number of rows or columns that the cell spans. The easiest way to do this is to use TURO and the Table Editor. In the cell context menu select Table Editor. This will show the table structure on the page. In the cell that spans multiple cells, right-click and select Table Cell Properties. In this dialog, set the row or column span to the number of cells spanned.
-Blank Cells 
-If your table has blanks cells, these may not be automatically defined in the table tags. If there are blank cells that are present but there is no tag in the tags tree, add an empty &lt;TD&gt; tag so that the row or column has the same number of cells as the other rows.
- 
-
-Word
-When formatting is used to convey special meaning to content, be sure to use the built-in Word styles and features as much as possible to maximize accessibility. For example, use styles for emphasized content, lists, tables, heading, headers, and footers. Conversely, when those styles and features are used, ensure that they are used to convey particular meaning or organization of content and not simply used because the visual appearance matches a desired look. 
-
-Headings
-Define all headings using Word heading styles. Modify the Word heading styles to change the font, color and other style elements (see PG 9 In Page Navigation for more information on headings).
-
-Avoid creating a new Word style for headings as this will not be defined as a heading even it is defined as style that is based on a heading. 
-
-Word styles should not be misused or used just for visual appearance of the formatting.
-
-Lists
-The toolbar options in Home &gt; Paragraph for unordered (bullet) and ordered (numbered) lists automatically apply list styles. Other styles are available in the styles window for indented lists, and using indent or tab automatically applies them.
-
-Avoid using empty list items for spacing. Instead, apply paragraph spacing on individual lines as necessary. Do not simulate lists with direct formatting. Use Word styles.
-
-Tables
-Use Word built-in tables to present tabular content and data. Do not simulate tables with white space (adding spaces and tabs or using columns) or use draw table functions in Word as they will not provide the semantic table structure. 
-
-In the table properties, set the following options:
-
-
-
-Allow row to break across pages should not be checked
-If the table has column headers, select the top row and set check the heading row should repeat across pages checkbox
-Avoid empty table rows and splitting content into multiple tables as this will make the table harder to understand.
-
-Note: There is no way to explicitly set row and column headers in Word.
-
-Paragraphs
-Use paragraph spacing for layout rather than adding extra blank paragraphs. Think of Word paragraphs as containers of content, not as the return key on a typewriter. All paragraph containers should have content otherwise JAWS will announce them as blank.
-
-Drop Caps
-Do not use Word's drop caps feature. The letters are set up as text boxes, which are not read by screen readers.
-
-Header / Footer
-Use the Word built-in feature rather than simulating them. They are not read by screen readers so make sure that any important information is also included once in the overall document content.
-
-Styles
-Choose styles over direct formatting as much as possible. Though the use of character styles such as emphasis and strong is encouraged for ease of document consistency and maintenance, at this time screen readers do not announce them.
-
-However, consider incorporating character styles in your approach anyway for the benefit for document maintenance. As a general best practice, avoid creating many variations of styles when a small set will work. Name the styles for the content that they represent and how they should be used rather than for their appearance, e.g. "Term definition" rather than "bold 15 before 10 after". This will simplify the conversion to PDF.
-
- 
-
-PowerPoint
-
-Use the built-in PowerPoint elements. For example, use the numbered and bulleted list options on the Home tab, and use Title containers. Empty content such as lists and paragraphs can confuse screen reader users when they navigate by paragraphs or when lists are announced with the wrong number of elements. Fragmented content can also be confusing when it is spoken. Look for situations where lines are broken up to wrap around objects. Overall, try to use the appropriate content layout, indentation, and paragraph spacing for visual alignment, rather than tabs, paragraphs, and spaces.
-
-Special Content
-Some special content is not accessible in PowerPoint. Embedded Excel charts and tables, and Word documents are visible and accessible in edit mode, e.g. the "normal presentation view". Users can navigate to the object and interact with it. However, in slideshow mode, they cannot interact with the object to view data, text, or graph elements. Excel data pasted "as HTML" can be accessible. Consider replacing Word content and Excel data with normal PowerPoint content holders, tables with PowerPoint tables, and graphs with PowerPoint graphs or screenshot pictures.
-
-Multimedia
-Audio, video, and Flash movies should contain captions, textual descriptions, or spoken descriptions as appropriate. 
-
-Note: PowerPoint 2010 includes a new tool, Sub-titling Text Add-in for Microsoft PowerPoint (STAMP) that allows you to add captions to video and audio, or import Timed Text Markup caption files from within PowerPoint.
-
-Interactive Flash content can be difficult to make accessible. Be sure to test it using a screen reader to make sure that you can tab to the control to activate it, interact with it using the keyboard, and hear the appropriate content from the screen reader.
-
- 
-
-Excel
-Microsoft Excel has a built-in function that can be used to give names to a cell or a range of cells. Screen readers look for certain specific names to identify which cells contain row and column titles.
-
-To create both row and column headers, move to the intersection of the row and column titles and add the name to the cell using the "Define Name" option in the context menu (right click or shift+F10). Set the name to Title (one word with mixed case).
-To create just row headers, navigate to the column containing the titles and open the Define Name dialog box. Set the name to RowTitle (one word with mixed case and no spaces).
-To create just column headers, navigate to the column containing the titles and open the Define Name dialog box. Set the name to ColumnTitle (one word with mixed case and no spaces).
-NOTE: These procedures can also be used when column titles span multiple rows or when row titles span multiple columns. When the column titles span multiple rows, select all of the rows before creating the ColumnTitle definition. When the row titles span multiple columns, select all of the columns before creating the RowTitle definition.
-
- 
-
-Testing HTML
-Semantic markup includes heading markup. But testing for heading markup is not included here as it is included under Pearson Guideline number 9 on in-page navigation. 
-
-List Items, Quotes, and Blockquotes
-Tools 
-In the Structure menu of the Web Accessibility Toolbar apply the List Items function and the Q /Blockquote function.
-
-Or, use Web Developer Toolbar &gt; Outline Custom Elements to outline ul, ol, li, dl, dd, dt, quote and blockquote. Check 'Show element names when highlighting' and use commas to separate tags in the dialog box.
-
-Output  If any elements have been marked as unordered lists, ordered lists, definition lists, blockquotes or quotes, they will be marked as such on the page. 
-Analysis  
-Skim the page looking for any lists, definition lists or block quotations that are not marked as such. This step is not necessary for ordinary quotations, as quotation marks effectively identify these.
-
-Also, check all items that are shown with markup to be sure they really contain what the markup indicates. For example, a block quotation should be a quotation and a definition list should be used to hold definitions. These elements should not be used solely for their visual effects.
-
-The importance of coding distinct lists can be subtle. The banner of a site, for example, might contain three sections of links: main navigation, account information, and corporate links. The distinction between the groups will be obvious visually. If these are marked up as separate unordered lists, the distinction between the groups of links will be clear to a blind user too.
-
- 
-
-Data Tables
-Tools Use the Data Tables favelet on every page.
-Output  
-The Alert from the Data Tables favelet will specify the number of tables, the number accessible data table markup attributes, and the number of tables with role attributes. Individual tables will be highlighted with access attributes displayed. And, role="presentation" will be displayed for each table where that role has been set.
-
-Analysis  
-If there are no tables; there is nothing to worry about.
-
-If tables are used for layout and they use access attributes (caption, summary, th, scope, or headers) then these are errors. Layout tables should not have these access attributes. If tables are used for layout, see if the tables have role="presentation" set. If not, this is an error for newly developed pages.
-
-If there are simple data tables, be sure that row and column headers are specified. This can be done by using th or scope on each header cell. If the top-left corner cell is a header cell, it must have a scope attribute to say whether it is a row or column header. More complex data tables may have many cells that need clarification of their scope using the scope tag. Data tables can also be marked up with headers/id combinations, where every header cell has an id and every data cell has a headers attribute listing (space delimited) the ids of its header cells.
-
-Note: If the page is being edited, we recommend using both th and scope on every header cell and td with scope for cells that are both data cells and headers cells. However, for older pages that are coded correctly otherwise, we don't require editing the page to add the scope attribute unless there is ambiguity.
-
- 
-Testing Mobile Applications
-Tools 
-Read the page using a screen reader.
-
-Output  The page elements are announced with name and role. For example, a heading is announced with the name of the heading and the screen reader tells the user it is a heading.
-Analysis  
-As the screen reader reads the name of the control and the appropriate role (e.g. headings, button, link, image, etc.).
-
-NOTE: Android is limited on the type of element that can be defined. Headings cannot be defined on Andriod.
-
- 
-Testing PDF in Acrobat
-Tools 
-Use the Tags pane in Acrobat to verify the semantic markup of content, with "highlight content" checked in the pane menu. To easily find tags, highlight content and then select "Find tag from selection." Select the tags to see the associated content, or use the up / down and left / right cursor keys to navigate in the tags tree.
-
-Use the table editor and the tags tree to verify that tables are tagged correctly and that cells have the correct attributes.
-
-Output  
-Inspect each tag in the tags tree, verifying that all content is tagged and that the appropriate tag is used. For a list of common PDF tags, see the "PDF in Acrobat – PDF tags" section. Ensure that lists and tables are nested correctly in the tags.
-
-If non-standard tag names are used, verify that the role mapping maps these non-standard tag names to PDF tags. To see the role map, right click on a tag and select edit role map.
-
-Verify that a data table in the content is represented by a &lt;table&gt; tag with a table row &lt;TR&gt; tag for each row and table header &lt;TH&gt; or table data &lt;TD&gt; tags under each &lt;TR&gt;, one for each column. Cells merged across columns should be represented by one &lt;TH&gt; or &lt;TD&gt; for the entire merged cell. For best usability it is recommended that only header cells, not data cells, are merged. Tables that do not contain tabular data, which are used for layout only, should not be tagged as tables.
-
-Open the table editor and verify that row and/or column header cells are marked as header with the appropriate scope. Header cells in the top row have column scope; those in the first column have row scope. If the top left cell is blank, it should be marked as a data cell, not as a header cell.
-
-Analysis  
-Document any variance from the guideline points.
-
- 
-Related Guidelines
-508 Web § 1194.22 (d) 
-Documents shall be organized so they are readable without requiring an associated style sheet. 
-508 Web § 1194.22 (g) 
-Row and column headers shall be identified for data tables. 
-508 Web § 1194.22 (h) 
-Markup shall be used to associate data cells and header cells for data tables that have two or more logical levels of row or column headers. 
-WCAG 2.0 – Level A - 1.3.1 Info and Relationships: 
-Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text. (Level A)
-508 Refresh 3-O: Information and Relationships
-Information and relationships conveyed through presentation of electronic documents must be either PROGRAMMATICALLY DETERMINABLE or available in TEXT, and notification of changes to these must be available to user agents, including assistive technologies. For example:
-1. Row and column headers are identified for data tables. Note: In order to achieve this provision, table objects in data operated on by the software would need to be associated with sufficient information to identify any row and column headers for the table, that the software can obtain as readily as it can obtain the table itself.
-2. In data tables that have two or more logical levels of row or column headers, data cells are associated with header cells. Note: In order to achieve this provision, cells in table objects with multiple logical levels of headers in data operated on by the software would need to be associated with sufficient information to identify any row and column headers for the table cell, that the software can obtain as readily as it can obtain the table cell itself.
-3. Section headings are identified.
-4. Form element LABELS are associated with form fields.
-      <div class="guideline_content">
+        <p>If you use table markup for layout (rather than for tabular data), use only <code>&lt;table&gt;&lt;tr&gt;</code> and <code>&lt;td&gt;</code> without any semantic markup (<code>&lt;th&gt;</code>, <code>scope</code>, <code>headers</code>, <code>&lt;caption&gt;</code>, <code>summary</code>). Add <code>role="presentation"</code> to the opening <code>&lt;table&gt;</code> tag for layout tables to prevent screen readers from announcing the tables.</p>
+        <p>Note: Unless the targeted user agents cannot support the desired layout in CSS, new content should not use tables for layout as they are not semantically correct. However, because layout tables were used so extensively, current assistive technology has been adapted for them. So, legacy content may use layout tables without significantly degrading the experience for users with disabilities. (As layout tables disappear from the Web, future assistive technologies  may not handle layout tables well.)</p>
+
+        <h4>JavaScript</h4>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>When adding content using JS, include correct semantic mark-up.</li>
+          <li>When adding content to the Document Object Model, use nodes that describe the content semantically:
+            <pre><code>
+              function addNews() {   
+                /* create a heading */
+                var myH = document.createElement("h3");
+              
+                /* create a text node */
+                var myHT = document.createTextNode("Author is Online");
+              
+                /* place text node into the heading element */
+                myH.appendChild(myHT);
+              
+                /* place heading element on the page */
+                document.body.appendChild(myH);
+              
+                /* do the same for a paragraph of text */
+                var myP = document.createElement("p");
+                var myPT = document.createTextNode("To chat with ...");
+                myP.appendChild(myPT);
+                document.body.appendChild(myP);
+              }</code></pre>
+          </li>
+        </ol>
+
+        <h4>Android Applications</h4>
+
+        <p>User interface elements should be used in accordance with their intended purpose.  Wherever possible use standard UI elements as these will automatically convey the element role.</p>
+
+        <p>Note: Android 5.0 and below does not currently provide semantic markup for headings.</p>
+
+        <h4>iOS Applications</h4>
+
+        <p>User interface elements should be used in accordance with their intended purpose.  Wherever possible use standard UI elements as these will be automatically updated when the iOS changes and they contain the framework to make UI elements fully accessible.</p>
+        <p>The <code>UIAccessibility</code> informal protocol provides information about the type of user interface control. The <a href="https://developer.apple.com/documentation/uikit/accessibility/uiaccessibility#//apple_ref/doc/constant_group/Accessibility_Traits">accessibilityTraits property</a> is used to define the element semantics. An element on the page can have more than one trait. The following traits can be used:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li><code>UIAccessibilityTraitButton</code> - button element</li>
+          <li><code>UIAccessibilityTraitLink</code> - link</li>
+          <li><code>UIAccessibilityTraitSearchField</code> - search field</li>
+          <li><code>UIAccessibilityTraitImage</code> - image</li>
+          <li><code>UIAccessibilityTraitStaticText</code> - element is treated as static text and cannot be changed</li>
+          <li><code>UIAccessibilityTraitHeader</code> - heading</li>
+        </ul>
+        
+        <h4>PDF in Acrobat</h4>
+
+        <p>Acrobat supports creating tags for any content within your PDF without changing the visual appearance of the PDF. The tools to use for this are the TouchUp Reading Order Tool (TURO) and the Tags Panel. The location of the Tags Panel and TURO will vary depending on your version of Acrobat. In Acrobat 9 Pro, for example, you can find the Tags Panel at View &gt; Navigation Panels &gt; Tags and TURO is at Advanced &gt; Accessibility &gt; TouchUp Reading Order or Alt + AAT. In version X they are under the Tools menu.</p>
+        <p>If the document is simple and the tags do not already exist in the PDF, it is easiest to begin with Acrobat's automatic tagging (Advanced &gt; Accessibility &gt; Add tags to document) and then manually adjust any tags that are not semantically correct. For more complex pages use Acrobat's Tags Panel or TURO to add tags.</p>
+        <h4>PDF Tags</h4>
+        <p>Semantic markup is created using tags. In order for your document to be correctly interpreted by assistive devices, the correct tags need to be defined.</p>
+        <p>The common PDF tags include:</p>
+        <table class="pe-table">
+          <thead>
+            <tr>
+              <th scope="col">Tag Type</th>
+              <th scope="col">Purpose</th>
+              <th scope="col">Tag Name</th>
+              <th scope="col">Tag Tree Icon</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Heading</th>
+              <td>Document Title</td>
+              <td>&lt;H&gt;</td>
+              <td><img width="25" height="21" src="images/tag.jpg" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Heading Level 1-6</th>
+              <td>Section headings</td>
+              <td>&lt;H1&gt; to &lt;H6&gt;</td>
+              <td><img width="25" height="21" src="images/tag.jpg" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Paragraph</th>
+              <td>Paragraphs of text</td>
+              <td>&lt;P&gt;</td>
+              <td><img width="22" height="21" src="images/paragraph.jpg" alt="Paragraph Mark"></td>
+            </tr>
+            <tr>
+              <th scope="row">Figure</th>
+              <td>Images</td>
+              <td>&lt;Figure&gt;</td>
+              <td><img width="25" height="21" src="images/tag.jpg" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Caption</th>
+              <td>Captions for images and figures</td>
+              <td>&lt;Caption&gt;</td>
+              <td><img width="25" height="21" src="images/tag.jpg" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">List</th>
+              <td>Ordered and Unordered List Items</td>
+              <td>&lt;L&gt;</td>
+              <td><img width="25" height="21" src="images/tag.jpg" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">List Item</th>
+              <td>List Item</td>
+              <td>&lt;LI&gt;</td>
+              <td><img width="25" height="21" src="images/tag.jpg" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Table of Contents</th>
+              <td>Group of table of contents items</td>
+              <td>&lt;TOC&gt;</td>
+              <td><img width="25" height="21" src="images/tag.jpg" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Table of Contents Item</th>
+              <td>Table of content entry</td>
+              <td>&lt;TOCI&gt;</td>
+              <td><img width="25" height="21" src="images/tag.jpg" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Table</th>
+              <td>Table made of rows and data cells</td>
+              <td>&lt;Table&gt;</td>
+              <td><img width="25" height="21" src="images/table.jpg" alt="rectangular grid"></td>
+            </tr>
+            <tr>
+              <th scope="row">Table Row</th>
+              <td>Row of data</td>
+              <td>&lt;TR&gt;</td>
+              <td><img width="24" height="20" src="images/table-row.jpg" alt="rectangular grid with one row highlighted in blue"></td>
+            </tr>
+            <tr>
+              <th scope="row">Table Header Cell</th>
+              <td>Row or column header for the data cell</td>
+              <td>&lt;TH&gt;</td>
+              <td><img width="20" height="17" src="images/header-cell.jpg" alt="rectangular grid with top left corner cell in red"></td>
+            </tr>
+            <tr>
+              <th scope="row">Table Data Cell</th>
+              <td>Data</td>
+              <td>&lt;TD&gt;</td>
+              <td><img width="26" height="20" src="images/table-cell.jpg" alt="rectangular grid with one cell in blue"></td>
+            </tr>
+            <tr>
+              <th scope="row">Link</th>
+              <td>External hyperlinks</td>
+              <td>&lt;Link&gt;</td>
+              <td><img width="25" height="21" src="images/tag.jpg" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Reference</th>
+              <td>References to text in the same document by on another page</td>
+              <td>&lt;Reference&gt;</td>
+              <td><img width="25" height="21" src="images/tag.jpg" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Quote</th>
+              <td>Inline quote</td>
+              <td>&lt;Quote&gt;</td>
+              <td><img width="25" height="21" src="images/tag.jpg" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Blockquote</th>
+              <td>Quatation</td>
+              <td>&lt;Blockquote&gt;</td>
+              <td><img width="25" height="21" src="images/tag.jpg" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Document</th>
+              <td>Container Element</td>
+              <td>&lt;Document&gt;</td>
+              <td><img width="25" height="21" src="images/tag.jpg" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Part</th>
+              <td>Container Element</td>
+              <td>&lt;Part&gt;</td>
+              <td><img width="25" height="21" src="images/tag.jpg" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Division</th>
+              <td>Container Element</td>
+              <td>&lt;Div&gt;</td>
+              <td><img width="25" height="21" src="images/tag.jpg" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Article</th>
+              <td>Container Element</td>
+              <td>&lt;Art&gt;</td>
+              <td><img width="25" height="21" src="images/tag.jpg" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Section</th>
+              <td>Container Element</td>
+              <td>&lt;Sect&gt;</td>
+              <td><img width="23" height="22" src="images/section.jpg" alt="Note with lines with one section highlighted with red rectangle"></td>
+            </tr>
+            <tr>
+              <th scope="row">Span</th>
+              <td>Group of words</td>
+              <td>&lt;Span&gt;</td>
+              <td><img width="25" height="21" src="images/tag.jpg" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Note</th>
+              <td>Footnotes</td>
+              <td>&lt;Note&gt;</td>
+              <td><img width="25" height="21" src="images/tag.jpg" alt="Generic tag"></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>Sometimes tags will appear in the tags tree that are different than the defined standard tag names used by Adobe Acrobat. These are defined by the authoring software tool. For example, Microsoft Word often uses the tag Normal instead of &lt;P&gt; for paragraphs</p>
+        <p><strong>Role mapping</strong> is a function that is mainly used with authoring software tools to map these non-standard tags to the standard Adobe Acrobat tags. If the tag is mapped to a standard tag name then you do not need to change the tag names in the tags tree.</p>
+        <p>To view the list of role map items by selecting Edit Role Map in the Tags navigation panel options. If any of the role mappings are incorrect, edit the item. If a tag does not appear in this list, you can manually add it using the functions in this window.</p>
+        <img width="328" height="369" src="images/role-map.jpg" alt="">
+        <h4>Headings</h4>
+        <h5>Document Title</h5>
+        <p>The main document title should be labeled using the tag. Typically this is shown on the cover or the first page of the document. This tag should only be used once in the document.</p>
+        <h5>Section Headings</h5>
+        <p>When a document includes section headings, those headings should be defined as heading tags. Adobe Acrobat provides 6 levels of headings which can be used define the hierarchy of headings and sub-headings in the document.</p>
+        <h5>Image Section Headings</h5>
+        <p>If an image is the heading for the section, tag the image as a heading. Add a new tag for the heading at the appropriate level and then add the &lt;Figure&gt; tag as a child of the heading tag.</p>
+        <h4>Lists</h4>
+        <p>If the document uses a list, the list should be marked up using list tags (&lt;L&gt; and &lt;LI&gt;). The &lt;LI&gt; tags should be grouped as children of a list (&lt;L&gt;) tag.</p>
+        <img width="264" height="248" src="images/simple-list.jpg" alt="Common list structure is L tag with children LI tags .  Typically under the LI tag is either the content, P tag with content or LBody tag">
+        <h5>Tip:</h5>
+        <p>Sometimes you may see &lt;LBody&gt; present in the tags tree. This tag is not used by screen readers and is not necessary. If they are present, they can be kept but there is no need to manually add them.</p>
+        <h5>Unordered Lists</h5>
+        <p>Unordered lists will often include the bullet character within the list item &lt;LI&gt; tag. To tell screen readers to ignore this character, select the bullet and change it to background content using TURO. This will artifact the tag and it will no longer show up in the tags tree.</p> 
+        <h5>Ordered Lists</h5>
+        <p>Ordered lists are defined in the same way as unordered lists. However, the numbers within the list text needs to be part of the &lt;LI&gt; tag and should not be set to background text.</p>
+        <img width="270" height="213" src="images/ordered-list.jpg" alt="">
+        <h5>Nested Lists</h5>
+        <p>To nest lists, add the &lt;L&gt; tag as a child to the &lt;LI&gt; of the parent list. The structure could look something like this:</p>
+        <img width="266" height="256" src="images/list-structure.jpg" alt="The &lt;L&gt; tag has 4 &lt;LI&gt;.  Under one of the &lt;LI&gt; is a sublist.  The sublist &lt;L&gt; is a child of the &lt;LI&gt;">
+        
+        <h4>Paragraphs</h4>
+        <p>All text that is not a heading or cannot be tagged with another tag should be defined as a paragraph (&lt;P&gt;) tag. This includes introductory paragraphs, abstracts and text that are highlighted graphically.</p>
+        <p>Sometimes paragraphs are defined using non-standard tag names. These may be mapped using the Role Mapping and would act like a paragraph. Check the role mapping before reassigning the tag as these may not need to be changed.</p>
+        <h4>Content that spans multiple pages</h4>
+        <p>If text straddles two or more pages, the text should be combined into a single paragraph tag. To combine two tags, select and expand each tag in the tags panel to show their text containers. Drag one to combine the two containers under one tag, and then delete the remaining, empty tag. The same situation can occur with lists, tables, and tables of content but they tend to be easier to identify because their parent tag repeats.</p>
+        <p>Multiple tables are often caused intentionally by the content author. For screen reader users it is best to combine them into one table with one column header row.</p>
+        <h4>Tables</h4>
+        <p><img width="137" height="276" src="images/table-tag-structure.jpg" alt="" align="right">
+          Tables need to be structured in a way that helps users who cannot see the screen understand the relationship of the data in the cells. The following table tags should be used:
+        </p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Table row (&lt;TR&gt;) to define each row of table cells</li>
+          <li>Table headers (&lt;TH&gt;) for table header cells</li>
+          <li>Table data (&lt;TD&gt;) for table data cells</li>
+        </ul>
+
+        <h4>Table Headers</h4>
+        <p>Both row and column headers can be defined using the table header (&lt;TH&gt;) tag and scope to define whether or not a cell is a column or row header. </p>
+        <p>The easiest way to set the scope of a header cell is using the table editor.</p>
+        <img width="346" height="114" src="images/table-cell-properties.jpg" alt="">
+        <p>In the properties, set the type to header cell and the scope to the appropriate value. The scope property can have the following values: </p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Row – for row headers</li>
+          <li>Column – for column headers</li>
+          <li>Both – for cells that are both a row header and a column header</li>
+        </ul>
+
+        <p>If the table has complex headers and the scope attributes are not sufficient to associate header cells with data cells, you will need to use header IDs. This usually happens when you have a header cell that spans multiple columns and only applies to some of the cells below.</p>
+        <p>To assign to headers and IDs to the table cells, first define the cell as a &lt;TH&gt; then give the header cell an ID. Make sure that the scope is set to NONE. Then for each data cell, assign the associate header cell IDs.</p>
+        <img width="347" height="357" src="images/header-complex-properties.jpg" alt="In the table cell properties dialog, set the type radio button to header cell.  The scope should be set to none.  In the attribute section, type in a value in the ID textbox.">
+        
+        <h4>Screen Reader Tips:</h4>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>JAWS 12 will only read column header. Row headers are ignored. This is a bug in JAWS.</li>
+          <li>Screen readers read the header ids starting with the column header and then the row headers. The order displayed in the Associated Header Cells IDs list does not matter.</li>
+        </ul>
+        <h4>Spanning Cells</h4>
+        <p>If a cell spans two or more rows or columns should use RowSpan and ColSpan attribute to define the number of rows or columns that the cell spans. The easiest way to do this is to use TURO and the Table Editor. In the cell context menu select Table Editor. This will show the table structure on the page. In the cell that spans multiple cells, right-click and select Table Cell Properties. In this dialog, set the row or column span to the number of cells spanned.</p>
+        <h4>Blank Cells</h4>
+        <p>If your table has blanks cells, these may not be automatically defined in the table tags. If there are blank cells that are present but there is no tag in the tags tree, add an empty &lt;TD&gt; tag so that the row or column has the same number of cells as the other rows.</p>
+
+        <h3>Word</h3>
+        <p>When formatting is used to convey special meaning to content, be sure to use the built-in Word styles and features as much as possible to maximize accessibility. For example, use styles for emphasized content, lists, tables, heading, headers, and footers. Conversely, when those styles and features are used, ensure that they are used to convey particular meaning or organization of content and not simply used because the visual appearance matches a desired look. </p>
+
+        <h4>Headings</h4>
+        <p>Define all headings using Word heading styles. Modify the Word heading styles to change the font, color and other style elements (see <a href="#g9">PG 9</a> In Page Navigation for more information on headings).</p>
+
+        <p>Avoid creating a new Word style for headings as this will not be defined as a heading even it is defined as style that is based on a heading. </p>
+
+        <p>Word styles should not be misused or used just for visual appearance of the formatting.</p>
+
+        <h4>Lists</h4>
+        <p>The toolbar options in Home &gt; Paragraph for unordered (bullet) and ordered (numbered) lists automatically apply list styles. Other styles are available in the styles window for indented lists, and using indent or tab automatically applies them.</p>
+
+        <p>Avoid using empty list items for spacing. Instead, apply paragraph spacing on individual lines as necessary. Do not simulate lists with direct formatting. Use Word styles.</p>
+
+        <h4>Tables</h4>
+        <p>Use Word built-in tables to present tabular content and data. Do not simulate tables with white space (adding spaces and tabs or using columns) or use draw table functions in Word as they will not provide the semantic table structure. </p>
+
+        <p>In the table properties, set the following options:</p>
+        <img width="433" height="238" src="images/table properties.jpg" alt="">
+
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Allow row to break across pages should not be checked</li>
+          <li>If the table has column headers, select the top row and set check the heading row should repeat across pages checkbox</li>
+        </ul>
+        
+        <p>Avoid empty table rows and splitting content into multiple tables as this will make the table harder to understand.</p>
+
+        <p>Note: There is no way to explicitly set row and column headers in Word.</p>
+
+        <h4>Paragraphs</h4>
+        <p>Use paragraph spacing for layout rather than adding extra blank paragraphs. Think of Word paragraphs as containers of content, not as the return key on a typewriter. All paragraph containers should have content otherwise JAWS will announce them as blank.</p>
+
+        <h4>Drop Caps</h4>
+        <p>Do not use Word's drop caps feature. The letters are set up as text boxes, which are not read by screen readers.</p>
+
+        <h4>Header / Footer</h4>
+        <p>Use the Word built-in feature rather than simulating them. They are not read by screen readers so make sure that any important information is also included once in the overall document content.</p>
+
+        <h4>Styles</h4>
+        <p>Choose styles over direct formatting as much as possible. Though the use of character styles such as emphasis and strong is encouraged for ease of document consistency and maintenance, at this time screen readers do not announce them.</p>
+
+        <p>However, consider incorporating character styles in your approach anyway for the benefit for document maintenance. As a general best practice, avoid creating many variations of styles when a small set will work. Name the styles for the content that they represent and how they should be used rather than for their appearance, e.g. "Term definition" rather than "bold 15 before 10 after". This will simplify the conversion to PDF.</p>
+
+        <h3>PowerPoint</h3>
+
+        <p>Use the built-in PowerPoint elements. For example, use the numbered and bulleted list options on the Home tab, and use Title containers. Empty content such as lists and paragraphs can confuse screen reader users when they navigate by paragraphs or when lists are announced with the wrong number of elements. Fragmented content can also be confusing when it is spoken. Look for situations where lines are broken up to wrap around objects. Overall, try to use the appropriate content layout, indentation, and paragraph spacing for visual alignment, rather than tabs, paragraphs, and spaces.</p>
+
+        <h4>Special Content</h4>
+        <p>Some special content is not accessible in PowerPoint. Embedded Excel charts and tables, and Word documents are visible and accessible in edit mode, e.g. the "normal presentation view". Users can navigate to the object and interact with it. However, in slideshow mode, they cannot interact with the object to view data, text, or graph elements. Excel data pasted "as HTML" can be accessible. Consider replacing Word content and Excel data with normal PowerPoint content holders, tables with PowerPoint tables, and graphs with PowerPoint graphs or screenshot pictures.</p>
+
+        <h4>Multimedia</h4>
+        <p>Audio, video, and Flash movies should contain captions, textual descriptions, or spoken descriptions as appropriate. </p>
+
+        <p>Note: PowerPoint 2010 includes a new tool, Sub-titling Text Add-in for Microsoft PowerPoint (STAMP) that allows you to add captions to video and audio, or import Timed Text Markup caption files from within PowerPoint.</p>
+
+        <p>Interactive Flash content can be difficult to make accessible. Be sure to test it using a screen reader to make sure that you can tab to the control to activate it, interact with it using the keyboard, and hear the appropriate content from the screen reader.</p>
+
+        <h3>Excel</h3>
+        <p>Microsoft Excel has a built-in function that can be used to give names to a cell or a range of cells. Screen readers look for certain specific names to identify which cells contain row and column titles.</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>To create both row and column headers, move to the intersection of the row and column titles and add the name to the cell using the "Define Name" option in the context menu (right click or shift+F10). Set the name to Title (one word with mixed case).</li>
+          <li>To create just row headers, navigate to the column containing the titles and open the Define Name dialog box. Set the name to RowTitle (one word with mixed case and no spaces).</li>
+          <li>To create just column headers, navigate to the column containing the titles and open the Define Name dialog box. Set the name to ColumnTitle (one word with mixed case and no spaces).</li>
+        </ul>
+        
+        <p>NOTE: These procedures can also be used when column titles span multiple rows or when row titles span multiple columns. When the column titles span multiple rows, select all of the rows before creating the ColumnTitle definition. When the row titles span multiple columns, select all of the columns before creating the RowTitle definition.</p>
+
+        <h3>Testing HTML</h3>
+        <p>Semantic markup includes heading markup. But testing for heading markup is not included here as it is included under Pearson Guideline number 9 on in-page navigation. </p>
+        <table class="pe-table">
+          <caption>List Items, Quotes, and Blockquotes</caption>
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Tools</th>
+                <td>In the Structure menu of the <a href="https://developer.paciellogroup.com/resources/wat/">Web Accessibility Toolbar</a> apply the List Items function and the Q /Blockquote function.<br>
+                <br>
+                Or, use <a href="http://chrispederick.com/work/web-developer/">Web Developer Toolbar</a> &gt; Outline Custom Elements to outline <code>ul</code>, <code>ol</code>, <code>li</code>, <code>dl</code>, <code>dd</code>, <code>dt</code>, <code>quote</code> and <code>blockquote</code>. Check 'Show element names when highlighting' and use commas to separate tags in the dialog box.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Output</th>
+                <td>If any elements have been marked as unordered lists, ordered lists, definition lists, blockquotes or quotes, they will be marked as such on the page.</td>
+              </tr>
+              <tr>
+                <th scope="row">Analysis</th>
+                <td>Skim the page looking for any lists, definition lists or block quotations that are not marked as such. This step is not necessary for ordinary quotations, as quotation marks effectively identify these.<br>
+                <br>
+                Also, check all items that are shown with markup to be sure they really contain what the markup indicates. For example, a block quotation should be a quotation and a definition list should be used to hold definitions. These elements should not be used solely for their visual effects.<br>
+                <br>
+                The importance of coding distinct lists can be subtle. The banner of a site, for example, might contain three sections of links: main navigation, account information, and corporate links. The distinction between the groups will be obvious visually. If these are marked up as separate unordered lists, the distinction between the groups of links will be clear to a blind user too.
+              </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="pe-table">
+              <caption>Data Tables</caption>
+                <thead class="pe-sr-only">
+                  <tr>
+                    <th scope="col">Testing technique</th>
+                    <th scope="col">Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Tools</th>
+                    <td>Use the <a href="http://www.jimthatcher.com/favelets/">Data Tables favelet</a> on every page.</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Output</th>
+                    <td>The Alert from the <a href="http://www.jimthatcher.com/favelets/">Data Tables favelet</a> will specify the number of tables, the number accessible data table markup attributes, and the number of tables with <code>role</code> attributes. Individual tables will be highlighted with access attributes displayed. And, <code>role="presentation"</code> will be displayed for each table where that role has been set.</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Analysis</th>
+                    <td>If there are no tables; there is nothing to worry about.<br>
+                    <br>
+                    If tables are used for layout and they use access attributes (<code>caption</code>, <code>summary</code>, <code>th</code>, <code>scope</code>, or <code>headers</code>) then these are errors. Layout tables should not have these access attributes. If tables are used for layout, see if the tables have <code>role="presentation"</code> set. If not, this is an error for newly developed pages.<br>
+                    <br>
+                    If there are simple data tables, be sure that row and column headers are specified. This can be done by using <code>th</code> or <code>scope</code> on each header cell. If the top-left corner cell is a header cell, it must have a scope attribute to say whether it is a row or column header. More complex data tables may have many cells that need clarification of their scope using the scope tag. Data tables can also be marked up with <code>headers/id</code> combinations, where every header cell has an id and every data cell has a <code>headers</code> attribute listing (space delimited) the <code>id</code>s of its header cells.<br>
+                    <br>
+                    Note: If the page is being edited, we recommend using both <code>th</code> and <code>scope</code> on every header cell and <code>td</code> with <code>scope</code> for cells that are both data cells and headers cells. However, for older pages that are coded correctly otherwise, we don't require editing the page to add the <code>scope</code> attribute <span style="font-style:italic;">unless there is ambiguity</span>.
+                  </td>
+                  </tr>
+                </tbody>
+              </table>
+        
+        <h3>Testing Mobile Applications</h3>
+        <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>Read the page using a screen reader.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Output</th>
+                  <td>The page elements are announced with name and role. For example, a heading is announced with the name of the heading and the screen reader tells the user it is a heading.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Analysis</th>
+                  <td>As the screen reader reads the name of the control and the appropriate role (e.g. headings, button, link, image, etc.).<br>
+                  <br>
+                  NOTE: Android is limited on the type of element that can be defined. Headings cannot be defined on Andriod.
+                 </td>
+                </tr>
+              </tbody>
+            </table>
+
+        <h3>Testing PDF in Acrobat</h3>
+        <table class="pe-table">
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Tools</th>
+                <td>Use the Tags pane in Acrobat to verify the semantic markup of content, with "highlight content" checked in the pane menu. To easily find tags, highlight content and then select "Find tag from selection." Select the tags to see the associated content, or use the up / down and left / right cursor keys to navigate in the tags tree.<br>
+                <br>
+                Use the table editor and the tags tree to verify that tables are tagged correctly and that cells have the correct attributes.
+              </td>
+              </tr>
+              <tr>
+                <th scope="row">Output</th>
+                <td>Inspect each tag in the tags tree, verifying that all content is tagged and that the appropriate tag is used. For a list of common PDF tags, see the "PDF in Acrobat – PDF tags" section. Ensure that lists and tables are nested correctly in the tags.<br>
+                <br>
+                If non-standard tag names are used, verify that the role mapping maps these non-standard tag names to PDF tags. To see the role map, right click on a tag and select edit role map.<br>
+                <br>
+                Verify that a data table in the content is represented by a &lt;table&gt; tag with a table row &lt;TR&gt; tag for each row and table header &lt;TH&gt; or table data &lt;TD&gt; tags under each &lt;TR&gt;, one for each column. Cells merged across columns should be represented by one &lt;TH&gt; or &lt;TD&gt; for the entire merged cell. For best usability it is recommended that only header cells, not data cells, are merged. Tables that do not contain tabular data, which are used for layout only, should not be tagged as tables.<br>
+                <br>
+                Open the table editor and verify that row and/or column header cells are marked as header with the appropriate scope. Header cells in the top row have column scope; those in the first column have row scope. If the top left cell is blank, it should be marked as a data cell, not as a header cell.
+              </td>
+              </tr>
+              <tr>
+                <th scope="row">Analysis</th>
+                <td>Document any variance from the guideline points.
+               </td>
+              </tr>
+            </tbody>
+          </table>
+
+        <h3>Related Guidelines</h3>
+        <h4>508 Web § 1194.22 (d)</h4>
+        <p></p>Documents shall be organized so they are readable without requiring an associated style sheet. </p>
+        <h4>508 Web § 1194.22 (g)</h4>
+        <p>Row and column headers shall be identified for data tables. </p>
+        <h4>508 Web § 1194.22 (h)</h4>
+        <p>Markup shall be used to associate data cells and header cells for data tables that have two or more logical levels of row or column headers. </p>
+        <h4>WCAG 2.0 – Level A - 1.3.1 Info and Relationships:</h4>
+        <p>Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text. (Level A)</p>
+        <h4>508 Refresh 3-O: Information and Relationships</h4>
+        <p>Information and relationships conveyed through presentation of electronic documents must be either PROGRAMMATICALLY DETERMINABLE or available in TEXT, and notification of changes to these must be available to user agents, including assistive technologies. For example:</p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Row and column headers are identified for data tables. Note: In order to achieve this provision, table objects in data operated on by the software would need to be associated with sufficient information to identify any row and column headers for the table, that the software can obtain as readily as it can obtain the table itself.</li>
+          <li>In data tables that have two or more logical levels of row or column headers, data cells are associated with header cells. Note: In order to achieve this provision, cells in table objects with multiple logical levels of headers in data operated on by the software would need to be associated with sufficient information to identify any row and column headers for the table cell, that the software can obtain as readily as it can obtain the table cell itself.</li>
+          <li>Section headings are identified.</li>
+          <li>Form element LABELS are associated with form fields.</li>
+        </ol>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
+
       <h2 id="g12"></h2>
       <div class="guideline_content">
         <a class="skippy" href="#toc">Back to TOC</a>
