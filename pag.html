@@ -470,10 +470,43 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <p><mark>Many developers worry that setting tabIndex this way will force keyboard access users to tab to each bit text while trying to reach a button, link or form control. This is true in HTML, but this is not the case in Flash and Flex. TabIndex does not change whether or not an element is treated as an active element for keyboard access.</mark></p>
 
         <h3>Android Applications</h3>
-        <p>The reading over is based on an algorithm which finds the nearest neighbor in a given direction. The reading order cannot be changed but focus order can be modified, see <a href="#g6">PG 6</a> for more details.</p>
+        <p>The reading over is based on an algorithm which finds the nearest neighbor in a given direction. The reading order and focus order can be modified if it's not correct based on the layout of the page.</p>
+<h4>Reading order and focus order MUST follow a meaningful sequence for TalkBack and Keyboard users.</h4>
+<h5>Controlling Reading and Focus Order for TalkBack Users with accessibilityTraversalBefore and nextFocusForward</h5>
+<pre><code>
+android:accessibilityTraversalBefore="@id/button"
+android:nextFocusForward="@+id/button"  
+</code></pre>
+<h5>Grouping content into logical announcements</h5>
+<p>Android's developer docs on accessibility cover <a href="https://developer.android.com/guide/topics/ui/accessibility/apps.html#grouping-content">Grouping Content</a> by creating natural groupings and organizing content into single announcements using android:focusable="true".
+<p>If users should treat a set of elements as a single unit of information, you can group these elements in a focusable container.
+  <pre><code>
+&lt;RelativeLayout
+    android:id="@+id/song_data_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:focusable="true">
 
+    &lt;TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/song_title"
+        android:text="@string/song_title" />
+
+    &lt;TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/singer"
+        android:layout_toRightOf="@id/song_title"
+        android:text="@string/singer" />
+    ...
+&lt;/RelativeLayout>
+</code></pre>
         <h3>iOS Applications</h3>
         <p>The reading order in iOS applications is defined by the order in which the elements are added to the screen. In the individual, table or custom container views, the order is set by the order in which they are defined in the <a href="https://developer.apple.com/documentation/uikit/accessibility/uiaccessibilitycontainer">UIAccessibilityContainer</a> protocol array.  To change the reading order use <code>accessibilityElementAtIndex</code>, <code>accessibilityElementCount</code> and <code>indexOfAccessibilityElement</code>.</p>
+<h4>Grouping content to correct reading order with shouldGroupAccessibilityChildren</h4>
+<p><a href="https://developer.apple.com/documentation/objectivec/nsobject/1615143-shouldgroupaccessibilitychildren">shouldGroupAccessibilityChildren</a> is a Boolean value indicating whether VoiceOver should group together the elements that are children of the receiver, regardless of their positions on the screen.
+<p>For example, consider an app that shows items in vertical columns. Normally, VoiceOver would navigate through these items in horizontal rows. Setting the value of this property to true on the parent view of the items in the vertical columns causes VoiceOver to respect the app’s grouping and navigate them correctly.
 
         <h3>PDF in Acrobat</h3>
         <img style="float:right" alt="" src="images/tags-tree.jpg">
@@ -787,11 +820,24 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <p><a href="https://www.w3.org/TR/wai-aria/complete#progressbar">Read more about progress bars in the WAI-ARIA spec</a></p>
 
         <h3>Android Applications</h3>
-        <p><mark>The goal is to help Talkback (the Android screen reader) users know about the important information. When the application interface elements change dynamically, the <code>contentDescription</code> and <code>hint</code> property should be updated to reflect the current state of the interface element. If the dynamically-added content should be read by the screen reader, move focus to that component on the page so it will be read by Talkback.</mark> (still valid?)</p>
+        <p>The goal is to help Talkback (the Android screen reader) users know about the important information. When the application interface elements change dynamically, the <code>contentDescription</code> and <code>hint</code> property should be updated to reflect the current state of the interface element. If the dynamically-added content should be read by the screen reader, move focus to that component on the page so it will be read by Talkback.</p>
+        <h4>TalkBack users MUST be notified of dynamic content changes either through spoken accessibility announcements OR focus management.</h4>
+<p>Android has different methods to speak content changes to TalkBack users including native controls that are already accessible like Toast messages. There's an accessible announcements property similar to WAI-ARIA in HTML called <a href="https://developer.android.com/reference/android/view/View.html#attr_android:accessibilityLiveRegion">android:accessibilityLiveRegion</a>="assertive" or "polite". You can also speak any text strings aloud using announceForAccessibility. It's also possible to move focus directly to the element you want spoken with AccessibilityEvent.TYPE_VIEW_FOCUSED.
+</p>
 
         <h3>iOS Applications</h3>
-        <p><mark>When the application interface elements change dynamically, the <code>accessibilityLabel</code> and <code>accessibilityHint</code> should be updated to reflect the current state of the interface element.</mark> (still valid?)</p>
+        <p>When the application interface elements change dynamically, the <code>accessibilityLabel</code> and <code>accessibilityHint</code> should be updated to reflect the current state of the interface element.</p>
         <p>If the layout of the application screens change or if there is an event that happens on the screen, use the <a href="https://developer.apple.com/documentation/uikit/accessibility/uiaccessibility">UIAccessibilityNotifications in the UIAccessibility protocol</a> to send status notifications to VoiceOver to help users navigate the new layout.</p>
+<h4>Using UIAccessibilityAnnouncementNotification to Speak Messages</h4>
+<pre><code>
+DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {//need delay to hear announcement with voiceover
+    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, self.errorText.text) //anounces the error message text
+}  
+</code></pre>
+<h4>Using UIAccessibilityLayoutChangedNotification to Set Focus to Elements</h4>
+<pre><code>
+UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self.errorText) // send focus to the error text
+</code></pre>
         <p>For more information, see the section in the iOS Accessibility Programming Guide called <a href="https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/iPhoneAccessibility/Making_Application_Accessible/Making_Application_Accessible.html">Make Dynamic Elements Accessible</a>.</p>
 
         <h3>PowerPoint</h3>
