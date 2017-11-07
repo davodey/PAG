@@ -1156,16 +1156,17 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
           
           <p>To move forward in this environment we suggest the following:</p>
           <ul class="pe-list pe-styled-lists--unordered">
-            <li>Include WAI-ARIA landmark markup for the following HTML 5 section elements when you want them to be used as landmarks:Most likely, you will not want <code>&lt;form&gt;</code> to act as a landmark.</li>
-            <ul class="pe-list pe-styled-lists--unordered"> 
-              <li>&lt;footer role=”contentinfo”&gt;</li>
-              <li>&lt;header role=”banner”&gt;</li>
-              <li>&lt;nav role=”navigation”&gt;</li>
-              <li>&lt;aside role=”complementary”&gt;</li>
-              <li>&lt;section role=”region”&gt;, or a more specific role if appropriate.</li>
-            </ul>
-          <li>Finally, note that in some cases elements with <code>role="article"</code> and <code>&lt;article&gt;</code> elements are being treated as landmarks.</li>
-            </ul>
+            <li>Include WAI-ARIA landmark markup for the following HTML 5 section elements when you want them to be used as landmarks:Most likely, you will not want <code>&lt;form&gt;</code> to act as a landmark.
+              <ul class="pe-list pe-styled-lists--unordered"> 
+                <li>&lt;footer role=”contentinfo”&gt;</li>
+                <li>&lt;header role=”banner”&gt;</li>
+                <li>&lt;nav role=”navigation”&gt;</li>
+                <li>&lt;aside role=”complementary”&gt;</li>
+                <li>&lt;section role=”region”&gt;, or a more specific role if appropriate.</li>
+              </ul>
+            </li>
+            <li>Finally, note that in some cases elements with <code>role="article"</code> and <code>&lt;article&gt;</code> elements are being treated as landmarks.</li>
+           </ul>
 
           <h4>Frames</h4>
           <p>Traditional HTML Framesets provide one level of in-page navigation since keyboard users can jump between frames (usually using F6 and Shift F6) on a Web page. This does not apply to inline frames (<code>iframe</code>). If your site uses framesets and the main content frame has headings, your site probably meets <a href="#g9">Pearson Guideline 9</a>.</p>
@@ -1178,11 +1179,11 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
           <li><strong>Do not create mini-menus of these links;</strong> no more than two, maybe three, should be in any particular location</li>
           <li>These links should refer to standard page elements such as 'main content' or 'navigation'.</li>
           <li>Make sure these links are either visible at all times or appear when a user tabs to the links:<br>
-              <pre><code>.skiplink {                position: absolute;                clip: rect(1px 1px 1px 1px);  /* for Internet Explorer */                clip: rect(1px, 1px, 1px, 1px);                padding: 0;                border: 0;                height: 1px;                width: 1px;                overflow: hidden;            }              /* :active is needed for Internet Explorer */            .skiplink:focus, .skiplink:active {                padding:3px;                position: static;                width:auto;                height:auto;                clip:auto;                overflow:initial;             }</code></pre></li>
-          <p>Otherwise keyboard access users who don't use a screen reader won't be able to use the links. They would also have to tab past invisible links, which can be confusing and time-consuming.</p>
+              <pre><code>.skiplink {                position: absolute;                clip: rect(1px 1px 1px 1px);  /* for Internet Explorer */                clip: rect(1px, 1px, 1px, 1px);                padding: 0;                border: 0;                height: 1px;                width: 1px;                overflow: hidden;            }              /* :active is needed for Internet Explorer */            .skiplink:focus, .skiplink:active {                padding:3px;                position: static;                width:auto;                height:auto;                clip:auto;                overflow:initial;             }</code></pre><br>
+              Otherwise keyboard access users who don't use a screen reader won't be able to use the links. They would also have to tab past invisible links, which can be confusing and time-consuming.</li>
           
           <li>There are bugs in Internet Explorer 5-11 that sometimes make these in-page links fail. Test the skip links by activating each link; then tab again. If the second tab goes to the top of the page or back to your skip link, your skip link is not working. To be sure to avoid this, add tabindex="-1" to the target of the link as shown in the code example below. </li>
-              <pre><code>&lt;a name="skiptarget"        id="skiptarget"        tabindex="-1">          or content here     &lt;/a&bt;</code></pre>
+              <pre><code>&lt;a name="skiptarget"        id="skiptarget"        tabindex="-1">          or content here     &lt;/a&gt;</code></pre>
           </ul>
           <a href="http://www.manateeroad.com/skiplink.html" target="_blank">Open sample skip link in new tab.</a>
           <h4>Tips</h4>
@@ -1330,7 +1331,7 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
                 <tr>
                   <th scope="row">Analysis</th> 
                   <td>Looking at the page as a whole: Is there heading text at the beginning of each major section of the page. Do sections of similar format and importance have the same heading levels? Is text that looks like a heading text marked up as an HTML heading?<br>
-                      Also consider whether the heading structure is well-organized: There should be just one <code>h1</code>. Also, are there unreasonable gaps in heading numbering, like <code>h2</code> to <code>h5</code>?</p>
+                      Also consider whether the heading structure is well-organized: There should be just one <code>h1</code>. Also, are there unreasonable gaps in heading numbering, like <code>h2</code> to <code>h5</code>?
                   </td>
                 </tr>
               </tbody>
