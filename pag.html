@@ -902,14 +902,31 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
               OR<br>
               <ul class="pe-list pe-styled-lists--unordered">
                 <li>Use the CSS :focus class as you would use the CSS :hover class:<br>
-                  <pre><code>/* mouse */ a:hover {background-color: #FFFFCC;}  /* keyboard */ a:focus {background-color: #FFFFCC;}</code></pre>
+                  <pre><code>
+/* mouse */ 
+a:hover {background-color: #FFFFCC;}  
+/* keyboard */ 
+a:focus {background-color: #FFFFCC;}
+                  </code></pre>
                   Since a:focus doesn’t work in IE (as of IE 7) you may want to add  a:active in addition to a:focus:<br>
-                  <pre><code>/* keyboard */ a:focus {background-color: #FFFFCC;} a:active {background-color: #FFFFCC;}</code></pre>
+                  <pre><code>
+/* keyboard */ 
+a:focus {background-color: #FFFFCC;} 
+a:active {background-color: #FFFFCC;}
+                  </code></pre>
                 </li>
                 <li>Use the JavaScript event handler onFocus as you would use the event handler onMouseOver. Also use onBlur as you would use onMouseOut.<br> 
-                  <pre><code>&lt;a href="filename.html"        onmouseover="JavaScriptCodeOn();"       onfocus="JavaScriptCodeOn();"        onmouseout="JavaScriptCodeOff();"      onblur="JavaScriptCodeOff();" &gt;</code></pre>
+                  <pre><code>
+  &lt;a href="filename.html"        onmouseover="JavaScriptCodeOn();"       
+  onfocus="JavaScriptCodeOn();"        onmouseout="JavaScriptCodeOff();"      
+  onblur="JavaScriptCodeOff();" &gt;
+                  </code></pre>
                   OR<br>
-                  <pre><code>&lt;a href="filename.html"             onmouseover="JavaScriptCodeOn();"       onfocus="this.onmouseover"        onmouseout="JavaScriptCodeOff();"       onblur="this.onmouseout" &gt;</code></pre>
+                  <pre><code>
+&lt;a href="filename.html"             onmouseover="JavaScriptCodeOn();"       
+onfocus="this.onmouseover"        onmouseout="JavaScriptCodeOff();"       
+onblur="this.onmouseout" &gt;
+                  </code></pre>
                 </li>
               </ul>
             </li>
