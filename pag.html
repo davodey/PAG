@@ -1068,7 +1068,23 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
           <h4>Headings (h1 through h6)</h4>
           <p>Organize pages using HTML headings (e.g. <code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>). This allows screen reader users to jump from heading to heading to read and interact with the content under each heading only as needed.</p>         
           <p>If desired, you can use CSS to change or remove all formatting associated with these heading elements:</p>         
-          <pre><code>h2.nostyle_inline {      /* 1em results in the same font size that         would be used for plain text in that         location on the page */      font-size: 1em;      /* standard font weight */      font-weight: normal;      /* no extra space */      padding: 0;     margin: 0;      /* With display set to inline,        headings can appear inline with other        text. For example, bold text at the         beginning of a paragraph might         serve as a heading. */      display: inline; } </code></pre>
+          <pre><code>h2.nostyle_inline {      
+    /* 1em results in the same font size that         
+    would be used for plain text in that         
+    location on the page */      
+    font-size: 1em;      
+    /* standard font weight */      
+    font-weight: normal;      
+    /* no extra space */      
+    padding: 0;     
+    margin: 0;      
+    /* With display set to inline,        
+    headings can appear inline with other        
+    text. For example, bold text at the         
+    beginning of a paragraph might         
+    serve as a heading. */      
+    display: inline; 
+} </code></pre>
           <p>If necessary for visual effects, you can also use an image within a heading tag. (See <a href="#g21">PG 21</a> regarding images of text.)</p>
           
           <pre><code>&lt;h1&gt;    &lt;img src="sea_mammals.gif"        alt="Mammals of the Sea"&gt; &lt;/h1&gt;</code></pre>
@@ -1179,11 +1195,32 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
           <li><strong>Do not create mini-menus of these links;</strong> no more than two, maybe three, should be in any particular location</li>
           <li>These links should refer to standard page elements such as 'main content' or 'navigation'.</li>
           <li>Make sure these links are either visible at all times or appear when a user tabs to the links:<br>
-              <pre><code>.skiplink {                position: absolute;                clip: rect(1px 1px 1px 1px);  /* for Internet Explorer */                clip: rect(1px, 1px, 1px, 1px);                padding: 0;                border: 0;                height: 1px;                width: 1px;                overflow: hidden;            }              /* :active is needed for Internet Explorer */            .skiplink:focus, .skiplink:active {                padding:3px;                position: static;                width:auto;                height:auto;                clip:auto;                overflow:initial;             }</code></pre><br>
+              <pre><code>.skiplink {                
+    position: absolute;                
+    clip: rect(1px 1px 1px 1px);  
+    /* for Internet Explorer */                
+    clip: rect(1px, 1px, 1px, 1px);                
+    padding: 0;                
+    border: 0;                
+    height: 1px;                
+    width: 1px;                
+    overflow: hidden;            }              
+    /* :active is needed for Internet Explorer */            
+    .skiplink:focus, 
+    .skiplink:active {                
+    padding:3px;                
+    position: static;                
+    width:auto;                
+    height:auto;                
+    clip:auto;                
+    overflow:initial;             
+}</code></pre><br>
               Otherwise keyboard access users who don't use a screen reader won't be able to use the links. They would also have to tab past invisible links, which can be confusing and time-consuming.</li>
           
           <li>There are bugs in Internet Explorer 5-11 that sometimes make these in-page links fail. Test the skip links by activating each link; then tab again. If the second tab goes to the top of the page or back to your skip link, your skip link is not working. To be sure to avoid this, add tabindex="-1" to the target of the link as shown in the code example below. </li>
-              <pre><code>&lt;a name="skiptarget"        id="skiptarget"        tabindex="-1">          or content here     &lt;/a&gt;</code></pre>
+              <pre><code>&lt;a name="skiptarget"        id="skiptarget"        tabindex="-1"&gt;          
+or content here     
+&lt;/a&gt;</code></pre>
           </ul>
           <a href="http://www.manateeroad.com/skiplink.html" target="_blank">Open sample skip link in new tab.</a>
           <h4>Tips</h4>
