@@ -1482,11 +1482,73 @@ body &gt; ul &gt; li &gt; ul {
         <p>For data tables either <code>scope</code> attributes or <code>id</code> and <code>headers</code> attributes should associate header cells with data cells.</p>
         <p>The <code>scope</code> attribute is easiest way to associate header cells with data cells. When a cell is column header use <code>scope="col"</code> and when the cell is a row header use <code>scope="row"</code>:</p>
 <pre><code>
-&lt;table border="1"&gt;   &lt;caption&gt;     Average Park Use in 2008   &lt;/caption&gt;   &lt;tr&gt;      &lt;td&gt;&lt;/td&gt;       &lt;th scope="col"&gt;People&lt;/th&gt;      &lt;th scope="col"&gt;Dogs&lt;/th&gt;      &lt;th scope="col"&gt;Other Pets&lt;/th&gt;   &lt;/tr&gt;   &lt;tr&gt;      &lt;th scope="row"&gt;Monday&lt;/th&gt;           &lt;td&gt;52&lt;/td&gt;      &lt;td&gt;30&lt;/td&gt;      &lt;td&gt;3&lt;/td&gt;   &lt;/tr&gt;   &lt;tr&gt;      &lt;th scope="row"&gt;Tuesday&lt;/th&gt;      &lt;td&gt;40&lt;/td&gt;      &lt;td&gt;23&lt;/td&gt;      &lt;td&gt;0&lt;/td&gt;   &lt;/tr&gt;        . . .  &lt;/table&gt;</code></pre>
+&lt;table border="1"&gt;   
+&lt;caption&gt;     
+Average Park Use in 2008   
+&lt;/caption&gt;   
+&lt;tr&gt;      
+  &lt;td&gt;&lt;/td&gt;       
+  &lt;th scope="col"&gt;People&lt;/th&gt;      
+  &lt;th scope="col"&gt;Dogs&lt;/th&gt;      
+  &lt;th scope="col"&gt;Other Pets&lt;/th&gt;   
+&lt;/tr&gt;   
+&lt;tr&gt;      
+  &lt;th scope="row"&gt;Monday&lt;/th&gt;           
+  &lt;td&gt;52&lt;/td&gt;      
+  &lt;td&gt;30&lt;/td&gt;      
+  &lt;td&gt;3&lt;/td&gt;   
+&lt;/tr&gt;   
+&lt;tr&gt;      
+  &lt;th scope="row"&gt;Tuesday&lt;/th&gt;      
+  &lt;td&gt;40&lt;/td&gt;      
+  &lt;td&gt;23&lt;/td&gt;      
+  &lt;td&gt;0&lt;/td&gt;   
+&lt;/tr&gt;        
+. . .  
+&lt;/table&gt;</code></pre>
         <p>Table Scope Attribute Sample Page: <a href="http://wps.pearsoned.com/wps/media/objects/7400/7578040/table_scope_attributes.html">This Window</a> | <a href="http://wps.pearsoned.com/wps/media/objects/7400/7578040/table_scope_attributes.html" target="_blank">New Window</a>.</p>
         <p>If a data table is so complex that <code>scope</code> attributes are not sufficient to associate header cells with data cells, simplify the table or break it into a number of simpler tables. If that is not possible, use <code>headers</code> and <code>id</code> attributes to associate header cells with data cells: Assign an <code>id</code> attribute to each header cell. Then give each data cell a <code>headers</code> attribute. The value of the <code>headers</code> attribute should be a space-delimited list of the ids the data cell's headers, as shown below:</p>
 <pre><code>
-&lt;table . . . &gt;   &lt;caption&gt;      Average Park Use in 2009   &lt;/caption&gt;   &lt;tr&gt;      &lt;th rowspan="2"&gt;&lt;/th&gt;       &lt;th colspan="2" id="p"&gt;People&lt;/th&gt;      &lt;th colspan="2" id="d"&gt;Dogs&lt;/th&gt;      &lt;th colspan="3" id="o"&gt;Other Pets&lt;/th&gt;   &lt;/tr&gt;   &lt;tr&gt;      &lt;th id="adult"&gt;Adults&lt;/th&gt;      &lt;th id="child"&gt;Children&lt;/th&gt;      &lt;th id="toy"&gt;Toy Dogs&lt;/th&gt;      &lt;th id="od"&gt;Other Dogs&lt;/th&gt;      &lt;th id="mam"&gt;Mammals&lt;/th&gt;      &lt;th id="birds"&gt;Birds&lt;/th&gt;      &lt;th id="rep"&gt;Reptiles&lt;/th&gt;   &lt;/tr&gt;   &lt;tr&gt;      &lt;th id="M"&gt;Monday&lt;/th&gt;           &lt;td headers="adult M"&gt;52&lt;/td&gt;      &lt;td headers="child M"&gt;30&lt;/td&gt;      &lt;td headers="toy M"&gt;3&lt;/td&gt;      &lt;td headers="od M"&gt;52&lt;/td&gt;      &lt;td headers="mam M"&gt;30&lt;/td&gt;      &lt;td headers="birds M"&gt;3&lt;/td&gt;      &lt;td headers="rep M"&gt;3&lt;/td&gt;   &lt;/tr&gt;   &lt;tr&gt;      &lt;th id="Tu"&gt;Tuesday&lt;/th&gt;      &lt;td headers="adult Tu"&gt;65&lt;/td&gt;      &lt;td headers="child Tu"&gt;31&lt;/td&gt;      &lt;td headers="toy Tu"&gt;8&lt;/td&gt;      &lt;td headers="od Tu"&gt;54&lt;/td&gt;      &lt;td headers="mam Tu"&gt;40&lt;/td&gt;      &lt;td headers="birds Tu"&gt;2&lt;/td&gt;      &lt;td headers="rep Tu"&gt;1&lt;/td&gt;   &lt;/tr&gt;         . . .  &lt;/table&gt;</code></pre>
+&lt;table . . . &gt;   
+&lt;caption&gt;      
+Average Park Use in 2009   
+&lt;/caption&gt;   
+&lt;tr&gt;      
+  &lt;th rowspan="2"&gt;&lt;/th&gt;       
+  &lt;th colspan="2" id="p"&gt;People&lt;/th&gt;      
+  &lt;th colspan="2" id="d"&gt;Dogs&lt;/th&gt;     
+  &lt;th colspan="3" id="o"&gt;Other Pets&lt;/th&gt;   
+&lt;/tr&gt;   
+&lt;tr&gt;      
+  &lt;th id="adult"&gt;Adults&lt;/th&gt;      
+  &lt;th id="child"&gt;Children&lt;/th&gt;      
+  &lt;th id="toy"&gt;Toy Dogs&lt;/th&gt;      
+  &lt;th id="od"&gt;Other Dogs&lt;/th&gt;      
+  &lt;th id="mam"&gt;Mammals&lt;/th&gt;      
+  &lt;th id="birds"&gt;Birds&lt;/th&gt;      
+  &lt;th id="rep"&gt;Reptiles&lt;/th&gt;   
+&lt;/tr&gt;   &lt;tr&gt;      
+  &lt;th id="M"&gt;Monday&lt;/th&gt;           
+  &lt;td headers="adult M"&gt;52&lt;/td&gt;      
+  &lt;td headers="child M"&gt;30&lt;/td&gt;      
+  &lt;td headers="toy M"&gt;3&lt;/td&gt;      
+  &lt;td headers="od M"&gt;52&lt;/td&gt;      
+  &lt;td headers="mam M"&gt;30&lt;/td&gt;      
+  &lt;td headers="birds M"&gt;3&lt;/td&gt;      
+  &lt;td headers="rep M"&gt;3&lt;/td&gt;   
+&lt;/tr&gt;   
+&lt;tr&gt;      
+  &lt;th id="Tu"&gt;Tuesday&lt;/th&gt;      
+  &lt;td headers="adult Tu"&gt;65&lt;/td&gt;      
+  &lt;td headers="child Tu"&gt;31&lt;/td&gt;      
+  &lt;td headers="toy Tu"&gt;8&lt;/td&gt;      
+  &lt;td headers="od Tu"&gt;54&lt;/td&gt;      
+  &lt;td headers="mam Tu"&gt;40&lt;/td&gt;      
+  &lt;td headers="birds Tu"&gt;2&lt;/td&gt;      
+  &lt;td headers="rep Tu"&gt;1&lt;/td&gt;   
+&lt;/tr&gt;         
+. . .  
+&lt;/table&gt;</code></pre>
         <p><a target="_blank" href="table_headers_id_attributes.html">Open Table Headers and Id Attributes Sample Page in a New Window</a>.</p>
         <p><strong>Do not use semantic tags for visual effects that are not consistent with the meaning of the tag.</strong></p>
         <p>For example, do not use <code>&lt;blockquote&gt;</code> to indent text when the text is not a quotation. And, do not use definition lists for items that are not definitions.</p>
