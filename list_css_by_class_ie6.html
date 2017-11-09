@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!-- HTML 5 -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>List CSS Example with classes to support IE 6</title>
+    <style>
+      ul.level1  {
+      /* remove bullets from first-level */
+        list-style-type: none;
+      }
+      li.li1 {
+      /* adjust space between first-level list items */
+        margin-bottom: 20px;
+      /* Enclose each first-level list item in a box */
+        border-style: solid;
+        border-width: 1px;
+        width: 15em;
+        padding: .5em;
+      }
+      ul.level2 {
+      /* adjust how far second-level items are indented */
+        margin-left: 2em;
+        padding-left: 2em;
+      /* choose a bullet for second-level list items */
+        list-style-type: square;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Example: Nested Lists formatted with CSS classes</h1>
+    <ul class="level1">
+      <li class="li1">Chapter One
+        <ul class="level2">
+          <li>Activity One</li>
+          <li>Activity Two</li>
+        </ul>
+      </li>
+      <li class="li1">Chapter Two
+        <ul class="level2">
+          <li>Activity One</li>
+          <li>Activity Two</li>
+        </ul>
+      </li>
+    </ul>
+  </body>
+</html>

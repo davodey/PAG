@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+<!-- HTML 5 -->
+    <meta charset="utf-8">
+    <title>Table Headers &amp; Id Attributes Example</title>
+    <style type="text/css">
+      td {
+        text-align: center;
+      }
+      .total td, .total th {
+        background-color: #ffffdd;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Example: Table using Headers Attributes &amp; Id Attributes</h1>
+    <table summary="Number of People, Dogs and Other Pets by week day." border="1">
+      <caption>Average Park Use in 2009</caption>
+        <tbody><tr>
+          <th rowspan="2"><!--becomes silent auto-heading--></th> 
+          <th colspan="2" id="people">People</th>
+          <th colspan="2" id="dogs">Dogs</th>
+          <th colspan="3" id="other">Other Pets</th>
+        </tr>
+        <tr>
+          <th id="adult">Adults</th>
+          <th id="child">Children</th>
+          <th id="toy">Toy Dogs</th>
+          <th id="od">Other Dogs</th>
+          <th id="mam">Mammals</th>
+          <th id="birds">Birds</th>
+          <th id="rep">Reptiles</th>
+        </tr>
+        <tr>
+          <th id="M">Monday</th> 
+          <td headers="adult M">42</td>
+          <td headers="child M">35</td>
+          <td headers="toy M">2</td>
+          <td headers="od M">43</td>
+          <td headers="mam M">4</td>
+          <td headers="birds M">3</td>
+          <td headers="rep M">0</td>
+        </tr>
+        <tr>
+          <th id="Tu">Tuesday</th>                        
+          <td headers="adult Tu">7</td>
+          <td headers="child Tu">14</td>
+          <td headers="toy Tu">0</td>
+          <td headers="od Tu">5</td>
+          <td headers="mam Tu">2</td>
+          <td headers="birds Tu">0</td>
+          <td headers="rep Tu">0</td>
+        </tr>
+        <tr>
+          <th id="W">Wednesday</th>  
+          <td headers="adult W">12</td>
+          <td headers="child W">10</td>
+          <td headers="toy W">1</td>
+          <td headers="od W">9</td>
+          <td headers="mam W">3</td>
+          <td headers="birds W">1</td>
+          <td headers="rep W">0</td>
+        </tr>
+        <tr>
+          <th id="Th">Thursday</th>  
+          <td headers="adult Th">45</td>
+          <td headers="child Th">32</td>
+          <td headers="toy Th">5</td>
+          <td headers="od Th">7</td>
+          <td headers="mam Th">0</td>
+          <td headers="birds Th">3</td>
+          <td headers="rep Th">0</td>
+        </tr>
+        <tr>
+          <th id="F">Friday</th> 
+          <td headers="adult F">52</td>
+          <td headers="child F">30</td>
+          <td headers="toy F">3</td>
+          <td headers="od F">18</td>
+          <td headers="mam F">4</td>
+          <td headers="birds F">1</td>
+          <td headers="rep F">2</td>
+        </tr>
+        <tr class="total">
+          <th id="wt">Weekday Totals</th>  
+          <td headers="people wt" colspan="2">279</td>
+          <td headers="dogs wt" colspan="2">93</td>
+          <td headers="other wt" colspan="3">23</td>
+        </tr> 
+        <tr>
+          <th id="Sa">Saturday</th>  
+          <td headers="adult Sa">129</td>
+          <td headers="child Sa">92</td>
+          <td headers="toy Sa">58</td>
+          <td headers="od Sa">23</td>
+          <td headers="mam Sa">0</td>
+          <td headers="birds Sa">0</td>
+          <td headers="rep Sa">0</td>
+        </tr>
+        <tr>
+          <th id="Su">Sunday</th>  
+          <td headers="adult Su">55</td>
+          <td headers="child Su">65</td>
+          <td headers="toy Su">21</td>
+          <td headers="od Su">18</td>
+          <td headers="mam Su">4</td>
+          <td headers="birds Su">1</td>
+          <td headers="rep Su">0</td>
+        </tr>
+        <tr class="total">
+          <th id="wet">Weekend Totals</th> 
+          <td headers="people wet" colspan="2">341</td>
+          <td headers="dogs wet" colspan="2">120</td>
+          <td headers="other wet" colspan="3">5</td>
+        </tr></tbody>
+    </table>
+  </body>
+</html>
