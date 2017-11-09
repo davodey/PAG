@@ -37,29 +37,25 @@
           width: 100%;
         }
       }
-      dt, dd {
-        display: inline-block;
-        vertical-align: top;
-        min-height: 4em;
-        margin: 0 0 .5em;
-        padding: .2em;
-      }
-      dt {
-        width: 36%;
-        padding-right: .6em;
-        color: #444;
-        font-weight: bold;
-      } 
-      dd {
-        width: 60%;
-      }
-      dt:nth-of-type(2n),
-      dd:nth-of-type(2n) {
+      .side-bar-box{
+        padding: 10px;
         background-color: #f5f5f5;
+        border-left: grey 2px solid;
+      }
+      dt, dd {
+        display: block;
+        margin: 0;
+      }
+      dd {
+        margin-bottom: 1em;
       }
       .guideline_content.hidden {
         display: none;
       }
+      .table-head{
+        background-color: #f5f5f5;
+      }
+
     </style>
     <!-- print stylesheet pls -->
   </head>
@@ -75,9 +71,10 @@
         <li><a href="#g4">4: Check the order that content is read in screen readers &amp; correct any issues (Sensible Reading Order)</a></li>
         <li><a href="#g5">5: Make sure screen reader users can find dynamic additions to the screen (Findable Added Content)</a></li>
         <li><a href="#g6">6: Check keyboard access (access without a pointing device) and correct any issues (Keyboard Access)</a></li>
-        <li><a href="#g7">7: </a></li>
-        <li><a href="#g8">8: </a></li>
-        <li><a href="#g9">9: </a></li>
+        <li><a href="#g6">6: </a></li>
+        <li><a href="#g7">7: Ensure keyboard access visibility (Keyboard Access Visibility)</a></li>
+        <li><a href="#g8">8: Provide keyboard access instructions (Keyboard Access Instructions)</a></li>
+        <li><a href="#g9">9: Support navigation within the page (In-page Navigation)</a></li>
         <li><a href="#g10">10: Do not change the user's location on the screen unexpectedly (Continuity of  User's Place) </a></li>
         <li><a href="#g11">11: Use semantic markup for its intended purposes (Semantic Markup)</a></li>
         <li><a href="#g12">12: </a></li>
@@ -305,16 +302,6 @@
           <li>Essential Exception: The time limit is essential and extending it would invalidate the activity; or</li>
           <li>20 Hour Exception: The time limit is longer than 20 hours.</li>
         </ul>
-
-        <h3><mark>508 Refresh 3-R: Timing</mark></h3>
-        <p><mark>For each time limit that is set by the product, at least one of the following must happen:
-Turn off: the user is allowed to turn off the time limit before encountering it; or
-Adjust: the user is allowed to adjust the time limit before encountering it over a wide range that is at least ten times the length of the default setting; or
-Extend: the user is warned before time expires and given at least 20 seconds to extend the time limit with a simple action (for example, "hit any key"), and the user is allowed to extend the time limit at least ten times.
-There are three exceptions:
-Real-time Exception: the time limit is a required part of a real-time event (for example, an auction), and no alternative to the time limit is possible; or
-Essential Exception: the time limit is part of an activity where timing is essential and time limits cannot be extended further without invalidating the activity.
-20 Hour Exception: the time limit is longer than 20 hours.</mark></p>
 
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
@@ -657,9 +644,6 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <h4>WCAG 2.0 Level A - SC 1.3.2</h4>
         <p>When the sequence in which content is presented affects its meaning, a correct reading sequence can be programmatically determined</p>
 
-        <h3><mark>508 Refresh 3-M: Reading Sequence</mark></h3>
-        <p><mark>When the sequence in which information is presented affects its meaning, a reading sequence that conveys the intended meaning must be PROGRAMMATICALLY DETERMINABLE. The navigation sequence must be consistent with the reading sequence.</mark></p>
-
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
 
@@ -758,7 +742,8 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
   top:auto;
   width:1px;
   height:1px;
-  overflow:hidden; }</code></pre></li>
+  overflow:hidden;
+}</code></pre></li>
         </ul>
 
         <h4>Areas that Update Periodically (e.g. News Feed, Social Features)</h4>
@@ -778,7 +763,8 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
   top:auto;
   width:1px;
   height:1px;
-  overflow:hidden; }</code></pre>
+  overflow:hidden;
+}</code></pre>
         <p>Second, particularly for social features, there should be a way for students or instructors to be notified that new information is available. The following techniques are some options. You may wish to allow your users to select an option in user preferences.</p>
         <ul class="pe-list pe-styled-lists--unordered">
           <li>Make any text that announces the new content into an alert by placing role="alert" on the outermost HTML element that is added to the page when the icon or the alert appears. For example: <code>&lt;div role="alert"&gt;You have a new message&lt;/div&gt;</code></li>
@@ -1364,16 +1350,730 @@ cursor: pointer;
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
 
-      <h2 id="g7"></h2>
+      <h2 id="g7">Guideline 7. Ensure keyboard access visibility (Keyboard Access Visibility)</h2>
       <div class="guideline_content">
+        <p class="summary">Ensure that the user's location on the page will be visually apparent when keyboard keys are used to move from item to item.</p>
+        <p>Note: This is primarily the responsibility of the user agent (e.g. Web browser, PDF reader, Flash player). To address this guideline, we ensure that our content does not interfere with the user agent's solution.</p>
+
+        <h3>Rationale</h3>
+        <p>Users with mobility impairment often use keyboard access without screen readers. When using keyboard access, the user is not pointing to a particular location on the page. Instead, they are moving through links and controls without specifying the order in which each item will receive focus. As such, they need to be able to see where focus is on the page.</p>
+        <p>Most user agents provide a visual effect called a focus indicator that differentiates the item that currently has focus:</p>
+        <h4>HTML links in Firefox 3:</h4>
+        <img width="91" height="65" alt="box drawn with thin blue dashes surrounds blue link text" src="images/html_links_ff3.png">
+        <h4>HTML links in Safari 3:</h4>
+        <img width="91" height="65" alt="box drawn with thick fuzzy blue lines and rounded corners surrounds the link text" src="images/html_links_s3.png">
+        <p>Some form elements have special focus indicators. For example, a text field that is in focus will contain the text cursor as shown in IE 6 below:</p>
+        <img width="400" height="61" alt="A short, but wide white rectangle represents the text input field. In the field, far to the left, is a vertical black line, a visual representation of the input cursor. " src="images/text_cursor_ie6.png">
+        <p>However, it is possible to obscure the focus indicator through visual effects or through the layout of the content.</p>
+        
+        <h3>General Techniques</h3>
+        <p>If the focus indicator is not visible, we have two choices in most media types:</p>
+        <ul class="pe-list pe-styled-lists--ordered">
+          <li>Correct the reason the default focus indicator is not visible</li>
+          <li>Add a new focus indicator. Decorative mouse-over effects can often be reused for this.</li>
+        </ul>
+        <h3>HTML &amp; JavaScript</h3>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Test to be sure the focus indicator is visible in each supported browser.</li>
+          <li>If the focus indicator is partially hidden due to the layout, adjust your CSS to accommodate the focus indicator. For example, if you increase the padding the focus indicator may be hidden by neighboring elements:</li>
+              <p><img width="118" height="92" alt="Only the upper right corner and the left side of the focus rectangle are visible. The rest is hidden by the padding of neighboring links." src="images/neighboring_elements.png"><br>
+              This is because the focus indicator surrounds the padding in block elements. So, in this case, you might use the margin property in place of padding. The focus indicator does not surround margins.</p>
+          <li>If the visual design makes the focus indicator difficult to see on your supported browsers, create your own visual effect for the on-focus state. The link in the image below is a grey box that has focus in Firefox 2. The focus indicator is nearly invisible, a good candidate for a custom visual effect:</li>
+              <p><img width="162" height="205" alt="The focus indicator in Firefox 2 is a black dashed line, so it blends into the dark grey box it surrounds and can barely be seen." src="images/custom_visual_effect.png"><br>
+              If you've ever created a mouse-over effect, creating an on-focus effect will seem familiar:</p>
+              <p>OR</p>
+              <ul>
+                <li>Use the CSS :focus class as you would use the CSS :hover class:
+                  <pre><code>/* mouse */
+a:hover {
+  background-color: #FFFFCC;
+}
+/* keyboard */
+a:focus {
+  background-color: #FFFFCC;
+}</code></pre>
+                  <p>Since a:focus doesn’t work in IE (as of IE 7) you may want to add  a:active in addition to a:focus:</p>
+                  <pre><code>/* keyboard */
+a:focus {
+  background-color: #FFFFCC;
+}
+a:active {
+  background-color: #FFFFCC;
+}</code></pre>
+                <li>Use the JavaScript event handler onFocus as you would use the event handler onMouseOver. Also use onBlur as you would use onMouseOut.
+                  <pre><code>&lt;a href="filename.html"
+  onmouseover="JavaScriptCodeOn();"
+  onfocus="JavaScriptCodeOn();"
+  onmouseout="JavaScriptCodeOff();"
+  onblur="JavaScriptCodeOff();" &gt;</a></code></pre>
+                  <p>OR</p>
+                  <pre><code>&lt;a href="filename.html"
+  onmouseover="JavaScriptCodeOn();"
+  onfocus="this.onmouseover"
+  onmouseout="JavaScriptCodeOff();"
+  onblur="this.onmouseout" &gt;</a></code></pre></li>
+              </ul>
+          <li>The "outline" for <code>onfocus</code> is in fact the default focus indicator. So, do not remove the "outline" for the onfocus state using CSS styling.</li> 
+        </ol>
+        <h3>Android Applications</h3>
+          <p>When a user uses either swipe gestures or a Bluetooth keyboard, a visible indicator on the screen should show the current element that has focus. This is done by default for standard elements. Custom elements should set the style when <code> state_focused="true".</code></p>
+          <p>Android provides several elegant ways to change the visual appearance based on state:</p>
+            <ul>
+              <li>Change color: <a href="https://developer.android.com/guide/topics/resources/color-list-resource.html">Open Google's Color State List Resource in a new window.</a></li>
+              <li>Change images: <a href="https://developer.android.com/guide/topics/resources/drawable-resource.html#StateList">Open Google's  Drawable State List Resource in a new window.</a></li>
+            </ul>
+        <h3>iOS Applications</h3>
+          <p>iOS provides a visible focus indicator for elements that receive keyboard input.</p>
+          <p>When a user uses swipe gestures with VoiceOver, the element on the page that has VoiceOver focus will have a black rectangle outline. This focus indicator is determined from the property which is a subclass of <code>UIView</code>. Objects should not override the visual focus indicator or set the <code>accessibilityFrame</code> property to <code>nil.</code></p>
+        <h3>PDF in Acrobat</h3>
+          <p>In the link properties, specify the link appearance.</p>
+          <img width="339" height="267" src="images/link_appearance.jpg">
+          <p>It is important to have the following settings:</p>
+          <ul>
+            <li><strong>Link Type</strong> – Visual Rectangle</li>
+            <li><strong>Highlight Style</strong> – Inset</li>
+            <li><strong>Line Thickness</strong> – Thin</li>
+            <li><strong>Line Style</strong> – Underlined</li>
+            <li><strong>Color</strong> – Set a color that has 4.5:1 color ratio between the text color and text background color. See PG26 for more details on color contrast.</li>
+          </ul>
+        <h3>Testing</h3>
+        <table class="pe-table">
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Tools</th>
+                <td>Test for this while you are testing for keyboard access (Pearson Guideline 6).</p>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Output</th>
+                <td>Find and list those objects that lack adequate focus indication.</td>
+              </tr>
+              <tr>
+                <th scope="row">Analysis</th> 
+                <td>Make note of instances where keyboard focus is not visible.</td>
+              </tr>
+            </tbody>
+          </table>
+        <h3>Testing PDF in Acrobat</h3>
+        <table class="pe-table">
+            <thead class="pe-sr-only">
+              <tr>
+                <th scope="col">Testing technique</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Tools</th>
+                <td><p>Test for this while you are testing for keyboard access (PG 6).</p>
+                  <p>For links, use the Select Object tool to highlight each link. In Acrobat 9, this is under Tools > Advanced Editing > Select Object; in Acrobat 10 it is under Tools > Content. Right-click to select properties and verify that the link properties conform to the guideline above, with Link Action set to "Go to a page view" or "Open a web page" as appropriate.</p>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Output</th>
+                <td>As you tab to form fields and links, the cursor and focus indicator should be visible in the form field and you should see the focus indicator on each link.</td>
+              </tr>
+              <tr>
+                <th scope="row">Analysis</th> 
+                <td>Make note of instances in which the focus indicator is not visible.</td>
+              </tr>
+            </tbody>
+          </table>
+        <h3>Related Guidelines</h3>
+        <h4>508 Software § 1194.21 (c)</h4>
+          <p>A well-defined on-screen indication of the current focus shall be provided that moves among interactive interface elements as the input focus changes. The focus shall be programmatically exposed so that assistive technology can track focus and focus changes.</p>
+        
+        <h4>WCAG 2.0 AA – SC 2.4.7 Focus Visible:</h4>
+          <p>Any keyboard operable user interface has a mode of operation where the keyboard focus indicator is visible. (Level AA)</p>
+        
+        <h4>508 Refresh Draft - 3-T: Focus Indicator</h4>
+            <p>Any KEYBOARD operable user interface must support a mode of operation where the indication of KEYBOARD focus has a high degree of visibility. Note 1: The presence of a highly visible text insertion point is sufficient for a text area.</p>
+            <p>Note 2: A focus cursor that is visually locatable at 3.5 times the typical viewing distance without moving the cursor by people who have unimpaired vision and are familiar with what the focus cursor looks like is sufficient. For example, when software is displayed on a 38 cm (15 inch) diagonal screen at 1024 x 768 pixels resolution, a focus cursor that is visually locatable at 2.5 meters without moving the cursor by people who are familiar with what the cursor looks like and have an unimpaired vision is sufficient.</p>
+            <p>Note 3: This can be provided by the interface itself or by the interface in combination with focus services provided by the platform.</mark></p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
-      <h2 id="g8"></h2>
+
+      <h2 id="g8">Guideline 8. Provide keyboard access instructions (Keyboard Access Instructions)</h2>     
       <div class="guideline_content">
+        <p class="summary">Provide instructions describing the keys (or gestures) needed for keyboard access if your media uses keys or techniques that differ from user agent (e.g. Web browser, PDF reader, Flash player) or mobile device defaults.</p>
+        <h3>Rationale</h3>
+          <p>Keyboard access users will usually be aware of basic keyboard access methods in their user agents. So, they will try those when they arrive at your media. </p>
+          <p>However, users (and even accessibility specialists at schools) cannot discover non-typical keyboard access methods without viewing the source code. Often the source code is not available (as in Flash applications). Even when it is available, review of the source code is too much to expect.</p>
+        <h3>Commonly Used Keys</h3>
+          <p>These are the basic keyboard interactions that typically work for Web products. If your application uses only these, there is no need to provide special keyboard access instructions:</p>
+          <ul>
+            <li>Tab and Shift Tab to bring elements into focus</li>
+            <li>Enter or Spacebar to activate elements</li>
+            <li>Arrow Keys to select radio buttons, checkboxes or menu items</li>
+          </ul>   
+          <h3>Testing</h3>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>Tools	Test for this while you are testing for keyboard access (Pearson Guideline 6).
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Output</th>
+                  <td>Rarely, you may stumble upon a way to operate a site using the keyboard that is non-standard. Or perhaps someone from the product team might mention that keyboard access works, but only in some non-standard way.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Analysis</th> 
+                  <td>If something other than tab, shift + tab, spacebar, and arrow keys is needed to move about and select form options or if something other than enter or spacebar is needed to activate a link or button, users will need to be informed of the special keyboard access features in the product. This is an error only if there are no keyboard instructions that provide this information. The fix is to provide these instructions.</td>
+                </tr>
+              </tbody>
+            </table>
+          <h3>Related Guidelines</h3>
+            <h4>WCAG 2.0 A – SC 2.1.2 No Keyboard Trap: </h4>
+            <p>If keyboard focus can be moved to a component of the page using a keyboard interface, then focus can be moved away from that component using only a keyboard interface, and, if it requires more than unmodified arrow or tab keys or other standard exit methods, the user is advised of the method for moving focus away. (Level A) </p>
+            <h4>508 Refresh Draft - 3-SS: Visual Indication of Keyboard Shortcuts (no consensus)</h4>
+            <p>Work on this provision was not complete. Please see the drafts and other discussion material in Section 7</p>
+
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
-      <h2 id="g9"></h2>
+
+      <h2 id="g9">Guideline 9. Support navigation within the page (In-page Navigation)</h2>
       <div class="guideline_content">
+        <p class="summary">When distinguishable features or sections (e.g. navigation, main content, individual news articles) appear on a page or in a document, provide a way to navigate to the features or sections using a screen reader and the keyboard.</p> 
+
+        <h3>Rationale</h3>
+        <p>Mouse users commonly navigate Web pages by skimming the page visually. When they see a feature of interest, they can immediately read the text there and use a mouse to access interactive elements there.</p>
+        <p>So, designers might not think about in-page navigation unless a page contains a very long list that is not pleasant to skim visually, such as a glossary. </p>
+        <p>However, keyboard access users (with and without screen readers) move through a page, item by item, starting at the top. So, for example, if 40 links appear before the link the user wants, the user may have to press tab 40 times to reach the desired link.</p>
+        <p>Similarly, if there are many articles on the page, screen reader users may have to listen to a lot of content before finding the article of interest.</p>
+            <p>In-page navigation addresses these issues.</p>
+            <p>Additional Benefits: In-page navigation is useful for users without disabilities as well. If a student needs to check a fact on a long page of text, jumping from heading to heading is much faster and more pleasant than watching for the heading needed while scrolling the page.</p>
+
+          <h3>HTML &amp; JavaScript</h3>
+          <h4>Headings (h1 through h6)</h4>
+          <p>Organize pages using HTML headings (e.g. <code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>). This allows screen reader users to jump from heading to heading to read and interact with the content under each heading only as needed.</p>
+          <p>If desired, you can use CSS to change or remove all formatting associated with these heading elements:</p>
+          <pre><code>h2.nostyle_inline {
+    /* 1em results in the same font size that
+    would be used for plain text in that
+    location on the page */
+    font-size: 1em;
+    /* standard font weight */
+    font-weight: normal;
+    /* no extra space */
+    padding: 0;
+    margin: 0;
+    /* With display set to inline,
+    headings can appear inline with other
+    text. For example, bold text at the
+    beginning of a paragraph might
+    serve as a heading. */
+    display: inline; 
+} </code></pre>
+          <p>If necessary for visual effects, you can also use an image within a heading tag. (See <a href="#g21">PG 21</a> regarding images of text.)</p>
+
+          <pre><code>
+&lt;h1&gt;
+  &lt;img src="sea_mammals.gif" alt="Mammals of the Sea"&gt;
+ &lt;/h1&gt;</code></pre>
+          <p>But, don't use heading tags like <code>&lt;h1&gt;</code> for the headers inside tables. See <a href="#g11">Pearson Guideline 11</a> for the correct semantic markup for tables.</p>
+
+          <h4>WAI-ARIA Headings (not recommended)</h4>
+          <p>It is now possible to mark HTML elements as headings without using the traditional HTML heading tags. This even works in many screen reader/browser combinations. However, the traditional HTML heading tags are still supported in many more places. So, if you can use the traditional tags, that is the best option for universal accessibility.</p>
+
+          <p>These headings are defined through two attributes:</p>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li><code>role="heading"</code></li>
+            <li><code>aria-level</code></li>
+          </ul>
+          <p>For example, to create the equivalent of an <code>h2</code> element, you could type: <code>&lt;div role="heading" aria-level="2"&gt;</code>.</p>
+
+          <h4>Using Headings in HTML 5</h4>
+          <p>There was a proposal in HTML5 for the user agents (browsers) to assist with setting correct heading levels automatically (for use cases like syndication, where a piece of content with a heading could be placed anywhere within another document) using an algorithm known as the <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML_sections_and_outlines">HTML5 Document Outline</a>. This idea came from the general heading element <code>&lt;h&gt;</code> proposed in XHTML, and in HTML5 the idea was to allow special sectioning elements (<code>section</code>, <code>article</code>, <code>aside</code>, <code>nav</code>...) to adjust the semantic heading level based on nesting.</p>
+          <p>This Document Outline is still mentioned in the WHATWG HTML specification (<a href="https://github.com/whatwg/html/issues/83">see current issue</a>), however the reality is that currently <a href="https://developer.paciellogroup.com/blog/2013/10/html5-document-outline/">no user agents nor Assistive Technology support this</a> (JAWS did support some version of this but it was removed in JAWS 15), and there are warnings in <a href="https://idpf.github.io/a11y-guidelines/content/xhtml/headings.html">ePub guidelines</a> and <a href="https://www.w3.org/TR/html5/sections.html#outlines">W3C specs</a>.</p>
+
+          <p>For this reason, the current recommendation is to <a href="http://adrianroselli.com/2016/08/there-is-no-document-outline-algorithm.html">continue to use h1 through h6 as needed</a>.</p>
+          <p>One thing for developers to be aware of is that while the <strong>semantics</strong> of the Document Outline have not been added to user agents, some of the styling ideas have been. Following the code examples on the <a href="https://www.w3.org/TR/html5/sections.html#outlines">MDN page</a>, developers may see changes in default heading size (generally smaller than what corresponds to the actual level), so developers are also encouraged to set explicit sizes if headings are nested in section or article elements.</p>
+
+          <h4>WAI-ARIA Landmarks</h4>
+          <p>Often navigation menus, banners, and footers are not preceded by a visible heading because it is visually clear what they are. WAI-ARIA landmark roles can be used to identify these areas and allow screen readers users to navigation to them.<br>
+          <img width="350" height="252" alt="In an example page layout, banner stretches across the page, followed by navigation, which contains search. Under that, main is on the left and complementary on the right. ContentInfo marks a page footer." src="images/simple_landmarks.jpg"></p>
+          <p>Landmark roles are simple to add to a page. Below are the definitions of each role quoted from <a href="https://www.w3.org/TR/wai-aria-practices-1.1/">WAI-ARIA 1.1 Authoring Practices, Working Draft 28 June 2017</a>.</p>
+          <dl class="side-bar-box">
+            <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_banner"><code>banner</code></a></dt>
+            <dd>"A region that contains the prime heading or internal title of a page."</dd>
+            <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_complementary"><code>complementary</code></a></dt>
+            <dd>"Any section of the document that supports but is separable from the main content, but is meaningful on its own even when separated from it."</dd>
+            <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_contentinfo"><code>contentinfo</code></a></dt>
+            <dd>"Meta information which applies to the first immediate ancestor whose role is not presentation."</dd>
+            <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_form"><code>form</code></a></dt>
+            <dd>"A region of the document that represents a collection of form-associated elements, some of which can represent editable values that can be submitted to a server for processing."</dd>
+            <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_main"><code>main</code></a></dt>
+            <dd>"Main content in a document."</dd>
+            <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_navigation"><code>navigation</code></a></dt>
+            <dd>"A collection of links suitable for use when navigating the document or related documents."</dd>
+            <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_region"><code>region</code></a></dt>
+            <dd>"A perceivable section of the page containing content that is sufficiently important for users to be able to navigate to the section."</dd>
+            <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_search"><code>search</code></a></dt>
+            <dd>"The search tool of a Web document."</dd>
+          </dl>
+          <p>Each of the roles below should be used at most once per document:</p>
+          <ul  class="pe-list pe-styled-lists--unordered">
+            <li><code>banner</code></li>
+            <li><code>main</code></li>
+            <li><code>contentinfo</code></li>
+          </ul>
+          <p>In most cases, that means they can each be used only once per HTML page. However, in some cases, a single HTML page may contain multiple items with role="document," and this would allow more per HTML page. We recommend that objects with these 3 roles be disjoint. In other words, they should not contain each other.</p>
+          <p>Add the role attribute to an object that <strong>contains</strong> the corresponding section of the document:</p>
+          <pre><code>&lt;div role="main"&gt; ... Main Content Here ... &lt;/div&gt;</code></pre>
+          <p><img src="images/labeled_landmarks.jpg" width="350" height="252" alt="In this example, there are two areas marked with role='navigation'. One has aria-label='Site' and the other has aria-label='Chapter'"><br>
+          If you use more than one of the same role, such as two navigation landmarks, provide labels distinguishing the two using an <a href="https://www.w3.org/TR/wai-aria/complete#aria-label"><code>aria-label</code></a> attribute or an <a href="https://www.w3.org/TR/wai-aria/complete#aria-labelledby"><code>aria-labelledby</code></a> attribute. <mark>While these labeling techniques are not yet widely supported, they work in JAWS 12 in our testing and will likely work in more screen readers soon.</mark></p>
+
+          <h4>Some implementation suggestions and tips</h4>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>There are still screen readers in use today that do not support these roles, so be sure to still include at least a heading or a skip link to take the user to the main content.</li>
+            <li>If you use some landmarks, we recommend that you cover every major section of the page using one role or another.</li>
+            <li>The <a href="https://www.w3.org/TR/wai-aria/complete#region"><code>region</code></a> landmark can be used if an area of your page needs a landmark and cannot use any of the roles defined above. Be sure to give it a label with <code>aria-label</code> or <code>aria-labelledby</code>.</li>
+            <li>There shouldn't be too many landmarks on a page. Just the main 2-6 page sections should be landmarks.</li>
+            <li>The application role changes screen reader navigation behavior dramatically and should not be used simply to provide a landmark.</li>
+          </ul>
+
+          <h4>HTML 5 Elements that Sometimes Act as Landmarks (nav, footer, aside, section, header, article, form)</h4>
+          <p>While WAI-ARIA landmarks are the most reliable way to create landmarks, it is important to note that some HTML 5 elements are announced as landmarks in some screen readers. The HTML 5 specification does not make it clear which elements should act as landmarks. Supplemental documentation does discuss this, but the current screen reader implementations do not match this documentation.</p>
+          <p>It is pretty clear that the intention is that <code>&lt;nav&gt;</code> will act as a landmark.</p>
+          <p>To move forward in this environment we suggest the following:</p>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>Include WAI-ARIA landmark markup for the following HTML 5 section elements when you want them to be used as landmarks:Most likely, you will not want <code>&lt;form&gt;</code> to act as a landmark.
+              <ul class="pe-list pe-styled-lists--unordered"> 
+                <li>&lt;footer role="contentinfo"&gt;</li>
+                <li>&lt;header role="banner"&gt;</li>
+                <li>&lt;nav role="navigation"&gt;</li>
+                <li>&lt;aside role="complementary"&gt;</li>
+                <li>&lt;section role="region"&gt;, or a more specific role if appropriate.</li>
+              </ul>
+            </li>
+            <li>Finally, note that in some cases elements with <code>role="article"</code> and <code>&lt;article&gt;</code> elements are being treated as landmarks.</li>
+           </ul>
+
+          <h4><mark>Frames</mark></h4><mark>keep until Mastering has stopped use??</mark>
+          <p>Traditional HTML Framesets provide one level of in-page navigation since keyboard users can jump between frames (usually using F6 and Shift F6) on a Web page. This does not apply to inline frames (<code>iframe</code>). If your site uses framesets and the main content frame has headings, your site probably meets <a href="#g9">Pearson Guideline 9</a>.</p>
+
+          <h4>Skip Links</h4>
+          <p>This is an older technique that would be deprecated if only browsers supported heading and landmark navigation without a screenreader or browser extension. </p>
+
+          <p>If your site has many pages with the same structure, you might supplement heading navigation by providing a small number of anchor links at the top of the page that allow users to jump to the main areas of the page. Just as consistent page design would allow sighted users to focus immediately on the main content area as they move from page to page, a link might bring screen reader users to the "main content" on every page. This is particularly helpful in sites without frames where the headings in the main content area vary from page to page. </p>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li><strong>Do not create mini-menus of these links;</strong> no more than two, maybe three, should be in any particular location</li>
+            <li>These links should refer to standard page elements such as 'main content' or 'navigation'.</li>
+            <li>Make sure these links are either visible at all times or appear when a user tabs to the links:<br>
+              <pre><code>.skiplink {
+    position: absolute;
+    clip: rect(1px 1px 1px 1px);
+    /* for Internet Explorer */
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0;
+    border: 0;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+}
+<mark>
+    /* :active is needed for Internet Explorer */
+    .skiplink:focus, 
+    .skiplink:active {
+    padding:3px;
+    position: static;
+    width:auto;
+    height:auto;
+    clip:auto;
+    overflow:initial;</mark>
+}</code></pre><br>
+              Otherwise keyboard access users who don't use a screen reader won't be able to use the links. They would also have to tab past invisible links, which can be confusing and time-consuming.</li>
+          <li>There are bugs in Internet Explorer 5-11 that sometimes make these in-page links fail. Test the skip links by activating each link; then tab again. If the second tab goes to the top of the page or back to your skip link, your skip link is not working. To be sure to avoid this, add tabindex="-1" to the target of the link as shown in the code example below. <mark><strong>There were 2 bugs causing this: one relating to HasLayout, which no longer affects IE versions we support. The other bug however does still hit IE11.</strong></mark><br>
+              <pre><code>
+&lt;a name="skiptarget" id="skiptarget" tabindex="-1"&gt;
+link name here
+&lt;/a&gt;
+</code></pre></li>
+          </ul>
+          <p><a href="skiplink.html" target="_blank">Open sample skip link in new tab.</a></p>
+
+          <h4>Tips</h4>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>If JavaScript is used to change the page structure, be sure to update in-page navigation to reflect the change. For example, if the user can choose to remove the navigation bar and a link allows the user to jump to the navigation bar, the link should also be removed with the navigation bar.</li>
+            <li>Do not use the <code>accesskey</code> attribute to meet this guideline. <code>Accesskey</code> can actually block keyboard access. (<a href="#g6">Pearson Guideline 6</a> explains why.)</li>
+          </ul>
+
+          <h3>Android Applications</h3>
+          <p>Android applications are limited on what they can provide for in-page navigation. </p>
+
+          <h4>Screen Title</h4>
+          <p>The screen title should reflect the screen contents. The title can be set using the <code>setTitle</code> method.</p>
+
+          <h4>Headings</h4>
+          <p>Headings are not available in Android applications. Explicit headers can be provided in list views using <code>HeaderViewListAdapter</code>.</p>
+
+          <h3>iOS Applications</h3>
+          <p>There are several ways to support in-page navigation in iOS applications:</p>
+          <ol class="pe-list pe-styled-lists--ordered">
+            <li>Navigation bar</li>
+            <li>Tab Bar Controller</li>
+            <li>Headings</li>
+          </ol>
+
+          <h4>Navigation Bar</h4>
+          <p>The navigation bar provides easy navigation through an information hierarchy and the management of screen contents. To learn more about defining a navigation bar coding practices, see <a href="https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewControllerCatalog/Chapters/NavigationControllers.html#//apple_ref/doc/uid/TP40011313-CH2">Navigation Controllers</a>, <a href="https://developer.apple.com/documentation/uikit/uinavigationcontroller#//apple_ref/doc/uid/TP40006934">UINavigationController Class Reference</a>, and <a href="https://developer.apple.com/documentation/uikit/uinavigationbar#//apple_ref/doc/uid/TP40006887">UINavigationBar Class Reference</a>.</p>
+
+          <p>When the user moves to a new screen, the following should change:</p>
+          <ul  class="pe-list pe-styled-lists--unordered">
+            <li>The navigation bar title should change to current screen title which is set using UINavigationItem.</li>
+            <li>The label for the back-button must be the previous level’s title.</li>
+          </ul>
+
+          <h4>Tab Bar Controller</h4>
+          <p>The tab bar controller provides a way for a user to go to different views and allows users to easily move from one section to the next. For more information, see Tab Bar Controllers.</p>
+          
+          <h4>Headings</h4>
+          <p>VoiceOver users will use headings to navigate between elements on the screen. Headings can be defined in iOS6 and later through <code>UIAccessibilityTraitHeader</code>, <code>UITableView</code>, <code>UINavigationBar</code> or content displayed through web view.</p>
+
+          <h3>PDF in Acrobat</h3>
+
+          <h4>Headings</h4>
+          <p>Organize the document and set a logical heading structure by using the heading tag for the document title and h1-h6 tags for the section headers. This allows screen reader users to jump from heading to heading to read and interact with the content that interests them.</p>
+
+          <h4>Bookmarks</h4>
+          <p>Bookmarks are a set of links which allows a user to see the different sections of the document and easily navigate to them. Every major section in the document should be included as a bookmark.</p>
+          <img src="images/bookmarks.jpg" style="float:right;" width="187" height="150" alt="">
+          <p>To generate bookmarks, go to the Bookmarks Panel. The process to add bookmarks differs slightly depending on the version of Acrobat and the operating system. <mark>To add bookmarks in Acrobat 9 Pro</mark>:</p>
+          <ol class="pe-list pe-styled-lists--ordered">
+              <li>Go the Bookmarks Panel at View &gt; Navigation Panels &gt; Bookmarks.</li>
+              <li>Select "New bookmarks from structure" from the navigation panel options.</li>
+              <li>Select the structure elements to include in the list of bookmarks. The bookmark names come from the title of the tags. If there is no title, the tag content is used.</li>
+          </ol>
+          <p>If there are bookmarks that should not be included, delete the bookmark in the tree structure. Add missing bookmarks manually by using the New Bookmark option in the navigation panel options.</p>
+
+          <h3 style="clear:both;">Word</h3>
+
+          <h4>Headings</h4>
+          <p>Use Word heading styles to organize your document structure. A well-structured document that uses the built-in heading styles allows screen reader users to quickly and easily navigate the content. They can jump from heading to heading to access the information that interests them. </p>
+          <p>Beware of formatting in Word documents that makes the content look like a heading visually but does not use heading styles. Such text is interpreted as plain text by the screen reader. These documents have no structure for screen readers.<br>
+          <img src="images/word_headings.jpg" width="486" height="249" alt="In a Word document,  'Heading 3 + Trebuchet, 11 pt' is selected from the Format Menu to style a selected heading"></p>
+
+          <h4>Reference Links</h4>
+          <p>Headings are the most widely used in-document navigation method, but tables of content and sometimes indexes are also used.</p>
+          <p>When content contains other references such as bookmarks, bibliography entries and table of contents, and footnotes, add them by using the built-in Word features found on the reference menu. Do not create them manually.</p>
+
+          <h3>PowerPoint</h3>
+          <p>Screen reader users can navigate in slideshow mode easily with keyboard shortcuts. PowerPoint and JAWS shortcuts are available to read the page, read element by element, or advance the next animation event. See <a href="#g6">PG 6</a> for a partial list of shortcuts.</p>
+          <p>However, certain actions are not as intuitive. For example, when a page contains a video or audio clip a user should tab to access the media control. It is possible to add alternate text to the object, but JAWS does not read that text when they tab to put a focus on the media controls. When the focus is on the media object, the user can either select shift-F10 to access the context menu, then Preview or they can press alt-P to play. Test slides with non-standard content layout or interactive objects using a screen reader to ensure that all content is accessible by keyboard.</p>
+
+          <h3>Testing HTML</h3>
+          <p>There are three recommended ways to provide in-page navigation in HTML: ARIA landmarks, headings and In-page links ("skip links"). Using the techniques below, see if enough support has been provided so that users can move to any of the primary page areas.</p>
+
+          <h4>Rapid Code Review for HTML Pages</h4>
+          <table class="pe-table">
+              <caption>WAI_ARIA Landmarks</caption>
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>Use the <mark><a href="http://www.jimthatcher.com/favelets/">Landmarks favelet</a> to see what has been marked as a landmark on the page</mark>. You may want to disable CSS and then apply the favelet so that results are more easily viewed. Disabling CSS is possible from the View menu in most browsers or from the CSS menu of either the <a href="https://developer.paciellogroup.com/resources/wat/">Web Accessibility Toolbar</a> or the <a href="http://chrispederick.com/work/web-developer/">Web Developer Toolbar</a>.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Output</th>
+                  <td>All ARIA landmarks and HTML Section Elements are shown.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Analysis</th> 
+                  <td>See if the ARIA landmark roles have been used according to the specification. Below are the definitions of each role quoted from <a href="https://www.w3.org/TR/wai-aria-practices-1.1/">WAI-ARIA 1.1 Authoring Practices, Working Draft 28 June 2017</a>.
+                    <dl class="side-bar-box">
+                      <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_banner"><code>banner</code></a></dt>
+                      <dd>"A region that contains the prime heading or internal title of a page."</dd>
+                      <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_complementary"><code>complementary</code></a></dt>
+                      <dd>"Any section of the document that supports but is separable from the main content, but is meaningful on its own even when separated from it."</dd>
+                      <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_contentinfo"><code>contentinfo</code></a></dt>
+                      <dd>"Meta information which applies to the first immediate ancestor whose role is not presentation."</dd>
+                      <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_form"><code>form</code></a></dt>
+                      <dd>"A region of the document that represents a collection of form-associated elements, some of which can represent editable values that can be submitted to a server for processing."</dd>
+                      <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_main"><code>main</code></a></dt>
+                      <dd>"Main content in a document."</dd>
+                      <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_navigation"><code>navigation</code></a></dt>
+                      <dd>"A collection of links suitable for use when navigating the document or related documents."</dd>
+                      <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_region"><code>region</code></a></dt>
+                      <dd>"A perceivable section of the page containing content that is sufficiently important for users to be able to navigate to the section."</dd>
+                      <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_search"><code>search</code></a></dt>
+                      <dd>"The search tool of a Web document."</dd>
+                    </dl>
+                      <p>Also check for the following:</p>
+                      <ul class="pe-list pe-styled-lists--unordered">
+                        <li>Make sure that <code>banner</code>, <code>main</code> and <code>contentinfo</code> are not used more than once per document.</li>
+                        <li>Make sure everything on the page is included in one landmark or another.</li>
+                        <li>Look out for too many landmarks and/or too many HTML Section Elements; these are spoken as a blind user listens to the page and too many can be distracting.</li>
+                        <li>If <code>role="application"</code> is used, make note that that area of the site needs to be tested for accessibility as an application, using assistive technologies.</li>
+                      </ul> 
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table class="pe-table">
+              <caption>Headings</caption>
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>Use the <a href="http://www.jimthatcher.com/favelets/">headings favelet</a> to see what has been marked as a heading on the page. You may want to disable CSS and then apply the favelet so that results are more easily viewed. Disabling CSS is possible from the View menu in most browsers or from the CSS menu of either the <a href="https://developer.paciellogroup.com/resources/wat/">Web Accessibility Toolbar</a> or the <a href="http://chrispederick.com/work/web-developer/">Web Developer Toolbar</a>.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Output</th>
+                  <td>The <mark>Headings favelet</mark> brackets heading text with a heading level, like <code>&lt;h1&gt;…&lt;/h1&gt;</code> and the JS alert displays the number of headings and their levels, like: "9 headings, 1 h2, 3 h2 and 5 h6."</td>
+                </tr>
+                <tr>
+                  <th scope="row">Analysis</th> 
+                  <td>Looking at the page as a whole: Is there heading text at the beginning of each major section of the page. Do sections of similar format and importance have the same heading levels? Is text that looks like a heading text marked up as an HTML heading?<br>
+                      Also consider whether the heading structure is well-organized: There should be just one <code>h1</code>. Also, are there unreasonable gaps in heading numbering, like <code>h2</code> to <code>h5</code>?
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table class="pe-table">
+                <caption>Skip Links / In-Page Links</caption>
+                <thead class="pe-sr-only">
+                  <tr>
+                    <th scope="col">Testing technique</th>
+                    <th scope="col">Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Tools</th>
+                    <td>If you use Internet Explorer, you can use the <mark><a href="http://www.jimthatcher.com/favelets/">Skip Links favelet</a></mark> to display all in-page links. Or, preferably, use the Tab key to see if a Skip Link becomes visible at the top of the page. When it does, follow that link, and tab once more to confirm that input focus has moved correctly.
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Output</th>
+                    <td>The output of the favelet displays each in-page link and its effective target (where you actually end up on the page after followng the link) in the form of a dark rectangle. If the effective target is, for example, the whole page , then the input focus is not moving when you follow the skip link. When using the keyboard to test, make sure you not only jump to the location on the page visually, but that your next tab does not bring you back to the top of the page.</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Analysis</th> 
+                    <td>Is there a skip link and is it visible when it receives focus, is it close to the top of the page (at most number 2 or 3), does the skip link move to the main content of the page and from there does one more tab go to the next link in that main content area (and not back to the top).</td>
+                  </tr>
+                </tbody>
+              </table>
+
+          <h4>Screen Reader Commands</h4>
+              <table class="pe-table">
+                <thead class="table-head">
+                    <tr>
+                      <th scope="col">AT</th>
+                      <th scope="col">Headings Forward &amp; Back</th>
+                      <th scope="col">Specific Heading Level</th>
+                      <th scope="col">Landmarks Forward &amp; Back</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">JAWS</th>
+                    <td>h and Shift + h</td>
+                    <td>number (1-6) and Shift + number</td>
+                    <td>r and Shift + r (earlier than JAWS 15, use semicolon)</td>
+                  </tr>
+                  <tr>
+                      <th scope="row">VoiceOver on iOS (iPad, iPhone, iPod Touch)</th>
+                      <td>Turn rotor with two fingers to Headings. Swipe up or down with one finger.</td>
+                      <td>Not available in gestures - need keyboard.</td>
+                      <td>Turn rotor with two fingers to Landmarks. Swipe up or down with one finger. </td>
+                  </tr>
+                  <tr>
+                      <th scope="row"><mark>Window Eyes</mark></th>
+                      <td>h and Shift + h</td>
+                      <td>number (1-6) followed by h and number followed by Shift + h</td>
+                      <td>semicolon and Shift + semicolon</td>
+                  </tr>
+                  <tr>
+                      <th scope="row">NVDA</th>
+                      <td>h and Shift + h</td>
+                      <td>number (1-6) and Shift + number</td>
+                      <td>d and Shift + d</td>
+                  </tr>
+                </tbody>
+              </table>		
+
+          <h3>Testing Mobile Applications</h3>
+          <p>On mobile, the platform capabilities different. For Android applications, only the screen title can be set. In iOS if the navigation bar is used, the application title and back button must be set. Headings must be defined.</p>
+          <table class="pe-table">
+            <caption>Android</caption>
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>Visually look at the screen or use TalkBack for the screen title.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Output</th>
+                  <td>This title is visible and is announced by TalkBack.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Analysis</th>
+                  <td> The title provides context and helps orient the user to the screen. The title should be concise, descriptive and unique.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table class="pe-table">
+              <caption>iOS</caption>
+                <thead class="pe-sr-only">
+                  <tr>
+                    <th scope="col">Testing technique</th>
+                    <th scope="col">Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Tools</th>
+                    <td>Visually inspect the page to identify what the page title and the name of the back button.<br>
+                        Use VoiceOver to check the information read the screen title, the back button, and the headings. Read the screen using left to right or right to left swipe gestures. Turn the rotor settings to headings (Turn dial on the screen with two fingers and change the option to Headings). Swipe up or down with one finger to move from one heading to the next.
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Output</th>
+                    <td>The screen title is visible and is announced by VoiceOver.<br>
+                        The back button is visible and is read by VoiceOver.<br>
+                        <br>
+                        All visible headings on the screen should get focus when moving between headings using swipe up / down gesture when the rotor is set to headings.</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Analysis</th> 
+                    <td>The title provides context and helps orient the user to the screen. The title should be concise, descriptive and unique.<br>
+                        The back button is announced as a back button and has a unique name that indicates the page that the user will go back to.<br>
+                        <br>
+                        Looking at the page as a whole: Is there heading text at the beginning of each major section of the page. Is text that looks like a heading text marked up as a heading?</td>
+                  </tr>
+                </tbody>
+              </table>
+
+          <h3>Testing Word</h3>
+          <p>The table below provide some options for testing your Word documents:</p>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Word</th>
+                  <td>Check that each heading is using a heading style.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Word with JAWS</th>
+                  <td>Press Insert + Z to turn quick keys on. Press h or shift + h to move between headings.</td>
+                </tr>
+                <tr>
+                  <th scope="row"><mark>Word with Window Eyes</mark></th> 
+                  <td>Press Insert + Z to enter Word Navigation Mode. Press h or shift + h to move between headings. Press numbers (1-9) to navigate by heading level.</td>
+                </tr>
+              </tbody>
+            </table>
+
+          <h4>How to Check Heading Styles in Word 2007 and 2010</h4>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Reveal styles</th>
+                  <td>Shift-F1 (the Distinguish style source option can be useful)
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Styles panel</th>
+                  <td>Show the styles window by clicking the bottom-right arrow in Home &gt; Styles</td>
+                </tr>
+                <tr>
+                  <th scope="row">Style inspector</th> 
+                  <td>Click the button at the bottom of the styles window</td>
+                </tr>
+                <tr>
+                    <th scope="row">Style area</th> 
+                    <td>View in draft or outline mode. The style name is shown to the left of the content. To turn on, select Word Options &gt; Advanced &gt; Display &gt; style area pane width</td>
+                  </tr>
+              </tbody>
+            </table>	
+
+          <h3>Testing PDF in Acrobat</h3>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>In a PDF document, there are two key ways to provide in-page navigation: headings and bookmarks.
+                    <ol class="pe-list pe-styled-lists--ordered">
+                      <li>Check that each heading has been defined as a heading.
+                        <ul class="pe-list pe-styled-lists--unordered">
+                          <li>PDF - Check that each heading is represented by the appropriate heading tag (h, h1-h6) in the Tags pane.</li>
+                          <li>PDF with JAWS - Press Insert + Z to turn quick keys on. Press h or shift + h to move between headings.</li>
+                          <li>PDF with Window Eyes - Press Insert + Z to enter Word Navigation Mode. Press h or shift + h to move between headings. Press numbers (1-9) to navigate by heading level.</li>
+                        </ul>
+                      </li>
+                      <li>Check the Bookmarks pane to verify that complete and properly worded bookmarks are used.</li>
+                    </ol>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Output</th>
+                  <td>Observe the results of this testing in the Bookmarks and Tags pane in Acrobat.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Analysis</th> 
+                  <td>Make note of content headings that are not in heading tags or which are tagged using an inappropriate heading level. Note missing or inappropriately worded bookmarks.</td>
+                </tr>
+              </tbody>
+            </table>	
+          <h3>Related Guidelines</h3>
+          <h4>508 Web § 1194.22 (o)</h4>
+          <p>A method shall be provided that permits users to skip repetitive navigation links. </p>
+
+          <h4>WCAG 2.0 A – SC 2.4.1 Bypass Blocks</h4>
+          <p>A mechanism is available to bypass blocks of content that are repeated on multiple Web pages. (Level A)</p>
+
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
 
