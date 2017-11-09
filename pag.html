@@ -1450,7 +1450,6 @@ cursor: pointer;
       <h2 id="g11">Guideline 11. Use semantic markup for its intended purposes (Semantic Markup)</h2>
       <div class="guideline_content">
         <p class="summary">Identify roles (e.g. heading, numbered list, bulleted list, data table, paragraph, emphasized text) of page elements using conventions for the media type. (And do not misidentify roles by using those conventions solely for their visual effects.)</p>
-
         <h3>Rationale</h3>
         <p>Media content will be transformed into:</p>
         <ul class="pe-list pe-styled-lists--unordered">
@@ -1465,6 +1464,7 @@ cursor: pointer;
         <p>Also, breaking up large blocks of text by marking them as headings, paragraphs, lists, etc helps all users to read the content more easily and is especially helpful for those with learning disabilities or cognitive impairments.</p>
 
         <h3>HTML &amp; JavaScript</h3>
+       
         <h4>HTML | XHTML | CSS</h4>
         <p><strong>Where markup exists to define an element-type, use that markup for that type of element.</strong></p>
         <p>Examples:</p>
@@ -1621,7 +1621,7 @@ body &gt; ul &gt; li &gt; ul {
   . . .
 &lt;/table&gt;</code></pre>
         <p><a target="_blank" href="table_headers_id_attributes.html">Open Table Headers and Id Attributes Sample Page in a New Window</a>.</p>
-        <p>Do not use semantic tags for visual effects that are not consistent with the meaning of the tag.</p>
+        <p><strong>Do not use semantic tags for visual effects that are not consistent with the meaning of the tag.</strong></p>
         <p>For example, do not use <code>&lt;blockquote&gt;</code> to indent text when the text is not a quotation. And, do not use definition lists for items that are not definitions.</p>
 
         <h4>Legacy HTML</h4>
@@ -1629,8 +1629,9 @@ body &gt; ul &gt; li &gt; ul {
         <p>Note: Unless the targeted user agents cannot support the desired layout in CSS, new content should not use tables for layout as they are not semantically correct. However, because layout tables were used so extensively, current assistive technology has been adapted for them. So, legacy content may use layout tables without significantly degrading the experience for users with disabilities. (As layout tables disappear from the Web, future assistive technologies  may not handle layout tables well.)</p>
 
         <h4>JavaScript</h4>
-        <p>When adding content using JS, include correct semantic mark-up.</p>
-When adding content to the Document Object Model, use nodes that describe the content semantically:
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>When adding content using JS, include correct semantic mark-up.</li>
+          <li>When adding content to the Document Object Model, use nodes that describe the content semantically:
 <pre><code>
 function addNews() {   
   /* create a heading */
@@ -1651,10 +1652,12 @@ function addNews() {
   myP.appendChild(myPT);
   document.body.appendChild(myP);
 }</code></pre>
+          </li>
+        </ol>
  
         <h3>Android Applications</h3>
         <p>User interface elements should be used in accordance with their intended purpose.  Wherever possible use standard UI elements as these will automatically convey the element role.</p>
-        <p>Note: Android 5.0 and below does not currently provide semantic markup for headings.</p>
+        <p><mark>Note: Android 5.0 and below does not currently provide semantic markup for headings.</mark></p>
 
         <h3>iOS Applications</h3>
         <p>User interface elements should be used in accordance with their intended purpose.  Wherever possible use standard UI elements as these will be automatically updated when the iOS changes and they contain the framework to make UI elements fully accessible.</p>
@@ -1912,7 +1915,7 @@ function addNews() {
         <p>When formatting is used to convey special meaning to content, be sure to use the built-in Word styles and features as much as possible to maximize accessibility. For example, use styles for emphasized content, lists, tables, heading, headers, and footers. Conversely, when those styles and features are used, ensure that they are used to convey particular meaning or organization of content and not simply used because the visual appearance matches a desired look.</p>
 
         <h4>Headings</h4>
-        <p>Define all headings using Word heading styles. Modify the Word heading styles to change the font, color and other style elements (see PG 9 In Page Navigation for more information on headings).</p>
+        <p>Define all headings using Word heading styles. Modify the Word heading styles to change the font, color and other style elements (see <a href="#g9">PG 9 In Page Navigation</a> for more information on headings).</p>
         <p>Avoid creating a new Word style for headings as this will not be defined as a heading even it is defined as style that is based on a heading.</p>
         <p>Word styles should not be misused or used just for visual appearance of the formatting.</p>
 
