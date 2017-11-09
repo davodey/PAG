@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- HTML 5 -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Skip Link that Appears on Focus</title>
+    <style>
+      .skiplink {
+        position: absolute;
+        clip: rect(1px 1px 1px 1px);  /* for Internet Explorer */
+        clip: rect(1px, 1px, 1px, 1px);
+        padding: 0;
+        border: 0;
+        height: 1px;
+        width: 1px;
+        overflow: hidden;
+      }
+
+      .skiplink:focus, .skiplink:active {
+        padding:3px;
+        position: static;
+        width:auto;
+        height:auto;
+        clip:auto;
+        overflow:initial; 
+      }
+    </style>
+  </head>
+  <body> 
+    <header role="banner">
+      <a href="#themain" class="skiplink">Skip to Main Content</a>
+      <p>Assume there would be quite a few <a href="index.html">links</a> and perhaps a navigation region here.</p>
+    <header>
+    <div role="main" tabindex="-1" name="themain" id="themain">
+      <h1>The Main Content</h1>
+      <p>Assume there would be text, <a href="index.html">links,</a> etc.</p>
+    </div>
+  </body>
+</html>

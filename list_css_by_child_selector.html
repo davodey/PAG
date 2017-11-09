@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<!-- HTML 5 -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>List CSS Example</title>
+      <style>
+      body > ul {
+      /* remove bullets from first-level */
+        list-style-type: none;
+      }
+      body > ul > li {
+      /* adjust space between first-level list items */
+        margin-bottom: 20px;
+      /* Enclose each first-level list item in a box */
+        border-style: solid;
+        border-width: 1px;
+        width: 15em;
+        padding: .5em;
+      }
+      body > ul > li > ul {
+      /* adjust how far second-level items are indented */
+        margin-left: 2em;
+        padding-left: 2em;
+      /* choose a bullet for second-level list items */
+        list-style-type: square;
+      }
+      /* child selector (>) does not 
+         work in IE 6 - use class names
+         if you need to support IE 6 */
+    </style>
+  </head>
+  <body>
+    <h1>Example: Nested Lists formatted with CSS</h1>
+    <ul>
+      <li>Chapter One
+        <ul>
+          <li>Activity One</li>
+          <li>Activity Two</li>
+        </ul>
+      </li>
+      <li>Chapter Two
+        <ul>
+          <li>Activity One</li>
+          <li>Activity Two</li>
+        </ul>
+      </li>
+    </ul>
+    <h2>Note on IE 6 Support</h2>
+    <p>The child selector (&gt;) does not work in IE 6. If you need a visual layout similar to this in IE 6, <a href="list_css_by_class_ie6.html">use class names to select each list level</a>.</p>
+  </body>
+ </html>

@@ -37,29 +37,25 @@
           width: 100%;
         }
       }
-      dt, dd {
-        display: inline-block;
-        vertical-align: top;
-        min-height: 4em;
-        margin: 0 0 .5em;
-        padding: .2em;
-      }
-      dt {
-        width: 36%;
-        padding-right: .6em;
-        color: #444;
-        font-weight: bold;
-      } 
-      dd {
-        width: 60%;
-      }
-      dt:nth-of-type(2n),
-      dd:nth-of-type(2n) {
+      .side-bar-box{
+        padding: 10px;
         background-color: #f5f5f5;
+        border-left: grey 2px solid;
+      }
+      dt, dd {
+        display: block;
+        margin: 0;
+      }
+      dd {
+        margin-bottom: 1em;
       }
       .guideline_content.hidden {
         display: none;
       }
+      .table-head{
+        background-color: #f5f5f5;
+      }
+
     </style>
     <!-- print stylesheet pls -->
   </head>
@@ -77,9 +73,9 @@
         <li><a href="#g6">6: Check keyboard access (access without a pointing device) and correct any issues (Keyboard Access)</a></li>
         <li><a href="#g7">7: Ensure keyboard access visibility (Keyboard Access Visibility)</a></li>
         <li><a href="#g8">8: Provide keyboard access instructions (Keyboard Access Instructions)</a></li>
-        <li><a href="#g9">9: </a></li>
-        <li><a href="#g10">10: </a></li>
-        <li><a href="#g11">11: </a></li>
+        <li><a href="#g9">9: Support navigation within the page (In-page Navigation)</a></li>
+        <li><a href="#g10">10: Do not change the user's location on the screen unexpectedly (Continuity of  User's Place) </a></li>
+        <li><a href="#g11">11: Use semantic markup for its intended purposes (Semantic Markup)</a></li>
         <li><a href="#g12">12: </a></li>
         <li><a href="#g13">13: </a></li>
         <li><a href="#g14">14: </a></li>
@@ -112,6 +108,7 @@
         <li><a href="#g41">41: </a></li>
         <li><a href="#g42">42: </a></li>
       </ul>
+
       <h2 id="g1">Guideline 1. Choose technologies (e.g. HTML vs. Flash) with accessibility in mind (Choosing Technologies)</h2>
       <div class="guideline_content">
         <p class="summary">When choosing a document type or a user interface technology (e.g. HTML, Flash, Flex, PDF, mobile application), choose the most accessible technology that can accomplish project requirements.</p>
@@ -305,18 +302,9 @@
           <li>20 Hour Exception: The time limit is longer than 20 hours.</li>
         </ul>
 
-        <h3><mark>508 Refresh 3-R: Timing</mark></h3>
-        <p><mark>For each time limit that is set by the product, at least one of the following must happen:
-Turn off: the user is allowed to turn off the time limit before encountering it; or
-Adjust: the user is allowed to adjust the time limit before encountering it over a wide range that is at least ten times the length of the default setting; or
-Extend: the user is warned before time expires and given at least 20 seconds to extend the time limit with a simple action (for example, "hit any key"), and the user is allowed to extend the time limit at least ten times.
-There are three exceptions:
-Real-time Exception: the time limit is a required part of a real-time event (for example, an auction), and no alternative to the time limit is possible; or
-Essential Exception: the time limit is part of an activity where timing is essential and time limits cannot be extended further without invalidating the activity.
-20 Hour Exception: the time limit is longer than 20 hours.</mark></p>
-
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
       <h2 id="g3">Guideline 3. Allow instructors, administrators, or students to adjust time limits (Timed Tests)</h2>
       <div class="guideline_content">
         <p class="summary">If Pearson Guideline 2 would invalidate a timed activity:</p>
@@ -655,9 +643,6 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <h4>WCAG 2.0 Level A - SC 1.3.2</h4>
         <p>When the sequence in which content is presented affects its meaning, a correct reading sequence can be programmatically determined</p>
 
-        <h3><mark>508 Refresh 3-M: Reading Sequence</mark></h3>
-        <p><mark>When the sequence in which information is presented affects its meaning, a reading sequence that conveys the intended meaning must be PROGRAMMATICALLY DETERMINABLE. The navigation sequence must be consistent with the reading sequence.</mark></p>
-
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
 
@@ -679,7 +664,8 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <p>The goal is to alert screen reader users to the new information. In addition, especially if the feedback appears while the user is typing into a field, the goal will be to provide the error message without moving the screen reader user's focus (i.e. without taking the text-insertion point out of the form field).</p>
         <p>The WAI-ARIA "alert" role makes this possible. Simply make <code>role="alert"</code> an attribute of <strong>both</strong>:
         <ul class="pe-list pe-styled-lists--unordered">
-          <li>The outer-most container that is added to the page AND</li>
+          <li><p>The outer-most container that is added to the page</p>
+            <p>~AND~</p></li>
           <li>The parent element of that element. Create a container just for the purpose of receiving the alert. (Needed for Safari with VoiceOver as well as, the lower priority configuration, Window-Eyes with IE)</li>
         </ul>
         <p><mark>To support TalkBack with Chrome on Android devices add <code>aria-live="assertive"</code> to the container element that will receive the alert. Although not a top priority configuration, this is also needed to support NVDA with IE.</mark></p>
@@ -694,7 +680,7 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <ul class="pe-list pe-styled-lists--unordered">
           <li>Most often, screen readers read the title of the page when the page loads. So, it is helpful to including all or part of the error message in the page title.</li>
           <li>The most common way that screen reader users explore a new page is that they read the headings on the page. Making all or part of the error message a heading is very helpful.</li>
-          <li>Screen reader users often tab from form element to form element, hearing the form label for each form element. In cases where detailed form error messages are provided for each form field, including those errors as part of the form label can be a helpful technique. See Pearson Guideline 14 for techniques on how to code form labels so that they will be read when screen reader users tab to form elements.</li>
+          <li>Screen reader users often tab from form element to form element, hearing the form label for each form element. In cases where detailed form error messages are provided for each form field, including those errors as part of the form label can be a helpful technique. See <a href="g14">Pearson Guideline 14</a> for techniques on how to code form labels so that they will be read when screen reader users tab to form elements.</li>
         </ul>
         <p>If you allow the page to load without the error message, and then add the error message using JavaScript after the page has fully loaded, you can use the <code>role="alert"</code> technique described in the section just above.</p>
 
@@ -711,12 +697,14 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <p>When the dialog appears, use JavaScript to move focus to the interactive element in the dialog that is most likely to be used first. When the dialog is closed, be sure to return focus to a logical location, such as the control that caused the dialog to appear.</p>
         <p>If the dialog serves an "alert" function, add the following two attributes to the outermost element that is added to the page when the message appears:</p>
         <ul class="pe-list pe-styled-lists--unordered">
-          <li><code>role="alertdialog"</code> AND</li>
+          <li><p><code>role="alertdialog"</code></p> 
+            <p>~AND~</p></li>
           <li><code>aria-describedby="id"</code> where <code>id</code> is the id of the message you want read automatically when the alert dialog first appears.</li>
         </ul>
         <p>If the dialog isn't really an "alert" and is more of just a separate window, add the following two attributes to the outermost element that is added to the page when the message appears:</p>
         <ul class="pe-list pe-styled-lists--unordered">
-          <li><code>role="dialog"</code> AND</li>
+          <li><p><code>role="dialog"</code></p>
+            <p>~AND~</p></li>
           <li><code>aria-label="my message"</code> where <code>my message</code> is the message you want read automatically when the dialog first appears OR <code>aria-labelledby="id"</code> where <code>id</code> is the id of the message you want read automatically when the alert dialog first appears. (Yes, aria-labelledby should have the repeated letter l.)</li> 
         </ul>
         <p>These attributes tell screen readers and screen magnifiers to announce these additions to the screen as alert dialogs or as dialogs. Some screen readers will also switch into "forms mode" for navigation of the dialog. In this mode, the dialog is announced and then screen reader users move between active elements, often skipping inactive content. So, be sure that all content in the dialog is included through <code>aria-describedby</code>, <code>aria-label</code>, or <code>aria-labelledby</code> and/or through form labels. Form labels are discussed in detail in <a href="#g14">Pearson Guideline 14</a>.</p>
@@ -753,7 +741,8 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
   top:auto;
   width:1px;
   height:1px;
-  overflow:hidden; }</code></pre></li>
+  overflow:hidden;
+}</code></pre></li>
         </ul>
 
         <h4>Areas that Update Periodically (e.g. News Feed, Social Features)</h4>
@@ -773,7 +762,8 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
   top:auto;
   width:1px;
   height:1px;
-  overflow:hidden; }</code></pre>
+  overflow:hidden;
+}</code></pre>
         <p>Second, particularly for social features, there should be a way for students or instructors to be notified that new information is available. The following techniques are some options. You may wish to allow your users to select an option in user preferences.</p>
         <ul class="pe-list pe-styled-lists--unordered">
           <li>Make any text that announces the new content into an alert by placing role="alert" on the outermost HTML element that is added to the page when the icon or the alert appears. For example: <code>&lt;div role="alert"&gt;You have a new message&lt;/div&gt;</code></li>
@@ -866,7 +856,7 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
       <h2 id="g6">Guideline 6. Check keyboard access (access without a pointing device) and correct any issues (Keyboard Access)</h2>
       <div class="guideline_content">
         <p class="summary">Ensure that keyboard keys (instead of a mouse and instead of touch screen gestures that require eye-hand coordination) can be used to:</p>
-        <ul>
+        <ul class="pe-list pe-styled-lists--unordered">
           <li><strong>Reach and operate all controls</strong></li>
           <li>AND <strong>Navigate through active elements, following the reading order</strong></li>
         </ul>
@@ -1554,21 +1544,1258 @@ a:active {
           <h3>Related Guidelines</h3>
             <h4>WCAG 2.0 A – SC 2.1.2 No Keyboard Trap: </h4>
             <p>If keyboard focus can be moved to a component of the page using a keyboard interface, then focus can be moved away from that component using only a keyboard interface, and, if it requires more than unmodified arrow or tab keys or other standard exit methods, the user is advised of the method for moving focus away. (Level A) </p>
+
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
 
-      <h2 id="g9"></h2>
+      <h2 id="g9">Guideline 9. Support navigation within the page (In-page Navigation)</h2>
       <div class="guideline_content">
+        <p class="summary">When distinguishable features or sections (e.g. navigation, main content, individual news articles) appear on a page or in a document, provide a way to navigate to the features or sections using a screen reader and the keyboard.</p> 
+
+        <h3>Rationale</h3>
+        <p>Mouse users commonly navigate Web pages by skimming the page visually. When they see a feature of interest, they can immediately read the text there and use a mouse to access interactive elements there.</p>
+        <p>So, designers might not think about in-page navigation unless a page contains a very long list that is not pleasant to skim visually, such as a glossary. </p>
+        <p>However, keyboard access users (with and without screen readers) move through a page, item by item, starting at the top. So, for example, if 40 links appear before the link the user wants, the user may have to press tab 40 times to reach the desired link.</p>
+        <p>Similarly, if there are many articles on the page, screen reader users may have to listen to a lot of content before finding the article of interest.</p>
+            <p>In-page navigation addresses these issues.</p>
+            <p>Additional Benefits: In-page navigation is useful for users without disabilities as well. If a student needs to check a fact on a long page of text, jumping from heading to heading is much faster and more pleasant than watching for the heading needed while scrolling the page.</p>
+
+          <h3>HTML &amp; JavaScript</h3>
+          <h4>Headings (h1 through h6)</h4>
+          <p>Organize pages using HTML headings (e.g. <code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>). This allows screen reader users to jump from heading to heading to read and interact with the content under each heading only as needed.</p>
+          <p>If desired, you can use CSS to change or remove all formatting associated with these heading elements:</p>
+          <pre><code>h2.nostyle_inline {
+    /* 1em results in the same font size that
+    would be used for plain text in that
+    location on the page */
+    font-size: 1em;
+    /* standard font weight */
+    font-weight: normal;
+    /* no extra space */
+    padding: 0;
+    margin: 0;
+    /* With display set to inline,
+    headings can appear inline with other
+    text. For example, bold text at the
+    beginning of a paragraph might
+    serve as a heading. */
+    display: inline; 
+} </code></pre>
+          <p>If necessary for visual effects, you can also use an image within a heading tag. (See <a href="#g21">PG 21</a> regarding images of text.)</p>
+
+          <pre><code>
+&lt;h1&gt;
+  &lt;img src="sea_mammals.gif" alt="Mammals of the Sea"&gt;
+ &lt;/h1&gt;</code></pre>
+          <p>But, don't use heading tags like <code>&lt;h1&gt;</code> for the headers inside tables. See <a href="#g11">Pearson Guideline 11</a> for the correct semantic markup for tables.</p>
+
+          <h4>WAI-ARIA Headings (not recommended)</h4>
+          <p>It is now possible to mark HTML elements as headings without using the traditional HTML heading tags. This even works in many screen reader/browser combinations. However, the traditional HTML heading tags are still supported in many more places. So, if you can use the traditional tags, that is the best option for universal accessibility.</p>
+
+          <p>These headings are defined through two attributes:</p>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li><code>role="heading"</code></li>
+            <li><code>aria-level</code></li>
+          </ul>
+          <p>For example, to create the equivalent of an <code>h2</code> element, you could type: <code>&lt;div role="heading" aria-level="2"&gt;</code>.</p>
+
+          <h4>Using Headings in HTML 5</h4>
+          <p>There was a proposal in HTML5 for the user agents (browsers) to assist with setting correct heading levels automatically (for use cases like syndication, where a piece of content with a heading could be placed anywhere within another document) using an algorithm known as the <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML_sections_and_outlines">HTML5 Document Outline</a>. This idea came from the general heading element <code>&lt;h&gt;</code> proposed in XHTML, and in HTML5 the idea was to allow special sectioning elements (<code>section</code>, <code>article</code>, <code>aside</code>, <code>nav</code>...) to adjust the semantic heading level based on nesting.</p>
+          <p>This Document Outline is still mentioned in the WHATWG HTML specification (<a href="https://github.com/whatwg/html/issues/83">see current issue</a>), however the reality is that currently <a href="https://developer.paciellogroup.com/blog/2013/10/html5-document-outline/">no user agents nor Assistive Technology support this</a> (JAWS did support some version of this but it was removed in JAWS 15), and there are warnings in <a href="https://idpf.github.io/a11y-guidelines/content/xhtml/headings.html">ePub guidelines</a> and <a href="https://www.w3.org/TR/html5/sections.html#outlines">W3C specs</a>.</p>
+
+          <p>For this reason, the current recommendation is to <a href="http://adrianroselli.com/2016/08/there-is-no-document-outline-algorithm.html">continue to use h1 through h6 as needed</a>.</p>
+          <p>One thing for developers to be aware of is that while the <strong>semantics</strong> of the Document Outline have not been added to user agents, some of the styling ideas have been. Following the code examples on the <a href="https://www.w3.org/TR/html5/sections.html#outlines">MDN page</a>, developers may see changes in default heading size (generally smaller than what corresponds to the actual level), so developers are also encouraged to set explicit sizes if headings are nested in section or article elements.</p>
+
+          <h4>WAI-ARIA Landmarks</h4>
+          <p>Often navigation menus, banners, and footers are not preceded by a visible heading because it is visually clear what they are. WAI-ARIA landmark roles can be used to identify these areas and allow screen readers users to navigation to them.<br>
+          <img width="350" height="252" alt="In an example page layout, banner stretches across the page, followed by navigation, which contains search. Under that, main is on the left and complementary on the right. ContentInfo marks a page footer." src="images/simple_landmarks.jpg"></p>
+          <p>Landmark roles are simple to add to a page. Below are the definitions of each role quoted from <a href="https://www.w3.org/TR/wai-aria-practices-1.1/">WAI-ARIA 1.1 Authoring Practices, Working Draft 28 June 2017</a>.</p>
+          <dl class="side-bar-box">
+            <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_banner"><code>banner</code></a></dt>
+            <dd>"A region that contains the prime heading or internal title of a page."</dd>
+            <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_complementary"><code>complementary</code></a></dt>
+            <dd>"Any section of the document that supports but is separable from the main content, but is meaningful on its own even when separated from it."</dd>
+            <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_contentinfo"><code>contentinfo</code></a></dt>
+            <dd>"Meta information which applies to the first immediate ancestor whose role is not presentation."</dd>
+            <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_form"><code>form</code></a></dt>
+            <dd>"A region of the document that represents a collection of form-associated elements, some of which can represent editable values that can be submitted to a server for processing."</dd>
+            <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_main"><code>main</code></a></dt>
+            <dd>"Main content in a document."</dd>
+            <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_navigation"><code>navigation</code></a></dt>
+            <dd>"A collection of links suitable for use when navigating the document or related documents."</dd>
+            <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_region"><code>region</code></a></dt>
+            <dd>"A perceivable section of the page containing content that is sufficiently important for users to be able to navigate to the section."</dd>
+            <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_search"><code>search</code></a></dt>
+            <dd>"The search tool of a Web document."</dd>
+          </dl>
+          <p>Each of the roles below should be used at most once per document:</p>
+          <ul  class="pe-list pe-styled-lists--unordered">
+            <li><code>banner</code></li>
+            <li><code>main</code></li>
+            <li><code>contentinfo</code></li>
+          </ul>
+          <p>In most cases, that means they can each be used only once per HTML page. However, in some cases, a single HTML page may contain multiple items with role="document," and this would allow more per HTML page. We recommend that objects with these 3 roles be disjoint. In other words, they should not contain each other.</p>
+          <p>Add the role attribute to an object that <strong>contains</strong> the corresponding section of the document:</p>
+          <pre><code>&lt;div role="main"&gt; ... Main Content Here ... &lt;/div&gt;</code></pre>
+          <p><img src="images/labeled_landmarks.jpg" width="350" height="252" alt="In this example, there are two areas marked with role='navigation'. One has aria-label='Site' and the other has aria-label='Chapter'"><br>
+          If you use more than one of the same role, such as two navigation landmarks, provide labels distinguishing the two using an <a href="https://www.w3.org/TR/wai-aria/complete#aria-label"><code>aria-label</code></a> attribute or an <a href="https://www.w3.org/TR/wai-aria/complete#aria-labelledby"><code>aria-labelledby</code></a> attribute. <mark>While these labeling techniques are not yet widely supported, they work in JAWS 12 in our testing and will likely work in more screen readers soon.</mark></p>
+
+          <h4>Some implementation suggestions and tips</h4>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>There are still screen readers in use today that do not support these roles, so be sure to still include at least a heading or a skip link to take the user to the main content.</li>
+            <li>If you use some landmarks, we recommend that you cover every major section of the page using one role or another.</li>
+            <li>The <a href="https://www.w3.org/TR/wai-aria/complete#region"><code>region</code></a> landmark can be used if an area of your page needs a landmark and cannot use any of the roles defined above. Be sure to give it a label with <code>aria-label</code> or <code>aria-labelledby</code>.</li>
+            <li>There shouldn't be too many landmarks on a page. Just the main 2-6 page sections should be landmarks.</li>
+            <li>The application role changes screen reader navigation behavior dramatically and should not be used simply to provide a landmark.</li>
+          </ul>
+
+          <h4>HTML 5 Elements that Sometimes Act as Landmarks (nav, footer, aside, section, header, article, form)</h4>
+          <p>While WAI-ARIA landmarks are the most reliable way to create landmarks, it is important to note that some HTML 5 elements are announced as landmarks in some screen readers. The HTML 5 specification does not make it clear which elements should act as landmarks. Supplemental documentation does discuss this, but the current screen reader implementations do not match this documentation.</p>
+          <p>It is pretty clear that the intention is that <code>&lt;nav&gt;</code> will act as a landmark.</p>
+          <p>To move forward in this environment we suggest the following:</p>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>Include WAI-ARIA landmark markup for the following HTML 5 section elements when you want them to be used as landmarks:Most likely, you will not want <code>&lt;form&gt;</code> to act as a landmark.
+              <ul class="pe-list pe-styled-lists--unordered"> 
+                <li>&lt;footer role="contentinfo"&gt;</li>
+                <li>&lt;header role="banner"&gt;</li>
+                <li>&lt;nav role="navigation"&gt;</li>
+                <li>&lt;aside role="complementary"&gt;</li>
+                <li>&lt;section role="region"&gt;, or a more specific role if appropriate.</li>
+              </ul>
+            </li>
+            <li>Finally, note that in some cases elements with <code>role="article"</code> and <code>&lt;article&gt;</code> elements are being treated as landmarks.</li>
+           </ul>
+
+          <h4><mark>Frames</mark></h4><mark>keep until Mastering has stopped use??</mark>
+          <p>Traditional HTML Framesets provide one level of in-page navigation since keyboard users can jump between frames (usually using F6 and Shift F6) on a Web page. This does not apply to inline frames (<code>iframe</code>). If your site uses framesets and the main content frame has headings, your site probably meets <a href="#g9">Pearson Guideline 9</a>.</p>
+
+          <h4>Skip Links</h4>
+          <p>This is an older technique that would be deprecated if only browsers supported heading and landmark navigation without a screenreader or browser extension. </p>
+
+          <p>If your site has many pages with the same structure, you might supplement heading navigation by providing a small number of anchor links at the top of the page that allow users to jump to the main areas of the page. Just as consistent page design would allow sighted users to focus immediately on the main content area as they move from page to page, a link might bring screen reader users to the "main content" on every page. This is particularly helpful in sites without frames where the headings in the main content area vary from page to page. </p>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li><strong>Do not create mini-menus of these links;</strong> no more than two, maybe three, should be in any particular location</li>
+            <li>These links should refer to standard page elements such as 'main content' or 'navigation'.</li>
+            <li>Make sure these links are either visible at all times or appear when a user tabs to the links:<br>
+              <pre><code>.skiplink {
+    position: absolute;
+    clip: rect(1px 1px 1px 1px);
+    /* for Internet Explorer */
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0;
+    border: 0;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+}
+<mark>
+    /* :active is needed for Internet Explorer */
+    .skiplink:focus, 
+    .skiplink:active {
+    padding:3px;
+    position: static;
+    width:auto;
+    height:auto;
+    clip:auto;
+    overflow:initial;</mark>
+}</code></pre><br>
+              Otherwise keyboard access users who don't use a screen reader won't be able to use the links. They would also have to tab past invisible links, which can be confusing and time-consuming.</li>
+          <li>There are bugs in Internet Explorer 5-11 that sometimes make these in-page links fail. Test the skip links by activating each link; then tab again. If the second tab goes to the top of the page or back to your skip link, your skip link is not working. To be sure to avoid this, add tabindex="-1" to the target of the link as shown in the code example below. <mark><strong>There were 2 bugs causing this: one relating to HasLayout, which no longer affects IE versions we support. The other bug however does still hit IE11.</strong></mark><br>
+              <pre><code>
+&lt;a name="skiptarget" id="skiptarget" tabindex="-1"&gt;
+link name here
+&lt;/a&gt;
+</code></pre></li>
+          </ul>
+          <p><a href="skiplink.html" target="_blank">Open sample skip link in new tab.</a></p>
+
+          <h4>Tips</h4>
+          <ul class="pe-list pe-styled-lists--unordered">
+            <li>If JavaScript is used to change the page structure, be sure to update in-page navigation to reflect the change. For example, if the user can choose to remove the navigation bar and a link allows the user to jump to the navigation bar, the link should also be removed with the navigation bar.</li>
+            <li>Do not use the <code>accesskey</code> attribute to meet this guideline. <code>Accesskey</code> can actually block keyboard access. (<a href="#g6">Pearson Guideline 6</a> explains why.)</li>
+          </ul>
+
+          <h3>Android Applications</h3>
+          <p>Android applications are limited on what they can provide for in-page navigation. </p>
+
+          <h4>Screen Title</h4>
+          <p>The screen title should reflect the screen contents. The title can be set using the <code>setTitle</code> method.</p>
+
+          <h4>Headings</h4>
+          <p>Headings are not available in Android applications. Explicit headers can be provided in list views using <code>HeaderViewListAdapter</code>.</p>
+
+          <h3>iOS Applications</h3>
+          <p>There are several ways to support in-page navigation in iOS applications:</p>
+          <ol class="pe-list pe-styled-lists--ordered">
+            <li>Navigation bar</li>
+            <li>Tab Bar Controller</li>
+            <li>Headings</li>
+          </ol>
+
+          <h4>Navigation Bar</h4>
+          <p>The navigation bar provides easy navigation through an information hierarchy and the management of screen contents. To learn more about defining a navigation bar coding practices, see <a href="https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewControllerCatalog/Chapters/NavigationControllers.html#//apple_ref/doc/uid/TP40011313-CH2">Navigation Controllers</a>, <a href="https://developer.apple.com/documentation/uikit/uinavigationcontroller#//apple_ref/doc/uid/TP40006934">UINavigationController Class Reference</a>, and <a href="https://developer.apple.com/documentation/uikit/uinavigationbar#//apple_ref/doc/uid/TP40006887">UINavigationBar Class Reference</a>.</p>
+
+          <p>When the user moves to a new screen, the following should change:</p>
+          <ul  class="pe-list pe-styled-lists--unordered">
+            <li>The navigation bar title should change to current screen title which is set using UINavigationItem.</li>
+            <li>The label for the back-button must be the previous level’s title.</li>
+          </ul>
+
+          <h4>Tab Bar Controller</h4>
+          <p>The tab bar controller provides a way for a user to go to different views and allows users to easily move from one section to the next. For more information, see Tab Bar Controllers.</p>
+          
+          <h4>Headings</h4>
+          <p>VoiceOver users will use headings to navigate between elements on the screen. Headings can be defined in iOS6 and later through <code>UIAccessibilityTraitHeader</code>, <code>UITableView</code>, <code>UINavigationBar</code> or content displayed through web view.</p>
+
+          <h3>PDF in Acrobat</h3>
+
+          <h4>Headings</h4>
+          <p>Organize the document and set a logical heading structure by using the heading tag for the document title and h1-h6 tags for the section headers. This allows screen reader users to jump from heading to heading to read and interact with the content that interests them.</p>
+
+          <h4>Bookmarks</h4>
+          <p>Bookmarks are a set of links which allows a user to see the different sections of the document and easily navigate to them. Every major section in the document should be included as a bookmark.</p>
+          <img src="images/bookmarks.jpg" style="float:right;" width="187" height="150" alt="">
+          <p>To generate bookmarks, go to the Bookmarks Panel. The process to add bookmarks differs slightly depending on the version of Acrobat and the operating system. <mark>To add bookmarks in Acrobat 9 Pro</mark>:</p>
+          <ol class="pe-list pe-styled-lists--ordered">
+              <li>Go the Bookmarks Panel at View &gt; Navigation Panels &gt; Bookmarks.</li>
+              <li>Select "New bookmarks from structure" from the navigation panel options.</li>
+              <li>Select the structure elements to include in the list of bookmarks. The bookmark names come from the title of the tags. If there is no title, the tag content is used.</li>
+          </ol>
+          <p>If there are bookmarks that should not be included, delete the bookmark in the tree structure. Add missing bookmarks manually by using the New Bookmark option in the navigation panel options.</p>
+
+          <h3 style="clear:both;">Word</h3>
+
+          <h4>Headings</h4>
+          <p>Use Word heading styles to organize your document structure. A well-structured document that uses the built-in heading styles allows screen reader users to quickly and easily navigate the content. They can jump from heading to heading to access the information that interests them. </p>
+          <p>Beware of formatting in Word documents that makes the content look like a heading visually but does not use heading styles. Such text is interpreted as plain text by the screen reader. These documents have no structure for screen readers.<br>
+          <img src="images/word_headings.jpg" width="486" height="249" alt="In a Word document,  'Heading 3 + Trebuchet, 11 pt' is selected from the Format Menu to style a selected heading"></p>
+
+          <h4>Reference Links</h4>
+          <p>Headings are the most widely used in-document navigation method, but tables of content and sometimes indexes are also used.</p>
+          <p>When content contains other references such as bookmarks, bibliography entries and table of contents, and footnotes, add them by using the built-in Word features found on the reference menu. Do not create them manually.</p>
+
+          <h3>PowerPoint</h3>
+          <p>Screen reader users can navigate in slideshow mode easily with keyboard shortcuts. PowerPoint and JAWS shortcuts are available to read the page, read element by element, or advance the next animation event. See <a href="#g6">PG 6</a> for a partial list of shortcuts.</p>
+          <p>However, certain actions are not as intuitive. For example, when a page contains a video or audio clip a user should tab to access the media control. It is possible to add alternate text to the object, but JAWS does not read that text when they tab to put a focus on the media controls. When the focus is on the media object, the user can either select shift-F10 to access the context menu, then Preview or they can press alt-P to play. Test slides with non-standard content layout or interactive objects using a screen reader to ensure that all content is accessible by keyboard.</p>
+
+          <h3>Testing HTML</h3>
+          <p>There are three recommended ways to provide in-page navigation in HTML: ARIA landmarks, headings and In-page links ("skip links"). Using the techniques below, see if enough support has been provided so that users can move to any of the primary page areas.</p>
+
+          <h4>Rapid Code Review for HTML Pages</h4>
+          <table class="pe-table">
+              <caption>WAI_ARIA Landmarks</caption>
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>Use the <mark><a href="http://www.jimthatcher.com/favelets/">Landmarks favelet</a> to see what has been marked as a landmark on the page</mark>. You may want to disable CSS and then apply the favelet so that results are more easily viewed. Disabling CSS is possible from the View menu in most browsers or from the CSS menu of either the <a href="https://developer.paciellogroup.com/resources/wat/">Web Accessibility Toolbar</a> or the <a href="http://chrispederick.com/work/web-developer/">Web Developer Toolbar</a>.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Output</th>
+                  <td>All ARIA landmarks and HTML Section Elements are shown.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Analysis</th> 
+                  <td>See if the ARIA landmark roles have been used according to the specification. Below are the definitions of each role quoted from <a href="https://www.w3.org/TR/wai-aria-practices-1.1/">WAI-ARIA 1.1 Authoring Practices, Working Draft 28 June 2017</a>.
+                    <dl class="side-bar-box">
+                      <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_banner"><code>banner</code></a></dt>
+                      <dd>"A region that contains the prime heading or internal title of a page."</dd>
+                      <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_complementary"><code>complementary</code></a></dt>
+                      <dd>"Any section of the document that supports but is separable from the main content, but is meaningful on its own even when separated from it."</dd>
+                      <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_contentinfo"><code>contentinfo</code></a></dt>
+                      <dd>"Meta information which applies to the first immediate ancestor whose role is not presentation."</dd>
+                      <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_form"><code>form</code></a></dt>
+                      <dd>"A region of the document that represents a collection of form-associated elements, some of which can represent editable values that can be submitted to a server for processing."</dd>
+                      <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_main"><code>main</code></a></dt>
+                      <dd>"Main content in a document."</dd>
+                      <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_navigation"><code>navigation</code></a></dt>
+                      <dd>"A collection of links suitable for use when navigating the document or related documents."</dd>
+                      <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_region"><code>region</code></a></dt>
+                      <dd>"A perceivable section of the page containing content that is sufficiently important for users to be able to navigate to the section."</dd>
+                      <dt><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_lh_search"><code>search</code></a></dt>
+                      <dd>"The search tool of a Web document."</dd>
+                    </dl>
+                      <p>Also check for the following:</p>
+                      <ul class="pe-list pe-styled-lists--unordered">
+                        <li>Make sure that <code>banner</code>, <code>main</code> and <code>contentinfo</code> are not used more than once per document.</li>
+                        <li>Make sure everything on the page is included in one landmark or another.</li>
+                        <li>Look out for too many landmarks and/or too many HTML Section Elements; these are spoken as a blind user listens to the page and too many can be distracting.</li>
+                        <li>If <code>role="application"</code> is used, make note that that area of the site needs to be tested for accessibility as an application, using assistive technologies.</li>
+                      </ul> 
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table class="pe-table">
+              <caption>Headings</caption>
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>Use the <a href="http://www.jimthatcher.com/favelets/">headings favelet</a> to see what has been marked as a heading on the page. You may want to disable CSS and then apply the favelet so that results are more easily viewed. Disabling CSS is possible from the View menu in most browsers or from the CSS menu of either the <a href="https://developer.paciellogroup.com/resources/wat/">Web Accessibility Toolbar</a> or the <a href="http://chrispederick.com/work/web-developer/">Web Developer Toolbar</a>.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Output</th>
+                  <td>The <mark>Headings favelet</mark> brackets heading text with a heading level, like <code>&lt;h1&gt;…&lt;/h1&gt;</code> and the JS alert displays the number of headings and their levels, like: "9 headings, 1 h2, 3 h2 and 5 h6."</td>
+                </tr>
+                <tr>
+                  <th scope="row">Analysis</th> 
+                  <td>Looking at the page as a whole: Is there heading text at the beginning of each major section of the page. Do sections of similar format and importance have the same heading levels? Is text that looks like a heading text marked up as an HTML heading?<br>
+                      Also consider whether the heading structure is well-organized: There should be just one <code>h1</code>. Also, are there unreasonable gaps in heading numbering, like <code>h2</code> to <code>h5</code>?
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table class="pe-table">
+                <caption>Skip Links / In-Page Links</caption>
+                <thead class="pe-sr-only">
+                  <tr>
+                    <th scope="col">Testing technique</th>
+                    <th scope="col">Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Tools</th>
+                    <td>If you use Internet Explorer, you can use the <mark><a href="http://www.jimthatcher.com/favelets/">Skip Links favelet</a></mark> to display all in-page links. Or, preferably, use the Tab key to see if a Skip Link becomes visible at the top of the page. When it does, follow that link, and tab once more to confirm that input focus has moved correctly.
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Output</th>
+                    <td>The output of the favelet displays each in-page link and its effective target (where you actually end up on the page after followng the link) in the form of a dark rectangle. If the effective target is, for example, the whole page , then the input focus is not moving when you follow the skip link. When using the keyboard to test, make sure you not only jump to the location on the page visually, but that your next tab does not bring you back to the top of the page.</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Analysis</th> 
+                    <td>Is there a skip link and is it visible when it receives focus, is it close to the top of the page (at most number 2 or 3), does the skip link move to the main content of the page and from there does one more tab go to the next link in that main content area (and not back to the top).</td>
+                  </tr>
+                </tbody>
+              </table>
+
+          <h4>Screen Reader Commands</h4>
+              <table class="pe-table">
+                <thead class="table-head">
+                    <tr>
+                      <th scope="col">AT</th>
+                      <th scope="col">Headings Forward &amp; Back</th>
+                      <th scope="col">Specific Heading Level</th>
+                      <th scope="col">Landmarks Forward &amp; Back</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">JAWS</th>
+                    <td>h and Shift + h</td>
+                    <td>number (1-6) and Shift + number</td>
+                    <td>r and Shift + r (earlier than JAWS 15, use semicolon)</td>
+                  </tr>
+                  <tr>
+                      <th scope="row">VoiceOver on iOS (iPad, iPhone, iPod Touch)</th>
+                      <td>Turn rotor with two fingers to Headings. Swipe up or down with one finger.</td>
+                      <td>Not available in gestures - need keyboard.</td>
+                      <td>Turn rotor with two fingers to Landmarks. Swipe up or down with one finger. </td>
+                  </tr>
+                  <tr>
+                      <th scope="row"><mark>Window Eyes</mark></th>
+                      <td>h and Shift + h</td>
+                      <td>number (1-6) followed by h and number followed by Shift + h</td>
+                      <td>semicolon and Shift + semicolon</td>
+                  </tr>
+                  <tr>
+                      <th scope="row">NVDA</th>
+                      <td>h and Shift + h</td>
+                      <td>number (1-6) and Shift + number</td>
+                      <td>d and Shift + d</td>
+                  </tr>
+                </tbody>
+              </table>		
+
+          <h3>Testing Mobile Applications</h3>
+          <p>On mobile, the platform capabilities different. For Android applications, only the screen title can be set. In iOS if the navigation bar is used, the application title and back button must be set. Headings must be defined.</p>
+          <table class="pe-table">
+            <caption>Android</caption>
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>Visually look at the screen or use TalkBack for the screen title.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Output</th>
+                  <td>This title is visible and is announced by TalkBack.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Analysis</th>
+                  <td> The title provides context and helps orient the user to the screen. The title should be concise, descriptive and unique.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table class="pe-table">
+              <caption>iOS</caption>
+                <thead class="pe-sr-only">
+                  <tr>
+                    <th scope="col">Testing technique</th>
+                    <th scope="col">Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Tools</th>
+                    <td>Visually inspect the page to identify what the page title and the name of the back button.<br>
+                        Use VoiceOver to check the information read the screen title, the back button, and the headings. Read the screen using left to right or right to left swipe gestures. Turn the rotor settings to headings (Turn dial on the screen with two fingers and change the option to Headings). Swipe up or down with one finger to move from one heading to the next.
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Output</th>
+                    <td>The screen title is visible and is announced by VoiceOver.<br>
+                        The back button is visible and is read by VoiceOver.<br>
+                        <br>
+                        All visible headings on the screen should get focus when moving between headings using swipe up / down gesture when the rotor is set to headings.</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Analysis</th> 
+                    <td>The title provides context and helps orient the user to the screen. The title should be concise, descriptive and unique.<br>
+                        The back button is announced as a back button and has a unique name that indicates the page that the user will go back to.<br>
+                        <br>
+                        Looking at the page as a whole: Is there heading text at the beginning of each major section of the page. Is text that looks like a heading text marked up as a heading?</td>
+                  </tr>
+                </tbody>
+              </table>
+
+          <h3>Testing Word</h3>
+          <p>The table below provide some options for testing your Word documents:</p>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Word</th>
+                  <td>Check that each heading is using a heading style.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Word with JAWS</th>
+                  <td>Press Insert + Z to turn quick keys on. Press h or shift + h to move between headings.</td>
+                </tr>
+                <tr>
+                  <th scope="row"><mark>Word with Window Eyes</mark></th> 
+                  <td>Press Insert + Z to enter Word Navigation Mode. Press h or shift + h to move between headings. Press numbers (1-9) to navigate by heading level.</td>
+                </tr>
+              </tbody>
+            </table>
+
+          <h4>How to Check Heading Styles in Word 2007 and 2010</h4>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Reveal styles</th>
+                  <td>Shift-F1 (the Distinguish style source option can be useful)
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Styles panel</th>
+                  <td>Show the styles window by clicking the bottom-right arrow in Home &gt; Styles</td>
+                </tr>
+                <tr>
+                  <th scope="row">Style inspector</th> 
+                  <td>Click the button at the bottom of the styles window</td>
+                </tr>
+                <tr>
+                    <th scope="row">Style area</th> 
+                    <td>View in draft or outline mode. The style name is shown to the left of the content. To turn on, select Word Options &gt; Advanced &gt; Display &gt; style area pane width</td>
+                  </tr>
+              </tbody>
+            </table>	
+
+          <h3>Testing PDF in Acrobat</h3>
+          <table class="pe-table">
+              <thead class="pe-sr-only">
+                <tr>
+                  <th scope="col">Testing technique</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tools</th>
+                  <td>In a PDF document, there are two key ways to provide in-page navigation: headings and bookmarks.
+                    <ol class="pe-list pe-styled-lists--ordered">
+                      <li>Check that each heading has been defined as a heading.
+                        <ul class="pe-list pe-styled-lists--unordered">
+                          <li>PDF - Check that each heading is represented by the appropriate heading tag (h, h1-h6) in the Tags pane.</li>
+                          <li>PDF with JAWS - Press Insert + Z to turn quick keys on. Press h or shift + h to move between headings.</li>
+                          <li>PDF with Window Eyes - Press Insert + Z to enter Word Navigation Mode. Press h or shift + h to move between headings. Press numbers (1-9) to navigate by heading level.</li>
+                        </ul>
+                      </li>
+                      <li>Check the Bookmarks pane to verify that complete and properly worded bookmarks are used.</li>
+                    </ol>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Output</th>
+                  <td>Observe the results of this testing in the Bookmarks and Tags pane in Acrobat.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Analysis</th> 
+                  <td>Make note of content headings that are not in heading tags or which are tagged using an inappropriate heading level. Note missing or inappropriately worded bookmarks.</td>
+                </tr>
+              </tbody>
+            </table>	
+          <h3>Related Guidelines</h3>
+          <h4>508 Web § 1194.22 (o)</h4>
+          <p>A method shall be provided that permits users to skip repetitive navigation links. </p>
+
+          <h4>WCAG 2.0 A – SC 2.4.1 Bypass Blocks</h4>
+          <p>A mechanism is available to bypass blocks of content that are repeated on multiple Web pages. (Level A)</p>
+
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
-      <h2 id="g10"></h2>
+
+      <h2 id="g10">Guideline 10. Do not change the user's location on the screen unexpectedly (Continuity of  User's Place)</h2>
       <div class="guideline_content">
+        <p class="summary">Do not change the user's location (e.g. place on the page, page/url, frame, window or user agent) as follows:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li><strong>When the user moves to (on focus, on mouse over, on touch start) or away from (on blur, on mouse out, on touch end) any element including form control options</strong></li>
+          <li>OR <strong>When the user changes the setting of a <abbr title="User Interface">UI</abbr> control, unless each option can be reached by the keyboard without selecting it and it is clear what will happen when the setting is changed</strong></li>
+        </ul>
+
+        <h3>Rationale</h3>
+        <p>If the user's place in the media changes unexpectedly, it can be disorienting for any user and particularly disorienting for those with cognitive disabilities.</p>
+        <p>For keyboard access users, such a change can also mean a significant amount of effort to get back to where they wished to be. As such, for these users, it is particularly frustrating if they cannot control when such changes take place.</p>
+        <p>For screen reader users, such a change often means a change in the reading location. This can be confusing during an auditory experience. (Imagine your voice mail jumping from the middle of one message to the beginning of another message in the same person's voice.) For this reason, the user's place on the page should not change unexpectedly.</p>
+        <p>Even if some user action triggers the change, the situation is little better if the change is unexpected or unavoidable. (Imagine your voice mail jumping from the middle of one message to the beginning of another message each time you move your mobile phone.)</p>
+        <p>Warning or alert boxes that appear suddenly and suddenly gain focus are acceptable, if they are designed to interrupt activities for all users and are easy to dismiss. (Continuing with the voice mail analogy from above, the following message from your voice mail system wouldn't be confusing, after all: "Alert: The voice mail system will be down for the next fifteen minutes. Please call back after 12 pm.")</p>
+
+        <h3>General Techniques</h3>
+        <ol class="pe-list pe-styled-lists--unordered">
+          <li>If you change the user's place in the media in order to provide a warning or alert:
+            <ul class="pe-list pe-styled-lists--unordered">
+              <li><p>begin the message with text that identifies the message as a warning or alert</p>
+                <p>~AND~</p></li>
+              <li><p>provide a way to dismiss the message (For example, you might provide a "Close this Alert Box" button.)</p>
+                <p>~AND~</p></li>
+              <li>if possible, return the user to where they were on the page before the alert occurred.</li>
+            </ul>
+          </li>
+          <li>When hiding (removing) content that currently has focus, avoid an unexpected change in location by moving focus to some natural position just before or just after the dynamic content in the normal reading order.</li>
+          <li>It is the user's perception of their location that is important in this guideline. As such, do not unexpectedly change the content around the user's location to such an extent that they would believe they are on a new page or in a new location on the page.</li>
+        </ol>
+ 
+        <h3>Technology Specifics</h3>
+        <h4>HTML | XHTML | CSS | JavaScript</h4>
+        <ol class="pe-list pe-styled-lists--unordered">
+          <li>Several of the techniques for <a href="#g6">Pearson Guideline 6</a> also speak to this issue.</li>
+          <li>If you find that active elements are not in the ideal order when using the tab key to move through the page, correct this by adjusting reading order (see <a href="#g4">PG 4</a>). Do not use JavaScript to force particular changes in focus. For example, if you have three active elements on the page (A, B and C) that should be in that order, using JavaScript to move focus to C when B receives the blur event will violate this guideline. This would cause unexpected changes in focus as keyboard navigation must work both forwards (tab) and backwards (shift + tab). A user might trigger blur on B when moving backwards through the page, hoping to reach A, but this type of JavaScript would bring the user back to C.</li>
+        </ol>
+ 
+        <h3>Testing</h3>
+        <table class="pe-table">
+          <thead class="pe-sr-only">
+            <tr>
+              <th scope="col">Testing technique</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Tools</th>
+              <td>Test for this while you are testing keyboard access (<a href="#g6">Pearson Guideline 6</a>).</td>
+            </tr>
+            <tr>
+              <th scope="row">Output</th>
+              <td>If there is an error, you'll find that you are moved suddenly to a new location while trying to reach controls or while trying to reach options within controls.</td>
+            </tr>
+            <tr>
+              <th scope="row">Analysis</th>
+              <td>This type of error occurs when a user is suddenly and unexpectedly brought to a new location, assuming that this is not done to bring attention to an alert dialog message. This is such a bad user experience, that it is rarely present for mouse users. However, since keyboard access is tested less, this happens occasionally for keyboard access users.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Related Guidelines</h3>
+        <h4>WCAG 2.0 A - SC 3.2.1 On Focus:</h4>
+        <p>When any component receives focus, it does not initiate a change of context. (Level A)</p>
+        <h4>WCAG 2.0 A - SC 3.2.2 On Input:</h4>
+        <p>Changing the setting of any user interface component does not automatically cause a change of context unless the user has been advised of the behavior before using the component. (Level A)</p>
+
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
-      <h2 id="g11"></h2>
+
+      <h2 id="g11">Guideline 11. Use semantic markup for its intended purposes (Semantic Markup)</h2>
       <div class="guideline_content">
+        <p class="summary">Identify roles (e.g. heading, numbered list, bulleted list, data table, paragraph, emphasized text) of page elements using conventions for the media type. (And do not misidentify roles by using those conventions solely for their visual effects.)</p>
+        <h3>Rationale</h3>
+        <p>Media content will be transformed into:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Spoken words</li>
+          <li>Braille</li>
+          <li>Large text</li>
+          <li>Custom color-schemes</li>
+          <li>Custom layouts</li>
+        </ul>
+        <p>When the structure of the default layout is created through visual settings alone, it is difficult for software to transform the structure into other forms. However, when elements in the structure are tagged with text or markup that says what they are (i.e. semantic markup), the structure can be carried over.</p>
+        <p>For example, a typical visual Web user might use the indentations in a nested list to easily read only the top-level items first. To create parallel ease-of-use for screen reader users, the screen reader application must be able to identify the top-level list items. In HTML, list markup (e.g. <code>&lt;ol&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;li&gt;</code>) allows this with today's screen readers.</p>
+        <p>Also, breaking up large blocks of text by marking them as headings, paragraphs, lists, etc helps all users to read the content more easily and is especially helpful for those with learning disabilities or cognitive impairments.</p>
+
+        <h3>HTML &amp; JavaScript</h3>
+       
+        <h4>HTML | XHTML | CSS</h4>
+        <p><strong>Where markup exists to define an element-type, use that markup for that type of element.</strong></p>
+        <p>Examples:</p>
+
+        <h4>Headings</h4>
+        <p>When a Web Page includes headings, those headings should be marked up as HTML headings. HTML provides 6 levels of headings, which can be used to mark up heading text and to provide an outline structure for your page:</p>
+<pre><code>
+&lt;h1&gt;Happy Healthy Pets&lt;/h1&gt;
+. . .
+  &lt;h2&gt;Dogs&lt;/h2&gt;
+  . . .
+    &lt;h3&gt;Dog Health&lt;/h3&gt;
+    . . .
+    &lt;h3&gt;Dog Toys&lt;/h3&gt;
+    . . .
+  &lt;h2&gt;Cats&lt;/h2&gt;
+  . . .
+    &lt;h3&gt;Cat Health&lt;/h3&gt;
+    . . .
+    &lt;h3&gt;Cat Toys&lt;/h3&gt;
+    . . .</code></pre>
+        <p>If needed, use CSS to adjust the appearance of HTML headings:</p>
+<pre><code>
+h1 {
+  /* choose a good font size */
+  font-size: large;
+  /* Headings don't have to be bold */
+  font-weight: normal;
+  /* remove all that extra space */
+  padding: 0;
+  margin: 0;
+  /* add back just the space you want */
+  margin-top: 13px;
+  /* add any other formatting you like */
+  text-align: center;
+}</code></pre>
+        <p>If necessary for visual effects, you can also use an image within a heading tag. (See <a href="#g21">PG 21</a> regarding images of text.)</p>
+<pre><code>
+&lt;h1&gt;
+  &lt;img src="sea_mammals.gif" alt="Mammals of the Sea"&gt;
+&lt;/h1&gt;</code></pre>
+        <p><mark><strong>redundant, this is guideline 11</strong> But, don't use heading tags like <code>&lt;h1&gt;</code> for the headers inside tables. See Pearson Guideline 11 for the correct semantic markup for tables.</mark></p>
+
+        <h4>Lists (Definition Lists, Ordered Lists and Unordered Lists)</h4>
+        <p>When a Web page includes a list, the list should be marked up as an HTML list:</p>
+<pre><code>
+&lt;ul&gt;
+  &lt;li&gt;Chapter One
+    &lt;ul&gt;
+      &lt;li&gt;Activity One&lt;/li&gt;
+      &lt;li&gt;Activity Two&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Chapter Two
+    &lt;ul&gt;
+      &lt;li&gt;Activity One&lt;/li&gt;
+      &lt;li&gt;Activity Two&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+        <p>If needed, use CSS to adjust the appearance of HTML lists:</p>
+<pre><code>
+body &gt; ul {
+  /* remove bullets from first-level list directly inside body tag */
+  list-style-type: none;
+}
+body &gt; ul &gt; li {
+  /* adjust space between first-level list items */
+  margin-bottom: 20px;
+  /* Enclose each first-level list item in a box */
+  border-style: solid;
+  border-width: 1px;
+  width: 15em;
+  padding: .5em;
+}
+body &gt; ul &gt; li &gt; ul {
+  /* adjust how far second-level items are indented */
+  margin-left: 2em;
+  padding-left: 2em;
+  /* choose a bullet for second-level list items */
+  list-style-type: square;
+}
+/* child selector (&gt;) does not work in IE 6 - 
+   use class names if you need to support IE 6 */</code></pre>
+        <p><a href="list_css_by_child_selector.html" target="_blank">List CSS Sample Page (New Window)</a>.</p>
+
+        <h4>Tables and Table Headers</h4>
+        <p>Header cells for data tables should be marked up using <code>&lt;th&gt;</code> tags and data cells should be marked up using <code>&lt;td&gt;</code> tags. If a cell is both a header cell and a data cell, use <code>&lt;td&gt;</code> tags. (Additional mark-up, described below, will further clarify the purpose of the cell.</p>
+        <p>For data tables either <code>scope</code> attributes or <code>id</code> and <code>headers</code> attributes should associate header cells with data cells.</p>
+        <p>The <code>scope</code> attribute is easiest way to associate header cells with data cells. When a cell is column header use <code>scope="col"</code> and when the cell is a row header use <code>scope="row"</code>:</p>
+<pre><code>
+&lt;table border="1"&gt;
+  &lt;caption&gt;Average Park Use in 2008&lt;/caption&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;/td&gt;
+    &lt;th scope="col"&gt;People&lt;/th&gt;
+    &lt;th scope="col"&gt;Dogs&lt;/th&gt;
+    &lt;th scope="col"&gt;Other Pets&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th scope="row"&gt;Monday&lt;/th&gt;
+    &lt;td&gt;52&lt;/td&gt;
+    &lt;td&gt;30&lt;/td&gt;
+    &lt;td&gt;3&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th scope="row"&gt;Tuesday&lt;/th&gt;
+    &lt;td&gt;40&lt;/td&gt;
+    &lt;td&gt;23&lt;/td&gt;
+    &lt;td&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  . . .
+&lt;/table&gt;</code></pre>
+        <p>Table Scope Attribute Sample Page: <a href="table_scope_attributes.html">This Window</a> | <a href="table_scope_attributes.html" target="_blank">New Window</a>.</p>
+        <p>If a data table is so complex that <code>scope</code> attributes are not sufficient to associate header cells with data cells, simplify the table or break it into a number of simpler tables. If that is not possible, use <code>headers</code> and <code>id</code> attributes to associate header cells with data cells: Assign an <code>id</code> attribute to each header cell. Then give each data cell a <code>headers</code> attribute. The value of the <code>headers</code> attribute should be a space-delimited list of the ids the data cell's headers, as shown below:</p>
+<pre><code>
+&lt;table . . . &gt;
+  &lt;caption&gt;Average Park Use in 2009&lt;/caption&gt;
+  &lt;tr&gt;
+    &lt;th rowspan="2"&gt;&lt;/th&gt;
+    &lt;th colspan="2" id="p"&gt;People&lt;/th&gt;
+    &lt;th colspan="2" id="d"&gt;Dogs&lt;/th&gt;
+    &lt;th colspan="3" id="o"&gt;Other Pets&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th id="adult"&gt;Adults&lt;/th&gt;
+    &lt;th id="child"&gt;Children&lt;/th&gt;
+    &lt;th id="toy"&gt;Toy Dogs&lt;/th&gt;
+    &lt;th id="od"&gt;Other Dogs&lt;/th&gt;
+    &lt;th id="mam"&gt;Mammals&lt;/th&gt;
+    &lt;th id="birds"&gt;Birds&lt;/th&gt;
+    &lt;th id="rep"&gt;Reptiles&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th id="M"&gt;Monday&lt;/th&gt;
+    &lt;td headers="adult M"&gt;52&lt;/td&gt;
+    &lt;td headers="child M"&gt;30&lt;/td&gt;
+    &lt;td headers="toy M"&gt;3&lt;/td&gt;
+    &lt;td headers="od M"&gt;52&lt;/td&gt;
+    &lt;td headers="mam M"&gt;30&lt;/td&gt;
+    &lt;td headers="birds M"&gt;3&lt;/td&gt;
+    &lt;td headers="rep M"&gt;3&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th id="Tu"&gt;Tuesday&lt;/th&gt;
+    &lt;td headers="adult Tu"&gt;65&lt;/td&gt;
+    &lt;td headers="child Tu"&gt;31&lt;/td&gt;
+    &lt;td headers="toy Tu"&gt;8&lt;/td&gt;
+    &lt;td headers="od Tu"&gt;54&lt;/td&gt;
+    &lt;td headers="mam Tu"&gt;40&lt;/td&gt;
+    &lt;td headers="birds Tu"&gt;2&lt;/td&gt;
+    &lt;td headers="rep Tu"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  . . .
+&lt;/table&gt;</code></pre>
+        <p><a target="_blank" href="table_headers_id_attributes.html">Open Table Headers and Id Attributes Sample Page in a New Window</a>.</p>
+        <p><strong>Do not use semantic tags for visual effects that are not consistent with the meaning of the tag.</strong></p>
+        <p>For example, do not use <code>&lt;blockquote&gt;</code> to indent text when the text is not a quotation. And, do not use definition lists for items that are not definitions.</p>
+
+        <h4>Legacy HTML</h4>
+        <p>If you use table markup for layout (rather than for tabular data), use only <code>&lt;table&gt;&lt;tr&gt;</code> and <code>&lt;td&gt;</code> without any semantic markup (<code>&lt;th&gt;</code>, <code>scope</code>, <code>headers</code>, <code>&lt;caption&gt;</code>, <code>summary</code>). Add <code>role="presentation"</code> to the opening <code>&lt;table&gt;</code> tag for layout tables to prevent screen readers from announcing the tables.</p>
+        <p>Note: Unless the targeted user agents cannot support the desired layout in CSS, new content should not use tables for layout as they are not semantically correct. However, because layout tables were used so extensively, current assistive technology has been adapted for them. So, legacy content may use layout tables without significantly degrading the experience for users with disabilities. (As layout tables disappear from the Web, future assistive technologies  may not handle layout tables well.)</p>
+
+        <h4>JavaScript</h4>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>When adding content using JS, include correct semantic mark-up.</li>
+          <li>When adding content to the Document Object Model, use nodes that describe the content semantically:
+<pre><code>
+function addNews() {   
+  /* create a heading */
+  var myH = document.createElement("h3");
+
+  /* create a text node */
+  var myHT = document.createTextNode("Author is Online");
+
+  /* place text node into the heading element */
+  myH.appendChild(myHT);
+
+  /* place heading element on the page */
+  document.body.appendChild(myH);
+
+  /* do the same for a paragraph of text */
+  var myP = document.createElement("p");
+  var myPT = document.createTextNode("To chat with ...");
+  myP.appendChild(myPT);
+  document.body.appendChild(myP);
+}</code></pre>
+          </li>
+        </ol>
+ 
+        <h3>Android Applications</h3>
+        <p>User interface elements should be used in accordance with their intended purpose.  Wherever possible use standard UI elements as these will automatically convey the element role.</p>
+        <p><mark>Note: Android 5.0 and below does not currently provide semantic markup for headings.</mark></p>
+
+        <h3>iOS Applications</h3>
+        <p>User interface elements should be used in accordance with their intended purpose.  Wherever possible use standard UI elements as these will be automatically updated when the iOS changes and they contain the framework to make UI elements fully accessible.</p>
+        <p>The <code>UIAccessibility</code> informal protocol provides information about the type of user interface control. The <a href="https://developer.apple.com/documentation/objectivec/nsobject/1615202-accessibilitytraits">accessibilityTraits property</a> is used to define the element semantics. An element on the page can have more than one trait. The following traits can be used:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li><code>UIAccessibilityTraitButton</code> - button element</li>
+          <li><code>UIAccessibilityTraitLink</code> - link</li>
+          <li><code>UIAccessibilityTraitSearchField</code> - search field</li>
+          <li><code>UIAccessibilityTraitImage</code> - image</li>
+          <li><code>UIAccessibilityTraitStaticText</code> - element is treated as static text and cannot be changed</li>
+          <li><code>UIAccessibilityTraitHeader</code> - heading</li>
+        </ul> 
+
+        <h3>PDF in Acrobat</h3>
+        <p>Acrobat supports creating tags for any content within your PDF without changing the visual appearance of the PDF. The tools to use for this are the TouchUp Reading Order Tool (TURO) and the Tags Panel. The location of the Tags Panel and TURO will vary depending on your version of Acrobat. <mark>In Acrobat 9 Pro, for example, you can find the Tags Panel at View &gt; Navigation Panels &gt; Tags and TURO is at Advanced &gt; Accessibility &gt; TouchUp Reading Order or Alt + AAT. In version X they are under the Tools menu.</mark></p>
+        <p>If the document is simple and the tags do not already exist in the PDF, it is easiest to begin with Acrobat's automatic tagging (Advanced &gt; Accessibility &gt; Add tags to document) and then manually adjust any tags that are not semantically correct. For more complex pages use Acrobat's Tags Panel or TURO to add tags.</p>
+
+        <h4>PDF Tags</h4>
+        <p>Semantic markup is created using tags. In order for your document to be correctly interpreted by assistive devices, the correct tags need to be defined.</p>
+        <p>The common PDF tags include:</p>
+        <table class="pe-table">
+          <thead>
+            <tr>
+              <th scope="col">Tag Type</th>
+              <th scope="col">Purpose</th>
+              <th scope="col">Tag Name</th>
+              <th scope="col">Tag Tree Icon</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Heading</th>
+              <td>Document Title</td>
+              <td>&lt;H&gt;</td>
+              <td><img src="images/tag.jpg" width="25" height="21" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Heading Level 1-6</th>
+              <td>Section headings</td>
+              <td>&lt;H1&gt; to &lt;H6&gt;</td>
+              <td><img src="images/tag.jpg" width="25" height="21" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Paragraph</th>
+              <td>Paragraphs of text</td>
+              <td>&lt;P&gt;</td>
+              <td><img src="images/paragraph.jpg" width="22" height="21" alt="Paragraph Mark"></td>
+            </tr>
+            <tr>
+              <th scope="row">Figure</th>
+              <td>Images</td>
+              <td>&lt;Figure&gt;</td>
+              <td><img src="images/tag.jpg" width="25" height="21" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Caption</th>
+              <td>Captions for images and figures</td>
+              <td>&lt;Caption&gt;</td>
+              <td><img src="images/tag.jpg" width="25" height="21" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">List</th>
+              <td>Ordered and Unordered List Items</td>
+              <td>&lt;L&gt;</td>
+              <td><img src="images/tag.jpg" width="25" height="21" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">List Item</th>
+              <td>List item</td>
+              <td>&lt;LI&gt;</td>
+              <td><img src="images/tag.jpg" width="25" height="21" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Table of Contents</th>
+              <td>Group of table of contents items</td>
+              <td>&lt;TOC&gt;</td>
+              <td><img src="images/tag.jpg" width="25" height="21" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Table of Contents Item</th>
+              <td>Table of content entry</td>
+              <td>&lt;TOCI&gt;</td>
+              <td><img src="images/tag.jpg" width="25" height="21" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Table</th>
+              <td>Table made of rows and data cells</td>
+              <td>&lt;Table&gt;</td>
+              <td><img src="images/table.jpg" width="25" height="21" alt="rectangular grid"></td>
+            </tr>
+            <tr>
+              <th scope="row">Table Row</th>
+              <td>Row of data</td>
+              <td>&lt;TR&gt;</td>
+              <td><img src="images/table-row.jpg" width="24" height="20" alt="rectangular grid with one row highlighted in blue"></td>
+            </tr>
+            <tr>
+              <th scope="row">Table Header Cell</th>
+              <td>Row or column header for the data cell</td>
+              <td>&lt;TH&gt;</td>
+              <td><img src="images/header-cell.jpg" width="20" height="17" alt="rectangular grid with top left corner cell in red"></td>
+            </tr>
+            <tr>
+              <th scope="row">Table Data Cell</th>
+              <td>Data</td>
+              <td>&lt;TD&gt;</td>  
+              <td><img src="images/table-cell.jpg" width="26" height="20" alt="rectangular grid with one cell in blue"></td>
+            </tr>
+            <tr>
+              <th scope="row">Link</th>
+              <td>External hyperlinks</td>
+              <td>&lt;Link&gt;</td>
+              <td><img src="images/tag.jpg" width="25" height="21" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Reference</th>
+              <td>References to text in the same document by on another page</td>
+              <td>&lt;Reference&gt;</td>
+              <td><img src="images/tag.jpg" width="25" height="21" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Quote</th>
+              <td>Inline quote</td>
+              <td>&lt;Quote&gt;</td>
+              <td><img src="images/tag.jpg" width="25" height="21" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Blockquote</th>
+              <td>Quotation</td>
+              <td>&lt;Blockquote&gt;</td>
+              <td><img src="images/tag.jpg" width="25" height="21" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Document</th>
+              <td>Container Element</td>
+              <td>&lt;Document&gt;</td>
+              <td><img src="images/tag.jpg" width="25" height="21" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Part</th>
+              <td>Container Element</td>
+              <td>&lt;Part&gt;</td>
+              <td><img src="images/tag.jpg" width="25" height="21" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Division</th>
+              <td>Container Element</td>
+              <td>&lt;Div&gt;</td>
+              <td><img src="images/tag.jpg" width="25" height="21" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Article</th>
+              <td>Container Element</td>
+              <td>&lt;Art&gt;</td>
+              <td><img src="images/tag.jpg" width="25" height="21" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Section</th>
+              <td>Container Element</td>
+              <td>&lt;Sect&gt;</td>
+              <td><img src="images/section.jpg" width="23" height="23" alt="Note with lines with one section highlighted with orange rectangle"></td>
+            </tr>
+            <tr>
+              <th scope="row">Span</th>
+              <td>Group of words</td>
+              <td>&lt;Span&gt;</td>
+              <td><img src="images/tag.jpg" width="25" height="21" alt="Generic tag"></td>
+            </tr>
+            <tr>
+              <th scope="row">Note</th>
+              <td>Footnotes</td>
+              <td>&lt;Note&gt;</td>
+              <td><img src="images/tag.jpg" width="25" height="21" alt="Generic tag"></td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Sometimes tags will appear in the tags tree that are different than the defined standard tag names used by Adobe Acrobat. These are defined by the authoring software tool. For example, Microsoft Word often uses the tag Normal instead of &lt;P&gt; for paragraphs.</p>
+        <p><strong>Role mapping</strong> is a function that is mainly used with authoring software tools to map these non-standard tags to the standard Adobe Acrobat tags. If the tag is mapped to a standard tag name then you do not need to change the tag names in the tags tree.</p>
+        <p>To view the list of role map items by selecting Edit Role Map in the Tags navigation panel options. If any of the role mappings are incorrect, edit the item. If a tag does not appear in this list, you can manually add it using the functions in this window.<br>
+        <img src="images/role-map.jpg" width="328" height="369" alt=""></p>
+
+        <h4>Headings</h4>
+
+        <h5>Document Title</h5>
+        <p>The main document title should be labeled using the tag. Typically this is shown on the cover or the first page of the document. This tag should only be used once in the document.</p>
+
+        <h5>Section Headings</h5>
+        <p>When a document includes section headings, those headings should be defined as heading tags. Adobe Acrobat provides 6 levels of headings which can be used define the hierarchy of headings and sub-headings in the document.</p>
+
+        <h5>Image Section Headings</h5>
+        <p>If an image is the heading for the section, tag the image as a heading. Add a new tag for the heading at the appropriate level and then add the &lt;Figure&gt; tag as a child of the heading tag.</p>
+        
+        <h4>Lists</h4>
+        <p>If the document uses a list, the list should be marked up using list tags (&lt;L&gt; and &lt;LI&gt;). The &lt;LI&gt; tags should be grouped as children of a list (&lt;L&gt;) tag.<br>
+          <img src="images/simple-list.jpg" width="264" height="248" alt="Common list structure is L tag with children LI tags. Typically under the LI tag is either the content, P tag with content or LBody tag."></p>
+
+        <h5>Tip:</h5>
+        <p>Sometimes you may see &lt;LBody&gt; present in the tags tree. This tag is not used by screen readers and is not necessary. If they are present, they can be kept but there is no need to manually add them.</p>
+
+        <h5>Unordered Lists</h5>
+        <p>Unordered lists will often include the bullet character within the list item &lt;LI&gt; tag. To tell screen readers to ignore this character, select the bullet and change it to background content using TURO. This will artifact the tag and it will no longer show up in the tags tree.</p>
+
+        <h5>Ordered Lists</h5>
+        <p>Ordered lists are defined in the same way as unordered lists. However, the numbers within the list text needs to be part of the &lt;LI&gt; tag and should not be set to background text.<br>
+          <img src="images/ordered-list.jpg" width="270" height="213" alt=""></p>
+
+        <h5>Nested Lists</h5>
+        <p>To nest lists, add the &lt;L&gt; tag as a child to the &lt;LI&gt; of the parent list. The structure could look something like this:<br>
+          <img src="images/list-structure.jpg" width="266" height="256" alt="The &lt;L&gt; tag has 4 &lt;LI&gt;.  Under one of the &lt;LI&gt; is a sublist. The sublist &lt;L&gt; is a child of the &lt;LI&gt;"></p>
+
+        <h4>Paragraphs</h4>
+        <p>All text that is not a heading or cannot be tagged with another tag should be defined as a paragraph (&lt;P&gt;) tag. This includes introductory paragraphs, abstracts and text that are highlighted graphically.</p>
+        <p>Sometimes paragraphs are defined using non-standard tag names. These may be mapped using the Role Mapping and would act like a paragraph. Check the role mapping before reassigning the tag as these may not need to be changed.</p>
+        
+        <h5>Content that spans multiple pages</h5>
+        <p>If text straddles two or more pages, the text should be combined into a single paragraph tag. To combine two tags, select and expand each tag in the tags panel to show their text containers. Drag one to combine the two containers under one tag, and then delete the remaining, empty tag. The same situation can occur with lists, tables, and tables of content but they tend to be easier to identify because their parent tag repeats.</p>
+        <p>Multiple tables are often caused intentionally by the content author. For screen reader users it is best to combine them into one table with one column header row.</p>
+
+        <h4>Tables</h4>
+        <img src="images/table-tag-structure.jpg" style="float:right;" width="137" height="276" alt="">
+        <p>Tables need to be structured in a way that helps users who cannot see the screen understand the relationship of the data in the cells. The following table tags should be used:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Table row (&lt;TR&gt;) to define each row of table cells</li>
+          <li>Table headers (&lt;TH&gt;) for table header cells</li>
+          <li>Table data (&lt;TD&gt;) for table data cells</li>
+        </ul>
+
+        <h5 style="clear:both;">Table Headers</h5>
+        <p>Both row and column headers can be defined using the table header (&lt;TH&gt;) tag and scope to define whether or not a cell is a column or row header.</p>
+        <p>The easiest way to set the scope of a header cell is using the table editor.<br>
+          <img src="images/table-cell-properties.jpg" width="346" height="114" alt=""></p> 
+        <p>In the properties, set the type to header cell and the scope to the appropriate value. The scope property can have the following values:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Row – for row headers</li>
+          <li>Column – for column headers</li>
+          <li>Both – for cells that are both a row header and a column header</li>
+        </ul>
+        <p>If the table has complex headers and the scope attributes are not sufficient to associate header cells with data cells, you will need to use header IDs. This usually happens when you have a header cell that spans multiple columns and only applies to some of the cells below.</p>
+        <p>To assign to headers and IDs to the table cells, first define the cell as a &lt;TH&gt; then give the header cell an ID. Make sure that the scope is set to NONE. Then for each data cell, assign the associate header cell IDs.<br>
+          <img src="images/header-complex-properties.jpg" width="347" height="357" alt="In the table cell properties dialog, set the type radio button to header cell. The scope should be set to none. In the attribute section, type in a value in the ID textbox."></p>
+
+        <h5>Screen Reader Tips:</h5>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li><mark>JAWS 12 will only read column header. Row headers are ignored. This is a bug in JAWS.</mark></li>
+          <li>Screen readers read the header ids starting with the column header and then the row headers. The order displayed in the Associated Header Cells IDs list does not matter.</li>
+        </ul>
+
+        <h5>Spanning Cells</h5>
+        <p>If a cell spans two or more rows or columns should use RowSpan and ColSpan attribute to define the number of rows or columns that the cell spans. The easiest way to do this is to use TURO and the Table Editor. In the cell context menu select Table Editor. This will show the table structure on the page. In the cell that spans multiple cells, right-click and select Table Cell Properties. In this dialog, set the row or column span to the number of cells spanned.</p>
+
+        <h5>Blank Cells</h5>
+        <p>If your table has blanks cells, these may not be automatically defined in the table tags. If there are blank cells that are present but there is no tag in the tags tree, add an empty &lt;TD&gt; tag so that the row or column has the same number of cells as the other rows.</p>
+ 
+        <h3>Word</h3>
+        <p>When formatting is used to convey special meaning to content, be sure to use the built-in Word styles and features as much as possible to maximize accessibility. For example, use styles for emphasized content, lists, tables, heading, headers, and footers. Conversely, when those styles and features are used, ensure that they are used to convey particular meaning or organization of content and not simply used because the visual appearance matches a desired look.</p>
+
+        <h4>Headings</h4>
+        <p>Define all headings using Word heading styles. Modify the Word heading styles to change the font, color and other style elements (see <a href="#g9">PG 9 In Page Navigation</a> for more information on headings).</p>
+        <p>Avoid creating a new Word style for headings as this will not be defined as a heading even it is defined as style that is based on a heading.</p>
+        <p>Word styles should not be misused or used just for visual appearance of the formatting.</p>
+
+        <h4>Lists</h4>
+        <p>The toolbar options in Home &gt; Paragraph for unordered (bullet) and ordered (numbered) lists automatically apply list styles. Other styles are available in the styles window for indented lists, and using indent or tab automatically applies them.</p>
+        <p>Avoid using empty list items for spacing. Instead, apply paragraph spacing on individual lines as necessary. Do not simulate lists with direct formatting. Use Word styles.</p>
+
+        <h4>Tables</h4>
+        <p>Use Word built-in tables to present tabular content and data. Do not simulate tables with white space (adding spaces and tabs or using columns) or use draw table functions in Word as they will not provide the semantic table structure.</p>
+        <p>In the table properties, set the following options:<br>
+          <img src="images/table-properties.jpg" width="433" height="238" alt=""></p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Allow row to break across pages should not be checked</li>
+          <li>If the table has column headers, select the top row and set check the heading row should repeat across pages checkbox</li>
+        </ul>
+        <p>Avoid empty table rows and splitting content into multiple tables as this will make the table harder to understand.</p>
+        <p>Note: There is no way to explicitly set row and column headers in Word.</p>
+  
+        <h4>Paragraphs</h4>
+        <p>Use paragraph spacing for layout rather than adding extra blank paragraphs. Think of Word paragraphs as containers of content, not as the return key on a typewriter. All paragraph containers should have content otherwise JAWS will announce them as blank.</p>
+
+        <h4>Drop Caps</h4>
+        <p>Do not use Word's drop caps feature. The letters are set up as text boxes, which are not read by screen readers.</p>
+
+        <h4>Header / Footer</h4>
+        <p>Use the Word built-in feature rather than simulating them. They are not read by screen readers so make sure that any important information is also included once in the overall document content.</p>
+
+        <h4>Styles</h4>
+        <p>Choose styles over direct formatting as much as possible. Though the use of character styles such as emphasis and strong is encouraged for ease of document consistency and maintenance, at this time screen readers do not announce them.</p>
+        <p>However, consider incorporating character styles in your approach anyway for the benefit for document maintenance. As a general best practice, avoid creating many variations of styles when a small set will work. Name the styles for the content that they represent and how they should be used rather than for their appearance, e.g. "Term definition" rather than "bold 15 before 10 after". This will simplify the conversion to PDF.</p>
+
+        <h3>PowerPoint</h3>
+        <p>Use the built-in PowerPoint elements. For example, use the numbered and bulleted list options on the Home tab, and use Title containers. Empty content such as lists and paragraphs can confuse screen reader users when they navigate by paragraphs or when lists are announced with the wrong number of elements. Fragmented content can also be confusing when it is spoken. Look for situations where lines are broken up to wrap around objects. Overall, try to use the appropriate content layout, indentation, and paragraph spacing for visual alignment, rather than tabs, paragraphs, and spaces.</p>
+        
+        <h4>Special Content</h4>
+        <p>Some special content is not accessible in PowerPoint. Embedded Excel charts and tables, and Word documents are visible and accessible in edit mode, e.g. the "normal presentation view". Users can navigate to the object and interact with it. However, in slideshow mode, they cannot interact with the object to view data, text, or graph elements. Excel data pasted "as HTML" can be accessible. Consider replacing Word content and Excel data with normal PowerPoint content holders, tables with PowerPoint tables, and graphs with PowerPoint graphs or screenshot pictures.</p>
+
+        <h4>Multimedia</h4>
+        <p>Audio, video, and Flash movies should contain captions, textual descriptions, or spoken descriptions as appropriate. </p>
+        <p><mark>Note: PowerPoint 2010 includes a new tool, Sub-titling Text Add-in for Microsoft PowerPoint (STAMP) that allows you to add captions to video and audio, or import Timed Text Markup caption files from within PowerPoint.</mark></p>
+        <p>Interactive Flash content can be difficult to make accessible. Be sure to test it using a screen reader to make sure that you can tab to the control to activate it, interact with it using the keyboard, and hear the appropriate content from the screen reader.</p>
+
+        <h3>Excel</h3>
+        <p>Microsoft Excel has a built-in function that can be used to give names to a cell or a range of cells. Screen readers look for certain specific names to identify which cells contain row and column titles.</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>To create both row and column headers, move to the intersection of the row and column titles and add the name to the cell using the "Define Name" option in the context menu (right click or shift+F10). Set the name to Title (one word with mixed case).</li>
+          <li>To create just row headers, navigate to the column containing the titles and open the Define Name dialog box. Set the name to RowTitle (one word with mixed case and no spaces).</li>
+          <li>To create just column headers, navigate to the column containing the titles and open the Define Name dialog box. Set the name to ColumnTitle (one word with mixed case and no spaces).</li>
+        </ul>
+        <p>NOTE: These procedures can also be used when column titles span multiple rows or when row titles span multiple columns. When the column titles span multiple rows, select all of the rows before creating the ColumnTitle definition. When the row titles span multiple columns, select all of the columns before creating the RowTitle definition.</p>
+
+        <h3>Testing HTML</h3>
+        <p>Semantic markup includes heading markup. But testing for heading markup is not included here as it is included under <a href="#g9">Pearson Guideline 9</a> on in-page navigation.</p>
+
+        <table class="pe-table">
+          <caption>List Items, Quotes, and Blockquotes</caption>
+          <thead class="pe-sr-only">
+            <tr>
+              <th scope="col">Testing technique</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Tools</th>
+              <td><p>In the Structure menu of the <a href="https://developer.paciellogroup.com/resources/wat/">Web Accessibility Toolbar</a> apply the List Items function and the Q /Blockquote function.</p>
+                <p>Or, use Web Developer Toolbar &gt; Outline Custom Elements to outline <code>ul</code>, <code>ol</code>, <code>li</code>, <code>dl</code>, <code>dd</code>, <code>dt</code>, <code>quote</code> and <code>blockquote</code>. Check "Show element names when highlighting" and use commas to separate tags in the dialog box.</p></td>
+            </tr>
+            <tr>
+              <th scope="row">Output</th>
+              <td>If any elements have been marked as unordered lists, ordered lists, definition lists, blockquotes or quotes, they will be marked as such on the page.</td> 
+            </tr>
+            <tr>
+              <th scope="row">Analysis</th>
+              <td><p>Skim the page looking for any lists, definition lists or block quotations that are not marked as such. This step is not necessary for ordinary quotations, as quotation marks effectively identify these.</p>
+                <p>Also, check all items that are shown with markup to be sure they really contain what the markup indicates. For example, a block quotation should be a quotation and a definition list should be used to hold definitions. These elements should not be used solely for their visual effects.</p>
+                <p>The importance of coding distinct lists can be subtle. The banner of a site, for example, might contain three sections of links: main navigation, account information, and corporate links. The distinction between the groups will be obvious visually. If these are marked up as separate unordered lists, the distinction between the groups of links will be clear to a blind user too.</p></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="pe-table">
+          <caption>Data Tables</caption>
+          <thead class="pe-sr-only">
+            <tr>
+              <th scope="col">Testing technique</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Tools</th>
+              <td><mark>Use the <a href="http://www.jimthatcher.com/favelets/">Data Tables favelet</a> on every page.</mark></td>
+            </tr>
+            <tr>
+              <th scope="row">Output</th>
+              <td>The Alert from the Data Tables favelet will specify the number of tables, the number accessible data table markup attributes, and the number of tables with <code>role</code> attributes. Individual tables will be highlighted with access attributes displayed. And, <code>role="presentation"</code> will be displayed for each table where that role has been set.</td>
+            </tr>
+            <tr>
+              <th scope="row">Analysis</th>
+              <td><p>If there are no tables, there is nothing to worry about.</p>
+                <p>If tables are used for layout and they use access attributes (<code>caption</code>, <code>summary</code>, <code>th</code>, <code>scope</code>, or <code>headers</code>) then these are errors. Layout tables should not have these access attributes. If tables are used for layout, see if the tables have <code>role="presentation"</code> set. If not, this is an error for newly developed pages.</p>
+                <p>If there are simple data tables, be sure that row and column headers are specified. This can be done by using <code>th</code> or <code>scope</code> on each header cell. If the top-left corner cell is a header cell, it must have a <code>scope</code> attribute to say whether it is a row or column header. More complex data tables may have many cells that need clarification of their scope using the scope tag. Data tables can also be marked up with <code>headers</code>/<code>id</code> combinations, where every header cell has an <code>id</code> and every data cell has a <code>headers</code> attribute listing (space delimited) the <code>id</code>s of its header cells.</p>
+                <p>Note: If the page is being edited, we recommend using both <code>th</code> and <code>scope</code> on every header cell and <code>td</code> with <code>scope</code> for cells that are both data cells and headers cells. However, for older pages that are coded correctly otherwise, we don't require editing the page to add the <code>scope</code> attribute <em>unless there is ambiguity</em>.</p></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Testing Mobile Applications</h3>
+        <table class="pe-table">
+          <thead class="pe-sr-only">
+            <tr>
+              <th scope="col">Testing technique</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Tools</th>
+              <td>Read the page using a screen reader.</td>
+            </tr>
+            <tr>
+              <th scope="row">Output</th>
+              <td>The page elements are announced with name and role. For example, a heading is announced with the name of the heading and the screen reader tells the user it is a heading.</td>
+            </tr>
+            <tr>
+              <th scope="row">Analysis</th>
+              <td><p>As the screen reader reads the name of the control and the appropriate role (e.g. headings, button, link, image, etc.).</p>
+                <p>NOTE: Android is limited on the type of element that can be defined. Headings cannot be defined on Android.</p></td>
+            </tr>
+          </tbody>
+        </table>
+ 
+        <h3>Testing PDF in Acrobat</h3>
+        <table class="pe-table">
+          <thead class="pe-sr-only">
+            <tr>
+              <th scope="col">Testing technique</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Tools</th>
+              <td><p>Use the Tags pane in Acrobat to verify the semantic markup of content, with "highlight content" checked in the pane menu. To easily find tags, highlight content and then select "Find tag from selection." Select the tags to see the associated content, or use the up / down and left / right cursor keys to navigate in the tags tree.</p>
+                <p>Use the table editor and the tags tree to verify that tables are tagged correctly and that cells have the correct attributes.</p></td>
+            </tr>
+            <tr>
+              <th scope="row">Output</th>
+              <td><p>Inspect each tag in the tags tree, verifying that all content is tagged and that the appropriate tag is used. For a list of common PDF tags, see the "PDF in Acrobat – PDF tags" section. Ensure that lists and tables are nested correctly in the tags.</p>
+                <p>If non-standard tag names are used, verify that the role mapping maps these non-standard tag names to PDF tags. To see the role map, right click on a tag and select edit role map.</p>
+                <p>Verify that a data table in the content is represented by a &lt;table&gt; tag with a table row &lt;TR&gt; tag for each row and table header &lt;TH&gt; or table data &lt;TD&gt; tags under each &lt;TR&gt;, one for each column. Cells merged across columns should be represented by one &lt;TH&gt; or &lt;TD&gt; for the entire merged cell. For best usability it is recommended that only header cells, not data cells, are merged. Tables that do not contain tabular data, which are used for layout only, should not be tagged as tables.</p>
+                <p>Open the table editor and verify that row and/or column header cells are marked as header with the appropriate scope. Header cells in the top row have column scope; those in the first column have row scope. If the top left cell is blank, it should be marked as a data cell, not as a header cell.</p></td>
+            </tr>
+            <tr>
+              <th scope="row">Analysis</th>
+              <td>Document any variance from the guideline points.</td>
+            </tr>
+          </tbody>
+        </table>
+ 
+        <h3>Related Guidelines</h3>
+        <h4>508 Web § 1194.22 (d)</h4>
+        <p>Documents shall be organized so they are readable without requiring an associated style sheet.</p>
+
+        <h4>508 Web § 1194.22 (g)</h4> 
+        <p>Row and column headers shall be identified for data tables.</p>
+
+        <h4>508 Web § 1194.22 (h)</h4>
+        <p>Markup shall be used to associate data cells and header cells for data tables that have two or more logical levels of row or column headers.</p>
+
+        <h4>WCAG 2.0 – Level A - 1.3.1 Info and Relationships:</h4>
+        <p>Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text. (Level A)</p>
+
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
       <h2 id="g12"></h2>
       <div class="guideline_content">
         <a class="skippy" href="#toc">Back to TOC</a>
