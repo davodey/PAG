@@ -78,7 +78,7 @@
         <li><a href="#g7">7: </a></li>
         <li><a href="#g8">8: </a></li>
         <li><a href="#g9">9: </a></li>
-        <li><a href="#g10">10: </a></li>
+        <li><a href="#g10">10: Do not change the user's location on the screen unexpectedly (Continuity of  User's Place) </a></li>
         <li><a href="#g11">11: Use semantic markup for its intended purposes (Semantic Markup)</a></li>
         <li><a href="#g12">12: </a></li>
         <li><a href="#g13">13: </a></li>
@@ -112,6 +112,7 @@
         <li><a href="#g41">41: </a></li>
         <li><a href="#g42">42: </a></li>
       </ul>
+
       <h2 id="g1">Guideline 1. Choose technologies (e.g. HTML vs. Flash) with accessibility in mind (Choosing Technologies)</h2>
       <div class="guideline_content">
         <p class="summary">When choosing a document type or a user interface technology (e.g. HTML, Flash, Flex, PDF, mobile application), choose the most accessible technology that can accomplish project requirements.</p>
@@ -317,6 +318,7 @@ Essential Exception: the time limit is part of an activity where timing is essen
 
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
       <h2 id="g3">Guideline 3. Allow instructors, administrators, or students to adjust time limits (Timed Tests)</h2>
       <div class="guideline_content">
         <p class="summary">If Pearson Guideline 2 would invalidate a timed activity:</p>
@@ -679,7 +681,8 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <p>The goal is to alert screen reader users to the new information. In addition, especially if the feedback appears while the user is typing into a field, the goal will be to provide the error message without moving the screen reader user's focus (i.e. without taking the text-insertion point out of the form field).</p>
         <p>The WAI-ARIA "alert" role makes this possible. Simply make <code>role="alert"</code> an attribute of <strong>both</strong>:
         <ul class="pe-list pe-styled-lists--unordered">
-          <li>The outer-most container that is added to the page AND</li>
+          <li><p>The outer-most container that is added to the page</p>
+            <p>~AND~</p></li>
           <li>The parent element of that element. Create a container just for the purpose of receiving the alert. (Needed for Safari with VoiceOver as well as, the lower priority configuration, Window-Eyes with IE)</li>
         </ul>
         <p><mark>To support TalkBack with Chrome on Android devices add <code>aria-live="assertive"</code> to the container element that will receive the alert. Although not a top priority configuration, this is also needed to support NVDA with IE.</mark></p>
@@ -694,7 +697,7 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <ul class="pe-list pe-styled-lists--unordered">
           <li>Most often, screen readers read the title of the page when the page loads. So, it is helpful to including all or part of the error message in the page title.</li>
           <li>The most common way that screen reader users explore a new page is that they read the headings on the page. Making all or part of the error message a heading is very helpful.</li>
-          <li>Screen reader users often tab from form element to form element, hearing the form label for each form element. In cases where detailed form error messages are provided for each form field, including those errors as part of the form label can be a helpful technique. See Pearson Guideline 14 for techniques on how to code form labels so that they will be read when screen reader users tab to form elements.</li>
+          <li>Screen reader users often tab from form element to form element, hearing the form label for each form element. In cases where detailed form error messages are provided for each form field, including those errors as part of the form label can be a helpful technique. See <a href="g14">Pearson Guideline 14</a> for techniques on how to code form labels so that they will be read when screen reader users tab to form elements.</li>
         </ul>
         <p>If you allow the page to load without the error message, and then add the error message using JavaScript after the page has fully loaded, you can use the <code>role="alert"</code> technique described in the section just above.</p>
 
@@ -711,12 +714,14 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <p>When the dialog appears, use JavaScript to move focus to the interactive element in the dialog that is most likely to be used first. When the dialog is closed, be sure to return focus to a logical location, such as the control that caused the dialog to appear.</p>
         <p>If the dialog serves an "alert" function, add the following two attributes to the outermost element that is added to the page when the message appears:</p>
         <ul class="pe-list pe-styled-lists--unordered">
-          <li><code>role="alertdialog"</code> AND</li>
+          <li><p><code>role="alertdialog"</code></p> 
+            <p>~AND~</p></li>
           <li><code>aria-describedby="id"</code> where <code>id</code> is the id of the message you want read automatically when the alert dialog first appears.</li>
         </ul>
         <p>If the dialog isn't really an "alert" and is more of just a separate window, add the following two attributes to the outermost element that is added to the page when the message appears:</p>
         <ul class="pe-list pe-styled-lists--unordered">
-          <li><code>role="dialog"</code> AND</li>
+          <li><p><code>role="dialog"</code></p>
+            <p>~AND~</p></li>
           <li><code>aria-label="my message"</code> where <code>my message</code> is the message you want read automatically when the dialog first appears OR <code>aria-labelledby="id"</code> where <code>id</code> is the id of the message you want read automatically when the alert dialog first appears. (Yes, aria-labelledby should have the repeated letter l.)</li> 
         </ul>
         <p>These attributes tell screen readers and screen magnifiers to announce these additions to the screen as alert dialogs or as dialogs. Some screen readers will also switch into "forms mode" for navigation of the dialog. In this mode, the dialog is announced and then screen reader users move between active elements, often skipping inactive content. So, be sure that all content in the dialog is included through <code>aria-describedby</code>, <code>aria-label</code>, or <code>aria-labelledby</code> and/or through form labels. Form labels are discussed in detail in <a href="#g14">Pearson Guideline 14</a>.</p>
@@ -862,10 +867,11 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <p>Note: This success criterion is primarily for Web authors who develop or script their own user interface components. For example, standard HTML controls already meet this success criterion when used according to specification.</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
       <h2 id="g6">Guideline 6. Check keyboard access (access without a pointing device) and correct any issues (Keyboard Access)</h2>
       <div class="guideline_content">
         <p class="summary">Ensure that keyboard keys (instead of a mouse and instead of touch screen gestures that require eye-hand coordination) can be used to:</p>
-        <ul>
+        <ul class="pe-list pe-styled-lists--unordered">
           <li><strong>Reach and operate all controls</strong></li>
           <li>AND <strong>Navigate through active elements, following the reading order</strong></li>
         </ul>
@@ -1357,6 +1363,7 @@ cursor: pointer;
         <p>If a Web page can be navigated sequentially and the navigation sequences affect meaning or operation, focusable components receive focus in an order that preserves meaning and operability. (Level A)</p>
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
       <h2 id="g7"></h2>
       <div class="guideline_content">
         <a class="skippy" href="#toc">Back to TOC</a>
@@ -1369,10 +1376,77 @@ cursor: pointer;
       <div class="guideline_content">
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
-      <h2 id="g10"></h2>
+
+      <h2 id="g10">Guideline 10. Do not change the user's location on the screen unexpectedly (Continuity of  User's Place)</h2>
       <div class="guideline_content">
+        <p class="summary">Do not change the user's location (e.g. place on the page, page/url, frame, window or user agent) as follows:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li><strong>When the user moves to (on focus, on mouse over, on touch start) or away from (on blur, on mouse out, on touch end) any element including form control options</strong></li>
+          <li>OR <strong>When the user changes the setting of a <abbr title="User Interface">UI</abbr> control, unless each option can be reached by the keyboard without selecting it and it is clear what will happen when the setting is changed</strong></li>
+        </ul>
+
+        <h3>Rationale</h3>
+        <p>If the user's place in the media changes unexpectedly, it can be disorienting for any user and particularly disorienting for those with cognitive disabilities.</p>
+        <p>For keyboard access users, such a change can also mean a significant amount of effort to get back to where they wished to be. As such, for these users, it is particularly frustrating if they cannot control when such changes take place.</p>
+        <p>For screen reader users, such a change often means a change in the reading location. This can be confusing during an auditory experience. (Imagine your voice mail jumping from the middle of one message to the beginning of another message in the same person's voice.) For this reason, the user's place on the page should not change unexpectedly.</p>
+        <p>Even if some user action triggers the change, the situation is little better if the change is unexpected or unavoidable. (Imagine your voice mail jumping from the middle of one message to the beginning of another message each time you move your mobile phone.)</p>
+        <p>Warning or alert boxes that appear suddenly and suddenly gain focus are acceptable, if they are designed to interrupt activities for all users and are easy to dismiss. (Continuing with the voice mail analogy from above, the following message from your voice mail system wouldn't be confusing, after all: "Alert: The voice mail system will be down for the next fifteen minutes. Please call back after 12 pm.")</p>
+
+        <h3>General Techniques</h3>
+        <ol class="pe-list pe-styled-lists--unordered">
+          <li>If you change the user's place in the media in order to provide a warning or alert:
+            <ul class="pe-list pe-styled-lists--unordered">
+              <li><p>begin the message with text that identifies the message as a warning or alert</p>
+                <p>~AND~</p></li>
+              <li><p>provide a way to dismiss the message (For example, you might provide a "Close this Alert Box" button.)</p>
+                <p>~AND~</p></li>
+              <li>if possible, return the user to where they were on the page before the alert occurred.</li>
+            </ul>
+          </li>
+          <li>When hiding (removing) content that currently has focus, avoid an unexpected change in location by moving focus to some natural position just before or just after the dynamic content in the normal reading order.</li>
+          <li>It is the user's perception of their location that is important in this guideline. As such, do not unexpectedly change the content around the user's location to such an extent that they would believe they are on a new page or in a new location on the page.</li>
+        </ol>
+ 
+        <h3>Technology Specifics</h3>
+        <h4>HTML | XHTML | CSS | JavaScript</h4>
+        <ol class="pe-list pe-styled-lists--unordered">
+          <li>Several of the techniques for <a href="#g6">Pearson Guideline 6</a> also speak to this issue.</li>
+          <li>If you find that active elements are not in the ideal order when using the tab key to move through the page, correct this by adjusting reading order (see <a href="#g4">PG 4</a>). Do not use JavaScript to force particular changes in focus. For example, if you have three active elements on the page (A, B and C) that should be in that order, using JavaScript to move focus to C when B receives the blur event will violate this guideline. This would cause unexpected changes in focus as keyboard navigation must work both forwards (tab) and backwards (shift + tab). A user might trigger blur on B when moving backwards through the page, hoping to reach A, but this type of JavaScript would bring the user back to C.</li>
+        </ol>
+ 
+        <h3>Testing</h3>
+        <table class="pe-table">
+          <thead class="pe-sr-only">
+            <tr>
+              <th scope="col">Testing technique</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Tools</th>
+              <td>Test for this while you are testing keyboard access (<a href="#g6">Pearson Guideline 6</a>).</td>
+            </tr>
+            <tr>
+              <th scope="row">Output</th>
+              <td>If there is an error, you'll find that you are moved suddenly to a new location while trying to reach controls or while trying to reach options within controls.</td>
+            </tr>
+            <tr>
+              <th scope="row">Analysis</th>
+              <td>This type of error occurs when a user is suddenly and unexpectedly brought to a new location, assuming that this is not done to bring attention to an alert dialog message. This is such a bad user experience, that it is rarely present for mouse users. However, since keyboard access is tested less, this happens occasionally for keyboard access users.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Related Guidelines</h3>
+        <h4>WCAG 2.0 A - SC 3.2.1 On Focus:</h4>
+        <p>When any component receives focus, it does not initiate a change of context. (Level A)</p>
+        <h4>WCAG 2.0 A - SC 3.2.2 On Input:</h4>
+        <p>Changing the setting of any user interface component does not automatically cause a change of context unless the user has been advised of the behavior before using the component. (Level A)</p>
+
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
       <h2 id="g11">Guideline 11. Use semantic markup for its intended purposes (Semantic Markup)</h2>
       <div class="guideline_content">
         <p class="summary">Identify roles (e.g. heading, numbered list, bulleted list, data table, paragraph, emphasized text) of page elements using conventions for the media type. (And do not misidentify roles by using those conventions solely for their visual effects.)</p>
@@ -2015,6 +2089,7 @@ function addNews() {
 
         <a class="skippy" href="#toc">Back to TOC</a>
       </div>
+
       <h2 id="g12"></h2>
       <div class="guideline_content">
         <a class="skippy" href="#toc">Back to TOC</a>
