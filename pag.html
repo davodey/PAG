@@ -1900,7 +1900,11 @@ or content here&lt;/a&gt;</code></pre>
           <img alt="" width="284" height="122" src="images/flex_TextArea_TextInput.png">
           <p>Place your TextInput or TextArea component into a <code>FormItem</code>, which can be assigned a label in Design Mode, in the Properties panel, or in the MXML as shown below. This will be set up for you automatically if you drag a "Form" component onto the stage in design mode and then drag a TextInput or TextArea into that "Form" component.</p>
           
-          <pre><code>&lt;mx:FormItem label="Your Name:" fontWeight="bold"&gt;     &lt;mx:TextInput/&gt;  &lt;/mx:FormItem&gt;  &lt;mx:FormItem label="Your Comments:" fontWeight="bold"&gt;     &lt;mx:TextArea height="84"/&gt; </mx:FormItem></code></pre>
+          <pre><code>&lt;mx:FormItem label="Your Name:" fontWeight="bold"&gt;
+  &lt;mx:TextInput/&gt;
+  &lt;/mx:FormItem&gt;
+  &lt;mx:FormItem label="Your Comments:" fontWeight="bold"&gt;
+  &lt;mx:TextArea height="84"/&gt; &lt;/mx:FormItem&gt;</code></pre>
           <p>Note that this does not work ideally for Combo Boxes in FlashPlayer currently. When you tab to the ComboBox, you do not hear the label. This is a bug. However, if you use reading commands, the text is read just before the form control. The same issue occurs if you set the Accessible Name directly in Action Script, or if you use a <code>toolTip</code>. However, in these cases the onscreen text and the accessible name are each read, which creates unnecessary noise. So, we see the method recommended above as the best option.</p>
           
           <h4>CheckBoxes and RadioButtons</h4>
@@ -2056,14 +2060,13 @@ or content here&lt;/a&gt;</code></pre>
       <h2 id="g15">Guideline 15. Write link text that tells users where the link goes (Meaningful Link Text)</h2>
       <div class="guideline_content">
         <p class="summary">
-        Write links so that a user who is aware of the topic of the page will understand the purpose of the link when reading <span class="with-color">one</span> of the following:
+        Write links so that a user who is aware of the topic of the page will understand the purpose of the link when reading <span class="with-color">one</span> of the following:</p>
         <ul class="pe-list pe-styled-lists--unordered"> 
           <li><span class="with-color">Link Text Alone:</span> Link text out of context (preferred if possible without awkwardness or redundant text)</li>
           <li><span class="with-color">Nearest Heading, Nearest Parent List Item, or Table Headers:</span> Link text and the nearest heading above the link, OR link text and the nearest parent list item in a nested list, OR link text in a data table cell and the cell's table headers (These options are only available where semantic markup is possible as in HTML.)</li>
           <li><span class="with-color">Sentence:</span> Link text and the sentence that contains the link. </li>
           <li><span class="with-color">Link Pattern:</span> Link text within the context of other links preceding the link on the same page.</li>
         </ul>
-        </p>
          
         <h3>Rationale</h3>
         <p>All users need to understand where links go without following each link. Screen reader users and users who use high magnification levels can't take in an overview of the whole page at once the way that a typical user might. This guideline is designed to limit the amount of the page that needs to be explored each time a user attempts to identify a link of interest. This is essential for efficient use of Web content.</p>
@@ -2738,7 +2741,7 @@ or content here&lt;/a&gt;</code></pre>
           <p>Set the PowerPoint document properties to identify the title and subject of the document.</p>
           
           <p>To set the document properties:</p>
-          <ol class="pe-list pe-styled-lists--ordered"></ul>
+          <ol class="pe-list pe-styled-lists--ordered">
             <li>Go to the Office button</li>
             <li>Select Prepare - Properties</li>
             <li>Set the document author, title, subject and keywords</li>
