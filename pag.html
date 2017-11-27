@@ -1195,7 +1195,10 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
           <p>Otherwise keyboard access users who don't use a screen reader won't be able to use the links. They would also have to tab past invisible links, which can be confusing and time-consuming.</p>
           
           <li>There are bugs in Internet Explorer 5-11 that sometimes make these in-page links fail. Test the skip links by activating each link; then tab again. If the second tab goes to the top of the page or back to your skip link, your skip link is not working. To be sure to avoid this, add tabindex="-1" to the target of the link as shown in the code example below. </li>
-              <pre><code>&lt;a name="skiptarget"        id="skiptarget"        tabindex="-1">          or content here     &lt;/a&bt;</code></pre>
+              <pre><code>&lt;a name="skiptarget"
+  id="skiptarget"
+  tabindex="-1"&gt;
+or content here&lt;/a&gt;</code></pre>
           </ul>
           <a href="http://www.manateeroad.com/skiplink.html" target="_blank">Open sample skip link in new tab.</a>
           <h4>Tips</h4>
@@ -1244,10 +1247,10 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
           <p>Organize the document and set a logical heading structure by using the heading tag for the document title and h1-h6 tags for the section headers. This allows screen reader users to jump from heading to heading to read and interact with the content that interests them.</p>
           <h4>Bookmarks</h4>
           <p>Bookmarks are a set of links which allows a user to see the different sections of the document and easily navigate to them. Every major section in the document should be included as a bookmark.</p>
-          <img src="images/bookmarks.jpg" width="187" height="150" alt="" align="right">
+          <img src="images/bookmarks.jpg" width="187" height="150" alt="">
           <p>To generate bookmarks, go to the Bookmarks Panel. The process to add bookmarks differs slightly depending on the version of Acrobat and the operating system. To add bookmarks in Acrobat 9 Pro:</p>
           <ol class="pe-list pe-styled-lists--ordered">
-              <li>Go the Bookmarks Panel at View > Navigation Panels > Bookmarks.</li>
+              <li>Go the Bookmarks Panel at View &gt; Navigation Panels &gt; Bookmarks.</li>
               <li>Select "New bookmarks from structure" from the navigation panel options.</li>
               <li>Select the structure elements to include in the list of bookmarks. The bookmark names come from the title of the tags. If there is no title, the tag content is used.</li>
           </ol>
@@ -1342,8 +1345,8 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
                 </tr>
                 <tr>
                   <th scope="row">Analysis</th> 
-                  <td>Looking at the page as a whole: Is there heading text at the beginning of each major section of the page. Do sections of similar format and importance have the same heading levels? Is text that looks like a heading text marked up as an HTML heading?<br>
-                      Also consider whether the heading structure is well-organized: There should be just one <code>h1</code>. Also, are there unreasonable gaps in heading numbering, like <code>h2</code> to <code>h5</code>?</p>
+                  <td><p>Looking at the page as a whole: Is there heading text at the beginning of each major section of the page. Do sections of similar format and importance have the same heading levels? Is text that looks like a heading text marked up as an HTML heading?</p>
+                    <p>Also consider whether the heading structure is well-organized: There should be just one <code>h1</code>. Also, are there unreasonable gaps in heading numbering, like <code>h2</code> to <code>h5</code>?</p>
                   </td>
                 </tr>
               </tbody>
@@ -1769,7 +1772,7 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
           <p>When a form field lacks an explicit label, screen readers will try to figure out which onscreen text labels the field. Sometimes they can’t find any appropriate text, in which case the screen reader speaks no label at all. And, sometimes, the screen reader guesses the wrong label.</p>
           
           <p>The techniques for this guideline explain how to use markup and other technology features to explicitly associate text labels with corresponding form elements in a way that screen readers will recognize. Explicit labels ensure that screen reader users will understand which form elements are associated with which labels. This way, they can be confident that they are entering information using the correct form fields.</p>
-          <img alt="A mouse cursor points at the label of a radio button and the button is highlighted in response." width="190" height="100" src="images/laws.png" align="right">
+          <img alt="A mouse cursor points at the label of a radio button and the button is highlighted in response." width="190" height="100" src="images/laws.png">
           
           <p>Also, in HTML and Flex, many browsers use explicit labels to give users easier mouse access to radio buttons and check boxes. Clicking anywhere on the label can select and de-select the form elements. This is particularly helpful for people with minor mobility or dexterity issues.</p>
           
@@ -1894,14 +1897,14 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
           <h3>Flex</h3>
  
           <h4>TextInputs, TextAreas and Combo Boxes</h4>
-          <img alt="" width="284" height="122" src="images/flex_TextArea_TextInput.png" align="right">
+          <img alt="" width="284" height="122" src="images/flex_TextArea_TextInput.png">
           <p>Place your TextInput or TextArea component into a <code>FormItem</code>, which can be assigned a label in Design Mode, in the Properties panel, or in the MXML as shown below. This will be set up for you automatically if you drag a "Form" component onto the stage in design mode and then drag a TextInput or TextArea into that "Form" component.</p>
           
           <pre><code>&lt;mx:FormItem label="Your Name:" fontWeight="bold"&gt;     &lt;mx:TextInput/&gt;  &lt;/mx:FormItem&gt;  &lt;mx:FormItem label="Your Comments:" fontWeight="bold"&gt;     &lt;mx:TextArea height="84"/&gt; </mx:FormItem></code></pre>
           <p>Note that this does not work ideally for Combo Boxes in FlashPlayer currently. When you tab to the ComboBox, you do not hear the label. This is a bug. However, if you use reading commands, the text is read just before the form control. The same issue occurs if you set the Accessible Name directly in Action Script, or if you use a <code>toolTip</code>. However, in these cases the onscreen text and the accessible name are each read, which creates unnecessary noise. So, we see the method recommended above as the best option.</p>
           
           <h4>CheckBoxes and RadioButtons</h4>
-          <img alt="The Flex Properties window for a CheckBox has a label field under the 'Common' heading." width="292" height="215" src="images/flex_properties_label.png" align="right">
+          <img alt="The Flex Properties window for a CheckBox has a label field under the 'Common' heading." width="292" height="215" src="images/flex_properties_label.png">
           <p>The simplest way to label Flex CheckBoxes and RadioButtons is to use the native Flex components and use the label property to add the onscreen labels. Labels can be set in design mode or in the properties panel. Or they can be added as attributes in the Flex MXML source code:</p>
           
           <pre><code>&lt;mx:CheckBox label="Red" id="myRedCheckBox" /&gt;</code></pre>
@@ -1910,10 +1913,15 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
           <pre><code>myRedCheckBox.label="Yellow";</code></pre>
 
           <h4>Labels for Groups of RadioButtons or CheckBoxes</h4>
-          <img alt="Radio buttons labeled 'Yes' and 'No' under the text 'Is this a gift?'" width="158" height="61" src="images/fieldsetFlex.png" align="left">
+          <img alt="Radio buttons labeled 'Yes' and 'No' under the text 'Is this a gift?'" width="158" height="61" src="images/fieldsetFlex.png">
           <p>If your RadioButtons or CheckBoxes need a group label to be understood, use FormItem to group the buttons and provide a group label. This will be set up for you automatically if you drag a form component onto the stage in design mode, and then drag RadioButtons or CheckBoxes into that form component. It can also be set up in MXML as shown below:</p>
           
-          <pre><code>&lt;mx:Form x="50" y="296" width="484" height="202"&gt;       &lt;mx:FormItem label="Is this a gift?" fontWeight="bold"&gt;          &lt;mx:RadioButton label="Yes"/&gt;          &lt;mx:RadioButton label="No"/&gt;       &lt;/mx:FormItem&gt;    &lt;/mx:Form&gt;</code></pre>
+          <pre><code>&lt;mx:Form x="50" y="296" width="484" height="202"&gt;
+  &lt;mx:FormItem label="Is this a gift?" fontWeight="bold"&gt;
+    &lt;mx:RadioButton label="Yes"/&gt;
+    &lt;mx:RadioButton label="No"/&gt;
+  &lt;/mx:FormItem&gt;
+&lt;/mx:Form&gt;</code></pre>
           <h4>Long Labels for Groups of RadioButtons or CheckBoxes as Occur in Quizzes</h4>
           <p>Some screen readers will read the <code>FormItem</code> label with each form control. If the group label is too long (over 25 words) to be heard with each form field, make the group label tabEnabled, when there is a screen reader present. </p>
           
@@ -1922,16 +1930,18 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
           <p>In quizzes, pay attention to consistency. If some questions in a quiz are so long that they need to use tabEnabled questions instead of <code>FormItem</code>s, then all of the questions should.</p>
           
           <h4>Form Fields without On-screen Labels</h4>
-          <img alt="A pulldown menu has no on-screen text, but is followed by a 'Go' button.' A toolTip over the pulldown menu reads 'Go to Chapter.'" width="234" height="153" src="images/flex_form_wo_onscreen_label.png" align="right">
+          <img alt="A pulldown menu has no on-screen text, but is followed by a 'Go' button.' A toolTip over the pulldown menu reads 'Go to Chapter.'" width="234" height="153" src="images/flex_form_wo_onscreen_label.png">
           <p>When form elements do not have on-screen text that tells the user the purpose of the form element, or if that prompting information is coming from more than one place, use a <code>toolTip</code> attribute to label the form element. This not only provides a tooltip, but also sets an accessible name for the form control. This name is then used as the label for the form field in screen readers. (You can also set the accessible name directly, see 'Alternative Solution' below.)</p>
           
           <p>Tooltips can be provided through Action Script, or can simply be written into the MXML:</p>
           
-          <pre><code>&lt;mx:ComboBox x="240" y="107" toolTip="Go to Chapter"        dataProvider="{myPages}" width="160"&gt;</mx:ComboBox></code></pre>
+          <pre><code>&lt;mx:ComboBox x="240" y="107" toolTip="Go to Chapter"        dataProvider="{myPages}" width="160"&gt;&lt;/mx:ComboBoxx&gt;</code></pre>
           <h4>Alternative Solution for any Type of Form Field: set an Accessible Name</h4>
           <p>If the solutions above are not well-suited for your particular case, setting the accessible name through Action Script is another option:</p>
           
-          <pre><code>&lt;mx:TextInput x="10" y="499"    creationComplete="event.target.accessibilityProperties =  new AccessibilityProperties();    event.target.accessibilityProperties.name = 'Your Name'" /&gt;</code></pre>  
+          <pre><code>&lt;mx:TextInput x="10" y="499"
+  creationComplete="event.target.accessibilityProperties=new AccessibilityProperties();
+  event.target.accessibilityProperties.name='Your Name'" /&gt;</code></pre>  
           <p>If an accessible name has not be set and a toolTip has been set, the toolTip will be used as the accessible name.</p>
 
           <h3>Testing HTML</h3>
@@ -1945,7 +1955,7 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
               <tbody>
                 <tr>
                   <th scope="row">Tools</th>
-                  <td>Use the <a href="http://www.jimthatcher.com/favelets/">Form Labels Favelet</a> to view the markup of all form controls on the page. Other tools like the Web Accessibility Toolbar and Chris Pederick’s Web Developer toolbar also provide ways to view the form markup.<br>
+                  <td>Use the <a href="http://www.jimthatcher.com/favelets/">Form Labels Favelet</a> to view the markup of all form controls on the page. Other tools like the Web Accessibility Toolbar and Chris Pederick's Web Developer toolbar also provide ways to view the form markup.<br>
                   </td>
                 </tr>
                 <tr>
@@ -2199,7 +2209,7 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
         <h3>Word</h3>
         <p>As with HTML links, ensure that the text will be understood by the user in the context of the surrounding text and content structure, and that it makes sense out of context. Screen reader users can browse a list of links, so "General PDF Accessibility Guidelines" is better than "click here." Verify that the links are active.</p>
         <p>To set the text of the link, change the Text to display text in the Hyperlink properties dialog box.</p>
-        <img alt="The first form field in the Insert Hyperlink dialog box allows users to change the text to display for the link." width="424" height="203" src="images/Insert hyperlink.jpg">
+        <img alt="The first form field in the Insert Hyperlink dialog box allows users to change the text to display for the link." width="424" height="203" src="images/Insert_hyperlink.jpg">
         <p>Avoid using the URL as the display text. Listening to long URLs can be tedious for a screen reader user and could cause them to abandon the content. Concise, meaningful descriptions as link text are helpful.</p>
          
         <h3>PowerPoint</h3>
@@ -2492,10 +2502,12 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
             <li>In the opening HTML tag add a language attribute as follows :
               <ul class="pe-list pe-styled-lists--unordered">
                 <li>In HTML use the <code>lang</code> attribute.
-                  <pre><code>&lt;html lang="en"&gt;</html></code></pre>
+                  <pre><code>&lt;html lang="en"&gt;</code></pre>
                 </li>
                 <li>In XHTML 1.0 use both the <code>lang</code> and <code>xml:lang</code> attributes. XHTML 1.0 can be served as either text/html or xml. If XHTML is served as text/html, it requires both attributes. Since content maybe be reused on varying servers, it is safest to use both attributes.
-                  <pre><code>&lt;html xmlns="http://www.w3.org/1999/xhtml"        lang="en"       xml:lang="en"&gt;</html></code></pre>
+                  <pre><code>&lt;html xmlns="http://www.w3.org/1999/xhtml"
+  lang="en"
+  xml:lang="en"&gt;</code></pre>
                 </li>
                 <li>In XHTML 1.1 use <code>xml:lang</code>, as it is not valid to serve XHTML 1.1 as text/xml.
                   <pre><code>&lt;html  xmlns="http://www.w3.org/1999/xhtml"  ... xml:lang="en"&gt;</code></pre>
@@ -2833,9 +2845,14 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
           <li>These PGs explain how to make essential information available to all users through semantic markup and text. This semantic information should be used to describe media elements as opposed to exclusively using descriptions of the visual or auditory aspects of the elements.<br>
             <br>
             For example, <a href="#g14">PG 14</a> ensures that labels are explicitly associated with form elements, so the following text would work well on a help page to identify a form element:<br>
-            <pre><code>&lt;!-- Reasonable text for a Help System --&gt; &lt;p&gt;Enter your name in the form field labeled     Student Name at the top right corner of the page. &lt;/p&gt; </code></pre>
+            <pre><code>&lt;!-- Reasonable text for a Help System --&gt;
+&lt;p&gt;Enter your name in the form field labeled
+   Student Name at the top right corner of the page.&lt;/p&gt;
+</code></pre>
             However, the following text does not mention the label and so could be confusing to students using screen readers and to students using a custom style sheet that changes the location of the form element on the page:<br>
-            <pe><code>&lt;!-- Not Recommended --&gt; &lt;p&gt;Enter your name in the form field at     the top right corner of the page. &lt;/p&gt; </code></pe>
+            <pre><code>&lt;!-- Not Recommended --&gt;
+&lt;p&gt;Enter your name in the form field at
+   the top right corner of the page.&lt;/p&gt;</code></pre>
           </li>
           <li>This guideline does not mean to discourage mentioning color, sound, shape, size or location on the screen, as these descriptors can be very helpful for some students. In general, students who have transformed the media using assistive technology are aware that they've transformed it and will gladly ignore descriptors that don't work for them when descriptors that do work for them are also present.</li>
           <li>"Top of the page" and "bottom of the page" mention visual location but pass this guideline without further clarification as long as the content referred to is at the top or bottom (respectively) of the reading order (See <a href="#g4">PG 4</a>).</li>
@@ -3899,7 +3916,7 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
             <tbody>
               <tr>
                 <th scope="row">Tools</th>
-                <td><img src="images/pixelchoice.jpg" width="131" height="107" alt="A pixel is chosen from the center of a letter, so that the anti aliasing doesn't interfere with the results." align="right">
+                <td><img src="images/pixelchoice.jpg" width="131" height="107" alt="A pixel is chosen from the center of a letter, so that the anti aliasing doesn't interfere with the results.">
                   The <a href="https://developer.paciellogroup.com/resources/contrastanalyser/">Colour Contrast Analyser</a> is a stand-alone contrast testing application. You can also pull it up from the <a href="https://developer.paciellogroup.com/resources/wat/">Web Accessibility Toolbar</a>: Colour &gt; Contrast Analyser [application]. <br>
                   <br>
                   For both foreground (text) colors and background colors move the visual cursor (eye dropper icon) to choose a favorable pixel. <br>
@@ -3933,7 +3950,7 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
             <tbody>
               <tr>
                 <th scope="row">Tools</th>
-                <td><img src="images/pixelchoice.jpg" width="131" height="107" alt="A pixel is chosen from the center of a letter, so that the anti aliasing doesn't interfere with the results." align="right">
+                <td><img src="images/pixelchoice.jpg" width="131" height="107" alt="A pixel is chosen from the center of a letter, so that the anti aliasing doesn't interfere with the results.">
                   There are no tools that can be run on the mobile device.  Take a screenshot of the screen and view it on the desktop.<br>
                   <br>
                   The <a href="https://developer.paciellogroup.com/resources/contrastanalyser/">Colour Contrast Analyser</a> is a stand-alone contrast testing application. You can also pull it up from the <a href="https://developer.paciellogroup.com/resources/wat/">Web Accessibility Toolbar</a>: Colour &gt; Contrast Analyser [application]. <br>
@@ -4081,7 +4098,7 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
             <ul class="pe-list pe-styled-lists--unordered">
               <li><a href="https://developer.paciellogroup.com/resources/contrastanalyser/">Paciello Group's Colour Contrast Analyser's</a> Image menu provides access to this type of testing. (Windows Only)</li>
               <li><a href="http://www.fujitsu.com/global/about/businesspolicy/tech/design/">Fujitsu’s Freeware program ColorDoctor</a> is particularly good for evaluating animated content (e.g. Flash movies) in real-time. (Windows Only)</li>
-              <li><a href-"http://www.vischeck.com/vischeck/vischeckImage.php">Vischeck Online Tool for Testing Images</a></li>
+              <li><a href="http://www.vischeck.com/vischeck/vischeckImage.php">Vischeck Online Tool for Testing Images</a></li>
               <li><a href="http://www.vischeck.com/vischeck/vischeckURL.php">Vischeck Online Tool for Testing Web Pages</a></li>
             </ul>
           </li>
@@ -4759,7 +4776,7 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
             Incorrect: <code>alt</code> attributes are required for images, and a screen reader may read the file name or other unnecessary information:
             <pre><code>&lt;!-- Incorrect --&gt;    &lt;img src="fluffy_cloud.gif"&gt;</code></pre>
             Incorrect: A screen reader will read the word "fluffy cloud" aloud, which, in this case, is not relevant to the content:
-            <pre><code>&l;!-- Not Recommended --&gt;   &lt;img src="spacer.gif" alt="fluffy cloud"&gt;</code></pre>
+            <pre><code>&lt;!-- Not Recommended --&gt;   &lt;img src="spacer.gif" alt="fluffy cloud"&gt;</code></pre>
           </li>
         </ul>
 
@@ -4969,7 +4986,7 @@ You can skip numbers when setting tabIndex. So, counting by 10 is wise, as it al
             <tbody>
               <tr>
                 <th scope="row">Review</th>
-                <td>Read through the media with a screen reader (like JAWS) to see if any content is read that is not on the screen. With practice, this can be tested while you test for <a herf="#g4">Pearson Guideline 4</a>.
+                <td>Read through the media with a screen reader (like JAWS) to see if any content is read that is not on the screen. With practice, this can be tested while you test for <a href="#g4">Pearson Guideline 4</a>.
                 </td>
               </tr>
               <tr>
