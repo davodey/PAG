@@ -3,6 +3,13 @@ Pearson Accessibility Guidelines
 
 This is a temporary github placement while the Guidelines are being updated.
 
+## Current TODOs:
+
+- Fetch all the external pages referenced by pag.html and make local copies
+- Check that all external images have been fetched
+- Javascript
+- Cupper
+
 ## Issue
 The current Pearson Accessibility Guidelines are sitting on a server we cannot easily access and update: <a href="http://wps.pearsoned.com/accessibility/115/29601/7577872.cw/index.html#parent_12631413">http://wps.pearsoned.com/accessibility/115/29601/7577872.cw/index.html#parent_12631413</a>.
 
@@ -25,5 +32,6 @@ The ideal setup is a single place to go to for accessibility guidelines, with bo
 Unique URLs should be able to point to any particular guideline for referencing in other documents.
 Eventually the media server will need to 301 Redirect to wherever the new guidelines go to live. Since there will be significant rewriting, individual 301's to particular guidelines may no longer work. A lot of documentation within Pearson refers to Guidelines by number so we may have to keep topic associated with numbers.
 
-### Bikeshed?
-One idea suggested was that we could use <a href="https://github.com/tabatkins/bikeshed">bikeshed</a> as a tool for writing, updating, and deploying the guidelines.
+### Cupper
+
+<a href="https://thepaciellogroup.github.io/cupper/">Cupper</a> looks like a tool we could use to host these guidelines.
