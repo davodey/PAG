@@ -3152,20 +3152,67 @@ document.body.appendChild(myNewLabel);</code></pre>
 
         <h3>Android Applications</h3>
         <p>All form controls must have a label defined. The method used to define the label for the form field depends on the type of form control.</p>
-        <ul class="pe-list pe-styled-lists--unordered"> 
-          <li>For text fields, use <code>EditText</code> with <code>android:hint</code> attribute. Note: when the field is filled, TalkBack reads the entered content to the user instead of the hint text.</li>
-          <li>For <code>ImageButton</code>, <code>ImageView</code>, <code>CheckBox</code> and other user interface controls, use the <code>android:contentDescription</code> attribute.</li>
-        </ul>
-        <p>For form fields that are part of group of controls, the label set on the form control will need provide the group label. Android does not currently provide support grouping controls except for radio buttons. If you use radio buttons, use the <code>RadioGroup</code> structure.</p>
+        <p>Label and instruction text MUST be programmatically associated with the input.</p>
+        <h4>Text Inputs</h4>
+        <p>Text inputs must have a visible label connected as the accessible name of the EditText input via the android:labelFor property ID value association.
+        <p><code>EditText</code> inputs should not use an <code>android:hint</code> attribute as the only visible label because when the field is filled, TalkBack reads the entered value to the user instead of the hint text and visually the placeholder text will disappear preventing the user from seeing the label name.</li>
+        <h5>Code Example Using android:labelFor ID Connections</h5>
+        <pre><code>    &lt;TextView
+        android:id="@+id/textView"
+        android:labelFor="@+id/editText2"
+        android:text="First Name"/>
+
+    &lt;EditText
+        android:id="@+id/editText2"
+        android:hint="John"
+        android:inputType="textPersonName" /></code></pre>
+        <h4>Checkboxes, RadioButtons, Switch Controls</h4>
+        <p>Controls that already have visible text included like Checkboxes, RadioButtons, Switch Controls, etc. MUST use android:text as the connected label that is spoken to TalkBack users on focus.
+        <p>Native controls that don't include visible android:text properties, e.g. SeekBar sliders, will have to use android:labelFor method to connect label text as their accessible name. 
+        <h5>Code Example Using android:text as Label</h5>
+        <pre><code>&lt;CheckBox
+        android:id="@+id/checkBox2"
+        android:text="I Agree to Terms & Conditions" />
+&lt;Switch
+        android:id="@+id/switch3"
+        android:text="Remember Username"/>
+        </code></pre>
+        <h4>Grouping Form Inputs</h4>
+        <h5>Code Example Using android:contentDescription to Add Legend Text</h5>
+        <pre><code>    &lt;TextView
+        android:id="@+id/textView4"
+        android:textColor="#000"
+        android:text="Preferred Contact Method(s)" />
+
+    &lt;CheckBox
+        android:text="Phone"
+        android:contentDescription="Phone, Preferred Contact Method(s)"
+        android:id="@+id/checkBox8" />
+
+    &lt;CheckBox
+        android:text="Email"
+        android:contentDescription="Email, Preferred Contact Method(s)"
+        android:id="@+id/checkBox9" />
+
+    &lt;CheckBox
+        android:text="SMS"
+        android:contentDescription="SMS, Preferred Contact Method(s)"
+        android:id="@+id/checkBox10" />
+        </code></pre>
+       
 
         <h3>iOS Applications</h3>
-        
-        <p>All form controls should have explicit labels. The type of form control is defined using the <code>accessibilityTraits</code> (for more information see <a href="#g11">Pearson Accessibility Guideline 11</a>). The label is defined using the <code>accessibilityLabel</code> property to name the form control. If there are instructions, examples or other related information for the form field, this can be associated to the form field using the <code>accessibilityHint</code> property.</p>
-        <p>The onscreen label can be hidden to VoiceOver users so that are not read two times.</p>
-        <p>Code Example:</p>
-        <p><code>[UNLabel setText:NSLocalizedString(@"Username", nil)];</code></p>
-        <p><code>[UNLabel setIsAccessibilityElement:NO]; // Hide the label element since it is announced as part of the field</code></p>
-        <p><code>[UNField setAccessibilityLabel:UNLabel.accessibilityLabel];</code></p>
+        <h4>Labels MUST Be Visible and Programmatically Associated to Inputs</h4>
+        <p>All form controls MUST have explicit and visible labels. The label is defined using the <code>accessibilityLabel</code> property to name the form control. If there are instructions, examples or other related information for the form field, this can be associated to the form field using the <code>accessibilityHint</code> property.</p>
+        <h5>Code Example Setting TextField .accessibilityLabel Property to Match the Visible UILabel Text</h5>
+        <pre><code>emailTextField.accessibilityLabel = emailLabel.text</code></pre>
+        <h4>Input Groups MUST Have a Group Label Programmatically Defined</h4>
+        <h5>Code Example Setting Custom Radio Button Controls .accessibilityLabel Property to Include the Visible Group Legend Text</h5>
+        <pre><code>radio5.accessibilityLabel = radio5.accessibilityLabel! + ", " + legend.accessibilityLabel!
+radio6.accessibilityLabel = radio6.accessibilityLabel! + ", " + legend.accessibilityLabel!
+radio7.accessibilityLabel = radio7.accessibilityLabel! + ", " + legend.accessibilityLabel!
+radio8.accessibilityLabel = radio8.accessibilityLabel! + ", " + legend.accessibilityLabel!</code></pre>
+
 
         <h3>PDF in Acrobat</h3>
         <p>Form fields within the PDF document allow people with visual impairments easier access to enter data. If there are form fields within the PDF document, Acrobat will display a prompt to highlight them.</p>
