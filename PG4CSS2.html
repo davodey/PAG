@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Read Order Problem Related to Float CSS Settings</title>
+  <style type="text/css">
+    /*letternav*/
+    .letternav
+    {
+      padding: 0px 0px 0px 0px;
+      margin: 40px 0px 40px 0px;
+          width: 100%;
+    }
+    .letternav a { 
+        display: block;
+        border: 0px;
+        margin: 2px 7px 0px 0px;
+        padding: 0px;
+        height: 26px;
+        float: right; 
+    }
+    .letternav a:link a:visited a:hover a:active{ text-decoration: none; }
+  </style>
+  <link rel="StyleSheet" href="../custom.css" type="text/css" />
+  </head>
+  <body>
+    <h1>PG 4: Error in Reading Order using CSS Property <code>float: right</code></h1>
+    <p>Although this example appears to be correct visually, the reading order is actually backwards.</p>
+    <!-- Lettered index starts here -->
+    <div class="letternav">
+      <a href="indexJ.html"><img src="PG4assets/letters/J.gif" alt="J" border="0" /></a>
+      <a href="indexI.html"><img src="PG4assets/letters/I.gif" alt="I" border="0" /></a>
+      <a href="indexH.html"><img src="PG4assets/letters/H.gif" alt="H" border="0" /></a>
+      <a href="indexG.html"><img src="PG4assets/letters/G.gif" alt="G" border="0" /></a>
+      <a href="indexF.html"><img src="PG4assets/letters/F.gif" alt="F" border="0" /></a>
+      <a href="indexE.html"><img src="PG4assets/letters/E.gif" alt="E" border="0" /></a>
+      <a href="indexD.html"><img src="PG4assets/letters/D.gif" alt="D" border="0" /></a>
+      <a href="indexC.html"><img src="PG4assets/letters/C.gif" alt="C" border="0" /></a>
+      <a href="indexB.html"><img src="PG4assets/letters/B.gif" alt="B" border="0" /></a>
+      <a href="indexA.html"><img src="PG4assets/letters/A.gif" alt="A" border="0" /></a>
+    </div>
+    <!-- Lettered index End here -->
+  </body>
+</html>

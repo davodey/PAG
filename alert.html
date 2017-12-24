@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- HTML 5 -->
+<html lang="en">
+  <head>
+   <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+   <title>Testing Alert</title>
+    <script>
+       function showError() {
+         var myparent=document.getElementById('place');
+         var myalert=document.createElement('p');
+         myalert.setAttribute('role','alert');
+         myalert.appendChild(document.createTextNode('The error message.'));
+         myparent.appendChild(myalert);
+       }
+    </script>     
+  </head>
+  <body>
+    <div id="place" role="alert" aria-live="assertive" aria-atomic="true"></div>
+    <button onClick="showError();">Click for Demo</button>
+    <h2>Works</h2>
+    <ul>
+      <li>JAWS 15.0.12085 with FF 33.1</li>
+      <li>JAWS 15.0.12085 with IE 11.0.9600.17280</li>
+      <li>JAWS 15.0.12085 with Chrome 39.0.2171.65</li>
+      <li>NVDA 2014.3 with FF 33.1</li>
+      <li>VO OS X 10.9.5 with Safari 7.0.6</li>
+      <li>TalkBack with Android 4.4.2 with "Internet" 1.5.28</li>
+      <li>TalkBack with Android 4.4.2 with Chrome 39.0.2171.59 (Doesn't support role="alert". Doesn't say "alert," but works due to explicitely setting aria-live.) </li>
+      <li>NVDA 2014.1 with IE 11.0.9600.17280 (Doesn't support role="alert". Doesn't say "alert," but works due to explicitly setting aria-live.) </li>
+      <li>iOS 8.1.1 VO Safari (just the first time)</li>
+    </ul>
+
+    <h2>Doesn't Work</h2>
+    <ul>
+      <li>NVDA 2017.2 with FF 54.0.1 (just says alert, but doesn't read the text)</li>
+      <li>VO OS X 10.9.5 with Firefox 33.0.3</li>
+    </ul>
+  </body>
+</html>

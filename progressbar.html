@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Progress Bar Testing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <style>
+        button+div{
+          width: 100px;
+          height: 30px;
+          margin-top: 13px;
+          border: 1px solid #000;
+        }
+        button+div div {
+          width: 0;
+          height: 30px; 
+          background-color: #000;
+        }
+        button+div div:focus {
+            outline: 0;/* invisible focus because focus is a hack here */
+        }
+    </style>
+  </head>
+
+  <body>
+    <h1>Progressbar Demo</h1>
+    <button>Start Progress Bar</button>
+    <div>
+      <div id="pb"></div>
+    </div>
+
+    <div>
+      <h2>Explanation</h2>
+      <p>If Javascript is available, the progressbar HTML should look like this:</p>
+      <pre><code>&lt;div id="pb" role="progressbar" tabindex="-1" aria-valuemin="0" aria-valuemax="100" aria-valuetext="0%" aria-label="Page Load"&gt;&lt;/div&gt;</code></pre>
+      <p>A tabindex is added so Javascript can programmatically focus on the otherwise unfocusable div (for VoiceOver). aria-valuemin and -valuemax are the edges of our range, while aria-valuenow (a number) and aria-valuetext (a string) represent where the progressbar currently is. The aria-label names the progressbar div (question, is this working only because we're making it focusable?).</p>
+    </div>
+
+    <script>
+    var LongNamespacedPearsonTestObject=PO={
+
+        init: function() {
+            var i=0,
+                j=0,
+                button=document.getElementsByTagName('button')[0],
+                progress_bar=document.getElementById('pb');
+                
+            removeMouseFocus(document.body);
+
+            //we can haz JS? Then add teh rolez
+            PO.setAttributes(progress_bar, {
+                'role': 'progressbar',
+                tabIndex: -1,
+                'aria-valuemin': 0,
+                'aria-valuemax': 100,
+                'aria-valuenow': 0,
+                'aria-valuetext': '0%',
+                'aria-label': 'Page Load'
+            });
+
+            button.onclick=function() {
+                // Suzanne:
+                // you need to put focus on the progressbar
+                // for this to work with VoiceOver as of 11/9/2014
+
+                // Mallory:
+                // test, can we put focus there just once at the beginning?
+                progress_bar.focus();
+                PO.animate(i,j,progress_bar);
+            };
+        },
+
+        setAttributes: function(target, hash) {
+            for(var attribute in hash) {
+                if (hash.hasOwnProperty(attribute)) {
+                   //DOM1 dot-notation often safest, but misses new stuff
+                   if (attribute.indexOf('aria')===0 || attribute==='role') {
+                       target.setAttribute(attribute,hash[attribute]);
+                       continue;
+                   }
+                   target[attribute]=hash[attribute];
+                }
+            }
+        },
+
+        animate: function(i,j,pb) {
+            var current_frame=requestAnimationFrame(function() {
+                PO.animate(i,j,pb);
+            });
+
+            j++;
+            if(j%5==0){i++};
+
+            PO.setAttributes(pb, {
+                'aria-valuenow': i,
+                'aria-valuetext': i+'%'
+            });
+            pb.style.width=i+'px';
+
+            if (i>99) {
+              cancelAnimationFrame(current_frame);
+              i=0;
+            }
+        },
+        //onload stuff, currently nothing for old IE but could easily be added
+        addDOMListener:function(ready){document.addEventListener('DOMContentLoaded',ready,false);/*if no DOMContentLoaded support*/window.addEventListener('load',ready,false);},
+
+        start:function(fn){var rA=false;function ready(){if(rA){return;}rA=true;fn();}PO.addDOMListener(ready,rA);}
+      };
+      PO.start(PO.init);
+    </script>
+
+    <script>
+      //www.paciellogroup.com/blog/2012/04/how-to-remove-css-outlines-in-an-accessible-manner/
+      function hasClass(target,classValue){var pattern=new RegExp('(^| )'+classValue+'( |$)');return(pattern.test(target.className));}
+      function addClass(target,classValue){if(!hasClass(target,classValue)){target.className+=(target.className==='')?classValue:(' '+classValue);}}
+      function removeClass(target,classValue){if(hasClass(target,classValue)){var pattern=new RegExp('(^| )'+classValue+'( |$)');target.className=target.className.replace(pattern,'$1').replace(/ $/,'');}}
+
+      function removeMouseFocus(body) {
+          body.addEventListener('mousedown',function(){addClass(body,'mouseDetected')},false);
+          body.addEventListener('keydown',function(){removeClass(body,'mouseDetected')},false);
+      }
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!-- HTML 5 -->
+<html lang="en">
+  <head>
+    <title>Keeping Behavior and Presentation Separate</title>
+    <script type="text/javascript">
+        function hide() {
+            window.myparent = document.getElementById("1");
+            window.myobj = document.getElementById("2");
+            window.myparent.removeChild(window.myobj);
+        }
+        function show() {
+            window.myparent.appendChild(window.myobj);
+        }
+    </script>
+  </head>
+  <body>
+    <h1>Example: Hide and Show using the Document Object Model</h1>
+          <a href="javascript:hide();">Hide sentence below</a> | 
+          <a href="javascript:show();">Show sentence below</a>
+          <div id="1">
+              <p id="2">Sentence to hide or show goes here.</p>
+          </div>
+    <h2>Note: Simplified Example</h2>
+    <p>This example has been simplified to highlight the functions for creating a show/hide effect using JavaScript. An actual implementation would also provide an indication of the current state of the show/hide control (i.e. is it hidden currently?). For example, instead of using two controls, one for hide and one for show, you might use one control that changes based on the current state. See PG 20 for information and examples on this requirement.</p>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!-- HTML 5 -->
+<html lang="en">
+  <head>
+       <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+       <title>Testing Making iFrames Silent</title>
+  </head>
+<body>
+  <h1>Testing whether tabindex="-1" and aria-hidden="true" will hide an iFrame from Screen Readers</h1>
+  <p>Why would there be such iframes?! Well, I learned recently that people like to use them for behind-the-scenes coding, but they are not supposed to be part of the user interface.</p>
+<h2>iFrames without any code to hide them from screen readers</h2>
+<h3>Frame A: Without a Title</h3>
+        <iframe 
+                src="" 
+                style="width: 100%; margin-top: 0px;"
+                frameborder="no" >                
+        </iframe>
+<h3>Frame B: With a Title</h3>
+        <iframe 
+                title="A Very Fancy Title"
+                src="" 
+                style="width: 100%; margin-top: 0px;"
+                frameborder="no" >                
+        </iframe>
+<h2>iFrames with tabindex="-1" and aria-hidden="true"</h2>
+<h3>Frame C: Without a Title</h3>
+        <iframe 
+          tabindex="-1"
+          aria-hidden="true"      
+                src="" 
+                style="width: 100%; margin-top: 0px;"
+                frameborder="no" >                
+        </iframe>
+<h3>Frame D: With a Title</h3>
+        <iframe 
+          tabindex="-1"
+          aria-hidden="true"
+          title="A Very Fancy Title"
+                src="" 
+                style="width: 100%; margin-top: 0px;"
+                frameborder="no" >                
+        </iframe>
+</body>
+</html>
