@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Correct Answer -  Multiple Choice 2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!--[if lte IE 8]><script>document.createElement(main)</script><![endif]-->
+    <link rel="stylesheet" href="../elements.css">
+    <style>
+      main {
+        width: 33%;
+        max-width: 25em;
+        margin: 0 auto;
+        padding: 1em;
+      }
+      .box {
+        padding: 1em;
+        margin-bottom: 1em;
+        border: 1px solid #c7c7c7;
+      }
+      .points {
+        font-weight: bold;
+      }
+      .tries {
+        color: #6a7070;
+      }
+      form, fieldset {
+        margin: 0;
+        padding: 0;
+        border: 0;
+      }
+      legend {
+        font-size: 1.1em;
+        font-weight: bold;
+        margin-bottom: .5em;
+      }
+      legend~div {
+        padding-right: 3.8em;
+      }
+      input[type="radio"] ~ span {
+        top: 2px;
+        left: 2px;
+        padding: 2px 6px 6px 2px;
+      }
+      input[type="radio"] ~ span svg {
+        height: 9px;
+        width: 9px;
+      }
+      .answer {
+        position: absolute;
+        right: 0;
+        top: 2px;
+        margin: 0;
+      }
+      .correct {
+        color: #038238;
+      }
+      .incorrect {
+        color: #db0020;
+      }
+      [role=alert] h2 {
+        margin-top: 1.5em; 
+        font-size: 1.1em;
+        font-weight: bold; 
+        line-height: 1.2em;
+      }
+      [role=alert] h2+p {
+        color: #6a7070;
+      }
+      button[type=submit],
+      a.pe-btn__primary {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="box">
+        <p class="points">[1 pt]</p>
+        <h1>[ Question Title ]</h1>
+        <p>[ Begin by reading the news article, ECB must cut rates or risk crisis again lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac aliquet dui, et ornare libero. ]</p>
+      </div>
+      <div class="box">
+        <p role="status" class="tries">0 tries left</p>
+        <fieldset>
+          <legend>Which of the following is NOT part of the procedure for writing an equation from a word problem?</legend>
+          <div class="pe-radio">
+            <input type="radio" name="n1" id="wp" disabled>
+            <label for="wp">A. Write an expression to represent each unknown quantity in terms of the variable.</label>
+            <span>
+              <svg aria-hidden="true"
+                   focusable="false"
+                   class="pe-icon--radio-dot">
+                <use xlink:href="#new-notification-9"></use>
+              </svg>
+            </span>
+          </div>
+          <div class="pe-radio">
+            <input type="radio" name="n1" id="wp2" disabled>
+            <label for="wp2">B. Use a given relationship in the problem or an appropriate formula to write an equation.</label>
+            <span>
+              <svg aria-hidden="true"
+                   focusable="false"
+                   class="pe-icon--radio-dot">
+                <use xlink:href="#new-notification-9"></use>
+              </svg>
+            </span>
+          </div>
+          <div class="pe-radio">
+            <input type="radio" name="n1" id="wp3" checked>
+            <label for="wp3">C. Solve for the unknown quantity.</label>
+            <span>
+              <svg aria-hidden="true"
+                   focusable="false"
+                   class="pe-icon--radio-dot">
+                <use xlink:href="#new-notification-9"></use>
+              </svg>
+            </span>
+            <p class="answer correct">
+              <svg role="img" aria-labelledby="q1_correct" focusable="false" class="pe-icon--check-lg-24">
+                <title id="q1_correct">Correct answer</title>
+                <use xlink:href="#check-lg-24"></use>
+              </svg>
+            </p>
+          </div>
+          <div class="pe-radio">
+            <input type="radio" name="n1" id="wp4" disabled>
+            <label for="wp4">D. Choose a variable to represent an unknown quantity.</label>
+            <span>
+              <svg aria-hidden="true"
+                   focusable="false"
+                   class="pe-icon--radio-dot">
+                <use xlink:href="#new-notification-9"></use>
+              </svg>
+            </span>
+          </div>
+          <div class="pe-radio">
+            <input type="radio" name="n1" id="wp5" disabled>
+            <label for="wp5">E. Lorem ipsum.</label>
+            <span>
+              <svg aria-hidden="true"
+                   focusable="false"
+                   class="pe-icon--radio-dot">
+                <use xlink:href="#new-notification-9"></use>
+              </svg>
+            </span>
+          </div>
+          <div role="alert">
+            <h2 class="correct">That's right. Nice work.</h2>
+            <p>Lorem ipsum dolor sit amet, nec ne ferri tritani propriae.</p>
+          </div>
+        </fieldset>
+      </div>
+      <!-- does this load new stuff on the page or move the user to a new page? This is a link assumming the latter. If the former, make this a button -->
+      <a href="multiple_choice3.html" class="pe-btn pe-btn__primary">Next</a>
+    </main>
+
+    <script>
+if (!document.getElementById('pe-icons-sprite')) {
+var pe_ajax=new XMLHttpRequest();
+pe_ajax.open('GET', 'p-icons-sprite-1.1.svg', true);
+pe_ajax.responseType="document";
+pe_ajax.onload=function(e){document.body.insertBefore(pe_ajax.responseXML.documentElement,document.body.childNodes[0]);}
+pe_ajax.send();}
+    </script>
+    <script>
+      var links=document.getElementsByClassName('pe-btn__primary'),
+          a=links[links.length-1];
+      a.focus();
+    </script>
+  </body>
+</html>

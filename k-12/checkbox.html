@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>First Checkbox example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!--[if lte IE 8]><script>document.createElement(main)</script><![endif]-->
+    <link rel="stylesheet" href="../elements.css">
+    <style>
+      /* demo-specific styles */
+      main {
+        width: 33%;
+        max-width: 25em;
+        margin: 0 auto;
+        padding: 1em;
+      }
+      .box {
+        padding: 1em;
+        margin-bottom: 1em;
+        border: 1px solid #c7c7c7;
+      }
+      .box>.points {
+        font-weight: bold;
+      }
+      .tries {
+        color: #6a7070;
+      }
+      form, fieldset {
+        margin: 0;
+        padding: 0;
+        border: 0;
+      }
+      legend {
+        font-size: 1.1em;
+        font-weight: bold;
+        margin-bottom: .5em;
+      }
+      legend~div {
+        padding-right: 3.8em;
+      }
+      .answer {
+        position: absolute;
+        left: 0;
+        top: 2px;
+        margin: 0;
+      }
+      .correct {
+        color: #038238;
+      }
+      .incorrect {
+        color: #db0020;
+      }
+      /* Elements checkboxes are white */
+      input[type="checkbox"]:checked ~ span {
+        color: #fff;
+        background-color: #6a7070;
+      }
+      .hidden ~ span {
+        display: none;
+      }
+      [role=alert] h2 {
+        float: left;
+        margin-top: 1.5em; 
+        font-size: 1.1em;
+        font-weight: bold; 
+        line-height: 1.2em;
+      }
+      [role=alert] h2~p {
+        color: #6a7070;
+      }
+        [role=alert] .points {
+          float: right;
+          margin-top: 1.5em;
+        }
+        [role=alert] .points+p,
+        [role=alert] h2+p:not(.points) {
+          clear: both;
+        }
+      button[type=submit],
+      a.pe-btn__primary {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="box">
+        <p class="points">[total pts]</p>
+        <h1>[ Question Title ]</h1>
+        <p>[ Lorem ipsum dolor sit amet, nec ne  ferri tritani propriae, vix posse asseverate cu. Vel prompta elaboraret constituam ne... ]</p>
+      </div>
+      <div class="box">
+        <p role="status" class="tries">4 tries</p><!-- this already has implicit aria-live and aria-atomic values -->
+        <form method="get" action="#">
+          <fieldset>
+            <legend>Which of the following can be a relation? Select all that apply.</legend>
+            <div class="pe-checkbox">
+              <input type="checkbox" name="n1" id="wp">
+              <label for="wp">A. {(0,1), (2,3), (4,2), (6,1)}</label><!-- all math should be written in MathML; this example is not. Not sure if <math> is legal inside lable tags -->
+              <span>
+                <svg aria-hidden="true"
+                     focusable="false"
+                     class="pe-icon--check-sm-18">
+                  <use xlink:href="#check-sm-18"></use>
+                </svg>
+              </span>
+            </div>
+            <div class="pe-checkbox">
+              <input type="checkbox" name="n1" id="wp2">
+              <label for="wp2">B. {(-1,-1), (3,1), (-1,2), (6,8,)}</label>
+              <span>
+                <svg aria-hidden="true"
+                     focusable="false"
+                     class="pe-icon--check-sm-18">
+                  <use xlink:href="#check-sm-18"></use>
+                </svg>
+              </span>
+            </div>
+            <div class="pe-checkbox">
+              <input type="checkbox" name="n1" id="wp3">
+              <label for="wp3">C. {1, 3, 4, 7}</label>
+              <span>
+                <svg aria-hidden="true"
+                     focusable="false"
+                     class="pe-icon--check-sm-18">
+                  <use xlink:href="#check-sm-18"></use>
+                </svg>
+              </span>
+            </div>
+            <div class="pe-checkbox">
+              <input type="checkbox" name="n1" id="wp4">
+              <label for="wp4">D. y = 5x - 3</label>
+              <span>
+                <svg aria-hidden="true"
+                     focusable="false"
+                     class="pe-icon--check-sm-18">
+                  <use xlink:href="#check-sm-18"></use>
+                </svg>
+              </span>
+            </div>
+            <button type="submit" class="pe-btn__primary" disabled>Submit</button>
+          </fieldset>
+        </form>
+        <div role="alert"> </div>
+      </div>
+    </main>
+
+    <template id="answer_correct">
+      <p class="answer correct">
+        <svg role="img" aria-labelledby="q1_correct" focusable="false" class="pe-icon--check-lg-18">
+          <title id="q1_correct">Correctly selected</title>
+          <use xlink:href="#check-lg-18"></use>
+        </svg>
+      </p>
+    </template>
+
+    <template id="answer_incorrect">
+      <p class="answer incorrect">
+        <svg role="img" aria-labelledby="q1_incorrect" focusable="false" class="pe-icon--remove-lg-18">
+          <title id="q1_incorrect">Correctly left unselected</title>
+          <use xlink:href="#remove-lg-18"></use>
+        </svg>
+      </p>
+    </template>
+
+    <template id="alert_correct">
+      <h2 class="correct">Good job!!</h2>
+      <p class="points">[ 1 pt]</p>
+      <p>Lorem ipsum dolor sit amet, ne ferri tritani propriae, vix posse asseverate cu.</p>
+    </template>
+
+    <template id="alert_incorrect">
+      <h2 class="incorrect">
+        <svg aria-hidden="true" focusable="false" class="pe-icon--remove-lg-24">
+          <use xlink:href="#remove-lg-24"></use>
+        </svg> Not quite, but great try!</h2>
+      <p>At least one part of your answer is incorrect, or you have not selected all of the correct answers. Remember that a relation is any set of ordered pairs.</p>
+      <template id="hint">
+        <!--h3>Hint</h3-->
+        <p>Lorem hint text ipsum dolor sit amet, consectetur hint text adipiscing elit.</p>
+      </template>
+    </template>
+
+    <!-- calls icons onto page for IE and Android-default-webkit Chrome-->
+    <script>
+if (!document.getElementById('pe-icons-sprite')) {
+var pe_ajax=new XMLHttpRequest();
+pe_ajax.open('GET', 'p-icons-sprite-1.1.svg', true);
+pe_ajax.responseType="document";
+pe_ajax.onload=function(e){document.body.insertBefore(pe_ajax.responseXML.documentElement,document.body.childNodes[0]);}
+pe_ajax.send();}
+    </script>
+    <script src="base.js"></script>
+    <script>
+      var LongNameSpacedPearsonTestObject=PO={
+          tries: document.querySelector('.tries'),
+          form: document.forms[0],
+          checks: [].slice.call(document.querySelectorAll('input[type="checkbox"]')),
+          divs: [].slice.call(document.querySelectorAll('.pe-checkbox')),
+
+          alert_div: document.querySelector('[role=alert]'),
+
+          /* templates */
+          correct: document.getElementById('answer_correct'),
+          incorrect: document.getElementById('answer_incorrect'),
+          alert_correct: document.getElementById('alert_correct'), 
+          alert_incorrect: document.getElementById('alert_incorrect'), 
+
+          submit: document.querySelector('button[type="submit"]'),
+
+          init: function() {
+            PO.checks.forEach(function(checkbox) {
+              Basis.addEventListener(checkbox,'focus',PO.enableButton);
+            });
+
+            Basis.addEventListener(PO.form,'submit',PO.runSubmit);
+          },
+        
+          enableButton: function() {
+            PO.submit.removeAttribute('disabled');
+            PO.checks.forEach(function(checkbox) {
+              Basis.removeEventListener(checkbox,'focus',PO.enableButton);
+            });
+          },
+
+          emptyNode: function(node) {
+            while (node.firstChild) node.removeChild(node.firstChild);
+          },
+
+          addSVGs: function(correct_answers,finished) {
+            PO.checks.forEach(function(checkbox, i) {
+              var div=checkbox.parentNode,
+                  dolly,
+                  svg,
+                  title;
+              if (correct_answers.some(function(a){return a==(i+1)})) {
+                dolly=PO.correct.content.cloneNode(true);
+                checkbox.classList.add('hidden');
+              }
+              else if (finished) {
+                dolly=PO.incorrect.content.cloneNode(true);
+              } // update IDs for uniqueness
+
+              if (dolly) {
+                svg=dolly.querySelector('svg'),
+                title=svg.querySelector('title');
+                title.id=(title.id + '_' + i);
+                svg.setAttribute('aria-labelledby', title.id);
+                div.insertBefore(dolly, div.firstChild);
+              }
+            });
+          },
+
+          runSubmit: function(e) {
+            e.preventDefault(); 
+
+            var correct_answers=[1,2,4],
+                answer=[],
+                trys=PO.tries.textContent.charAt(0);
+
+            PO.checks.forEach(function(checkbox, i) {
+              if (checkbox.checked) {
+                answer.push(i+1);
+              }
+            });
+
+            PO.emptyNode(PO.alert_div);
+
+            if (answer.length==correct_answers.length &&
+                answer.every(function(val,ind){return val===correct_answers[ind]})) {
+              PO.tries.textContent = '0 tries left';
+              PO.addSVGs(correct_answers,false);
+              PO.alert_div.appendChild(PO.alert_correct.content.cloneNode(true));
+
+              // obviously this should become a new thing that Does Something
+              PO.submit.textContent='Next';
+            }
+            else {
+              trys--;
+              PO.alert_div.appendChild(PO.alert_incorrect.content.cloneNode(true));
+              if (trys>=1) { // they are wrong but can try again
+                PO.submit.textContent='Try again';
+                if (trys==1) {
+                  PO.tries.textContent = '1 try left';
+                  var hint=PO.alert_incorrect.content.querySelector('#hint');
+                  PO.alert_div.appendChild(hint.content.cloneNode(true));
+                }
+                else {
+                  PO.tries.textContent = trys+' tries left';
+                }
+              }
+              else { // failed
+                PO.tries.textContent = '0 tries left';
+                PO.addSVGs(correct_answers,true);
+                PO.submit.textContent='Next';
+              }
+            }
+          }
+      };
+      Basis.start(PO.init);
+    </script>    
+  </body>
+</html>

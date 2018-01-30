@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fill In The Blank</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <style>
+      html {
+        margin: 0;
+        padding: 0;
+        font: 100% verdana, sans-serif;
+      }
+      body {
+        margin: 0;
+        padding: 1em 3em 4em; 
+        background-color: #fff;
+      }
+      body>div {
+        max-width: 40em;
+        margin: 0 auto;
+      }
+      p {
+        margin: 0 0 .6em;
+      }
+      fieldset {
+        margin-bottom: 1em;
+      }
+      fieldset div {
+        margin-bottom: .6em;
+        line-height: 1.5em;
+      }
+      input[type=text] {
+        margin: 0 5px;
+        padding: 5px;
+        border: 0;
+        border-bottom: 1px solid #000;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Multi-label inputs</h1>
+      <p>Explicit labels: these labels use for-id attributes to link labels with inputs. Trailing text is given an id and attached to the input using aria-describedby. This reads in a decent order.</p>
+      <form method="get" action="#">
+        <fieldset>
+        <legend>Put the verbs into the very simple past.</legend>
+          <div><label for="sqr">The square root of 4 is </label><input type="text" placeholder="Hello there" id="sqr"></div>
+          <div><label for="go">Last year I (go)</label> <input type="text" id="go" aria-describedby="rest1"> <span id="rest1">to England on holiday.</span></div>
+          <div><label for="be2">It (be) </label> <input type="text" id="be2" aria-describedby="rest2"> <span id="rest2">fantastic.</span> </div>
+          <div><label for="visit2">I (visit)</label> <input type="text" id="visit2" aria-describedby="rest3"> <span id="rest3"> lots of interesting places.</span> <label for="be3">I (be) </label> <input type="text" id="be3" aria-describedby="rest4"> <span id="rest4">with two friends of mine.</span></div>
+        </fieldset>
+        <input type="submit" value="fake submit">
+      </form>
+
+      <h2>An idea</h2>
+      <p>Sentences put together onBlur()</p>
+      <form method="get" action="#">
+        <fieldset>
+        <legend>Put the verbs wherever you want</legend>
+          <div><label for="sqr2">The square root of 4 is </label><input type="text" placeholder="Hello there" id="sqr2">
+              <p data-feedback="answer" aria-live="polite" aria-atomic="true"></p>
+          </div>
+          <div><label for="go2">Last year I <strong>(go)</strong></label> <input type="text" id="go2" aria-describedby="rest5"> <span id="rest5">to England on holiday.</span>
+              <p data-feedback="answer" aria-live="polite" aria-atomic="true"></p>
+          </div>
+          <div><label for="be4">It <strong>(be)</strong> </label> <input type="text" id="be4" aria-describedby="rest6"> <span id="rest6">fantastic.</span>
+              <p data-feedback="answer" aria-live="polite" aria-atomic="true"></p>
+           </div>
+          <div><label for="visit3">I <strong>(visit)</strong> </label> <input type="text" id="visit3" aria-describedby="rest7"> <span id="rest7"> lots of interesting places.</span> <label for="be5">I <strong>(be)</strong> </label> <input type="text" id="be5" aria-describedby="rest8"> <span id="rest8">with two friends of mine.</span>
+              <p data-feedback="answer" aria-live="polite" aria-atomic="true"></p>
+          </div>
+        </fieldset>
+        <input type="submit" value="fake submit">
+      </form>
+
+      <h2>Long form</h2>
+      <div data-question="question"><label for="lf1">At a mutual fund, the </label> <input type="text" id="lf1" aria-describedby="restlf1"> <span id="restlf1"> gives advice to the portfolio manager to help him or her make the right investments</span>.
+      </div>
+    </div>
+    <script src="base.js"></script>
+    <script>
+      var divs=([].slice.call(document.forms[1].getElementsByTagName('DIV'))).concat(Basis.getElementsByAttr('div','data-question','question'));
+
+      for (var i=0,dl=divs.length;i<dl;i++) {
+          // multiple inputs in a sentence, find the last one.
+          var div=divs[i],
+              last_input=div.getElementsByTagName('INPUT')[div.getElementsByTagName('INPUT').length-1];
+
+          (function listener(div) {
+              Basis.addEventListener(last_input,'blur',function() { 
+                  var le_div=div;
+                  createResult(le_div);
+              });
+          })(div);
+      }
+      // reading onBlur kinda sucks since blurring one sentences means reading the next question. Consider adding/removing a tabindex to the aria-live p to only when it has content.
+      function createResult(div) {
+          var labels=div.getElementsByTagName('LABEL'),
+              inputs=div.getElementsByTagName('INPUT'),
+              spans=div.getElementsByTagName('SPAN'),
+              result=Basis.getElementsByAttr('p','data-feedback','answer', div)[0];
+          
+          if (!result) {
+            return;
+          }
+          if (result.firstChild) {
+              result.removeChild(result.firstChild);
+          }
+
+          var counter=0,
+              msg='';
+          do {
+            if (counter>0) {msg+=' ';}
+            msg+=labels[counter].firstChild.nodeValue+' '+inputs[counter].value+' '+spans[counter].firstChild.nodeValue;
+            ++counter;
+            if (inputs[counter].value=='') return;
+          } while (labels[counter]);
+            
+          var message=document.createTextNode(msg);
+          result.appendChild(message);
+      }
+    </script>
+  </body>
+</html>

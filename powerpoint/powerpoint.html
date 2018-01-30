@@ -1,0 +1,770 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Accessible PowerPoint Guidelines</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!--[if lte IE 8]><script> var list='header,main,figure,figcaption,aside,footer'.split(','), el; while(el=list.pop()){document.createElement(el);}</script><![endif]-->
+    <link rel="stylesheet" href="../elements.css">
+    <style>
+      body {
+        padding: 2em;
+      }
+      main {
+        width: 80%;
+        max-width: 50em;
+        margin: 0 auto;
+      }
+      table {
+        width: 100%;
+        table-layout: fixed;
+        margin: 0 auto 1em;
+        border-collapse: collapse;
+        border: 1px solid #252525;
+      }
+        caption {
+          color: #777;
+          font-style: italic;
+          text-align: center;
+        }
+        th, td {
+          padding: 5px;
+          border: 1px solid #252525;
+        }
+      .logo {
+        margin-left: -25px;
+        padding-left: 25px;
+        background: url('pearson_p.png') 0 0 no-repeat;
+      }
+      .img img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid #252525; 
+      }
+      dt, dd {
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 0 .5em;
+        padding: .2em;
+      }
+      dt {
+        width: 28%;
+        padding-right: .6em;
+        color: #444;
+        font-weight: bold;
+      } 
+      dd {
+        width: 60%;
+      }
+        dt:nth-of-type(2n),
+        dd:nth-of-type(2n) {
+          background-color: #f5f5f5;
+        }
+      /* tabindex is a hack around broken browsers who don't move keyboard focus */
+      div[tabindex]:focus {
+        outline: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Accessible PowerPoints</h1>
+      <p class="pe-lead">PowerPoints need to be both accessible and follow Pearson's internal guidelines. <a href="#TOC">Jump straight to the do's and don'ts</a> for direct guidance. A <a href="#checklist">general checklist</a> is found at the end.</p>
+      <p>This document describes common approaches for creating accessible slides using Microsoft PowerPoint. It is important to make sure that your PowerPoint presentations are accessible for many reasons. It is not uncommon for people to request a copy of PowerPoint slides. The slides may contain information they would like to refer to or read more closely. They may not have been able to attend to live presentation themselves. Also, because software for webinars and virtual presentations cannot currently make on-screen content like slides accessible for all participants, those with disabilities may wish to have the slides on their own computers to follow along with or refer back to. Also, making sure that your slides are accessible not only makes it possible for any audience member to read them, it helps ensure that any member of your organization can present them.</p>
+      <p>Unfortunately, the degree to which different Assistive Technology (AT) can access PowerPoint content varies. If the content needs to be shared widely, in diverse situations, it may be useful to have the content available in other accessible document formats such as Word, PDF, or as a web page as well.</p>
+      <p>Note: Steps may differ between PowerPoint 2010, 2013, and 2016, but the general concepts are the same. Also, please use the Windows version of PowerPoint, and the latest version. If you are preparing STEM titles requiring MathType equations, the Windows version is required and the Macintosh version is unacceptable. Macs should not be used to create our math PowerPoint products.</p>
+
+      <h2>The Master Slide</h2>
+      <p>The best way to ensure robust accessibility for your slides is to have a master slide that has many accessible qualities set up already.</p>
+      <p>Use the master slide to create universal settings for color, font, headings, footers and images to all slides in a presentation. Making changes to the slide master has a global effect on all slides create after it, so it is important to create it first. Changes to the master slide will not apply to individual presentation slides that were created before the master slide.</p>
+      <p>You can override any settings on the master slide on individual slides. Also remember that images placed on the master slide will need to have alternative text created on the presentation slide itself. Text, including alternative text, that appears on the master slide will not be read by AT.</p>
+      <p>To Create a Master Slide:</p> 
+      <ol class="pe-list pe-styled-lists--ordered">
+        <li>Open a blank presentation</li>
+        <li>Activate the <kbd class="pe-kbd">View</kbd> tab on the toolbar</li>
+        <li>Go to the <kbd class="pe-kbd">Master Views</kbd> pane</li> 
+        <li>Select <kbd class="pe-kbd">Slide Master</kbd></li> 
+        <li>Make any changes to color, font, clip art, etc</li> 
+        <li>Activate the <kbd class="pe-kbd">Close the Master View</kbd> option after all changes have been applied</li>
+      </ol>
+
+      <h2>Embedded Objects</h2>
+      <p>It's not uncommon for people to add content from other file types into their PowerPoint slides. This may cause problems for users with disabilities.</p>
+      <p>When files are "embedded" in a slide, by copying the file into the slide, users may not be able to activate the file with the keyboard, or to read its content correctly with assistive technology. If files are embedded in your slides, make the file available separately, and provide information on how to obtain it.</p> 
+      <p>While it is possible to copy data or information from another file, this shouldn't be done without using the appropriate PowerPoint objects. For instance, do not just copy Excel content into your slide without making sure that a table object is in place.</p>
+
+      <h2>The Microsoft PowerPoint Accessibility Checker</h2>
+      <p>Microsoft PowerPoint has a built-in accessibility checker that can be used to double check whether you have missed anything. Like any automated tool, however, it may not catch everything. It will be able to tell whether an image has alt text, for instance, but has no way of knowing whether alt text that may be present is meaningful. It will also guess at things like items that should be headings, and alert you to unnecessary use of repeated tabs or carriage returns.</p>
+      <p>Using the Accessibility Checker is a good final step to take before saving or publishing your slide:</p>
+      <ul class="pe-list pe-styled-lists--unordered">
+        <li>Go to the File tab on the ribbon</li> 
+        <li>On the Info tab, choose Inspect and choose Check Accessibility</li>
+        <li>Review the warnings that are shown and make corrections as necessary</li>
+      </ul>
+
+      <h2 id="TOC">TOC: Do, Don't, How-to</h2>
+      <ul class="pe-list pe-styled-lists--unordered">
+        <li><a href="#content">Content</a></li>
+        <li><a href="#formatting">Formatting</a></li>
+        <li><a href="#reading_order">Reading Order</a></li>
+        <li><a href="#col_contrast">Color and Contrast</a></li>
+        <li><a href="#alt_text">Alt text</a></li>
+        <li><a href="#tables">Tables</a></li>
+        <li><a href="#math">Math</a></li>
+        <li><a href="#animations">Animations</a></li>
+        <li><a href="#notes">Screen reader notes</a></li>
+      </ul>
+
+      <div id="content" tabindex="-1">
+        <h3 class="logo">Content</h3>
+        <p>The general rules for content accessibility: keep slides simple and choose a correct layout; use text placeholders, not manual text boxes; follow the instructions for Titles and Footers; have useful link text; set the language used in the slides; and avoid controls like checkboxes.</p>
+        
+        <h4>Use Clear, Simple Language and Layout</h4>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Avoid using overly complex language in slides that provide information or instructions.</li>
+          <li>Keep the layout of the slide clear and uncluttered to make it easier to read.</li>
+          <li>Avoid watermarks or busy backgrounds to minimize distraction and maintain readability.</li>
+          <li>Use white space effectively to separate sections and columns (remember to use built-in features to do this; don't press <kbd class="pe-kbd">Tab</kbd> multiple times).</li>
+        </ul>
+        <p>Select an appropriate layout from the layouts gallery and transfer any existing PPT content into the content placeholders in the accessible template. Use the "Title + Learning Objectives and Content" layout for most slides. Use the "Figure + Caption" layout for figure slides (reposition figure title and caption placeholders as needed to best work with figures).<!-- if the template Elaine posted gets additional info added, maybe it can be referenced as the One True Template here? --> <strong>Text content must be placed in content placeholders for the screen reader to read the text</strong>.</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Do not copy and paste "manual" textboxes onto slides because screen readers do not always read them. You want real placeholders.</li>
+          <li>Math equations and tables should not be converted to images. They should be entered into slides directly (see <a href="#math">math</a> and <a href="#tables">tables</a> for more detail).</li>
+          <li>Each slide should have a title and it should not be duplicated. Titles must appear in every slide, concise, unique, and should be included in the title placeholder.</li>
+        </ul>
+
+        <h4>Making the Title</h4>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>If you accidentally delete the title placeholder, please create a new slide and do not manually add a text box with the title.</li>
+          <li>If a slide's contents needs to be spread across multiple slides, to make slide titles unique, append "(1 of 2)" or similar to the main title text.</li>
+          <li>If the slide's title contains math equations within text, replace the symbols with their full names (example: Turn "Consider matrix Δ an identity matrix" to "Consider matrix delta an identity matrix"), but do not insert images-with-alt-text into the title. <strong>This is only for title placeholders where adding a MathType object is not possible.</strong> See the <a href="#reading_order">reading order</a> and <a href="#math">math</a> sections for more.</li>
+        </ul>
+
+        <h4>Making the Footer</h4>
+        <p>Use the <kbd class="pe-kbd">View → Master → Slide Master</kbd> layout to insert the Pearson logo. Add the last three copyright years in the banner and Properties dialog box. Insert the copyright dates (be sure to include one space after the © symbol). Insert the Chapter.Section-Slide number (in the right corner).</p>
+      
+        <h4>Use Meaningful Text for Hyperlinks</h4>
+        <p>If you include hyperlinks in your slide, use both meaningful text to show where they link to <em>and</em> the raw URL so that people can copy it manually to paste into a browser. Because raw URLs may be difficult to understand, it is not a bad idea to place them after the main readable content on your slide or in an Appendix slide at the end of your presentation.</p>
+        <p>Remember that repeatedly using "click here" or "read more" isn't particularly descriptive, and can be misleading if more than one such link appears in your slide.</p>
+        <p>To create meaningful text for hyperlinks:</p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Select the <kbd class="pe-kbd">Hyperlink</kbd> option on the context menu, or</li>
+          <li>Go to the <kbd class="pe-kbd">Insert</kbd> tab on the ribbon and select <kbd class="pe-kbd">Links</kbd>, then <kbd class="pe-kbd">Hyperlink</kbd></li>
+          <li>Insert the address of the link in the appropriate box, and the text description in the Description field</li>
+        </ol>
+  
+        <h4>Designate Languages Correctly</h4>
+        <p>Make sure languages are indicated correctly in the slide. If the slide contains passages in more than one language, this is especially important. These will allow screen readers to adjust the language that is spoken to match the language in the passage or slide. If this isn't done, all languages will be spoken as the default language, and are likely to be unintelligible.</p>
+        <p>First you should confirm that the slide is designated as the correct language. Language settings can be found on the Review tab on the ribbon.</p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Go to the top of the slide</li>
+          <li>Open the Language submenu and confirm that the proofing language is set correctly for the language of the slide</li>
+        </ol>
+
+        <h4>Controls That Are Not Keyboard Accessible</h4>
+        <p>Making sure everyone can operate interactive parts of PowerPoint slides can be tricky. Although there are quite a few elements that can be made user-controllable, not all of them are accessible.</p>
+        <p>PowerPoint allows you to add checkboxes and other form type controls to slides. Unfortunately, these may not be accessible from the keyboard and may not be correctly recognized by screen readers. Avoid using them.</p>
+        <p>Also, the controls available in PowerPoint to play and stop audio content are not keyboard accessible when assistive technology like screen readers are active. Video and audio content can be made available in another form such as on a web page or a dedicated file students can view on in their OS's built-in players.</p>
+      </div>
+
+      <div id="formatting" tabindex="-1">
+        <h3 class="logo">Formatting</h3>
+        <p>General: Select an appropriate font as per guidelines and change the existing font and its size as required. Sans serif font for text is preferred. Changing the font size might mean content grows too large to fit on a single slide; split into more slides as needed (and to keep titles unique, append "(1 of 2)" or similar). Check alignment and format the text in bullets (using PowerPoint List objects) if needed. Italics should be avoided. All caps, tabs, paragraphs, and spaces for visual alignment should be changed. Transitions and animations should be changed to plain text or without animations (see <a href="#animations">animations</a> for more).</p>
+        
+        <h4>Figures and images</h4>
+        <p>For clarity, images and figures should be cropped from relevant PDFs and resized it to fit in slides. For Figures/Images taken from the textbook:</p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Enlarge figure/image as much as possible in Acrobat (300% recommended) within the PDF</li>
+          <li>Choose "Take a snapshot" of the image under <kbd class="pe-kbd">Edit</kbd> in Acrobat. This retains the resolution (and therefore the sharpness) of the figure/image</li>
+          <li>Once inserted into the PPT (<kbd class="pe-kbd">Ctrl-V</kbd>), it can be reduced in size as needed</li>
+          <li><strong>DO NOT</strong> enlarge the figure/image by dragging the corner within PPT because it will lose its sharpness</li>
+        </ol>
+
+        <h5>Figures</h5>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Text is at least 12 points (larger is better)</li>
+          <li>Use the "Figure + Caption" layout and reposition placeholders as necessary</li>
+          <li>The figure title and number should be in the Title Placeholder</li>
+          <li>Captions belong in the text / caption placeholder (reformatted and repositioned as necessary) or Notes area.</li>
+        </ul>
+        <p>Of course, all figures and images which convey information must have appropriate <a href="#alt_text">alternative text</a> added to them.</p>
+
+        <h4>Lists</h4>
+        <p>Items grouped as numbered or bulleted lists will be announced as lists by screen readers and other access technology. <strong>Use PowerPoint's List feature to create lists and sub-lists.</strong> When this feature is not used, there is no structural indication to allow assistive technology to detect that items are related. Avoid using blank spaces to create the visual appearance of a list, because AT will not be able to identify a grouping of text and blank spaces as a list. It may also be harder for an AT user to read.</p>
+
+        <h5>To create lists:</h5>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Select the text to be structured as a list or
+            <ol>
+              <li>Place the cursor at the desired location to start a new list</li>
+            </ol>
+          </li>
+          <li>Select the <kbd class="pe-kbd">Home</kbd> tab on the ribbon 
+            <ol>
+              <li>Choose the <kbd class="pe-kbd">Paragraph</kbd> section</li>
+            </ol>
+          </li>
+          <li>Or go to the <kbd class="pe-kbd">Paragraph</kbd> section on the toolbar</li>
+          <li>Select <kbd class="pe-kbd">Bullets</kbd> or <kbd class="pe-kbd">Numbering</kbd> or,
+            <ol>
+              <li>Select the small arrow and select <kbd class="pe-kbd">Define New Bullet</kbd> or <kbd class="pe-kbd">Define New Number Format</kbd> to change the appearance of the bullet</li>
+            </ol>
+          </li>
+          <li>Make desired changes then activate the OK button.</li>
+        </ol>
+
+        <h5>Adding or Updating Sub-Lists</h5>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Select the text to be structured as a sub-list,
+            <ol>
+              <li>or place the cursor at the desired location to start a new sub-list</li>
+            </ol>
+          </li>
+          <li>Go to the <kbd class="pe-kbd">Paragraph</kbd> section on the Home tab on the ribbon</li>
+          <li>Select the <kbd class="pe-kbd">Increase Indent</kbd> button</li>
+        </ol>
+        <p>Note: Open the drop-down list on the <kbd class="pe-kbd">Numbering</kbd> or <kbd class="pe-kbd">Bullets</kbd> button and select a numbering or bullet scheme to change the style or to create a bulleted sub-list inside a numbered list.</p>
+
+        <h4>Sizes and Fonts</h4>
+        <p>In general, font sizes should be larger than 16pt, with 24pt as the ideal size. You can set the font for a slide in the <kbd class="pe-kbd">Font</kbd> section on the <kbd class="pe-kbd">Home</kbd> tab. Select your font and its default size. Select <kbd class="pe-kbd">Make Default</kbd>, and it will be used automatically for every new slide you create. You can also set the font size in the Master slide.</p>
+        <p>Recommended sizes:</p>
+        <dl>
+          <dt>Titles</dt>
+            <dd>36pt</dd>
+          <dt>Sub-Titles</dt>
+            <dd>34pt</dd>
+          <dt>Headings</dt>
+            <dd>32pt</dd>
+          <dt>Sub-Headings</dt>
+            <dd>30pt</dd>
+        </dl>
+
+        <h5>Fonts</h5>
+        <p>Once a PowerPoint file is completed, the fonts should be embedded. To embed fonts, select <kbd class="pe-kbd">File → SaveAs → Tools → Save Options</kbd>. In PowerPoint Options go to <kbd class="pe-kbd">Save → Preserve fidelity</kbd> when sharing this presentation: click the checkbox "Embed fonts in the file" and select radio-button "Embed only the characters used in the presentation (best for reducing file size)" then click OK.</p>
+        <p>Times New Roman should be used for all math PowerPoint products. <a href="#math">More math details</a>.</p>
+      </div>
+
+      <div id="reading_order" tabindex="-1">
+        <h3 class="logo">Reading Order</h3>
+        <p>The order of the content on PowerPoint slides is one of the areas that most directly affects accessibility. This is the order in which content is read out loud. Some assistive tech use the Z-order of the objects on the slide to determine reading order, while others determine reading order from the X, Y coordinates of the objects on the slide, reading objects from left-to-right, top-to-bottom based on the location of the top left corner of each object's border, not the location of text or graphic content contained in the object. To make sure as many people as possible can properly interpret the order of content of your slides, pay attention to both positioning and Z-order.</p>
+        <p><strong>Z-order</strong> is the order of layers from back to front on the slide. The object furthest back has the lowest Z-order and will be read first.</p>
+        <h4>To set the reading order:</h4>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Select the Format tab.</li>
+          <li>Go to the Arrange pane.</li>
+          <li>Select the Selection Pane button.</li>
+          <li>Use the Re-order buttons to set the reading order from bottom (read first) to top (read last).</li>
+        </ol>
+        <h4>Checking Your Z-Order</h4>
+        <p>The tab order of objects indicates the order in which content will be read. While in the editing area of PowerPoint, pressing tab will move you through objects in their Z-order.</p> 
+        <p>Click the very top left corner of the slide with the mouse and then press <kbd class="pe-kbd">TAB</kbd> on the keyboard. A dotted rectangle will appear around the first item in the tab order. The next item in the Z-order will become highlighted each time the Tab key is pressed.</p>
+
+        <h4>Columns</h4>
+        <p>If you want to create a slide with several columns on it, use the built-in column options in PowerPoint to do so. Don't just use tabs or spaces. This will make your slide unreadable to people using AT like screen readers because, unless they are informed not to do so, screen readers read across the entire line before moving to the next line.</p>
+        <p>Be sure to put enough space between your columns to keep them readable for everyone. There are two ways to provide multiple columns in a PowerPoint presentation.</p>
+        <p>The slide layout can be changed to multi-column with multiple placeholders for each column:</p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Go to the <kbd class="pe-kbd">Home</kbd> tab</li>
+          <li>Select the <kbd class="pe-kbd">Slides</kbd> pane</li>
+          <li>Activate the <kbd class="pe-kbd">Layout</kbd> button</li>
+          <li>Select <kbd class="pe-kbd">Title and Text</kbd> or <kbd class="pe-kbd">Title and 2-Column Text</kbd> depending on the number of columns desired</li>
+        </ol>
+        <p>Or, a placeholder can be set to display multiple columns:</p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Select the text where columns need to be applied</li>
+          <li>Go to the <kbd class="pe-kbd">Home</kbd> tab</li> 
+          <li>Go to the <kbd class="pe-kbd">Paragraph</kbd> pane</li>
+          <li>Activate the <kbd class="pe-kbd">Columns</kbd> button</li>
+          <li>Select the desired number of columns from available choices</li>
+        </ol>
+      </div>
+      <div id="col_contrast" tabindex="-1">
+        <h3 class="logo">Color and Contrast</h3>
+
+        <h4>Don't use color by itself to convey information.</h4>
+        <p>It isn't uncommon to use color coding to indicate information such as importance, or status. However, if someone cannot perceive the colors used, they will miss the significance of the text that is in that color.</p>
+        <p>The solution for this is to always use a symbol (like *) or words such as, "Important", "Required", "Special Note" or the like. The key is that there is a textual means of drawing a user's attention to the text that also uses color for that purpose.</p>
+        <p>A note on color: Even if it meets the minimum color contrast ratio, Do not use black/red or red/green color combinations (black text on red background, red text on green background). Some color blind students will only see browns or greys and will not be able to read. <a href="http://accessibility.psu.edu/color/colorvisiondetails/">See black/red and other examples</a>.</p>
+        <p>Martin Krzywinski of the BC Cancer Research Center has <a href="http://mkweb.bcgsc.ca/biovis2012/color-blindness-palette.png">a 15 color palette</a> that enables you to select colors that color blind people can differentiate.</p>
+
+        <h4>Contrast</h4>
+        <p>The relationship between the foreground color and background color of text is called the contrast ratio. The recommended contrast ratio for text less than 18pt and 14pt bolded text is <strong>4.5:1</strong>. For text greater than 18pt, the recommended contrast ratio is 3.0:1. The contrast ratio of black on white text is 21:1, so there is a wide range of background and foreground colors that can be used before contrast is considered too low.</p>
+
+        <h5>Tools - Contrast checkers</h5>
+        <p>Manually type in foreground and background values:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li><a href="http://webaim.org/resources/contrastchecker/">WebAIM Contrast Checker</a></li>
+          <li><a href="https://leaverou.github.io/contrast-ratio/">Lea Verou's contrast checker</a></li>
+          <li><a href="http://www.ssbbartgroup.com/reference/color-contrast-checker/">Color Contrast Checker from SSB Bart Group</a></li>
+        </ul>
+        <p>Automatic tool:</p>
+        <p><a href="http://www.paciellogroup.com/resources/contrastAnalyser">Color Contrast Analyzer from the Paciello Group</a></p>
+        <p>If you find that the contrast ratio is too low, you should adjust either the background or foreground color. If you have a gradient background where the color behind the text varies, make sure that the color surrounding each letter meets appropriate contrast levels. If you can’t make adjustments to the actual text colors, then try using outlining or other effects to add a contrasting border around the text. Be aware that some of these effects, along with gradient and watermark backgrounds can make slides harder to read. If you find that you have to work hard to make your text readable, it may mean that the slide design should be re considered.</p>
+
+        <h5>Color Contrast in Charts</h5>
+        <p>Besides considering the contrast ratio of text, you should also check contrast levels in informational images like charts and graphs. If you find that the contrast ratio is too low, you can adjust the color of the text or background.</p>
+        <p>To change the color of the text or a chart background:</p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Activate the context menu for a chart bar or slice</li>
+          <li>Navigate to and select the <kbd class="pe-kbd">Format Data Series</kbd> menu option</li> 
+          <li>Select <kbd class="pe-kbd">Fill</kbd> from the options in the dialog</li>
+          <li>Select the <kbd class="pe-kbd">Solid Fill</kbd> radio button. Solid fill is recommended because it allows only one color in the background instead of multiple shades</li>
+          <li>The <kbd class="pe-kbd">Fill</kbd> color selections should appear in the dialog under the radio buttons and checkbox</li>
+          <li>Select a new color from the <kbd class="pe-kbd">Color</kbd> button that will open a color palette</li>
+          <li>Navigate to and activate the <kbd class="pe-kbd">Close</kbd> button</li>
+          <li>Confirm the color of the slice or bar has changed</li>
+          <li>Repeat the above steps for each piece where the color needs to be updated</li> 
+        </ol>
+        <p>Use a master slide to design color schemes with good contrast levels.</p>
+      </div>
+
+      <div id="alt_text" tabindex="-1">
+        <h3 class="logo">Alt text</h3>
+        <p>Images can add information and interest to slides, and for images which convey information, alternative text is needed for those who cannot see the images. Assistive technology, including screen readers, use alt text to describe the content of images in your slide to their users. If no alt text is provided, screen readers may announce other details about the image, such as its size and its filename, which doesn’t really help anyone.  Alt text should be included for any of the following objects in your slide:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Pictures</li>
+          <li>Clip Art</li>
+          <li>Charts and Graphs</li>
+          <li>SmartArt graphics</li>
+          <li>Groups (all objects in this list, with the exception of shapes, should also have alt text when in groups)</li>
+          <li>Embedded objects</li>
+          <li>Video and audio files</li>
+          <li><a href="#math">Math objects</a></li>
+          <li><a href="#tables">Tables</a></li>
+        </ul>
+
+        <h4>The Notes Pane</h4>
+        <p>Instructors or vendors may use the Notes pane to add additional information about a slide, including longer explanations of charts, graphs, or diagrams on the slide. If the Notes section is pre-filled by the vendor or deck creator, a graphic should be added to the first slide of the deck with alternative text with some instructions to students, such as "Press 'F6' in normal view/Edit Mode or press 'Ctrl+Shift+N' in SlideShow Mode to access the notes".</p>
+
+        <h4>Basic Rules for Alternative Text</h4>
+        <p>Remember, somebody is going to be listening to your descriptions and listening takes time. The shorter and clearer your descriptions are, the easier they will be to understand.</p>
+        <p>Images that are purely decorative (spacers, borders, images that repeat text already in the slide, etc) need empty alt text. Do this by typing a space in the "description" alt text field (don't use quotes like you do for empty alt text in HTML).</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>The alt text should be brief—no more than 120 characters—and should clearly describe the image and/or its purpose.</li> 
+          <li>Unless it's important for the user to know how the image was generated, avoid phrases like "picture of" "image of" "stock photo of", etc. If it is important to know that an image is a drawing, cartoon, chart or painting, however, that can be included (in fact, recommended for charts and graphs).</li>
+          <li>If an image contains text, the alt text should contain that text verbatim. For images that contain lots of textual information, see the section on <a href="#longdesc">long descriptions</a>.</li>
+          <li>It is generally not necessary to provide a full description of icons. If you choose to do so, only provide the longer description the first time an image is shown. After that, use the shortest description—e.g., "Official Use Only".</li>
+          <li>Unless they are being used to provide unique meaning, logos should only be described on the first page where they occur. Use empty alt text for every occurrence after that. For example, if an organization logo is placed on the footer of every page, it should only be described on the first page. However, if logos are being used to provide information (such as steps to follow for an iPhone and an Android phone) then provide descriptions.</li>
+          <li>If descriptive information is available in nearby text, it should not be repeated in the alt text for an image.</li>
+        </ul>
+        <p>Keep similar thoughts in mind when describing images during a live presentation. You usually don't have to describe everything in the image, just the part that you want your audience to pay attention to. Think about it this way, if you were giving a webinar presentation and the audience lost their video connection and could only hear you, what would you want them to know or understand? Whenever you can, try to treat your spoken descriptions like they're part of your talk, so they don't seem odd or unnatural. Initially, it may take some thought and practice to get the hang of, but it gets easier with practice. Also, good descriptions can help the overall comprehension of your presentation, since they can draw viewers' attention to particular information on the slide.</p>
+        
+        <h4>Groups of images, or an image with text labels</h4>
+        <p>A slide made up of several images, or an image with text labels need to have the (alt) text match the visible order. Generally a labelled image should start with an image (with alt text setting the scene such as: "diagram of the heart. The various parts are labelled"). The labels should then follow the visual order for the most part, in some logical way such as going down labels on the left, then labels on the right, or from top to bottom.</p>
+        <p>For an image made up of other images, such as a Venn diagram, do similar: the background image of the overlapping parts should be first in the reader order stating what the image is of and which parts overlap. The labels, if made of real text on the slide, should follow in approximately the visual order (left to right, or top to bottom).</p>
+        <p>See <a href="#reading_order">reading order</a> for keeping the reading order correct using Z-index.</p>
+
+        <h4>Adding alt text to images on your slides</h4>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Open a context menu by performing a right-click, or hitting the applications key or <kbd class="pe-kbd">Shift + F10</kbd> on  the image or object</li>
+          <li>Choose Format</li>
+          <li>In PowerPoint <strong>2010</strong>: Choose <kbd class="pe-kbd">Alt Text</kbd>. In PowerPoint <strong>2013</strong>: Choose <kbd class="pe-kbd">Layout and Properties</kbd>, click open <kbd class="pe-kbd">Alt Text</kbd></li>
+          <li>Enter a description of the image or object into the Description text box</li>
+          <li>PowerPoint <strong>2010</strong>: Activate <kbd class="pe-kbd">Close</kbd>. PowerPoint <strong>2013</strong>: Hit <kbd class="pe-kbd">ESC</kbd></li> 
+        </ol>
+        <p><strong>Note:</strong> Content entered into the Title field may or may not be read out by assistive tech. If there are multiple figures, charts, graphs or tables on a slide, it's a good idea to start with the name or number of that object in the Description field.</p>
+
+        <h5 id="longdesc">Longer Descriptions for Complex Images</h5>
+        <p>Charts and graphs may require longer explanations than do simple images.  There are two actions needed to make these items accessible:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Add a short description as you would for a simple image</li>
+          <li>Then add the longer description somewhere else in the presentation:
+            <ul>
+              <li>Add descriptive information in nearby text. For instance, if you needed to provide directions to an office, they could easily be given in text near the picture</li>
+              <li>Add information in the Notes pane or on an appendix slide. For some charts, adding a table that shows the same data can be helpful</li>
+            </ul>
+          </li>
+          <li>If the long description is located somewhere else, add its location to the alt text so that people who need it will know where to go</li>
+        </ul>
+      
+        <h5>Shapes and Grouping Objects</h5>
+        <p>Alternate text applied to most objects in PowerPoint, such as Shapes, cannot be interpreted by assistive technology. In order for assistive tech users to understand the flow of information, the items need to be grouped into one object. Alternative text can then be applied to that single object. AT will be able to read this alternative text. The alternate text of the group needs to accurately describe the group, including the order and relationship of the objects it contains. The same principles that apply to complex images are likely to apply to grouped objects. Alternate text and detailed descriptions need to be used accordingly.</p>
+
+        <p>To Group Objects:</p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Select the objects that should be group together</li>
+          <li>Activate the <kbd class="pe-kbd">Group</kbd> option on the context menu or 
+            <ol>
+              <li>Navigate to the toolbar and activate the <kbd class="pe-kbd">Format</kbd> tab</li>
+              <li>Select the <kbd class="pe-kbd">Group</kbd> button (Group Objects)</li>
+            </ol>
+          </li>
+          <li>Select the Grouped Object (there should be one focus rectangle around the entire figure)</li>
+          <li>Return to the context menu and select <kbd class="pe-kbd">Format Shape</kbd></li>
+          <li>Select the <kbd class="pe-kbd">Alt Text</kbd> tab</li>
+          <li>Enter alternate text describing the grouped objects in the Description field</li>
+          <li>Activate the <kbd class="pe-kbd">Close</kbd> button or hit <kbd class="pe-kbd">ESC</kbd> in PowerPoint 2013 and above</li>
+        </ol>
+
+        <h5>Background Images</h5>
+        <p>In PowerPoint presentations background images and content may be part of the master slide. The master slide is a feature of PowerPoint that allows the same themes, such as color, font, etc., to extend throughout the  presentation. Master slide content that conveys meaning must be conveyed to the user in an accessible manner on each slide. This content  may be logos or text such as a revision date. The only way to make background images accessible is to create a substitute image and apply alt text to it. An invisible spacer image with appropriate alternate text that is placed on the presentation slide can serve as this substitute image. Actual text on the slide can also be used to provide an alternative as well.</p>
+        <p>Remember:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>To be detectable by AT, the image alt text or general text need to be on the presentation slide, not the master slide.</li>
+          <li>Alternatives only need to be provided for background images when they provide meaning.</li>
+          <li>Make repetitive content, such as footer information, accessible on the first slide only in the presentation deck.</li>
+        </ul>
+      </div>
+
+      <div id="tables" tabindex="-1">
+        <h3 class="logo">Tables</h3>
+        <p>Screen readers do not work well with tables in PPT files, but the techniques listed here will help make them as accessible as possible. Generally: use "real" (PowerPoint-created) tables (not images), use the correct structure, and keep them simple.</p>
+        <p>We generally no longer recommend adding alt text to tables, and instead encourage screen reader users to explore table cells in Edit mode. When alt text is added to tables, that may be read in place of the actual table information in SlideShow mode.</p>
+      
+        <h4>Real tables</h4>
+        <p>Use PowerPoint's Table features to create data tables. Tables created with other methods, including copying and pasting cells directly from Excel spreadsheets, will not be read correctly by assistive tech. Unfortunately, even using this method, not all AT associate header cells with data cells. This doesn't mean you shouldn't use header cells. It is always a good idea to maintain good practices, for the eventuality that AT will support them in the future.</p>
+        <p>To add a table:</p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Select the <kbd class="pe-kbd">Insert</kbd> tab on the ribbon</li>
+          <li>Go to the <kbd class="pe-kbd">Tables</kbd> pane and select the <kbd class="pe-kbd">Table</kbd> button</li>
+          <li>Select <kbd class="pe-kbd">Insert Table</kbd> from the menu options</li>
+          <li>Enter the number of desired columns and rows in the appropriate fields of the <kbd class="pe-kbd">Insert Table</kbd> dialog</li>
+          <li>Activate the <kbd class="pe-kbd">OK</kbd> button or hit <kbd class="pe-kbd">ESC</kbd></li>
+          <li>Confirm an empty table appears on the slide and enter your data</li>
+        </ol>
+        <p>Maintain one data point or header per cell. When multiple headers or data points are placed in one cell, assistive tech will not be able to determine the relationship between header and data cells. Additionally, when contents are placed in the same cell, users of screen reading technology will not be able to navigate through the table properly, and will be unable to correctly determine their position in the table, such as which row or column they are in.</p>
+        <p>Use the <kbd class="pe-kbd">Insert Row</kbd> or <kbd class="pe-kbd">Insert Column</kbd> feature to create new cells.</p>
+        
+        <h4>Table Headers</h4>
+        <p>Although current assistive technologies do not recognize all options available in PowerPoint, it is a good idea to structure content as much as possible. Some options will help to reduce the amount of extra work if a slide deck is converted to another format. Also, as technology advances, more properties may be recognized.</p>
+        <p>PowerPoint allows the option to designate content in tables as a header row:</p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Place the insertion point in a table cell within the desired header row</li>
+          <li>Activate the <kbd class="pe-kbd">Design</kbd> tab on the ribbon</li> 
+          <li>Go to the <kbd class="pe-kbd">Table Styles Options</kbd> pane</li> 
+          <li>Ensure the <kbd class="pe-kbd">Header Row</kbd> checkbox is checked if using row headers</li>
+          <li>Check other checkboxes that apply</li> 
+        </ol>
+
+        <h4>Simple Tables</h4>
+        <p>Table should be a simple grid with predictable rows and columns. Avoid split or merged cells as much as possible. Don't leave blank cells blank. Simple data table visual example below:</p>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Street</th>
+              <th scope="col">City</th>
+              <th scope="col">State</th>
+              <th scope="col">Zip Code</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Anne</td> 
+              <td>1234 Main St.</td> 
+              <td>Anytown</td> 
+              <td>MA</td> 
+              <td>01110</td> 
+            </tr>
+            <tr>
+              <td>Bart</td> 
+              <td>5678 Main St.</td> 
+              <td>Anytown</td> 
+              <td>MA</td> 
+              <td>01110</td> 
+            </tr>
+            <tr>
+              <td>Carl</td> 
+              <td>15 Elm St.</td> 
+              <td>Anotherton</td> 
+              <td>MD</td> 
+              <td>02050</td> 
+            </tr>
+          </tbody>
+        </table>
+        <p>Test and simplify the table structure:</p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Select the first cell of the table</li>
+          <li>Press <kbd class="pe-kbd">Tab</kbd> repeatedly to make sure the focus moves across and down rows in order</li>
+          <li>If you need to merge or split cells to simplify the table, on the <kbd class="pe-kbd">Table Tools Layout</kbd> tab, in the <kbd class="pe-kbd">Merge</kbd> group, click <kbd class="pe-kbd">Merge Cells</kbd> or <kbd class="pe-kbd">Split Cells</kbd> as appropriate
+            <ul>
+              <li>Use merged and split cells very sparingly; some screen readers have difficulty with these</li>
+            </ul>
+          </li>
+          <li>Do not use blank cells
+            <ul>
+              <li>Add the words blank or blank cell in any blank cells</li>
+              <li>Format the font to match the cell background so it doesn't show for visual readers</li>
+            </ul>
+          </li>
+          <li>If there is information (source data or similar) that doesn't easily fit into a non-merged cell, use the "Title and Two Content" layout and add this information in the second placeholder</li>
+        </ol>
+
+        <h4>Table Alt Text</h4>
+        <p>The Microsoft PowerPoint Accessibility Checker will currently flag a table without alternative text as an error. However, because most assistive technologies will read table cells in Edit mode, it is Pearson's policy to not include alt text for actual tables, as this can result in a poor user experience (namely, in SlideShow Mode the alt text may override the actual table data).</p>
+      </div>
+
+      <div id="math" tabindex="-1">
+        <h3 class="logo">Math</h3>
+        <p>All display and inline equations, Greek, math, and special characters must be set with MathType, which can be purchased at <a href="http://www.dessci.com/en/products/mathtype/">Design Science's web site</a>. Additionally, students will need to have MathType installed (this can be done for free). PowerPoint supports a widespread standard for linking and embedding objects called OLE (Object Linking and Embedding). Since MathType equations are natively OLE objects, this means that MathType and PowerPoint work well together.</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Never use PowerPoint's "Insert/Symbol" or Microsoft's equation editor "Equation."</li>
+          <li>MathType should not be used as a text editor.</li>
+          <li>Math objects need alt text for assistive tech that does not understand MathML.</li>
+          <li>DO NOT enlarge the MathType object box by dragging a corner within the PowerPoint slide (it'll blur).</li>
+          <li>For decks with <strong>a few</strong> animations used to incrementally show content, the best and most stable method is to use separate slides showing each step.</li>
+          <li>For decks with <strong>many</strong> stepping animations, separate slides increases the number of slides substantially. Instead, see <a href="#ia">the animation guidelines</a> for how best to leave these as (user-controlled) animations. There's also the <a href="#notes">notes for screen reader users</a> (under "Animations") which can provide some instruction for students.</li>
+        </ul>
+        <p>The font for MathType should be in Times New Roman (preferable).</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Define the style of text from the <kbd class="pe-kbd">Style Menu → Define</kbd>, under the "Advanced" radio button. Check the checkbox "Use for new equations" when the settings are complete.</li>
+          <li>Define the size of text from the <kbd class="pe-kbd">Size Menu → Define</kbd>. Save the settings in the <kbd class="pe-kbd">Preferences Menu → Equation Preferences → Save to file</kbd> as an .eqp equation file. One can load these saved settings as needed.</li>
+        </ul>
+
+        <h4>Alt text and Reading Order</h4>
+        <p>With MathType (and MathPlayer) installed, NVDA users can access equations on the slides as MathML, however JAWS (as of version 18) does not, and requires alt text. This may be true of other screen readers as well. Alt text should generally match how the equation would be read out loud, although during steps of equations where a process is being explained visually, the alt text should include that as well ("divide both sides by 36"). Even when alt text is added to equations, neither the math nor the alt text appears in Outline View.</p>
+        <p class="img"><img src="./powerpoint_files/math_equation1.png" alt="PowerPoint screenshot showing bullet points with inline equations: Bullet 1 is &quot;Graph&quot; followed by a focused math equation. Bullet 2, &quot;The equation is of the form x squared over a squared minus y squared over b squared equals 1 so its graph is a hyperbola that opens to the left and right&quot;."></p>
+        <p>Equations should be on their own line or within a single list item of a list object; "inline" equations should generally be avoided. Math OLEs are separate objects from text placeholders; as such, visually inserting an equation over spaces within a sentence will cause the reading order to be first all the text, then the math equation. There are two ways to keep the reading order correct in an "inline" equation: either put all of the sentence including equation inside a Math object (not recommended), or use separate placeholders for the beginning text, the equation, and the rest of the text, overlapped to appear visually seamless.</p>
+          <p class="img">Here, tab order is shown going through first the beginning of the sentence (which has spaces added after it to create room for the equation) 
+          <img src="./powerpoint_files/math_equation2.png" alt="The same slide as previous, but with the text placeholder &quot;The equation is of the form&quot; focused.">
+          then to the equation
+          <img src="./powerpoint_files/math_equation3.png" alt="The same slide with the math equation &quot;x squared over a squared minus y squared over b squared equals 1&quot; focused and shown to be a math OLE.">
+          and finally the rest of the sentence in another text placeholder (which has spaces at the beginning to show the text picking up "after" the math equation).
+          <img src="./powerpoint_files/math_equation4.png" alt="The same slide again with the rest of the sentence being a focused text placeholder. The focus lines show the box overlapping both the math equation and the text at the beginning of the sentence."></p>
+
+        <h4>Stepped-out equations</h4>
+        <p>It's not uncommon for slides to show equations "stepped out." That is, when the student first encounters the slide, only the first line of an equation is visible. Authors using animations to hide content need to ensure that users initiate the "stepping" themselves, and can via keyboard (see more at <a href="#ia">interactive animation</a>).</p>
+        <p>Equal signs (=) should line up vertically, unless there is a compelling reason not to do so (a trick is to draw a vertical line that you can use to align the equal signs). For non-stepped-out floating object display equations, the equals signs should be lined up using the preference within MathType. For stepped-out equations, each line needs to be manually aligned.</p> 
+
+        <h4>Setting MathType Equations</h4>
+        <p>Keyboard characters that should be used only from within MathType to create a MathType equation:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Letters</li>
+          <li>Numbers</li>
+          <li>Minus sign</li>
+          <li>Plus sign</li>
+          <li>Equal sign</li>
+          <li>Comma</li>
+          <li>Exclamation point</li>
+          <li>Dollar</li>
+          <li>Percent</li>
+          <li>Less than</li>
+          <li>Greater than</li>
+        </ul>
+        <p>These characters must be applied from the MathType toolbar:</p>
+        <ul class="pe-list pe-styled-lists--unordered">
+          <li>Tilde</li>
+          <li>Similar to</li>
+          <li>Prime</li>
+          <li>Caret</li>
+          <li>Asterisk</li>
+          <li>Parentheses</li>
+          <li>Brackets</li>
+          <li>Angle brackets</li>
+          <li>Braces</li>
+          <li>Less than or equal to</li>
+          <li>Greater than or equal to</li>
+          <li>Multiplication dot (called the "dot operator", use the smallest of the MathType pull-down choices; using this symbol will also include space on either side of the operator automatically)</li>
+        </ul>
+      </div>
+
+      <div id="animations" tabindex="-1">
+        <h3 class="logo">Animations</h3>
+        <p>While some parts of animated content can be made accessible, animation should be used carefully. When animations are used to provide meaningful content, they must be made accessible. If this cannot be done, an accessible alternative should be provided.</p>
+
+        <h4>Cautions About Animation and Flashing Content</h4>
+        <p>Animations can be distracting or difficult to read for many people; in addition, people with vestibular disorder may get physically ill. Screen reader users may attempt to read text that is still changing. For these reasons, have your transitions settle within five seconds.</p>
+        <p>To Adjust Slide Transition Speed:</p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Select the text or object the animation will be applied to</li>
+          <li>Activate the <kbd class="pe-kbd">Animations</kbd> tab</li>
+          <li>Go to the <kbd class="pe-kbd">Advanced Animation</kbd> pane and select <kbd class="pe-kbd">Add Animation</kbd></li>
+          <li>Select an animation effect such as <kbd class="pe-kbd">Entrance</kbd>, <kbd class="pe-kbd">Exit</kbd> or <kbd class="pe-kbd">Emphasis</kbd></li>
+          <li>Go to the <kbd class="pe-kbd">Timing</kbd> pane</li>
+          <li>In the <kbd class="pe-kbd">Duration</kbd> field, enter the length of the animation
+          </li><li>In the <kbd class="pe-kbd">Delay</kbd> field, specify a time less than 5 seconds to play the animation</li>
+          <li>Test the results by activating the <kbd class="pe-kbd">Play</kbd> button</li>
+        </ol>
+
+        <p>Elements that flash or blink too fast can be uncomfortable for some, and can cause seizures for people with photo-sensitive epilepsy. Avoid flashing or blinking text altogether. However, if flashing content must be included, the flashing rate should be lower than 3 flashes per second. If you need to check the flashing rate to make sure it's safe, set a timer for 10 seconds, and count the number of flashes that occur. Divide the number by 10 and make sure the result is less than 3.</p>
+        <p>Besides the dangers of flashing content, other potential drawbacks may exist with using animation.  Animated content is challenging for users with many types of disabilities. When content can appear from any direction, it may be difficult for some users to track what is on the screen. Use animation judiciously and provide an accessible alternative for meaningful animation that cannot be made accessible.</p>
+
+        <h4>Animation Transitions</h4>
+        <p>Transition animation is text that fades in, flies in, or appears gradually in sections. It can add visual interest to your presentation. If you choose to use transitions in your slides, keep accessibility concerns in mind.</p>
+        <p>Screen content that appears after a delay may not be available to users of assistive technology. Assistive tech like screen readers will attempt to read the content on the slide when it loads. When some content only appears after a delay, the assistive tech may not recognize its presence. One option is to provide instructions to turn off the transitioning animation at the beginning of the slides.</p>
+
+        <h4>Equivalents for Audio</h4>
+        <p>If meaningful audio content is part of an animation, provide a text equivalent for users who are deaf or hearing impaired. This equivalent can be provided in a separate file or as a description within the slide text or notes.</p>
+
+        <h4 id="ia">Interactive Animation</h4>
+        <p>It is possible to control some parts of animated content, but it needs to be  done correctly to be accessible. The option to set a specific trigger on an object to start an animation—like setting it to start after a user clicks text or a shape with the mouse—should be avoided.</p>
+        <p><strong>The "on-click" option should be used instead of the trigger option.</strong> Don't use the <kbd class="pe-kbd">Trigger</kbd> button on the <kbd class="pe-kbd">Advanced Animation</kbd> pane! "On-click" allows both mouse and keyboard activation, and is selected by default in the Timing pane. This is the recommended method especially for slides with stepped-out math equations if the steps can't be separated into individual slides.</p>
+        <p>It is better to provide users with the option to advance through each animation with a click of the mouse or keyboard instead of automatically showing the animation.</p>
+        <p>To add On Click to Animation Timing:</p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Verify animation effects such as <kbd class="pe-kbd">Entrance</kbd>, <kbd class="pe-kbd">Exit</kbd> or <kbd class="pe-kbd">Emphasis</kbd> have been added to text or objects</li>
+          <li>Activate the <kbd class="pe-kbd">Animations</kbd> tab</li>
+          <li>Go to the <kbd class="pe-kbd">Timing</kbd> pane</li>
+          <li>Select <kbd class="pe-kbd">On Click</kbd> from the list next to <kbd class="pe-kbd">Start</kbd></li>
+        </ol>
+
+        <h4>An Alternative Approach</h4>
+        <p><strong>Note: THIS IS NOT AN OPTION FOR MATH. DO NOT USE THIS APPOACH FOR MATH. ONLY USE THE ON CLICK APPROACH FOR MATH</strong></p>
+        <p>Because it may be difficult to make a single animation accessible, it may be useful to break it up into several slides. This is especially useful for animations used to walk through a multi-step process. The animated content can be broken up into steps that can be reviewed one at a time.</p>
+        <ol class="pe-list pe-styled-lists--ordered">
+          <li>Copy the slide into several additional slides</li>
+          <li>Change the objects on each slide to represent the next step of the process</li>
+          <li>Set the slides to advance on click and not automatically</li>
+        </ol>
+      </div>
+
+      <div id="notes" tabindex="-1">
+        <h3 class="logo">Notes for screen reader users</h3>
+        <h4>Math Recommendation</h4>
+        <p>Students need not just MathPlayer but also MathType installed  (and they must have the 32-bit version of Office, not the 64-bit version). They can download the free 30-day trial from <a href="http://www.dessci.com/en/products/mathtype/">the Design Science page</a>. When it expires, it will fall back to MathType Lite, which retains the fonts and symbols and still allows students to view slides.</p>
+        <p>Alt text is necessary on all math objects for JAWS users. Because NVDA will read out both the alt text and the MathML equation in Edit/Normal mode, I recommend NVDA users go through slides in SlideShow/Presentation Mode, where only the MathML is heard. Math objects are not included in Outline View, for students who normally prefer it, so for math-containing slides, stick to either Edit/Normal or SlideShow/Presentation Modes.</p>
+        <h4>Tables</h4>
+        <p>Because of this <a href="https://github.com/nvaccess/nvda/issues/5350">NVDA bug</a>, NVDA users cannot accurately navigate tables and are fairly reliant on table alt text to get the information from the table. Tables are only somewhat accessible in Edit/Normal mode, by pressing <kbd class="pe-kbd">Enter</kbd> or <kbd class="pe-kbd">F2</kbd> to move the cursor into the table. Arrowing around using NVDA in this way does state which row/column the cursor is currently in. The usual table navigation keystrokes don't work however. If alt text is present, NVDA reads out both the Title and Description fields.</p>
+        <p>Tables are completely ignored as a structure with NVDA when in SlideShow/Presentation Mode. Instead, the content inside is read out as if each cell were a new sentence, with no indication that there is a table at all.</p>
+        <p>JAWS 16 meanwhile can navigate tables in SlideShow/Presentation Mode, though only if there's no alt text present (otherwise, the alt text (and only from the Description field) is read out like a text placeholder). For some reason in Edit/Normal mode, moving the cursor from cell to cell announces the cells as graphics.</p>
+
+        <h5>Table Recommendation</h5>
+        <p>We recommend students use JAWS for PowerPoints with tables. If there is alt text, or if the student is using NVDA, and must know exactly the content in the table cells, Edit/Normal mode is the only way to get this information. Students are advised then to be very careful not to accidentally edit the content.</p> 
+        <h4>Animations</h4>
+        <p>For stepped animations, in SlideShow/Presentation Mode, it seems NVDA reads all the content within the slide whether it's visible or not. This leaves using the spacebar or other keys that normally advance the slide to be silent as the previously-hidden content is revealed. Turning animations off before using SlideShow/Presentation Mode solves this problem.</p>
+        <p>For JAWS, leaving animations on and stepping through them in SlideShow/Presentation Mode mostly seems to work okay, except when there are math OLE objects. JAWS users may hear a bunch of animation settings, or the screen reader may seem to get "stuck" on an equation even though visually new content appears. Even turning animations off in SlideShow/Presentation Mode doesn't seem to completely fix this. Sticking in Edit/Normal mode to read slides with stepped animations works a lot better in JAWS.</p>
+        
+        <h5>Animation Recommendation</h5>
+        <p>For stepped animations controlled by keystrokes, we recommend students use NVDA in SlideShow/Presentation Mode with animations turned off or, with JAWS, remain in Edit/Normal mode.</p>
+      </div>
+
+      <div id="checklist" tabindex="-1">
+        <h2>Checklist for PowerPoint Accessibility:</h2>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col" id="reqs">Requirement</th>  
+              <th scope="col" id="answers">Yes/No/NA</th>  
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th colspan="2">General</th>
+            </tr>
+            <tr>
+              <td headers="reqs">Check all slide text be viewed in the Outline View (note, math objects do not appear in Outline View)?</td>
+              <td headers="answers"> </td>
+            </tr>
+            <tr>
+              <td headers="reqs">Are all URLs linked and working properly?</td>
+              <td headers="answers"> </td>
+            </tr>
+            <tr>
+              <td headers="reqs">Are all the slides free of background images or watermarks?</td>
+              <td headers="answers"> </td>
+            </tr>
+            <tr>
+              <td headers="reqs">Do all the slides avoid using flashing/flickering text and/or animated text?</td>
+              <td headers="answers"> </td>
+            </tr>
+            <tr>
+              <td headers="reqs">Checked color contrast ratio (i.e., has a color-contrast ratio of 4.5:1)?</td>
+              <td headers="answers"> </td>
+            </tr>
+            <tr>
+              <td headers="reqs">Do all the slides avoid using text boxes or graphics text within them?</td>
+              <td headers="answers"> </td>
+            </tr>
+            <tr>
+              <td headers="reqs">Do all the slides have a unique title?</td>
+              <td headers="answers"> </td>
+            </tr>
+            <tr>
+              <td headers="reqs">Has the author name, title and subject been set in File &gt; Properties?</td>
+              <td headers="answers"> </td>
+            </tr>
+            <tr>
+              <td headers="reqs">Is the proper proofing language set for the language(s) present on the slide?</td>
+              <td headers="answers"> </td>
+            </tr>
+            <tr>
+              <td headers="reqs">Is the list style being used, not manually typed characters (dashes, numbers, or graphics)?</td>
+              <td headers="answers"> </td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+              <th colspan="2">Reading Order</th>
+            </tr>
+            <tr>
+              <td>Does the order of objects on the slide (lowest to highest), match the intended reading order</td>
+              <td></td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+              <th colspan="2">Images</th>
+            </tr>
+            <tr>
+              <td>Do all images, grouped images, and non-text elements that convey information (including tables and math objects) have meaningful alternative text descriptions?</td>
+              <td> </td>
+            </tr>
+            <tr>
+              <td>Are multiple associated images on the same page (e.g., boxes in an organizational chart) grouped as one object?</td>
+              <td> </td>
+            </tr>
+            <tr>
+              <td>Do decorative images such as spacers or borders, have empty alt text descriptions?</td>
+              <td> </td>
+            </tr>
+            <tr>
+              <td>Do complex meaningful images (such as charts or graphs) provide alternative text descriptions?</td>
+              <td> </td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+              <th colspan="2">Tables</th>
+            </tr>
+            <tr>
+              <td>Are blank cells avoided in tables?</td>
+              <td> </td>
+            </tr>
+            <tr>
+              <td>Do data tables have the first row designated as a "Header Row" in table properties?</td>
+              <td> </td>
+            </tr>
+            <tr>
+              <td>Are all tables free of merged cells?</td>
+              <td> </td>
+            </tr>
+            <tr>
+              <td>Do all tables have a logical reading order from left to right and top to bottom?</td>
+              <td> </td>
+            </tr>
+            <tr>
+              <td>Are all tabular structures created using the table option and not manual tables and/or spaces?</td>
+              <td> </td>
+            </tr>
+            <tr>
+              <td>Do all tables contain alt text (and in the description field)?</td>
+              <td> </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Notes on Converting to PDF</h2>
+      <p>PowerPoint slides can be converted to PDF slides. Be aware that not everything make convert correctly to PDF, so extra work may need to be done in Adobe Acrobat to make sure that the converted slide maintains accessibility.</p>
+      <p>To make sure as many aspects of your PowerPoint slide remain accessible in the resulting PDF, when following <a href="https://support.office.com/en-us/article/Save-PowerPoint-presentations-as-PDF-files-9B5C786B-9C6E-4FE6-81F6-9372F77C47C8">these steps from Microsoft</a> that the options for <strong>exporting tags for accessibility</strong> are checked in the PDF/XPS dialog box.</p>
+
+      <h2>Resources</h2>
+      <ul class="pe-list pe-styled-lists--unordered">
+        <li>Microsoft: <a href="https://support.office.com/en-us/article/Make-your-PowerPoint-presentations-accessible-6f7772b2-2f33-4bd2-8ca7-dae3b2b3ef25">PowerPoint Accessibility</a></li>
+        <li>Department of Veterans affairs: <a href="http://www.section508.va.gov/support/tutorials/powerpoint/index.asp">Creating Accessible PowerPoint Slides with PowerPoint 2010</a></li>
+        <li>George Mason University: <a href="http://ati.gmu.edu/wp-content/uploads/Guide-to-Creating-Accessible-Electronic-Materials-7-MB-pdf.pdf">ATI Guide to Creating Accessible Electronic Materials (PDF)</a></li>
+      </ul>
+    </main>
+    <script>
+      document.addEventListener('mousedown',function() {
+        document.body.classList.add('mouseDetected');
+      },false);
+      
+      document.addEventListener('keydown',function() {
+        document.body.classList.remove('mouseDetected');
+      },false);
+    </script>
+  
+
+</body></html>

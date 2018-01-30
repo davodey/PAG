@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>First Multiple Choice</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!--[if lte IE 8]><script>document.createElement(main)</script><![endif]-->
+    <link rel="stylesheet" href="../elements.css">
+    <style>
+      /* demo-specific styles */
+      main {
+        width: 33%;
+        max-width: 25em;
+        margin: 0 auto;
+        padding: 1em;
+      }
+      .box {
+        padding: 1em;
+        margin-bottom: 1em;
+        border: 1px solid #c7c7c7;
+      }
+      .points {
+        font-weight: bold;
+      }
+      .tries {
+        color: #6a7070;
+      }
+      form, fieldset {
+        margin: 0;
+        padding: 0;
+        border: 0;
+      }
+      legend {
+        font-size: 1.1em;
+        font-weight: bold;
+        margin-bottom: .5em;
+      }
+      legend~div {
+        padding-right: 3.8em;
+      }
+      /* bigger than in Elements */
+      input[type="radio"] ~ span {
+        top: 2px;
+        left: 2px;
+        padding: 2px 6px 6px 2px;
+      }
+      input[type="radio"] ~ span svg {
+        height: 9px;
+        width: 9px;
+      }
+      button[type=submit],
+      a.pe-btn__primary {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="box">
+        <p class="points">[1 pt]</p>
+        <h1>[ Question Title ]</h1>
+        <p>[ Begin by reading the news article, ECB must cut rates or risk crisis again lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac aliquet dui, et ornare libero. ]</p>
+      </div>
+      <div class="box">
+        <p role="status" class="tries">4 tries</p><!-- this already has implicit aria-live and aria-atomic values -->
+        <form method="get" action="multiple_choice2.html">
+          <fieldset>
+            <legend>Which of the following is NOT part of the procedure for writing an equation from a word problem?</legend>
+            <div class="pe-radio">
+              <input type="radio" name="n1" id="wp">
+              <label for="wp">A. Write an expression to represent each unknown quantity in terms of the variable.</label>
+              <span>
+                <svg aria-hidden="true"
+                     focusable="false"
+                     class="pe-icon--radio-dot">
+                  <use xlink:href="#new-notification-9"></use>
+                </svg>
+              </span>
+            </div>
+            <div class="pe-radio">
+              <input type="radio" name="n1" id="wp2">
+              <label for="wp2">B. Use a given relationship in the problem or an appropriate formula to write an equation.</label>
+              <span>
+                <svg aria-hidden="true"
+                     focusable="false"
+                     class="pe-icon--radio-dot">
+                  <use xlink:href="#new-notification-9"></use>
+                </svg>
+              </span>
+            </div>
+            <div class="pe-radio">
+              <input type="radio" name="n1" id="wp3">
+              <label for="wp3">C. Solve for the unknown quantity.</label>
+              <span>
+                <svg aria-hidden="true"
+                     focusable="false"
+                     class="pe-icon--radio-dot">
+                  <use xlink:href="#new-notification-9"></use>
+                </svg>
+              </span>
+            </div>
+            <div class="pe-radio">
+              <input type="radio" name="n1" id="wp4">
+              <label for="wp4">D. Choose a variable to represent an unknown quantity.</label>
+              <span>
+                <svg aria-hidden="true"
+                     focusable="false"
+                     class="pe-icon--radio-dot">
+                  <use xlink:href="#new-notification-9"></use>
+                </svg>
+              </span>
+            </div>
+            <div class="pe-radio">
+              <input type="radio" name="n1" id="wp5">
+              <label for="wp5">E. Lorem ipsum.</label>
+              <span>
+                <svg aria-hidden="true"
+                     focusable="false"
+                     class="pe-icon--radio-dot">
+                  <use xlink:href="#new-notification-9"></use>
+                </svg>
+              </span>
+            </div>
+            <button type="submit" class="pe-btn__primary" disabled>Submit</button>
+          </fieldset>
+        </form>
+        <div role="alert"> </div>
+      </div>
+    </main>
+
+    <!-- calls icons onto page for IE and Android-default-webkit Chrome-->
+    <script>
+if (!document.getElementById('pe-icons-sprite')) {
+var pe_ajax=new XMLHttpRequest();
+pe_ajax.open('GET', 'p-icons-sprite-1.1.svg', true);
+pe_ajax.responseType="document";
+pe_ajax.onload=function(e){document.body.insertBefore(pe_ajax.responseXML.documentElement,document.body.childNodes[0]);}
+pe_ajax.send();}
+    </script>
+    <script src="base.js"></script>
+    <script>
+      var LongNameSpacedPearsonTestObject=PO={
+          submit: document.querySelector('button[type="submit"]'),
+          radios: [].slice.call(document.querySelectorAll('input[type="radio"]')),
+
+          init: function() {
+            PO.radios.forEach(function(radio) {
+              Basis.addEventListener(radio,'focus',PO.enableButton);
+            });
+          },
+        
+          enableButton: function() {
+            PO.submit.removeAttribute('disabled');
+            PO.radios.forEach(function(radio) {
+              Basis.removeEventListener(radio,'focus',PO.enableButton);
+            });
+          }
+      };
+      Basis.start(PO.init);
+    </script>    
+  </body>
+</html>
