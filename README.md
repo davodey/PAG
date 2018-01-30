@@ -4,11 +4,8 @@ Pearson Accessibility Guidelines
 This is a temporary github placement while the Guidelines are being updated.
 
 ## Current TODOs:
+- Powerpoint guidelines added, however changes may need to be done by Proto team on behalf of PPTX Guideline changes from accessibility team.
 
-- Fetch all the external pages referenced by pag.html and make local copies
-- Check that all external images have been fetched
-- Javascript
-- Cupper
 
 ## Issue
 The current Pearson Accessibility Guidelines are sitting on a server we cannot easily access and update: <a href="http://wps.pearsoned.com/accessibility/115/29601/7577872.cw/index.html#parent_12631413">http://wps.pearsoned.com/accessibility/115/29601/7577872.cw/index.html#parent_12631413</a>.
@@ -35,3 +32,5 @@ Eventually the media server will need to 301 Redirect to wherever the new guidel
 ### Cupper
 
 <a href="https://thepaciellogroup.github.io/cupper/">Cupper</a> looks like a tool we could use to host these guidelines.
+
+<a href="https://github.com/pearson-ux/cupper">Private repo Pearson-ux cupper</a>.
