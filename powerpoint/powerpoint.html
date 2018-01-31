@@ -331,11 +331,11 @@
           <li>Embedded objects</li>
           <li>Video and audio files</li>
           <li><a href="#math">Math objects</a></li>
-          <li><a href="#tables">Tables</a></li>
         </ul>
 
         <h4>The Notes Pane</h4>
         <p>Instructors or vendors may use the Notes pane to add additional information about a slide, including longer explanations of charts, graphs, or diagrams on the slide. If the Notes section is pre-filled by the vendor or deck creator, a graphic should be added to the first slide of the deck with alternative text with some instructions to students, such as "Press 'F6' in normal view/Edit Mode or press 'Ctrl+Shift+N' in SlideShow Mode to access the notes".</p>
+        <p>The Notes pane is intended for instructors (or students) to fill in, so using the Notes section for longer descriptions of things like charts and graphs may not work for particular instructors.</p>
 
         <h4>Basic Rules for Alternative Text</h4>
         <p>Remember, somebody is going to be listening to your descriptions and listening takes time. The shorter and clearer your descriptions are, the easier they will be to understand.</p>
@@ -410,7 +410,7 @@
       <div id="tables" tabindex="-1">
         <h3 class="logo">Tables</h3>
         <p>Screen readers do not work well with tables in PPT files, but the techniques listed here will help make them as accessible as possible. Generally: use "real" (PowerPoint-created) tables (not images), use the correct structure, and keep them simple.</p>
-        <p>We generally no longer recommend adding alt text to tables, and instead encourage screen reader users to explore table cells in Edit mode. When alt text is added to tables, that may be read in place of the actual table information in SlideShow mode.</p>
+        <p>We generally no longer recommend adding alt text to tables, and instead encourage screen reader users to explore table cells in Edit mode. When alt text is added to tables, that may be read in place of the actual table information in SlideShow mode, which may be a poor user experience.</p>
       
         <h4>Real tables</h4>
         <p>Use PowerPoint's Table features to create data tables. Tables created with other methods, including copying and pasting cells directly from Excel spreadsheets, will not be read correctly by assistive tech. Unfortunately, even using this method, not all AT associate header cells with data cells. This doesn't mean you shouldn't use header cells. It is always a good idea to maintain good practices, for the eventuality that AT will support them in the future.</p>
@@ -482,9 +482,9 @@
               <li>Use merged and split cells very sparingly; some screen readers have difficulty with these</li>
             </ul>
           </li>
-          <li>Do not use blank cells
+          <li>Do not use blank cells. However if using blank cells is unavoidable:
             <ul>
-              <li>Add the words blank or blank cell in any blank cells</li>
+              <li>Add the words `blank` or `blank cell` in any blank cells</li>
               <li>Format the font to match the cell background so it doesn't show for visual readers</li>
             </ul>
           </li>
@@ -492,7 +492,8 @@
         </ol>
 
         <h4>Table Alt Text</h4>
-        <p>The Microsoft PowerPoint Accessibility Checker will currently flag a table without alternative text as an error. However, because most assistive technologies will read table cells in Edit mode, it is Pearson's policy to not include alt text for actual tables, as this can result in a poor user experience (namely, in SlideShow Mode the alt text may override the actual table data).</p>
+        <p>Real tables created in PowerPoint do not require alternative text.</p>
+        <p><strong>NOTE</strong> The Microsoft PowerPoint Accessibility Checker will currently flag a table without alternative text as an error. However, because most assistive technologies will read table cells in Edit mode, it is Pearson's policy to not include alt text for actual tables, as this can result in a poor user experience (namely, in SlideShow Mode the alt text may override the actual table data).</p>
       </div>
 
       <div id="math" tabindex="-1">
@@ -615,12 +616,12 @@
         <p>Students need not just MathPlayer but also MathType installed  (and they must have the 32-bit version of Office, not the 64-bit version). They can download the free 30-day trial from <a href="http://www.dessci.com/en/products/mathtype/">the Design Science page</a>. When it expires, it will fall back to MathType Lite, which retains the fonts and symbols and still allows students to view slides.</p>
         <p>Alt text is necessary on all math objects for JAWS users. Because NVDA will read out both the alt text and the MathML equation in Edit/Normal mode, I recommend NVDA users go through slides in SlideShow/Presentation Mode, where only the MathML is heard. Math objects are not included in Outline View, for students who normally prefer it, so for math-containing slides, stick to either Edit/Normal or SlideShow/Presentation Modes.</p>
         <h4>Tables</h4>
-        <p>Because of this <a href="https://github.com/nvaccess/nvda/issues/5350">NVDA bug</a>, NVDA users cannot accurately navigate tables and are fairly reliant on table alt text to get the information from the table. Tables are only somewhat accessible in Edit/Normal mode, by pressing <kbd class="pe-kbd">Enter</kbd> or <kbd class="pe-kbd">F2</kbd> to move the cursor into the table. Arrowing around using NVDA in this way does state which row/column the cursor is currently in. The usual table navigation keystrokes don't work however. If alt text is present, NVDA reads out both the Title and Description fields.</p>
+        <p>Because of this <a href="https://github.com/nvaccess/nvda/issues/5350">NVDA bug</a>, NVDA users cannot easily and accurately navigate tables. Tables are somewhat accessible in Edit/Normal mode, by pressing <kbd class="pe-kbd">Enter</kbd> or <kbd class="pe-kbd">F2</kbd> to move the cursor into the table. Arrowing around using NVDA in this way does state which row/column the cursor is currently in. The usual table navigation keystrokes don't work however.</p>
         <p>Tables are completely ignored as a structure with NVDA when in SlideShow/Presentation Mode. Instead, the content inside is read out as if each cell were a new sentence, with no indication that there is a table at all.</p>
         <p>JAWS 16 meanwhile can navigate tables in SlideShow/Presentation Mode, though only if there's no alt text present (otherwise, the alt text (and only from the Description field) is read out like a text placeholder). For some reason in Edit/Normal mode, moving the cursor from cell to cell announces the cells as graphics.</p>
 
         <h5>Table Recommendation</h5>
-        <p>We recommend students use JAWS for PowerPoints with tables. If there is alt text, or if the student is using NVDA, and must know exactly the content in the table cells, Edit/Normal mode is the only way to get this information. Students are advised then to be very careful not to accidentally edit the content.</p> 
+        <p>We recommend students use JAWS for PowerPoints with tables. For NVDA users, Edit/Normal mode is the best way to get table information. Students are advised then to be very careful not to accidentally edit the content.</p> 
         <h4>Animations</h4>
         <p>For stepped animations, in SlideShow/Presentation Mode, it seems NVDA reads all the content within the slide whether it's visible or not. This leaves using the spacebar or other keys that normally advance the slide to be silent as the previously-hidden content is revealed. Turning animations off before using SlideShow/Presentation Mode solves this problem.</p>
         <p>For JAWS, leaving animations on and stepping through them in SlideShow/Presentation Mode mostly seems to work okay, except when there are math OLE objects. JAWS users may hear a bunch of animation settings, or the screen reader may seem to get "stuck" on an equation even though visually new content appears. Even turning animations off in SlideShow/Presentation Mode doesn't seem to completely fix this. Sticking in Edit/Normal mode to read slides with stepped animations works a lot better in JAWS.</p>
